@@ -1,0 +1,33 @@
+{
+  "name": "cleenmain",
+  "title": "Clé en main",
+  "description": "Le système clé en main pour FoundryVTT.",
+  "version": "0.0.1",
+  "minimumCoreVersion": "0.9.4",
+  "compatibleCoreVersion": "9",
+  "author": "Khaali",
+  "esmodules": ["module/scripts/cleenmain.js"],
+  "scripts": [],
+  "styles": ["cleenmain.css"],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "French",
+      "path": "lang/fr.json"
+    }
+  ],
+  "gridDistance": 1,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "vitalite",
+  "initiative": "3d6+@reflexes",
+  "url": "https://github.com/Khaali-dev/cleenmain",
+  "manifest": "https://github.com/Khaali-dev/cleenmain/releases/latest/download/system.json",
+  "download": "https://github.com/Khaali-dev/cleenmain/releases/download/0.0.1/master.zip",
+  "license": "LICENSE.txt"
+}

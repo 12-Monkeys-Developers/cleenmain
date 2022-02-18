@@ -1,0 +1,50 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+    </header>
+    <div class="sheet-content">
+        <table>
+            <tr>
+                <th>{{localize "cleenmain.label.categorie"}}</th>
+                <th>{{localize "cleenmain.label.type"}}</th>
+                <th>{{localize "cleenmain.arme.degats"}}</th>
+                <th>{{localize "cleenmain.arme.portee"}}</th>
+                <th>{{localize "cleenmain.arme.cibles"}}</th>
+                <th>{{localize "cleenmain.arme.special"}}</th>
+            </tr>
+            <td>
+                <select name="data.categorie">
+                    {{#select data.categorie}}
+                    {{#each config.arme.categorie as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </td>
+            <td>
+                <select name="data.type">
+                    {{#select data.type}}
+                    {{#each config.arme.type as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </td>
+            <td>
+                <input name="data.degats" type="text" value="{{data.degats}}" />
+            </td>
+            <td>
+                <input name="data.portee" type="text" value="{{data.portee}}" data-dtype="Number" />
+            </td>
+            <td>
+                <input name="data.cibles" type="text" value="{{data.cibles}}" data-dtype="Number" />
+            </td>
+            <td>
+                <input name="data.special" type="text" value="{{data.special}}" />
+            </td>
+            </table>
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+    </div>
+</form>
+

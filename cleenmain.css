@@ -1,0 +1,42 @@
+.cleenmain.sheet.item form {
+  display: flex;
+  flex-direction: column;
+}
+.cleenmain.sheet.item .sheet-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.cleenmain.sheet.item .sheet-content .editor {
+  height: 100%;
+}
+.cleenmain.sheet.pj form {
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.pj .main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.cleenmain.sheet.pj .sidebar table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+.cleenmain.sheet.pj .sidebar tbody th:nth-child(1) {
+  width: 80%;
+}
+.cleenmain.sheet.pj .sidebar tbody th:nth-child(2) {
+  width: 20%;
+}
+.cleenmain.sheet.pj .imgpaxtitle01 {
+  display: block;
+  background-image: url('./asset/image/pax_titre.webp');
+  width: 450px;
+  height: 165px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}

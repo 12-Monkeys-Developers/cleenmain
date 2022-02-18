@@ -1,0 +1,31 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="main">
+        <div class="sidebar">
+            <div class="skills">
+                <table>
+                    <caption><h1>{{localize "cleenmain.label.skills"}}</h1></caption>
+                    <tbody>
+                    {{#each data.skills as |name type|}}
+                        <tr>
+                            <th>
+                                <div class="skill-name">{{localize name.label}}
+                                </div>
+                            </th>
+                            <th>
+                                <input id="{{id}}-{{type}}-value" type="number" value="{{name.value}}" data-dtype="Number" />
+                            </th>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="central">
+        <span class="imgpaxtitle01"></span>
+        <div class="bigname">{{localize "cleenmain.label.character"}} : {{actor.name}}</div>
+        <div class="bigname">{{localize "cleenmain.label.occupation"}} : </div>
+        <input id="{{id}}-data.bio.occupation" name="data.bio.occupation" type="text" value="{{data.bio.occupation}}" data-dtype="text" />
+    </div>
+</form>
+

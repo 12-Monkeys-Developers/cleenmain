@@ -1,0 +1,74 @@
+{
+    "cleenmain": {
+        "label": {
+            "categorie": "Catégorie",
+            "character": "Personnage",
+            "description": "Description",
+            "skills" : "Compétences",
+            "type": "Type",
+            "wealth": "Richesses"
+        },
+        "arme": {
+            "categorie": {
+                "normale": "Normale",
+                "guerre": "Arme de guerre",
+                "lourde": "Arme lourde"
+            },
+            "type": {
+                "melee": "Mélée",
+                "distance": "à distance"
+            },
+            "degats": "Dégâts",
+            "cibles": "Cibles",
+            "portee": "Portée",
+            "special": "Spécial"
+        },
+
+        "armure": {
+            "categorie": {
+                "normale": "Normale",
+                "guerre": "Armure de guerre",
+                "lourde": "Armure lourde"
+            },
+            "type": {
+                "melee": "Mélée",
+                "distance": "à distance"
+            },
+            "protection": "Protection",
+            "special": "Spécial"
+        },
+        "skill":{
+            "acrobatie": "Acrobatie",
+            "art": "Art",
+            "athletisme": "Athlétisme",
+            "autorite": "Autorité",
+            "combatcac": "Combat au corps à corps",
+            "combatdist": "Combat à distance",
+            "connaissance": "Connaissance",
+            "defense": "Défense",
+            "discretion": "Discrétion",
+            "documentation": "Documentation",
+            "eloquence": "Éloquence",
+            "equitation": "Équitation",
+            "intellect": "Intellect",
+            "langue": "Langue",
+            "muscles": "Muscles",
+            "perception": "Perception",
+            "pilotage": "Pilotage",
+            "psychologie": "Psychologie",
+            "reflexes": "Réflexes",
+            "resistance": "Résistance",
+            "soins": "Soins",
+            "survie": "Survie",
+            "technique": "Technique",
+            "volonte": "Volonté"
+        },
+        "wealth": {
+            "platinium": "Platinium",
+            "gold": "Gold",
+            "electrum": "Electrum",
+            "silver": "Silver",
+            "copper": "Copper"
+        }
+    }
+}

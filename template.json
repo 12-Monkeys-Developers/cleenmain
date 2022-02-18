@@ -1,0 +1,296 @@
+{
+    "Actor":{
+        "types":[
+            "pj",
+            "pnj"
+        ],
+        "templates": {
+            "skills":{
+                "skills": {
+                    "acrobatie": {
+                        "label": "cleenmain.skill.acrobatie",
+                        "value": 2,
+                        "developed": false
+                    },
+                    "art": {
+                        "label": "cleenmain.skill.art",
+                        "value": 2,
+                        "developed": false,
+                        "domains": []
+                        },
+                    "athletisme": {
+                        "label": "cleenmain.skill.athletisme",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "autorite": {
+                        "label": "cleenmain.skill.autorite",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "combatcac": {
+                        "label": "cleenmain.skill.combatcac",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "combatdist": {
+                        "label": "cleenmain.skill.combatdist",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "connaissance": {
+                        "label": "cleenmain.skill.connaissance",
+                        "value": 2,
+                        "developed": false,
+                        "domains": []
+                        },
+                    "defense": {
+                        "label": "cleenmain.skill.defense",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "discretion": {
+                        "label": "cleenmain.skill.discretion",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "documentation": {
+                        "label": "cleenmain.skill.documentation",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "eloquence": {
+                        "label": "cleenmain.skill.eloquence",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "equitation": {
+                        "label": "cleenmain.skill.equitation",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "intellect": {
+                        "label": "cleenmain.skill.intellect",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "langue": {
+                        "label": "cleenmain.skill.langue",
+                        "value": 2,
+                        "developed": false,
+                        "domains": []
+                        },
+                    "muscles": {
+                        "label": "cleenmain.skill.muscles",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "perception": {
+                        "label": "cleenmain.skill.perception",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "pilotage": {
+                        "label": "cleenmain.skill.pilotage",
+                        "value": 2,
+                        "developed": false,
+                        "domains": []
+                        },
+                    "psychologie": {
+                        "label": "cleenmain.skill.psychologie",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "reflexes": {
+                        "label": "cleenmain.skill.reflexes",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "resistance": {
+                        "label": "cleenmain.skill.resistance",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "soins": {
+                        "label": "cleenmain.skill.soins",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "survie": {
+                        "label": "cleenmain.skill.survie",
+                        "value": 2,
+                        "developed": false
+                        },
+                    "technique": {
+                        "label": "cleenmain.skill.technique",
+                        "value": 2,
+                        "developed": false,
+                        "domains": []
+                        },
+                    "volonte": {
+                        "label": "cleenmain.skill.volonte",
+                        "value": 2,
+                        "developed": false
+                        }
+                }
+            },
+            "vitalite": {
+                "vitalite": {
+                    "max": 0,
+                    "value": 0
+                }
+            },
+            "bio":{
+                "bio": {
+                    "origine": "",
+                    "ideal": "",
+                    "lien": "",
+                    "defaut": "",
+                    "age": "",
+                    "occupation": "",
+                    "quote": "",
+                    "tactique":""
+                }
+            },
+            "wealth": {
+                "wealth": {
+                    "platinium": 0,
+                    "gold": 0,
+                    "electrum": 0,
+                    "siver": 0,
+                    "copper": 0
+                }
+            }
+        },
+        "pj": {
+            "templates": [
+                "skills",
+                "vitalite",
+                "bio",
+                "wealth"
+            ],
+            "formation":{
+                "arme":{
+                    "guerre": false,
+                    "lourde": false
+                },
+                "armure":{
+                    "guerre": false,
+                    "lourde": false,
+                    "bouclier": false
+                }
+            },
+            "bonusdegats": {
+                "melee": 0,
+                "distance": 0
+            },
+            "heroisme": {
+                "max": 0,
+                "value": 0
+            },
+            "wounds": 0
+        },
+        "pnj": {
+            "templates": [
+                "skills",
+                "vitalite",
+                "bio",
+                "wealth"
+            ],
+            "level": "secondcouteau",
+            "elite": false,
+            "pnjskills":{
+                "physique": {
+                    "normal": 4,
+                    "elite": 4
+                },
+                "habilite": {
+                    "normal": 4,
+                    "elite": 4
+                },
+                "social":{
+                    "normal": 4,
+                    "elite": 4
+                },
+                "mental":{
+                    "normal": 4,
+                    "elite": 4
+                }
+            },
+            "combat":[],
+            "defense": {
+                "skill":2,
+                "protection":0,
+                "name":"",
+                "relance":false
+            },
+            "calcVitalite":{
+                "2pj": 6,
+                "3pj": 9,
+                "4pj": 12,
+                "5pj": 15
+            },
+            "primes":{
+                "attaquemeurtriere":0,
+                "attaquemultiple":0,
+                "efficacite":0,
+                "prudence":0,
+                "rapidite":0
+            },
+            "penalite":{
+                "blessurelegere":0,
+                "endanger":0,
+                "difficulte":0,
+                "lenteur":0,
+                "risque":0
+            }
+        }
+    },
+    "Item":{
+        "types":[
+            "weapon",
+            "armor",
+            "atout"
+        ],
+        "templates": {
+            "itemdescription": {
+                "description": ""
+            }
+        },
+        "weapon":{
+            "templates": ["itemdescription"],
+            "categorie":[
+                "normale",
+                "arme de guerre",
+                "arme lourde"
+            ],
+            "type":[
+                "melee",
+                "distance"
+            ],
+            "degats":"2d6",
+            "portee":0,
+            "cibles":1,
+            "special": "",
+            "quality": ""
+        },
+        "armor":{
+            "templates": ["itemdescription"],
+            "categorie":[
+                "normale",
+                "armure de guerre",
+                "armure lourde"
+            ],
+            "protection":0,
+            "special": "",
+            "quality": ""
+        },
+        "atout":{
+            "templates": ["itemdescription"],
+            "learned": true
+        },
+        "equipment":{
+            "templates": ["itemdescription"]
+        }
+    }
+}
