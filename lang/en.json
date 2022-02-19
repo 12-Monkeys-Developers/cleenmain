@@ -1,12 +1,18 @@
 {
     "cleenmain": {
         "label": {
+            "atouts": "Atouts",
+            "addAtout": "Create Atout",
             "categorie": "Catégorie",
             "character": "Character",
             "description": "Description",
+            "equipment": "Equipment",
             "skills" : "Compétences",
             "type": "Type",
             "wealth": "Richesses"
+        },
+        "atout":{
+            "newatout": "New Atout"
         },
         "arme": {
             "categorie": {

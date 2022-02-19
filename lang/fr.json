@@ -1,12 +1,18 @@
 {
     "cleenmain": {
         "label": {
+            "atouts": "Atouts",
+            "addAtout": "Créer Atout",
             "categorie": "Catégorie",
             "character": "Personnage",
             "description": "Description",
+            "equipment": "Équipement",
             "skills" : "Compétences",
             "type": "Type",
             "wealth": "Richesses"
+        },
+        "atout":{
+            "newatout": "Nouvel Atout"
         },
         "arme": {
             "categorie": {
@@ -64,11 +70,11 @@
             "volonte": "Volonté"
         },
         "wealth": {
-            "platinium": "Platinium",
-            "gold": "Gold",
-            "electrum": "Electrum",
-            "silver": "Silver",
-            "copper": "Copper"
+            "platinium": "Platine",
+            "gold": "Or",
+            "electrum": "Électrum",
+            "silver": "Argent",
+            "copper": "Cuivre"
         }
     }
 }

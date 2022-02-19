@@ -15,9 +15,28 @@ export default class CleenmainPjSheet extends ActorSheet {
       editable: this.isEditable,
       actor: context.actor,
       data: context.actor.data.data,
-      config: CONFIG.cleenmain
+      config: CONFIG.cleenmain,
+      atouts: context.actor.data.items.filter(function(item){return item.type="atout"}),
+      armor: context.actor.data.items.filter(function(item){return item.type="armor"}),
+      weapons: context.actor.data.items.filter(function(item){return item.type="weapon"}),
+      equipments: context.actor.data.items.filter(function(item){return item.type="equipment"})
     }
 
     return sheetData;
+  }
+
+  activateListeners(html){
+    html.find(".item-create").click(this._onItemCreate.bind(this));
+    super.activateListeners(html)
+  }
+
+  _onItemCreate(event){
+    event.preventDefault();
+    let element=event.currentTarget;
+    let itemData = {
+      name: game.i18n.localize("cleenmain.atout.newatout"),
+      type: element.dataset.type
+    }
+    return(this.actor.createOwnedItem(itemData));
   }
 }

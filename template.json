@@ -140,6 +140,19 @@
                     "value": 0
                 }
             },
+            "formations": {
+                "formations": {
+                    "armes": {
+                        "guerre": false,
+                        "lourde": false
+                    },
+                    "armures": {
+                        "guerre": false,
+                        "lourde": false,
+                        "bouclier": false
+                    }
+                }
+            },
             "bio":{
                 "bio": {
                     "origine": "",
@@ -165,21 +178,11 @@
         "pj": {
             "templates": [
                 "skills",
+                "formations",
                 "vitalite",
                 "bio",
                 "wealth"
             ],
-            "formation":{
-                "arme":{
-                    "guerre": false,
-                    "lourde": false
-                },
-                "armure":{
-                    "guerre": false,
-                    "lourde": false,
-                    "bouclier": false
-                }
-            },
             "bonusdegats": {
                 "melee": 0,
                 "distance": 0
@@ -287,7 +290,7 @@
         },
         "atout":{
             "templates": ["itemdescription"],
-            "learned": true
+            "developed": true
         },
         "equipment":{
             "templates": ["itemdescription"]

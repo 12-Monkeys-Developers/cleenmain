@@ -1,0 +1,13 @@
+<div class="atout-card">
+    {{#if data.developed}}
+    <input id="{{id}}-{{name}}-dev" name="data.developed" type="checkbox" value="data.developed" checked/>
+    {{else}}
+    <input id="{{id}}-{{name}}-dev" name="data.developed" type="checkbox" value="data.developed"/>
+    {{/if}}
+    <div class="atout-name">
+        <p>{{name}}</p>
+    </div>
+    <div class="sheet-description">
+        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+    </div>
+</div>

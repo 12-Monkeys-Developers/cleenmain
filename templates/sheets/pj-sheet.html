@@ -14,6 +14,13 @@
                             <th>
                                 <input id="{{id}}-{{type}}-value" type="number" value="{{name.value}}" data-dtype="Number" />
                             </th>
+                            <th>
+                                {{#if name.developed}}
+                                <input id="{{id}}-{{type}}-dev" name="name.developed" type="checkbox" value="name.developed" checked/>
+                                {{else}}
+                                <input id="{{id}}-{{type}}-dev" name="name.developed" type="checkbox" value="name.developed"/>
+                                {{/if}}
+                            </th>
                         </tr>
                     {{/each}}
                     </tbody>
@@ -23,9 +30,25 @@
     </div>
     <div class="central">
         <span class="imgpaxtitle01"></span>
-        <div class="bigname">{{localize "cleenmain.label.character"}} : {{actor.name}}</div>
+        <div class="bigname">{{localize "cleenmain.label.character"}}</div>
+        <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
         <div class="bigname">{{localize "cleenmain.label.occupation"}} : </div>
-        <input id="{{id}}-data.bio.occupation" name="data.bio.occupation" type="text" value="{{data.bio.occupation}}" data-dtype="text" />
+        <input name="occupation" type="text" value="{{data.bio.occupation}}"/>
+        <caption><h1>{{localize "cleenmain.label.atouts"}}</h1></caption>
+        <a class="item-create" data-type="atout" title="{{localize cleenmain.label.addAtout}}">
+            <i class="fas fa-plus"></i>
+        </a>
+        <div class="atouts">
+            {{#each atouts as |item|}}
+            {{> "systems/cleenmain/templates/partials/atout-card.html" item}}
+            {{/each}}
+        </div>
+    </div>
+    <div class="rightcolumn">
+        <caption><h1>{{localize "cleenmain.label.equipment"}}</h1></caption>
+        <caption><h1>{{localize "cleenmain.label.wealth"}}</h1></caption>
+        <div class="wealth-name">{{localize "cleenmain.wealth.platinium"}}</div>
+        <input name="name" type="text" value="{{data.wealth.platinium}}" placeholder="Name"/>
     </div>
 </form>
 
