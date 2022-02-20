@@ -2,6 +2,7 @@
     "cleenmain": {
         "label": {
             "atouts": "Atouts",
+            "atout": "Atout",
             "addAtout": "Create Atout",
             "categorie": "Catégorie",
             "character": "Character",
