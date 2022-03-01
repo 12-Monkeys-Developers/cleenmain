@@ -1,0 +1,166 @@
+<div class="dialog">
+  {{#if askWeapon}}
+  <div class="attribute">
+    <label>Choose weapon</label>
+    <select id="weapon">
+        {{#each weapons}}
+        <option value={{this.id}}>{{this.name}} | Attribut: {{this.data.data.attribute}} </option>
+        {{/each}}
+    </select>
+  </div>
+  {{/if}}
+  {{#if askCastingAttribute}}
+  <div class="attribute">
+      <label>{{localize "DIALOG.CASTING_ATTRIBUTE"}}</label>
+      <select id="castAt">
+        <option value="accurate">{{localize "ATTRIBUTE.ACCURATE"}}</option>
+        <option value="cunning">{{localize "ATTRIBUTE.CUNNING"}}</option>
+        <option value="discreet">{{localize "ATTRIBUTE.DISCREET"}}</option>
+        <option value="persuasive">{{localize "ATTRIBUTE.PERSUASIVE"}}</option>
+        <option value="quick">{{localize "ATTRIBUTE.QUICK"}}</option>
+        <option value="resolute" selected>{{localize "ATTRIBUTE.RESOLUTE"}}</option>
+        <option value="strong">{{localize "ATTRIBUTE.STRONG"}}</option>
+        <option value="vigilant">{{localize "ATTRIBUTE.VIGILANT"}}</option>
+        <option value="defense">{{localize "ARMOR.DEFENSE"}}</option>
+    </select>
+  </div>
+  {{/if}}
+	{{#if askTargetAttribute}}
+    <div class="attribute">
+        <label>{{localize "DIALOG.RESIST_ATTRIBUTE"}}</label>
+        <select id="resistAtt">
+            <option value="accurate">{{localize "ATTRIBUTE.ACCURATE"}}</option>
+            <option value="cunning">{{localize "ATTRIBUTE.CUNNING"}}</option>
+            <option value="discreet">{{localize "ATTRIBUTE.DISCREET"}}</option>
+            <option value="persuasive">{{localize "ATTRIBUTE.PERSUASIVE"}}</option>
+            <option value="quick">{{localize "ATTRIBUTE.QUICK"}}</option>
+            <option value="resolute" selected>{{localize "ATTRIBUTE.RESOLUTE"}}</option>
+            <option value="strong">{{localize "ATTRIBUTE.STRONG"}}</option>
+            <option value="vigilant">{{localize "ATTRIBUTE.VIGILANT"}}</option>
+            <option value="defense">{{localize "ARMOR.DEFENSE"}}</option>
+        </select>
+    </div>
+  {{/if}}
+  {{#if hasRoll}}
+  <div class="bonus">
+    <label>{{localize "DIALOG.MODIFIER"}}</label>
+    <input id="bonus" type="number" value="{{defaultModifier}}" data-dtype="Number"/>
+  </div>
+  <div class="favour">
+    <label class="lblfavour">{{radioBoxes groupName choices checked=defaultFavour localize=true}}</label>
+  </div>
+  {{/if}}
+  {{#if askImpeding}}
+  <div class="simplebox">
+    <label>{{localize "DIALOG.IMPEDING"}}</label> <span class="lblfavour"><input type="checkbox" id="impeding" checked></span>
+  </div>
+  {{/if}}
+  {{#if targetImpeding}}
+  <div class="simplebox">
+    <label>{{localize "ARMOR.IMPEDING_TARGET"}}</label> <span class="lblfavour"><input type="checkbox" id="impTarget" checked></span>
+  </div>
+  {{/if}}
+  {{#if askCorruptedTargetDefaultNo}}
+  <div class="simplebox">
+    <label>{{localize "DIALOG.ASK_CORRUPTION"}}</label><span class="lblfavour"><input type="checkbox" id="targetCorrupt" unchecked></span>
+  </div>
+  {{/if}}
+  {{#if askCorruptedTargetDefaultYes}}
+  <div class="simplebox">
+    <label>{{localize "DIALOG.ASK_CORRUPTION"}}</label><span class="lblfavour"><input type="checkbox" id="targetCorrupt" checked></span>
+  </div>
+  {{/if}}
+  {{#if isWeaponRoll}}
+    {{#if precise}}
+      <div class="damagemodifier">
+        <label for="precise">{{localize "COMBAT.PARAMS_PRECISE"}}</label> <div class="weapondamage"><span id="weapondamage">{{localize "COMBAT.CHAT_MODIFIER"}}1</span></div>
+      </div>
+    {{/if}}
+    <div class="damagemodifier">
+      <label for="weapondamage">{{localize "WEAPON.BASE_DAMAGE"}}</label> <div class="weapondamage"><span id="weapondamage">{{weaponDamage}}</span></div>
+    </div>
+    {{#if ignoreArmor}}
+      <div class="simplebox">
+        <label>{{localize "DIALOG.IGNORE_ARMOR"}}</label><span class="lblfavour"><input type="checkbox" id="ignarm" checked></span>
+      </div>
+    {{else}}
+    <div class="simplebox">
+      <label>{{localize "DIALOG.IGNORE_ARMOR"}}</label><span class="lblfavour"><input type="checkbox" id="ignarm" unchecked></span>
+    </div>
+    {{/if}}
+    <div class="bonus">
+      <label>{{localize "DIALOG.USE_POISON"}}</label>
+      <select id="poison">
+        <option value="0">{{localize "DIALOG.NO_POISON"}}</option>
+        <option value="1">{{localize "DIALOG.LIGHT_POISON"}}</option>
+        <option value="2">{{localize "DIALOG.MEDIUM_POISON"}}</option>
+        <option value="3">{{localize "DIALOG.STRONG_POISON"}}</option>
+    </select>
+    </div>
+    {{#if askBackstab}}
+    <div class="simplebox">
+      <label>{{localize "DIALOG.BACKSTAB"}}</label> <span class="lblfavour"><input type="checkbox" id="usebackstab" unchecked></span>
+    </div>
+    {{/if}}
+  {{/if}}
+  {{#if contextualDamage}}
+    <div class="simplebox">
+      <label>{{localize "DIALOG.ADVANTAGE"}}</label><span class="lblfavour"><input type="checkbox" id="advantage" unchecked></span>
+    </div>
+    {{#each packages as |package|}}
+      {{#ife package.type "radio"}}
+        <div class="favour"><label class="lblfavour">{{radioBoxes package.id package.radioAlternatives checked=package.defaultSelect localize=false}}</label></div>
+      {{/ife}}
+      {{#ife package.type "checkbox"}}          
+        <div class="advantage"><label for="{{package.id}}">{{package.label}}</label><div class="packageInfo"><input class="checkbox" type="checkbox" id="{{package.id}}" value="{{package.value}}" data-dtype="Text" ><input for="{{package.id}}" class="packageDetail" type="text" value="{{package.value}}" data-dtype="Text" disabled/></div></div>
+      {{/ife}}
+    {{/each}}
+    {{#if leaderTarget}}
+    <div class="damagemodifier">
+      <label for="weapondamage">{{localize "COMBAT.CHAT_DMG_PARAMS_LEADER"}}</label> <div class="weapondamage"><span id="weapondamage">{{d4}}</span></div>
+    </div>
+    {{/if}}
+    <div class="damagemodifier">
+      <label>{{localize "DIALOG.DAMAGE_MODIFIER"}}</label><input id="dammodifier" value="{{defaultDamModifier}}" type="text" data-dtype="Text"/>
+    </div>
+  {{/if}}
+  {{#if isArmorRoll}}
+  <div class="advantage">
+    <label>{{localize "DIALOG.DISADVANTAGE"}}</label> <span class="lblfavour"><input type="checkbox" {{defaultAdvantage}} id="advantage" value="1" data-dtype="Number"> </span>
+  </div>
+  {{/if}}
+  {{#if checkMaintain}}
+  <div class="maintain">
+    <label>{{localize "DIALOG.ISMAINTAINED"}}</label>
+    <select id="maintain">
+        <option  value="C" selected >{{localize "DIALOG.CASTING"}}</option>
+        <option  value="M" >{{localize "DIALOG.MAINTAINING"}}</option>
+    </select>
+  </div>
+  {{/if}}
+  {{#if medicus}}
+    {{#if hasTarget}}
+      <div class="simplebox">
+        <label>{{localize "DIALOG.MEDICUS_EXAM"}}</label><span class="lblfavour"><input type="checkbox" id="exam" unchecked></span>
+      </div>
+      <div class="simplebox">
+        <label>{{localize "ABILITY_MEDICUS.HERBALCURE"}}</label><span class="lblfavour"><input type="checkbox" id="herbalcure" unchecked></span>
+      </div>
+      <div class="damagemodifier">
+        <label>{{localize "DIALOG.CUSTOM_HEALING_MODIFIER"}}</label><input id="customhealing" value="" type="text" data-dtype="Text"/>
+      </div>
+      {{else}}
+      <h4>{{localize "ABILITY_MEDICUS.NO_TARGET"}}</h4>
+    {{/if}}
+  {{/if}}
+  {{#if poisoner}}
+  <div class="bonus">
+    <label>{{localize "DIALOG.USE_POISON"}}</label>
+    <select id="poisoner">
+      <option value="1">{{localize "DIALOG.LIGHT_POISON"}}</option>
+      <option value="2">{{localize "DIALOG.MEDIUM_POISON"}}</option>
+      <option value="3">{{localize "DIALOG.STRONG_POISON"}}</option>
+  </select>
+  </div>
+  {{/if}}
+</div>

@@ -1,14 +1,18 @@
 <div class="atout-card">
-    <div class="atout-header" data-item-id="{{item.id}}">
-        <p>{{localize cleenmain.label.atout}}</p>
-    </div>
-    {{#if data.developed}}
-    <input id="{{id}}-{{name}}-dev" name="data.developed" type="checkbox" value="data.developed" checked/>
-    {{else}}
-    <input id="{{id}}-{{name}}-dev" name="data.developed" type="checkbox" value="data.developed"/>
-    {{/if}}
-    <div class="atout-name">{{name}}</div>
-    <div class="sheet-description">
-        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-    </div>
+    <a class="item-edit">
+        <div class="atout-header item" data-item-id="{{item.id}}">
+            <p>{{localize "cleenmain.label.atout"}}</p>
+        </div>
+            <div class="atout-name-line">
+            {{#if item.data.data.developed}}
+            <div class="inline-edit" data-field="data.developed" id="{{id}}" name="item.data.data.developed" type="checkbox" value="1" checked/>
+            {{else}}
+            <div class="inline-edit" data-field="data.developed" id="{{id}}" name="data.developed" type="checkbox" value="0" />
+            {{/if}}
+            <div class="atout-name">{{item.data.data.description}}</div>
+        </div>
+        <div class="description">
+            <p>{{item.data.data.description}}</p>
+        </div>
+    </a>
 </div>

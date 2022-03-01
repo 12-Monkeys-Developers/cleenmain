@@ -1,73 +1,218 @@
 {
     "cleenmain": {
         "label": {
+            "armes": "Armes",
             "atouts": "Atouts",
-            "addAtout": "Créer Atout",
+            "atout": "Atout",
+            "blessures": "Blessures",
+            "bonus": "Bonus aux dégâts",
+            "cac": "Corps-à-corps",
+            "cap_off": "Capacités Offensives",
             "categorie": "Catégorie",
             "character": "Personnage",
+            "defaut": "Défaut",
             "description": "Description",
+            "distance": "Distance",
             "equipment": "Équipement",
+            "formation": "Formé aux: ",
+            "heroisme": "Héroisme",
+            "ideal": "Idéal",
+            "lien": "Lien",
+            "nom": "Nom",
+            "occupation": "Occupation",
+            "protections": "Protections",
             "skills" : "Compétences",
+            "tactique": "Tactique",
             "type": "Type",
+            "unlock_sheet": "Verrouiller/Déverrouiller la feuille",
+            "vitalite": "Vitalité",
             "wealth": "Richesses"
         },
         "atout":{
-            "newatout": "Nouvel Atout"
+            "add": "Nouvel atout",
+            "delete": "Supprimer l'atout"
         },
         "arme": {
             "categorie": {
                 "normale": "Normale",
-                "guerre": "Arme de guerre",
-                "lourde": "Arme lourde"
+                "guerre": "Armes de guerre",
+                "lourde": "Armes lourdes"
             },
             "type": {
                 "melee": "Mélée",
                 "distance": "à distance"
             },
-            "degats": "Dégâts",
+            "add": "Nouvelle arme",
+            "delete": "Supprimer l'arme",
+            "attaque": "Attaque",
             "cibles": "Cibles",
+            "degats": "Dégâts",
             "portee": "Portée",
+            "score": "Score",
             "special": "Spécial"
         },
-
         "armure": {
             "categorie": {
                 "normale": "Normale",
-                "guerre": "Armure de guerre",
-                "lourde": "Armure lourde"
+                "guerre": "Armures de guerre",
+                "lourde": "Armures lourdes",
+                "bouclier": "Bouclier"
             },
             "type": {
                 "melee": "Mélée",
                 "distance": "à distance"
             },
+            "add": "Nouvlle armure",
+            "malus": "Malus",
             "protection": "Protection",
             "special": "Spécial"
         },
+        "equipment":{
+            "add": "New equipment"
+        },
+        "heroisme": {
+            "current": "Valeur actuelle",
+            "max": "Maximum"
+        },
+        "sheet":{
+            "edit": "Modifier",
+            "delete": "Supprimer",
+            "tab":{
+                "atouts": "Atouts",
+                "bio": "Bio",
+                "combat": "Combat",
+                "equipment": "Equipment",
+                "notes": "Notes"
+            }
+        },
+        "pnjcategorie": {
+                    "figurant": "Figurant",
+                    "secondcouteau": "Second Couteau",
+                    "boss": "Boss"
+        },
+        "pnjskill":{
+            "physique": {
+                "name": "Physique"
+            },
+            "habilete": {
+                "name": "Habileté"
+            },
+            "social": {
+                "name": "Social"
+            },
+            "mental": {
+                "name": "Mental"
+            }
+        },
         "skill":{
-            "acrobatie": "Acrobatie",
-            "art": "Art",
-            "athletisme": "Athlétisme",
-            "autorite": "Autorité",
-            "combatcac": "Combat au corps à corps",
-            "combatdist": "Combat à distance",
-            "connaissance": "Connaissance",
-            "defense": "Défense",
-            "discretion": "Discrétion",
-            "documentation": "Documentation",
-            "eloquence": "Éloquence",
-            "equitation": "Équitation",
-            "intellect": "Intellect",
-            "langue": "Langue",
-            "muscles": "Muscles",
-            "perception": "Perception",
-            "pilotage": "Pilotage",
-            "psychologie": "Psychologie",
-            "reflexes": "Réflexes",
-            "resistance": "Résistance",
-            "soins": "Soins",
-            "survie": "Survie",
-            "technique": "Technique",
-            "volonte": "Volonté"
+            "acrobatie":{
+                "name": "Acrobatie",
+                "description": "Les activités gymniques comme les sauts, la voltige, l’escalade ou la contorsion."
+            },
+            "art": {
+                "name": "Art",
+                "description": "Effectuer et comprendre des œuvres artistiques. Chaque art maîtrisé est indiqué entre parenthèses derrière le nom de la compétence. Par exemple : Art (Musique)."
+            },
+            "athletisme": {
+                "name": "Athlétisme",
+                "description": "Les activités physiques intenses comme la course, la nage ou le grimper à la corde."
+            },
+            "autorite": {
+                "name": "Autorité",
+                "description": "Diriger un groupe, intimider un interlocuteur, donner des ordres, etc."
+            },
+            "combatcac": {
+                "name": "Combat au corps à corps",
+                "description": "Combattre avec des armes de mêlée ou à mains nues."
+            },
+            "combatdist": {
+                "name": "Combat à distance",
+                "description": "Viser, tirer avec une arme, lancer."
+            },
+            "connaissance": {
+                "name": "Connaissance",
+                "description": "Déterminer les informations détenues sur un sujet particulier. Chaque famille de savoir connu est indiquée entre parenthèses derrière le nom de la compétence. Par exemple : Connaissance (Histoire)."
+            },
+            "defense": {
+                "name": "Défense",
+                "description": "Eviter d’être touché par une attaque grâce à une esquive, une parade ou l’utilisation d’un élément de l’environnement"
+            },
+            "discretion": {
+                "name": "Discrétion",
+                "description": "Ne pas se faire remarquer, se déplacer en silence, se dissimuler, prendre un objet sans être vu, camoufler un objet sur soi ou dans un lieu."
+            },
+            "documentation": {
+                "name": "Documentation",
+                "description": "Effectuer des recherches documentaires, mais aussi lire et analyser un texte, écrire un document, etc."
+            },
+            "eloquence": {
+                "name": "Éloquence",
+                "description": "Parler à un auditoire, influencer un interlocuteur, calmer des personnes hostiles, séduire, etc."
+            },
+            "equitation": {
+                "name": "Équitation",
+                "description": "Dresser, chevaucher et s’occuper d’une monture."
+            },
+            "intellect": {
+                "name": "Intellect",
+                "description": "Résoudre un problème, calculer, trouver le meilleur coup à jouer, etc."
+            },
+            "langue": {
+                "name": "Langue",
+                "description": "Parler une langue. Chaque langue maîtrisée est indiquée entre parenthèses derrière le nom de la compétence. Par exemple : Langue (Français)."
+            },
+            "muscles": {
+                "name": "Muscles",
+                "description": "Les actions purement physiques sans technique spécifique comme défoncer une porte, tordre une barre de fer ou hisser un poids"
+            },
+            "perception": {
+                "name": "Perception",
+                "description": "Mobiliser ses cinq sens, de manière volontaire ou instinctive."
+            },
+            "pilotage": {
+                "name": "Pilotage",
+                "description": "Conduire un véhicule. Chaque type de véhicule maîtrisé est indiqué entre parenthèses derrière le nom de la compétence. Par exemple : Pilotage (Automobiles)."
+            },
+            "psychologie": {
+                "name": "Psychologie",
+                "description": "Cerner un interlocuteur, saisir ses ressentis et comprendre ses motivations."
+            },
+            "reflexes": {
+                "name": "Réflexes",
+                "description": "Réagir à un imprévu, effectuer un mouvement vif et être le plus rapide."
+            },
+            "resistance": {
+                "name": "Résistance",
+                "description": "Résister physiquement et endurer des efforts prolongés."
+            },
+            "soins": {
+                "name": "Soins",
+                "description": "Effectuer les gestes d’urgence et soigner."
+            },
+            "survie": {
+                "name": "Survie",
+                "description": "Chasser, monter un camp, suivre des traces et trouver son chemin."
+            },
+            "technique": {
+                "name": "Technique",
+                "description": "Effectuer et comprendre des tâches artisanales ou technologiques. Chaque technologie ou artisanat maîtrisé est indiqué entre parenthèses derrière le nom de la compétence. Par exemple : Technique (Mécanique)."
+            },
+            "volonte": {
+                "name": "Volonté",
+                "description": "Se concentrer, résister aux influences extérieures, se maîtriser."
+            },
+            "add": "Nouvelle compétence",
+            "delete": "Supprimer la compétence"
+        },
+        "options":{
+            "numberofplayers":{
+                "name":"Nombre de Joueuses et joueurs",
+                "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs (valeur doit être entre 2 et 5)."
+            }
+        },
+        "vitalite": {
+            "current": "Valeur actuelle",
+            "max": "Maximum"
         },
         "wealth": {
             "platinium": "Platine",

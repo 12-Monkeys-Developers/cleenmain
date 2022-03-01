@@ -1,0 +1,71 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="pnj-main">
+        <div class="name-line">
+            <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+        </div>
+        <div class="weapons">
+            <table>
+                <tr>
+                    <th>{{localize "cleenmain.arme.attaque"}}</th>
+                    <th>{{localize "cleenmain.arme.score"}}</th>
+                    <th>{{localize "cleenmain.arme.degats"}}</th>
+                    <th>{{localize "cleenmain.arme.special"}}</th>
+                    <th></th>
+                </tr>
+                {{#each weapons as |item id|}}
+                <tr>
+                <th>
+                {{name}}
+                </th>
+                <th>
+                    {{item.data.data.score}}
+                </th>
+                <th>
+                    {{item.data.data.degats}}
+                </th>
+                <th>
+                    {{item.data.data.special}}
+                </th>
+                <th>
+                    <a class="item-roll" data-type="weapon" data-id="{{item.id}}">
+                        <i class="fas fa-dice"></i>
+                    </a>
+                </th>
+            </tr>
+                    {{/each}}
+            </table>
+        </div>
+        <div class="armors">
+            {{localize "cleenmain.skill.defense.name"}} : {{data.defense.scorepnj}} /  {{data.defense.scorepnjelite}} ( {{data.defense.name}}  {{data.defense.protection}} {{data.defense.special}} )
+            <a class="item-roll" data-type="skill" data-id="{{item.id}}">
+                <i class="fas fa-dice"></i>
+            </a>
+        </div>
+        <div class="pnjskills">
+            {{#each data.pnjskills as |attribute key|}}
+            {{localize attribute.label}}: {{#if data.elite}} {{attribute.elite}} {{else}} {{attribute.normal}} {{/if}}
+            {{/each}}
+        </div>
+
+        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="100"/>
+
+        {{> systems/cleenmain/templates/sheets/tab/player-atouts.html}}
+        {{> systems/cleenmain/templates/sheets/tab/player-bio.html}}
+        <select name="data.level">
+            {{#select data.level}}
+            {{#each config.pnjcategorie as |name type|}}
+            <option value="{{type}}">{{localize name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+        <div class="input-vitalite">
+        <input title="{{localize "cleenmain.vitalite.current"}}" id="vitalite" name="data.vitalite.value" type="number" value="{{data.vitalite.value}}"/>
+        <div class="central-text">/</div>
+        {{#if unlocked}}
+            <input title="{{localize "cleenmain.vitalite.max"}}" id="vitalitemax" name="data.vitalite.max" type="number" value="{{data.vitalite.max}}"/>
+        {{else}}
+        <div class="central-text">{{data.vitalite.max}}</div>
+        {{/if}}
+        </div>
+    </div>
+</form>

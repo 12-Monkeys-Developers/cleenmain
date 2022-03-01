@@ -1,54 +1,121 @@
 <form class="{{cssClass}}" autocomplete="off">
     <div class="main">
-        <div class="sidebar">
+        <div class="leftcolumn">
+            <div class="title-line">
+                <h1><div class="column-title">{{localize "cleenmain.label.skills"}}</div></h1>
+                {{#if unlocked}}
+                <a class="item-create right-icon" data-type="skill" title="{{localize "cleenmain.skill.add"}}">
+                        <i class="fas fa-plus"></i>
+                </a>
+                {{/if}}
+            </div>
+            {{#if unlocked}}
             <div class="skills">
-                <table>
-                    <caption><h1>{{localize "cleenmain.label.skills"}}</h1></caption>
-                    <tbody>
-                    {{#each data.skills as |name type|}}
-                        <tr>
-                            <th>
-                                <div class="skill-name">{{localize name.label}}
-                                </div>
-                            </th>
-                            <th>
-                                <input id="{{id}}-{{type}}-value" type="number" value="{{name.value}}" data-dtype="Number" />
-                            </th>
-                            <th>
-                                {{#if name.developed}}
-                                <input id="{{id}}-{{type}}-dev" name="name.developed" type="checkbox" value="name.developed" checked/>
+                {{#each skills as |skill type|}}
+                <div class="skill-line">
+                    <input class="inline-edit skill-name" data-field="name" id="{{id}}" type="text" value="{{skill.name}}" data-dtype="Text" />
+                    <input class="inline-edit skill-value" data-field="data.value" id="{{id}}" type="number" value="{{skill.data.data.value}}" data-dtype="Number" />
+                    {{#if skill.data.data.developed}}
+                    <input class="inline-edit skill-dev" data-field="data.developed" id="{{id}}" name="skill.data.developed" type="checkbox" value="0" checked/>
+                    {{else}}
+                    <input class="inline-edit skill-dev" data-field="data.developed" id="{{id}}" name="skill.data.developed" type="checkbox" value="1"/>
+                    {{/if}}
+                    <a class="inline-delete" data-type="skill" data-id="{{id}}" title="{{localize "cleenmain.skill.delete"}}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+                {{/each}}
+            </div>
+            {{else}}
+            <div class="skills">
+                {{#each skills as |skill type|}}
+                <div class="skill-line">
+                    <div class="skill-name" title="{{skill.data.data.description}}" >{{skill.name}}</div>
+                    <div class="skill-value">{{skill.data.data.value}}</div>
+                    <a class="item-roll" data-type="skill" data-id="{{skill.id}}">
+                        <i class="fas fa-dice"></i>
+                    </a></th>
+                </div>
+                {{/each}}
+            </div>
+            {{/if}}
+        </div>
+        <div class="central">
+            <div class="intro-block">
+                <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="100"/>
+                <div class="intro-block-right">
+                    <div class="central-line">
+                        <div class="name-text">{{localize "cleenmain.label.character"}} :</div>
+                        <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+                        <div class="right-icon">
+                            <a class="sheet-unlock" data-type="formations" title="{{localize "cleenmain.label.unlock_sheet"}}">
+                                {{#if unlocked}}
+                                <i class="fas fa-lock-open"></i>
                                 {{else}}
-                                <input id="{{id}}-{{type}}-dev" name="name.developed" type="checkbox" value="name.developed"/>
+                                <i class="fas fa-lock"></i>
                                 {{/if}}
-                            </th>
-                        </tr>
-                    {{/each}}
-                    </tbody>
-                </table>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="central-line">
+                        <div class="name-text">{{localize "cleenmain.label.occupation"}} :</div>
+                        <input id="occupation" name="data.bio.occupation" type="text" value="{{data.bio.occupation}}" />
+                    </div>
+                    <div class="central-line space-between">
+                        <div class="vitalite-block">
+                            <div class="vitalite-text">{{localize "cleenmain.label.vitalite"}} :</div>
+                                <input class="vitalite-input" title="{{localize "cleenmain.vitalite.current"}}" id="vitalite" name="data.vitalite.value" type="number" value="{{data.vitalite.value}}"/>
+                                <div class="central-text">/</div>
+                                {{#if unlocked}}
+                                    <input title="{{localize "cleenmain.vitalite.max"}}" id="vitalitemax" name="data.vitalite.max" type="number" value="{{data.vitalite.max}}"/>
+                                {{else}}
+                                <div class="central-text">{{data.vitalite.max}}</div>
+                                {{/if}}
+                        </div>
+                            <div class="blessure-block">
+                                <div class="blessure-text">{{localize "cleenmain.label.blessures"}} :</div>
+                                <select id="blessure" name="data.blessure">
+                                    {{#select data.blessure}}
+                                    <option value="0">0</option>
+                                    <option value="-5">-5</option>
+                                    <option value="-10">-10</option>
+                                    <option value="-15">-15</option>
+                                    <option value="-20">-20</option>
+                                    {{/select}}
+                                </select>
+                            </div>
+                    </div>
+                    <div class="central-line">
+                            <div class="heroisme-text">{{localize "cleenmain.label.heroisme"}}:</div>
+                            <div class="input-heroisme">
+                                <input title="{{localize "cleenmain.heroisme.current"}}" id="heroisme" name="data.heroisme.value" type="number" value="{{data.heroisme.value}}"/>
+                                <div class="central-text">/</div>
+                                {{#if unlocked}}
+                                <input title="{{localize "cleenmain.heroisme.max"}}" id="heroismemax" name="data.heroisme.max" type="number" value="{{data.heroisme.max}}"/>
+                                {{else}}
+                                <div class="central-text">{{data.heroisme.max}}</div>
+                                {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sheet-tabs tabs" data-group="primary">
+                <b class="actor" data-tab="combat">{{localize "cleenmain.sheet.tab.combat"}}</b>
+                <b class="actor" data-tab="atouts">{{localize "cleenmain.sheet.tab.atouts"}}</b>
+                <b class="actor" data-tab="equipment">{{localize "cleenmain.sheet.tab.equipment"}}</b>
+                <b class="actor" data-tab="bio">{{localize "cleenmain.sheet.tab.bio"}}</b>
+                <b class="actor" data-tab="notes">{{localize "cleenmain.sheet.tab.notes"}}</b>
+            </div>
+    
+            <div class="sheet-body">
+                <div class="tab" data-group="primary" data-tab="combat">{{> systems/cleenmain/templates/sheets/tab/player-combat.html}}</div>
+                <div class="tab" data-group="primary" data-tab="atouts">{{> systems/cleenmain/templates/sheets/tab/player-atouts.html}}</div>
+                <div class="tab" data-group="primary" data-tab="equipment">{{> systems/cleenmain/templates/sheets/tab/player-equipment.html}}</div>
+                <div class="tab" data-group="primary" data-tab="bio">{{> systems/cleenmain/templates/sheets/tab/player-bio.html}}</div>
+                <div class="tab" data-group="primary" data-tab="notes">{{> systems/cleenmain/templates/sheets/tab/player-notes.html}}</div>
             </div>
         </div>
-    </div>
-    <div class="central">
-        <span class="imgpaxtitle01"></span>
-        <div class="bigname">{{localize "cleenmain.label.character"}}</div>
-        <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
-        <div class="bigname">{{localize "cleenmain.label.occupation"}} : </div>
-        <input name="occupation" type="text" value="{{data.bio.occupation}}"/>
-        <caption><h1>{{localize "cleenmain.label.atouts"}}</h1></caption>
-        <a class="item-create" data-type="atout" title="{{localize cleenmain.label.addAtout}}">
-            <i class="fas fa-plus"></i>
-        </a>
-        <div class="atouts">
-            {{#each atouts as |item id|}}
-            {{> "systems/cleenmain/templates/partials/atout-card.html" item}}
-            {{/each}}
-        </div>
-    </div>
-    <div class="rightcolumn">
-        <caption><h1>{{localize "cleenmain.label.equipment"}}</h1></caption>
-        <caption><h1>{{localize "cleenmain.label.wealth"}}</h1></caption>
-        <div class="wealth-name">{{localize "cleenmain.wealth.platinium"}}</div>
-        <input name="name" type="text" value="{{data.wealth.platinium}}" placeholder="Name"/>
     </div>
 </form>
 

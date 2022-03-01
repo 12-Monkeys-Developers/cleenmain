@@ -1,16 +1,24 @@
 .atout-card {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column;
+    height: 150px;
+    font-size: 12px;
     .atout-header {
-        flex-basis:100%
+        height: 20px;
     }
-    .input {
-        flex-basis: 10%
-    }
-    .atout-name {
-        flex-basis: 90%
+    .atout-name-line {
+        display: flex;
+        flex-flow: row wrap;
+        height: 20px;
+        .input {
+            flex-basis: 10%
+        }
+        .atout-name {
+            flex-basis: 90%
+        }
     }
     .editor {
-        height: 100%;
+        flex-grow: 100%;
+        height: 100%
     }
 }

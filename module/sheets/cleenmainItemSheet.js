@@ -4,6 +4,7 @@ export default class CleenmainItemSheet extends ItemSheet {
     return mergeObject(super.defaultOptions, {
       width: 530,
       height: 340,
+      resizable: true,
       classes: ["cleenmain", "sheet", "item"]
     });
   }
@@ -18,7 +19,7 @@ export default class CleenmainItemSheet extends ItemSheet {
       let sheetData = {
         id:this.item.id,
         owner: this.object.isOwner,
-        editable: this.isEditable,
+        editable : this.isEditable,
         item: context.item,
         data: context.item.data.data,
         config: CONFIG.cleenmain

@@ -1,0 +1,24 @@
+<div class="atouts">
+    <h1>
+        <a class="item-create" data-type="atout" title="{{localize "cleenmain.atout.add"}}">
+            <i class="fas fa-plus"></i>
+        </a>
+    </h1>
+    {{#each atouts as |item id|}}
+    <div class="atout-card" data-item-id="{{item.id}}">
+        <a class="item-edit">
+            <div class="atout-name-line">
+                {{#if isPj}}
+                {{#if item.data.data.developed}}
+                <i class="fas fa-square"></i>
+                {{else}}
+                <i class="far fa-square"></i>
+                {{/if}}
+                {{/if}}
+                <div class="atout-name">{{item.name}}</div>
+            </div>
+            <div class="atout-description">{{{item.data.data.description}}}</div>
+        </a>
+    </div>
+    {{/each}}
+</div>

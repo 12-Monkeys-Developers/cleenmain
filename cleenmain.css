@@ -1,3 +1,195 @@
+@font-face {
+  font-family: "Morris Roman";
+  src: url("./assets/fonts/MorrisRomanBlack.otf");
+}
+@font-face {
+  font-family: "Museo Slab";
+  src: url("./assets/fonts/Museo_Slab_300.otf");
+}
+@font-face {
+  font-family: "Museo Slab";
+  src: url("./assets/fonts/Museo_Slab_300italic.otf");
+  font-style: italic;
+}
+@font-face {
+  font-family: "Museo Slab";
+  src: url("./assets/fonts/Museo_Slab_700.otf");
+  font-weight: bold;
+}
+.cleenmain.sheet.pj .window-content {
+  background: no-repeat url('./assets/image/paxelfica-fondfdp.webp');
+  background-color: #fffdfc;
+}
+.cleenmain.sheet.pj textarea {
+  resize: none;
+}
+.cleenmain.sheet.pj form {
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.pj .right-icon {
+  margin-left: auto;
+}
+.cleenmain.sheet.pj .main {
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.pj .main .leftcolumn {
+  display: flex;
+  flex-direction: column;
+}
+.cleenmain.sheet.pj .main .leftcolumn .title-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0 0 2em 0;
+}
+.cleenmain.sheet.pj .main .leftcolumn .skills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.cleenmain.sheet.pj .main .leftcolumn .skills .skill-line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.cleenmain.sheet.pj .main .leftcolumn .skills .skill-line .skill-name {
+  width: 70%;
+}
+.cleenmain.sheet.pj .main .leftcolumn .skills .skill-line .skill-value {
+  background: #fffdfc;
+  border: 1px solid #928e8e;
+  border-radius: 5px;
+  width: 10%;
+  text-align: center;
+}
+.cleenmain.sheet.pj .main .leftcolumn .skills .skill-line .skill-dev {
+  width: 10%;
+}
+.cleenmain.sheet.pj .main .leftcolumn .skills .skill-line .item-roll {
+  width: 20%;
+  text-align: center;
+}
+.cleenmain.sheet.pj .main .leftcolumn .skills .skill-line .item-delete {
+  width: 10%;
+}
+.cleenmain.sheet.pj .main .central {
+  flex-grow: 4;
+  display: flex;
+  flex-direction: column;
+}
+.cleenmain.sheet.pj .main .central .intro-block {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 1em 0;
+}
+.cleenmain.sheet.pj .main .central .intro-block .imgpaxtitle01 {
+  display: block;
+  background-image: url('./assets/image/pax_titre.webp');
+  width: 450px;
+  height: 165px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .right-icon {
+  align-self: flex-end;
+}
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .space-between {
+  justify-content: space-between;
+}
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0.5em;
+  white-space: nowrap;
+}
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .input-heroisme {
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .input-heroisme input {
+  width: 1em;
+}
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .right-icon {
+  margin: 0 0 0 0.5em;
+}
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .central-text {
+  margin: 0.3em 0.2em 0 0.1em;
+}
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .name-text,
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .blessure-text,
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .heroisme-text,
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .vitalite-text {
+  margin: 0.3em 0.3em 0 0.3em;
+}
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .vitalite-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .vitalite-block .vitalite-input {
+  width: 2em;
+}
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .blessure-block {
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .blessure-block select {
+  margin: 0 0.5em 0 0;
+}
+.cleenmain.sheet.pj .main .central .sheet-tabs {
+  display: flex;
+  flex-direction: row;
+  font-size: 1,5em;
+}
+.cleenmain.sheet.pj .main .central .actor {
+  background: #fffdfc;
+  color: #8e8d8d;
+  border: 1px solid #456;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  text-align: center;
+  padding: 0.5em 0.5em 0.3em 0.5em;
+}
+.cleenmain.sheet.pj .main .central .actor.active {
+  border: 1px solid black;
+  color: #456;
+  border-bottom-width: 0;
+}
+.cleenmain.sheet.pj .main .central .sheet-body {
+  background: #fffdfc;
+}
+.atout-card {
+  display: flex;
+  flex-flow: column;
+  height: 150px;
+  font-size: 12px;
+}
+.atout-card .atout-header {
+  height: 20px;
+}
+.atout-card .atout-name-line {
+  display: flex;
+  flex-flow: row wrap;
+  height: 20px;
+}
+.atout-card .atout-name-line .input {
+  flex-basis: 10%;
+}
+.atout-card .atout-name-line .atout-name {
+  flex-basis: 90%;
+}
+.atout-card .editor {
+  flex-grow: 100%;
+  height: 100%;
+}
 .cleenmain.sheet.item form {
   display: flex;
   flex-direction: column;
@@ -10,33 +202,147 @@
 .cleenmain.sheet.item .sheet-content .editor {
   height: 100%;
 }
-.cleenmain.sheet.pj form {
+.cleenmain.sheet.pj .main .central .atouts h1 {
   display: flex;
   flex-direction: row;
 }
-.cleenmain.sheet.pj .main {
+.cleenmain.sheet.pj .main .central .atouts .item-create {
+  margin-left: auto;
+}
+.cleenmain.sheet.pj .main .central .atouts .atout-card {
+  height: fit-content;
+}
+.cleenmain.sheet.pj .main .central .atouts .atout-card .item-edit .atout-name-line {
+  font-size: 1rem;
+}
+.cleenmain.sheet.pj .main .central .atouts .atout-card .item-edit .atout-name-line .atout-name {
+  color: #51602f;
+}
+.cleenmain.sheet.pj .main .central .combat-tab {
+  margin: 1em 0 0.5em 0;
+  display: flex;
+  flex-direction: column;
+}
+.cleenmain.sheet.pj .main .central .combat-tab .title-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.cleenmain.sheet.pj .main .central .combat-tab .item-create {
+  margin-left: auto;
+}
+.cleenmain.sheet.pj .main .central .combat-tab .combat-domain-label {
+  margin: 1em 0 0 0;
+}
+.cleenmain.sheet.pj .main .central .combat-tab .formations-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-.cleenmain.sheet.pj .sidebar table {
-  table-layout: fixed;
-  width: 100%;
-  border-collapse: collapse;
+.cleenmain.sheet.pj .main .central .combat-tab .formations-list .formations-group {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
 }
-.cleenmain.sheet.pj .sidebar tbody th:nth-child(1) {
-  width: 80%;
+.cleenmain.sheet.pj .main .central .combat-tab .formations-list .formations-group .formation-name {
+  margin: 0 1em 0 0;
 }
-.cleenmain.sheet.pj .sidebar tbody th:nth-child(2) {
-  width: 20%;
+.cleenmain.sheet.pj .main .central .combat-tab .bonus-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-.cleenmain.sheet.pj .imgpaxtitle01 {
-  display: block;
-  background-image: url('./asset/image/pax_titre.webp');
-  width: 450px;
-  height: 165px;
+.cleenmain.sheet.pj .main .central .combat-tab .bonus-list .bonus-line {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+.cleenmain.sheet.pj .main .central .combat-tab .bonus-list .bonus-line .bonus-text {
+  background: #fffdfc;
+  border: 1px solid #928e8e;
+  border-radius: 5px;
+  width: 10%;
+  text-align: center;
+}
+.cleenmain.sheet.pj .main .central .combat-tab .combat-group-label {
+  font-style: italic;
+  padding: 1em 0 0.5em 0;
+}
+.equipment-tab {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 2em 0;
+}
+.equipment-tab .title-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1em 0 0.5em 0;
+}
+.equipment-tab .title-line .item-create {
   margin-left: auto;
-  margin-right: auto;
-  background-size: 100%;
-  border: 0;
+}
+.equipment-tab .equipment-column {
+  display: flex;
+  flex-direction: column;
+}
+.equipment-tab .equipment-column .equipment-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin: 0.3em 0.3em 0 0.3em;
+  border-bottom: 1px solid #693d25;
+}
+.equipment-tab .equipment-column .equipment-line .icon-group {
+  margin-left: auto;
+}
+.equipment-tab .wealth-line {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  height: 1em;
+  margin: 1em;
+}
+.equipment-tab .wealth-line .wealth-name {
+  margin: 0.3em 0.3em 0 0.3em;
+  width: 25%;
+}
+.equipment-tab .wealth-line input {
+  width: 3em;
+  margin: 0 1em 1em 0.3em;
+}
+.equipment-tab label {
+  display: flex;
+  flex-direction: row;
+}
+.equipment-tab label .item-create {
+  margin-left: auto;
+}
+.cleenmain.sheet.pj .window-content {
+  font-family: "Museo Slab";
+}
+.cleenmain.sheet.pj .window-content input {
+  color: #456;
+}
+.cleenmain.sheet.pj h1 {
+  font-family: "Morris Roman";
+  font-size: 1.2rem;
+  color: #693d25;
+  text-transform: uppercase;
+  border: none;
+}
+.cleenmain.sheet.pj h2 {
+  font-family: "Morris Roman";
+  font-size: 1rem;
+  color: #693d25;
+}
+.cleenmain.sheet.pj .main .central .central-line {
+  font-family: "Morris Roman";
+  font-size: 1rem;
+  font-weight: bold;
+}
+.cleenmain.sheet.pj .right-icon {
+  font-family: "Morris Roman";
+  font-size: 1.2rem;
+  color: #705a10;
 }

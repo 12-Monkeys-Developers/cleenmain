@@ -1,46 +1,151 @@
 .cleenmain.sheet.pj {
+    .window-content {
+        background: no-repeat url('./assets/image/paxelfica-fondfdp.webp');
+        background-color: @clear-background;
+      }
+    textarea {
+        resize: none;
+    }
     form {
         display: flex;
         flex-direction: row;
-        
+    }
+    .right-icon{
+        margin-left: auto;
     }
     .main {
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
-    }
-    .sidebar {
-        table {
-          table-layout: fixed;
-          width: 100%;
-          border-collapse: collapse;
+        .leftcolumn {
+            display: flex;
+            flex-direction: column;
+            .title-line{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                padding: 0 0 2em 0;
+            }
+            .skills{
+                display: flex;
+                flex-direction: column;
+                gap: .5em;
+                .skill-line{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    .skill-name{       
+                        width: 70%;
+                    }
+                    .skill-value{
+                        background: @clear-background;
+                        border: 1px solid rgb(146, 142, 142);
+                        border-radius: 5px;
+                        width: 10%;
+                        text-align: center;
+                    }
+                    .skill-dev{       
+                        width: 10%;
+                    }
+                    .item-roll{       
+                        width: 20%;
+                        text-align: center;
+                    }
+                    .item-delete{
+                        width: 10%
+                    }
+                }
+            }
         }
-        
-        tbody th:nth-child(1) {
-            width: 80%;
-        }
-        
-        tbody th:nth-child(2) {
-            width: 20%;
-        }
-    }
-    .central {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        .central {
+            flex-grow: 4;
+            display: flex;
+            flex-direction: column;
+            .intro-block{
+                display: flex;
+                flex-direction: row;
+                margin: 0 0 1em 0;
+                .imgpaxtitle01 {
+                    display: block;
+                    background-image: url('./assets/image/pax_titre.webp');
+                    width: 450px;
+                    height: 165px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    background-size: 100%;
+                    border: 0;
+                }
+                .intro-block-right{
+                    display: flex;
+                    flex-flow: column nowrap;
+                    .right-icon{
+                        align-self: flex-end;
+                    }
+                    .space-between{
+                        justify-content: space-between;}
+                    .central-line{
+                        display: flex;
+                        flex-flow: row nowrap;
+                        margin: 0.5em;
+                        white-space: nowrap;
+                        .input-heroisme{
+                            display: flex;
+                            flex-direction: row;
+                            input{
+                                width: 1em;
+                            }
+                        }
+                        .right-icon{
+                            margin: 0 0 0 .5em;
+                        }
+                        .central-text{
+                            margin: 0.3em .2em 0 .1em;
+                        }
+                        .name-text, .blessure-text, .heroisme-text, .vitalite-text{
+                            margin: 0.3em .3em 0 .3em;
+                        }
+                        .vitalite-block{
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            .vitalite-input{
+                                width: 2em;
+                            }
+                        }
+                        .blessure-block{
+                            display: flex;
+                            flex-direction: row;
+                            select{
+                                margin: 0 .5em 0 0;
+                            }
+                        }
+                    }
+                }
+            }
+            .sheet-tabs{
 
-        .item-create{
-            margin-left: auto;
+                display: flex;
+                flex-direction: row;
+                font-size: 1,5em;
+
+            }
+                
+            .actor {
+                background: @clear-background;
+                color: @font-soft-color;
+                border: 1px solid @core-main-color;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+                text-align: center;
+                padding: .5em .5em .3em .5em;
+            }                
+            .actor.active {
+            border: 1px solid black;
+            color: @core-main-color;
+            border-bottom-width: 0;
+            }
+            .sheet-body{
+                background: @clear-background;
+            }
         }
     }
-    .imgpaxtitle01 {
-        display: block;
-        background-image: url('./asset/image/pax_titre.webp');
-        width: 450px;
-        height: 165px;
-        margin-left: auto;
-        margin-right: auto;
-        background-size: 100%;
-        border: 0;
-      }
 }

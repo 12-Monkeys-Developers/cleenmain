@@ -1,0 +1,220 @@
+<div class="combat-tab">
+    <div class="title-line">
+        <h1><div class="tab-title">{{localize "cleenmain.label.cap_off"}}</div></h1>
+    </div>
+    <div class="title-line">
+        <h2><div class="combat-domain-label">{{localize "cleenmain.label.protections"}}</div></h2>
+        {{#if unlocked}}
+        <a class="item-create right-icon" data-type="armor" title="{{localize "cleenmain.armure.add"}}">
+                <i class="fas fa-plus"></i>
+        </a>
+        {{/if}}
+    </div>
+    <div class="combat-group-label">{{localize "cleenmain.label.formation"}}</div>
+    <div class="formations-list">
+        <div class="formations-group">
+            {{#if unlocked}}
+                {{#if data.formations.armures.guerre}}
+                <input name="data.formations.armures.guerre" value="{{data.formations.armures.guerre}}" type="checkbox" value="1" checked/>
+                {{else}}
+                <input name="data.formations.armures.guerre" value="{{data.formations.armures.guerre}}" type="checkbox" value="0" />
+                {{/if}}
+            {{else}}
+                {{#if data.formations.armures.guerre}}
+                <i class="fas fa-square"></i>
+                {{else}}
+                <i class="far fa-square"></i>
+                {{/if}}
+            {{/if}}
+            <div class="formation-name">{{localize "cleenmain.armure.categorie.guerre"}}</div>
+        </div>
+        <div class="formations-group">
+            {{#if unlocked}}
+                {{#if data.formations.armures.lourde}}
+                <input name="data.formations.armures.lourde" value="{{data.formations.armures.lourde}}" type="checkbox" value="1" checked/>
+                {{else}}
+                <input name="data.formations.armures.lourde" value="{{data.formations.armures.lourde}}" type="checkbox" value="0" />
+                {{/if}}
+            {{else}}
+                {{#if data.formations.armures.lourde}}
+                <i class="fas fa-square"></i>
+                {{else}}
+                <i class="far fa-square"></i>
+                {{/if}}
+            {{/if}}
+            <div class="formation-name">{{localize "cleenmain.armure.categorie.lourde"}}</div>
+        </div>
+        <div class="formations-group">
+            {{#if unlocked}}
+                {{#if data.formations.armures.bouclier}}
+                <input name="data.formations.armures.bouclier" value="{{data.formations.armures.bouclier}}" type="checkbox" value="1" checked/>
+                {{else}}
+                <input name="data.formations.armures.bouclier" value="{{data.formations.armures.bouclier}}" type="checkbox" value="0" />
+                {{/if}}
+            {{else}}
+                {{#if data.formations.armures.bouclier}}
+                <i class="fas fa-square"></i>
+                {{else}}
+                <i class="far fa-square"></i>
+                {{/if}}
+            {{/if}}
+            <div class="formation-name">{{localize "cleenmain.armure.categorie.bouclier"}}</div>
+        </div>
+    </div>
+    <div class="armures">
+        <table>
+            <tr>
+                <th>{{localize "cleenmain.label.nom"}}</th>
+                <th>{{localize "cleenmain.label.categorie"}}</th>
+                <th>{{localize "cleenmain.armure.protection"}}</th>
+                <th>{{localize "cleenmain.armure.malus"}}</th>
+                <th>{{localize "cleenmain.armure.special"}}</th>
+                <th></th>
+            </tr>
+            {{#each armors as |item id|}}
+            <tr>
+            <th>
+                {{name}}
+            </th>
+            <th>
+                {{item.data.data.categorie}}
+            </th>
+            <th>
+                {{item.data.data.protection}}
+            </th>
+            <th>
+                {{item.data.data.degats}}
+            </th>
+            <th>
+                {{item.data.data.special}}
+            </th>
+            {{#if ../unlocked}}
+            <th>
+            <a class="item-open-sheet" data-type="armor" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.edit"}}">
+                <i class="fas fa-pen"></i>
+            </a>
+            <a class="inline-delete" data-type="armor" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.delete"}}">
+                <i class="fas fa-trash"></i>
+            </a>
+            </th>
+            {{/if}}
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    <div class="title-line">
+        <h2><div class="combat-domain-label">{{localize "cleenmain.label.armes"}}</div></h2>
+        {{#if unlocked}}
+        <a class="item-create right-icon" data-type="weapon" title="{{localize "cleenmain.arme.add"}}">
+                <i class="fas fa-plus"></i>
+        </a>
+        {{/if}}
+    </div>
+    <div class="combat-group-label">{{localize "cleenmain.label.formation"}}</div>
+    <div class="formations-list">
+        <div class="formations-group">
+            {{#if unlocked}}
+                {{#if data.formations.armes.guerre}}
+                <input name="data.formations.armes.guerre" value="{{data.formations.armes.guerre}}" type="checkbox" value="1" checked/>
+                {{else}}
+                <input name="data.formations.armes.guerre" value="{{data.formations.armes.guerre}}" type="checkbox" value="0" />
+                {{/if}}
+            {{else}}
+                {{#if data.formations.armes.guerre}}
+                <i class="fas fa-square"></i>
+                {{else}}
+                <i class="far fa-square"></i>
+                {{/if}}
+            {{/if}}
+            <div class="formation-name">{{localize "cleenmain.arme.categorie.guerre"}}</div>
+        </div>
+        <div class="formations-group">
+            {{#if unlocked}}
+                {{#if data.formations.armes.lourde}}
+                <input name="data.formations.armes.lourde" value="{{data.formations.armes.lourde}}" type="checkbox" value="1" checked/>
+                {{else}}
+                <input name="data.formations.armes.lourde" value="{{data.formations.armes.lourde}}" type="checkbox" value="0" />
+                {{/if}}
+            {{else}}
+                {{#if data.formations.armes.lourde}}
+                <i class="fas fa-square"></i>
+                {{else}}
+                <i class="far fa-square"></i>
+                {{/if}}
+            {{/if}}
+            <div class="formation-name">{{localize "cleenmain.arme.categorie.lourde"}}</div>
+        </div>
+    </div>
+    <div class="combat-group-label">{{localize "cleenmain.label.bonus"}} : </div>
+    <div class="bonus-list">
+        <div class="bonus-line">
+            <div class="bonus-name">{{localize "cleenmain.label.cac"}} : </div>
+            {{#if unlocked}}
+            <input class="bonus-text" id="bonuscac" name="data.bonusDegats.cac" type="number" value="{{data.bonusDegats.cac}}"/>
+        </div>
+        <div class="bonus-line">
+            <div class="bonus-name">{{localize "cleenmain.label.distance"}} : </div>
+            <input class="bonus-text" id="bonusdistance" name="data.bonusDegats.distance" type="number" value="{{data.bonusDegats.distance }}"/>
+        {{else}}
+            <div class="bonus-text">{{data.bonusDegats.cac}}</div>
+        </div>
+        <div class="bonus-line">
+            <div class="bonus-name">{{localize "cleenmain.label.distance"}} : </div>
+            <div class="bonus-text">{{data.bonusDegats.distance}}</div>
+        {{/if}}
+        </div>
+    </div>
+    <div class="weapons">
+        <table>
+            <tr>
+                <th>{{localize "cleenmain.arme.attaque"}}</th>
+                <th>{{localize "cleenmain.label.categorie"}}</th>
+                <th>{{localize "cleenmain.arme.score"}}</th>
+                <th>{{localize "cleenmain.arme.degats"}}</th>
+                <th>{{localize "cleenmain.arme.portee"}}</th>
+                <th>{{localize "cleenmain.arme.cibles"}}</th>
+                <th>{{localize "cleenmain.arme.special"}}</th>
+                <th></th>
+            </tr>
+            {{#each weapons as |item id|}}
+            <tr>
+            <th>
+                {{name}}
+            </th>
+            <th>
+                {{item.data.data.categorie}}
+            </th>
+            <th>
+                {{item.data.data.score}}
+            </th>
+            <th>
+                {{item.data.data.degats}}
+            </th>
+            <th>
+                {{item.data.data.portee}}
+            </th>
+            <th>
+                {{item.data.data.cibles}}
+            </th>
+            <th>
+                {{item.data.data.special}}
+            </th>
+            <th>
+                {{#if ../unlocked}}
+                <a class="item-open-sheet" data-type="weapon" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.edit"}}">
+                    <i class="fas fa-pen"></i>
+                </a>
+                <a class="inline-delete" data-type="weapon" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.delete"}}">
+                    <i class="fas fa-trash"></i>
+                </a>
+                {{else}}
+                <a class="item-roll" data-type="weapon" data-id="{{item.id}}">
+                    <i class="fas fa-dice"></i>
+                </a>
+                {{/if}}
+            </th>
+        </tr>
+                {{/each}}
+        </table>
+    </div>
+</div>
