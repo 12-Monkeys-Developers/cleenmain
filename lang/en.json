@@ -237,6 +237,7 @@
         "chatmessage":{
             "custommodifier": "Custom modifier used : ({rollModifier}).",
             "heroismmodifier": "One Heroism point used : +1d6 added to roll.",
+            "rollformula": "Final dice rolled:",
             "rollresult": "Result of the dice roll: "
         }
     }

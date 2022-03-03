@@ -235,7 +235,9 @@
         },
         "chatmessage":{
             "custommodifier": "Modificateur libre ajouté : ({rollModifier}).",
-            "heroismmodifier": "Point d'Héroïsme utilisé : +1d6 ajouté au jet."
+            "heroismmodifier": "Point d'Héroïsme utilisé : +1d6 ajouté au jet.",
+            "rollformula": "Dés lancés :",
+            "rollresult": "Résultat du jet : "
         }
     }
 }

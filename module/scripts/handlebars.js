@@ -16,7 +16,10 @@ export const initializeHandlebars = () => {
         "systems/cleenmain/templates/sheets/tab/player-boons.html",
         "systems/cleenmain/templates/sheets/tab/player-equipment.html",
         "systems/cleenmain/templates/sheets/tab/player-bio.html",
-        "systems/cleenmain/templates/sheets/tab/player-notes.html"
+        "systems/cleenmain/templates/sheets/tab/player-notes.html",
+        "systems/cleenmain/templates/chat/rollDialog.html",
+        "systems/cleenmain/templates/chat/rollResult.html"
+
     ];
     return loadTemplates(templatePaths);
   }

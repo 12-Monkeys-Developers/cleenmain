@@ -113,24 +113,23 @@ export default class CleenmainActor extends Actor {
 
                     let rollModifier = html.find("#rollmodifier")[0].value;
                     if(rollModifier.length > 0){
-                        skillData.rollModifier = rollModifier ?? "";
+                        console.log(": rollModifier: ", rollModifier);
+                        skillData.rollModifier = rollModifier;
                     }
 
                     skillData.useHeroism = html.find("#heroism")[0].checked;
             
-                    let skillFormula = skillData.skillRollFormula;
                     if(skillData.rollModifier.length > 0){
-                        skillFormula =+ " + " +skillData.rollModifier;
-                        skillData.modifierText = game.i18n.localize("cleenmain.chatmessage.custommodifier", skillData);
+                        skillData.skillRollFormula += " + " +skillData.rollModifier;
+                        skillData.modifierText = game.i18n.format("cleenmain.chatmessage.custommodifier", skillData);
                     }
                     
                     if(skillData.useHeroism){
-                        skillFormula =+ " +1d6";
+                        skillData.skillRollFormula += " +1d6";
                         skillData.heroismText = game.i18n.localize("cleenmain.chatmessage.heroismmodifier", skillData);
                     }
-                    skillData.skillRoll = new Roll(skillFormula).evaluate({async:false});
-                    
-
+                    skillData.skillRoll = new Roll(skillData.skillRollFormula).evaluate({async:false});
+                    skillData.tooltip= new Handlebars.SafeString(await skillData.skillRoll.getTooltip());
                     const chatTemplate = await renderTemplate("systems/cleenmain/templates/chat/rollResult.html", {
                         skillData: skillData,
                     });
@@ -143,6 +142,13 @@ export default class CleenmainActor extends Actor {
                         content: chatTemplate
                     }
 
+                    //NPC rolls only visible in GM chat
+                    if(!this.hasPlayerOwner){
+                        let gmList =  ChatMessage.getWhisperRecipients('GM');
+                        if(gmList.length > 0){
+                            chatData.whisper = gmList
+                        }
+                    }
                     let NewMessage = await ChatMessage.create(chatData);
 
 

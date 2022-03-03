@@ -84,16 +84,6 @@
   flex-direction: row;
   margin: 0 0 1em 0;
 }
-.cleenmain.sheet.player .main .central .intro-block .imgpaxtitle01 {
-  display: block;
-  background-image: url('./assets/image/pax_titre.webp');
-  width: 450px;
-  height: 165px;
-  margin-left: auto;
-  margin-right: auto;
-  background-size: 100%;
-  border: 0;
-}
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right {
   display: flex;
   flex-flow: column nowrap;
@@ -532,4 +522,62 @@
 }
 .tab-bio .line-label {
   color: #693d25;
+}
+.chatroll {
+  background: no-repeat url('./assets/image/chat_background.webp');
+  background-color: #fffdfc;
+  display: flex;
+  flex-direction: column;
+  font-family: "Museo Slab";
+}
+.chatroll .intro .introImg {
+  display: flex;
+  flex-direction: row;
+  border: none;
+  vertical-align: left;
+  text-align: center;
+  padding: 0px 5px 0px 55px;
+  background-size: 50px 70px;
+  background-position: 5px;
+  background-repeat: no-repeat;
+  height: 80px;
+  min-height: 80px;
+}
+.chatroll .intro .introText {
+  padding-top: 1em;
+}
+.chatroll .modifierText {
+  margin: 1em 0 1em 0;
+  color: #cee956;
+  text-align: center;
+}
+.chatroll .formulaText {
+  background: top / 50% no-repeat url('./assets/image/Deco_feuilles.webp');
+  padding: 4em 0 1em 0;
+  color: #fff;
+  text-align: center;
+}
+.chatroll .finalText {
+  margin: 1em 0 1em 0;
+  color: #fff;
+  text-align: center;
+  /* Tooltip text */
+}
+.chatroll .finalText .tooltip {
+  position: relative;
+  display: inline-block;
+}
+.chatroll .finalText .tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+}
+.chatroll .finalText .tooltip:hover .tooltiptext {
+  visibility: visible;
 }
