@@ -45,6 +45,7 @@ export default class CleenmainNpcSheet extends ActorSheet {
     
     
         html.find(".item-roll").click(this._onItemRoll.bind(this));
+        html.find(".npcskill-roll").click(this._onNpcSkillRoll.bind(this));
     
         super.activateListeners(html)
       }
@@ -96,6 +97,14 @@ export default class CleenmainNpcSheet extends ActorSheet {
         let itemId = element.dataset.id;
         let itemType = element.dataset.type;
         this.actor.roll({type: itemType, itemId: itemId});
+      }
+
+      _onNpcSkillRoll(event){
+        event.preventDefault();
+        let element= event.currentTarget;
+        let attribute = element.dataset.attribute;
+        let itemType = element.dataset.type;
+        this.actor.roll({type: itemType, attribute: attribute});
       }
 
       async _onSheetUnlock(event){

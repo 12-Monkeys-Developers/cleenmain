@@ -50,36 +50,50 @@ export default class CleenmainActor extends Actor {
     /* roll a player action
     arguments: {type: itemType, itemId}*/
     async roll(elements){
-        let item = this.items.get(elements.itemId);
-        if (typeof(item) === 'undefined') return;
         let skillData= {
-            itemname: item.name,
             weaponRoll: false,
             modifierText: "",
             rollModifier: "",
             heroismText: ""
         };
-
-        if (elements.type === "skill"){
-            skillData.skillvalue = item.data.value;
+        if(elements.attribute){
+            if(elements.attribute === "defence"){
+                skillData.itemName= game.i18n.localize("cleenmain.skill.defence.name");
+                if(this.data.data.elite) skillData.skillvalue = this.data.data.defence.skillvaluenpcelite;
+                else skillData.skillvalue = this.data.data.defence.skillvaluenpc;
+            }
+            else{
+                skillData.itemName= game.i18n.localize(this.data.data.npcskills[elements.attribute].label);
+                if(this.data.data.elite) skillData.skillvalue = this.data.data.npcskills[elements.attribute].elite;
+                else skillData.skillvalue = this.data.data.npcskills[elements.attribute].normal;
+            }
+            
+            skillData.subImg= "icons/skills/trades/woodcutting-logging-splitting.webp"; //to be replaced
         }
+        else{
+            let item = this.items.get(elements.itemId);
+            if (typeof(item) === 'undefined') return;
+            skillData.itemName= item.name;
+            skillData.subImg= item.data.img;
+
+            if(elements.type === "weapon"){
+                skillData.weaponRoll = true;
+                if(this.type==="npc"){
+                    skillData.skillvalue = this.data.data.elite ? item.data.data.skillvaluenpcelite : item.data.data.skillvaluenpc;
+                }
+                else skillData.skillvalue = item.data.data.skillvalue;
+    
+                skillData.damageFormula=item.data.data.damage;
+            } else skillData.skillvalue = item.data.data.value;
+        };
         //get the active token
         let tokenList = this.getActiveTokens();
         let actingToken = tokenList[0];
 //if there is a token active for this actor, we use its name and image instead of the actor's
         skillData.actingCharName = actingToken?.data?.name ?? this.name;
         skillData.actingCharImg= actingToken?.data?.img ?? this.data.img;
-        skillData.subImg = item.data.img;
         
-        if(elements.type === "weapon"){
-            skillData.weaponRoll = true;
-            if(this.type="npc"){
-                skillData.skillvalue = this.data.data.elite ? item.data.data.skillvaluenpcelite : item.data.skillvaluenpc;
-            }
-            else skillData.skillvalue = item.data.data.skillvalue;
 
-            skillData.damageFormula=item.data.data.damage;
-        } else skillData.skillvalue = item.data.data.value;
         skillData.skillRollFormula = "3d6 + " + skillData.skillvalue.toString();
         skillData.introText = game.i18n.format("cleenmain.dialog.intro", skillData);
 

@@ -65,8 +65,8 @@
                         <input class="input-long" title="{{localize "cleenmain.armor.special"}}" id="defence" name="data.defence.special" type="text" value="{{data.defence.special}}"/>
                         <div class="central-text"> )</div>
                         {{else}}
-                        <div class="central-text">( {{data.defence.name}}  {{data.defence.protection}} {{data.defence.special}} )</div>
-                        <a class="item-roll" data-type="npcdefense">
+                        <div class="central-text">{{data.defence.skillvaluenpc}} / {{data.defence.skillvaluenpcelite}} ( {{data.defence.name}}  {{data.defence.protection}} {{data.defence.special}} )</div>
+                        <a class="npcskill-roll" data-type="npcdefence" data-attribute="defence">
                             <i class="fas fa-dice"></i>
                         </a>
                         {{/if}}
@@ -83,7 +83,7 @@
                             <input class="input-short" title="{{localize "cleenmain.skill.defence.name"}}" id="defence" name="attribute.elite" type="number" value="{{attribute.elite}}"/>
                             {{else}}
                             {{#if data.elite}} {{attribute.elite}} {{else}} {{attribute.normal}} {{/if}}
-                            <a class="item-roll" data-type="npcskill" data-attribute="{{attribute}}">
+                            <a class="npcskill-roll" data-type="npcskill" data-attribute="{{key}}">
                                 <i class="fas fa-dice"></i>
                             </a>
                             {{/if}}
