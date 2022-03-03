@@ -16,75 +16,75 @@
   src: url("./assets/fonts/Museo_Slab_700.otf");
   font-weight: bold;
 }
-.cleenmain.sheet.pj .window-content {
+.cleenmain.sheet.player .window-content {
   background: no-repeat url('./assets/image/paxelfica-fondfdp.webp');
   background-color: #fffdfc;
 }
-.cleenmain.sheet.pj textarea {
+.cleenmain.sheet.player textarea {
   resize: none;
 }
-.cleenmain.sheet.pj form {
+.cleenmain.sheet.player form {
   display: flex;
   flex-direction: row;
 }
-.cleenmain.sheet.pj .right-icon {
+.cleenmain.sheet.player .right-icon {
   margin-left: auto;
 }
-.cleenmain.sheet.pj .main {
+.cleenmain.sheet.player .main {
   display: flex;
   flex-direction: row;
 }
-.cleenmain.sheet.pj .main .leftcolumn {
+.cleenmain.sheet.player .main .leftcolumn {
   display: flex;
   flex-direction: column;
 }
-.cleenmain.sheet.pj .main .leftcolumn .title-line {
+.cleenmain.sheet.player .main .leftcolumn .title-line {
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding: 0 0 2em 0;
 }
-.cleenmain.sheet.pj .main .leftcolumn .skills {
+.cleenmain.sheet.player .main .leftcolumn .skills {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
-.cleenmain.sheet.pj .main .leftcolumn .skills .skill-line {
+.cleenmain.sheet.player .main .leftcolumn .skills .skill-line {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.cleenmain.sheet.pj .main .leftcolumn .skills .skill-line .skill-name {
+.cleenmain.sheet.player .main .leftcolumn .skills .skill-line .skill-name {
   width: 70%;
 }
-.cleenmain.sheet.pj .main .leftcolumn .skills .skill-line .skill-value {
+.cleenmain.sheet.player .main .leftcolumn .skills .skill-line .skill-value {
   background: #fffdfc;
   border: 1px solid #928e8e;
   border-radius: 5px;
   width: 10%;
   text-align: center;
 }
-.cleenmain.sheet.pj .main .leftcolumn .skills .skill-line .skill-dev {
+.cleenmain.sheet.player .main .leftcolumn .skills .skill-line .skill-dev {
   width: 10%;
 }
-.cleenmain.sheet.pj .main .leftcolumn .skills .skill-line .item-roll {
+.cleenmain.sheet.player .main .leftcolumn .skills .skill-line .item-roll {
   width: 20%;
   text-align: center;
 }
-.cleenmain.sheet.pj .main .leftcolumn .skills .skill-line .item-delete {
+.cleenmain.sheet.player .main .leftcolumn .skills .skill-line .item-delete {
   width: 10%;
 }
-.cleenmain.sheet.pj .main .central {
+.cleenmain.sheet.player .main .central {
   flex-grow: 4;
   display: flex;
   flex-direction: column;
 }
-.cleenmain.sheet.pj .main .central .intro-block {
+.cleenmain.sheet.player .main .central .intro-block {
   display: flex;
   flex-direction: row;
   margin: 0 0 1em 0;
 }
-.cleenmain.sheet.pj .main .central .intro-block .imgpaxtitle01 {
+.cleenmain.sheet.player .main .central .intro-block .imgpaxtitle01 {
   display: block;
   background-image: url('./assets/image/pax_titre.webp');
   width: 450px;
@@ -94,62 +94,62 @@
   background-size: 100%;
   border: 0;
 }
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right {
   display: flex;
   flex-flow: column nowrap;
 }
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .right-icon {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .right-icon {
   align-self: flex-end;
 }
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .space-between {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .space-between {
   justify-content: space-between;
 }
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line {
   display: flex;
   flex-flow: row nowrap;
   margin: 0.5em;
   white-space: nowrap;
 }
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .input-heroisme {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .input-heroism {
   display: flex;
   flex-direction: row;
 }
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .input-heroisme input {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .input-heroism input {
   width: 1em;
 }
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .right-icon {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .right-icon {
   margin: 0 0 0 0.5em;
 }
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .central-text {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .central-text {
   margin: 0.3em 0.2em 0 0.1em;
 }
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .name-text,
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .blessure-text,
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .heroisme-text,
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .vitalite-text {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .name-text,
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .blessure-text,
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .heroism-text,
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-text {
   margin: 0.3em 0.3em 0 0.3em;
 }
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .vitalite-block {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-block {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .vitalite-block .vitalite-input {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-block .health-input {
   width: 2em;
 }
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .blessure-block {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .blessure-block {
   display: flex;
   flex-direction: row;
 }
-.cleenmain.sheet.pj .main .central .intro-block .intro-block-right .central-line .blessure-block select {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .blessure-block select {
   margin: 0 0.5em 0 0;
 }
-.cleenmain.sheet.pj .main .central .sheet-tabs {
+.cleenmain.sheet.player .main .central .sheet-tabs {
   display: flex;
   flex-direction: row;
   font-size: 1,5em;
 }
-.cleenmain.sheet.pj .main .central .actor {
+.cleenmain.sheet.player .main .central .actor {
   background: #fffdfc;
   color: #8e8d8d;
   border: 1px solid #456;
@@ -158,35 +158,148 @@
   text-align: center;
   padding: 0.5em 0.5em 0.3em 0.5em;
 }
-.cleenmain.sheet.pj .main .central .actor.active {
+.cleenmain.sheet.player .main .central .actor.active {
   border: 1px solid black;
   color: #456;
   border-bottom-width: 0;
 }
-.cleenmain.sheet.pj .main .central .sheet-body {
+.cleenmain.sheet.player .main .central .sheet-body {
   background: #fffdfc;
 }
-.atout-card {
+.cleenmain.sheet.npc .input-short {
+  width: 2em;
+}
+.cleenmain.sheet.npc .input-long {
+  width: 12em;
+}
+.cleenmain.sheet.npc .window-content {
+  background: no-repeat url('./assets/image/paxelfica-fondfdp.webp');
+  background-color: #fffdfc;
+  font-family: "Museo Slab";
+}
+.cleenmain.sheet.npc .window-content input {
+  color: #456;
+}
+.cleenmain.sheet.npc .npc-main {
+  display: flex;
+  flex-direction: column;
+}
+.cleenmain.sheet.npc .npc-main .name-line {
+  margin: 0.5em;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.npc .npc-main .name-line .sheet-unlock {
+  margin-left: auto;
+  padding-left: 0.5em;
+  color: #705a10;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block {
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 70%;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left select {
+  margin: 0.5em 0.5em;
+  width: 12em;
+  height: auto;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line {
+  display: flex;
+  flex-direction: row;
+  margin: 0.5em 0.5em;
+  font-family: "Museo Slab";
+  font-size: 1rem;
+  font-weight: bold;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line .line-label {
+  color: #693d25;
+  margin-left: 0.5em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line .weapon-el {
+  margin-left: 0.5em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line .item-create {
+  padding-left: 0.5em;
+  color: #705a10;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npcskills-line {
+  display: flex;
+  flex-direction: row;
+  margin-left: 0.5em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npcskills-line .npcskills-block {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 25%;
+  margin: 0.5em 0.5em;
+  font-size: 1rem;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npcskills-line .npcskills-block .npcskill-label {
+  font-weight: bold;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npcskills-line .npcskills-block .npcskill-value {
+  display: flex;
+  flex-direction: row;
+  padding: 0 0.5em 0 0.5em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line {
+  display: flex;
+  flex-direction: row;
+  margin-left: 0.5em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 25%;
+  margin: 0.5em 0.5em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-value {
+  padding: 0 0.5em 0 0.5em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npchealth-line {
+  display: flex;
+  flex-direction: row;
+  margin: 1em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npchealth-line .central-text {
+  margin: 0.3em 0.2em 0 0.1em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npchealth-line .health-block {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-right {
+  flex-basis: 30%;
+  text-align: center;
+}
+.boon-card {
   display: flex;
   flex-flow: column;
   height: 150px;
   font-size: 12px;
 }
-.atout-card .atout-header {
+.boon-card .boon-header {
   height: 20px;
 }
-.atout-card .atout-name-line {
+.boon-card .boon-name-line {
   display: flex;
   flex-flow: row wrap;
   height: 20px;
 }
-.atout-card .atout-name-line .input {
+.boon-card .boon-name-line .input {
   flex-basis: 10%;
 }
-.atout-card .atout-name-line .atout-name {
+.boon-card .boon-name-line .boon-name {
   flex-basis: 90%;
 }
-.atout-card .editor {
+.boon-card .editor {
   flex-grow: 100%;
   height: 100%;
 }
@@ -199,74 +312,145 @@
   display: flex;
   flex-direction: column;
 }
-.cleenmain.sheet.item .sheet-content .editor {
-  height: 100%;
-}
-.cleenmain.sheet.pj .main .central .atouts h1 {
+.cleenmain.sheet.item .sheet-content .boon-line {
   display: flex;
   flex-direction: row;
 }
-.cleenmain.sheet.pj .main .central .atouts .item-create {
+.cleenmain.sheet.item .sheet-content .editor {
+  height: 100%;
+}
+.cleenmain.sheet.item form {
+  display: flex;
+  flex-direction: column;
+}
+.cleenmain.sheet.item .sheet-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.cleenmain.sheet.item .sheet-content .boon-line {
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.item .sheet-content .editor {
+  height: 100%;
+}
+.cleenmain.sheet.item form {
+  display: flex;
+  flex-direction: column;
+}
+.cleenmain.sheet.item .sheet-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.cleenmain.sheet.item .sheet-content .boon-line {
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.item .sheet-content .editor {
+  height: 100%;
+}
+.boons-tab .item-create {
   margin-left: auto;
 }
-.cleenmain.sheet.pj .main .central .atouts .atout-card {
+.boons-tab .boon-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.boons-tab .boon-group .boon-card {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 50%;
+  padding: 1em 0.5em 0 0.5em;
+}
+.boons-tab .boon-group .boon-card .boon-name-line {
+  font-size: 1rem;
   height: fit-content;
 }
-.cleenmain.sheet.pj .main .central .atouts .atout-card .item-edit .atout-name-line {
-  font-size: 1rem;
-}
-.cleenmain.sheet.pj .main .central .atouts .atout-card .item-edit .atout-name-line .atout-name {
+.boons-tab .boon-group .boon-card .boon-name-line .boon-name {
   color: #51602f;
 }
-.cleenmain.sheet.pj .main .central .combat-tab {
+.tab-bio {
+  display: flex;
+  flex-direction: column;
+}
+.tab-bio .line-label {
+  padding-top: 1em;
+}
+.tab-bio .editor {
+  min-height: 5em;
+}
+.tab-bio .editor .editor-content {
+  min-height: 5em;
+}
+.tab-bio .editor .tox.tox-tinymce {
+  min-height: 10em;
+}
+.cleenmain.sheet.player .main .central .combat-tab {
   margin: 1em 0 0.5em 0;
   display: flex;
   flex-direction: column;
 }
-.cleenmain.sheet.pj .main .central .combat-tab .title-line {
+.cleenmain.sheet.player .main .central .combat-tab .title-line {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.cleenmain.sheet.pj .main .central .combat-tab .item-create {
+.cleenmain.sheet.player .main .central .combat-tab .item-create {
   margin-left: auto;
 }
-.cleenmain.sheet.pj .main .central .combat-tab .combat-domain-label {
+.cleenmain.sheet.player .main .central .combat-tab .combat-domain-label {
   margin: 1em 0 0 0;
 }
-.cleenmain.sheet.pj .main .central .combat-tab .formations-list {
+.cleenmain.sheet.player .main .central .combat-tab .trainings-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-.cleenmain.sheet.pj .main .central .combat-tab .formations-list .formations-group {
+.cleenmain.sheet.player .main .central .combat-tab .trainings-list .trainings-group {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
 }
-.cleenmain.sheet.pj .main .central .combat-tab .formations-list .formations-group .formation-name {
+.cleenmain.sheet.player .main .central .combat-tab .trainings-list .trainings-group .trainings-name {
   margin: 0 1em 0 0;
 }
-.cleenmain.sheet.pj .main .central .combat-tab .bonus-list {
+.cleenmain.sheet.player .main .central .combat-tab .bonus-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-.cleenmain.sheet.pj .main .central .combat-tab .bonus-list .bonus-line {
+.cleenmain.sheet.player .main .central .combat-tab .bonus-list .bonus-line {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
 }
-.cleenmain.sheet.pj .main .central .combat-tab .bonus-list .bonus-line .bonus-text {
+.cleenmain.sheet.player .main .central .combat-tab .bonus-list .bonus-line .bonus-text {
   background: #fffdfc;
   border: 1px solid #928e8e;
   border-radius: 5px;
   width: 10%;
   text-align: center;
 }
-.cleenmain.sheet.pj .main .central .combat-tab .combat-group-label {
+.cleenmain.sheet.player .main .central .combat-tab .combat-group-label {
   font-style: italic;
   padding: 1em 0 0.5em 0;
+}
+.notes-tab {
+  display: flex;
+  flex-direction: column;
+}
+.notes-tab .editor {
+  min-height: 5em;
+}
+.notes-tab .editor .editor-content {
+  min-height: 5em;
+}
+.notes-tab .editor .tox.tox-tinymce {
+  min-height: 10em;
 }
 .equipment-tab {
   display: flex;
@@ -318,31 +502,34 @@
 .equipment-tab label .item-create {
   margin-left: auto;
 }
-.cleenmain.sheet.pj .window-content {
+.cleenmain.sheet.player .window-content {
   font-family: "Museo Slab";
 }
-.cleenmain.sheet.pj .window-content input {
+.cleenmain.sheet.player .window-content input {
   color: #456;
 }
-.cleenmain.sheet.pj h1 {
+.cleenmain.sheet.player h1 {
   font-family: "Morris Roman";
   font-size: 1.2rem;
   color: #693d25;
   text-transform: uppercase;
   border: none;
 }
-.cleenmain.sheet.pj h2 {
+.cleenmain.sheet.player h2 {
   font-family: "Morris Roman";
   font-size: 1rem;
   color: #693d25;
 }
-.cleenmain.sheet.pj .main .central .central-line {
+.cleenmain.sheet.player .main .central .central-line {
   font-family: "Morris Roman";
   font-size: 1rem;
   font-weight: bold;
 }
-.cleenmain.sheet.pj .right-icon {
+.cleenmain.sheet.player .right-icon {
   font-family: "Morris Roman";
   font-size: 1.2rem;
   color: #705a10;
+}
+.tab-bio .line-label {
+  color: #693d25;
 }

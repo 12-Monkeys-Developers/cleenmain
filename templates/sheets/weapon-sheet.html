@@ -6,18 +6,18 @@
     <div class="sheet-content">
         <table>
             <tr>
-                <th>{{localize "cleenmain.label.categorie"}}</th>
+                <th>{{localize "cleenmain.label.category"}}</th>
                 <th>{{localize "cleenmain.label.type"}}</th>
-                <th>{{localize "cleenmain.arme.degats"}}</th>
-                <th>{{localize "cleenmain.arme.portee"}}</th>
-                <th>{{localize "cleenmain.arme.cibles"}}</th>
-                <th>{{localize "cleenmain.arme.special"}}</th>
-                <th>{{localize "cleenmain.arme.score"}}</th>
+                <th>{{localize "cleenmain.weapon.damage"}}</th>
+                <th>{{localize "cleenmain.weapon.range"}}</th>
+                <th>{{localize "cleenmain.weapon.targets"}}</th>
+                <th>{{localize "cleenmain.weapon.special"}}</th>
+                <th>{{localize "cleenmain.weapon.skillvalue"}}</th>
             </tr>
             <td>
-                <select name="data.categorie">
-                    {{#select data.categorie}}
-                    {{#each config.arme.categorie as |name type|}}
+                <select name="data.category">
+                    {{#select data.category}}
+                    {{#each config.weapon.category as |name type|}}
                     <option value="{{type}}">{{localize name}}</option>
                     {{/each}}
                     {{/select}}
@@ -26,26 +26,26 @@
             <td>
                 <select name="data.type">
                     {{#select data.type}}
-                    {{#each config.arme.type as |name type|}}
+                    {{#each config.weapon.type as |name type|}}
                     <option value="{{type}}">{{localize name}}</option>
                     {{/each}}
                     {{/select}}
                 </select>
             </td>
             <td>
-                <input name="data.degats" type="text" value="{{data.degats}}" />
+                <input name="data.damage" type="text" value="{{data.damage}}" />
             </td>
             <td>
-                <input name="data.portee" type="text" value="{{data.portee}}" data-dtype="Number" />
+                <input name="data.range" type="text" value="{{data.range}}" data-dtype="Number" />
             </td>
             <td>
-                <input name="data.cibles" type="text" value="{{data.cibles}}" data-dtype="Number" />
+                <input name="data.targets" type="text" value="{{data.targets}}" data-dtype="Number" />
             </td>
             <td>
                 <input name="data.special" type="text" value="{{data.special}}" />
             </td>
             <td>
-                <input name="data.score" type="text" value="{{data.score}}" />
+                <input name="data.skillvalue" type="text" value="{{data.skillvalue}}" />
             </td>
             </table>
             

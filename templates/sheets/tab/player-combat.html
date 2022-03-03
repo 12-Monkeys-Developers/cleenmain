@@ -5,70 +5,70 @@
     <div class="title-line">
         <h2><div class="combat-domain-label">{{localize "cleenmain.label.protections"}}</div></h2>
         {{#if unlocked}}
-        <a class="item-create right-icon" data-type="armor" title="{{localize "cleenmain.armure.add"}}">
+        <a class="item-create right-icon" data-type="armor" title="{{localize "cleenmain.armor.add"}}">
                 <i class="fas fa-plus"></i>
         </a>
         {{/if}}
     </div>
-    <div class="combat-group-label">{{localize "cleenmain.label.formation"}}</div>
-    <div class="formations-list">
-        <div class="formations-group">
+    <div class="combat-group-label">{{localize "cleenmain.label.trainings"}}</div>
+    <div class="trainings-list">
+        <div class="trainings-group">
             {{#if unlocked}}
-                {{#if data.formations.armures.guerre}}
-                <input name="data.formations.armures.guerre" value="{{data.formations.armures.guerre}}" type="checkbox" value="1" checked/>
+                {{#if data.trainings.armors.war}}
+                <input name="data.trainings.armors.war" value="{{data.trainings.armors.war}}" type="checkbox" value="1" checked/>
                 {{else}}
-                <input name="data.formations.armures.guerre" value="{{data.formations.armures.guerre}}" type="checkbox" value="0" />
+                <input name="data.trainings.armors.war" value="{{data.trainings.armors.war}}" type="checkbox" value="0" />
                 {{/if}}
             {{else}}
-                {{#if data.formations.armures.guerre}}
+                {{#if data.trainings.armors.war}}
                 <i class="fas fa-square"></i>
                 {{else}}
                 <i class="far fa-square"></i>
                 {{/if}}
             {{/if}}
-            <div class="formation-name">{{localize "cleenmain.armure.categorie.guerre"}}</div>
+            <div class="trainings-name">{{localize "cleenmain.armor.category.war"}}</div>
         </div>
-        <div class="formations-group">
+        <div class="trainings-group">
             {{#if unlocked}}
-                {{#if data.formations.armures.lourde}}
-                <input name="data.formations.armures.lourde" value="{{data.formations.armures.lourde}}" type="checkbox" value="1" checked/>
+                {{#if data.trainings.armors.heavy}}
+                <input name="data.trainings.armors.heavy" value="{{data.trainings.armors.heavy}}" type="checkbox" value="1" checked/>
                 {{else}}
-                <input name="data.formations.armures.lourde" value="{{data.formations.armures.lourde}}" type="checkbox" value="0" />
+                <input name="data.trainings.armors.heavy" value="{{data.trainings.armors.heavy}}" type="checkbox" value="0" />
                 {{/if}}
             {{else}}
-                {{#if data.formations.armures.lourde}}
+                {{#if data.trainings.armors.heavy}}
                 <i class="fas fa-square"></i>
                 {{else}}
                 <i class="far fa-square"></i>
                 {{/if}}
             {{/if}}
-            <div class="formation-name">{{localize "cleenmain.armure.categorie.lourde"}}</div>
+            <div class="trainings-name">{{localize "cleenmain.armor.category.heavy"}}</div>
         </div>
-        <div class="formations-group">
+        <div class="trainings-group">
             {{#if unlocked}}
-                {{#if data.formations.armures.bouclier}}
-                <input name="data.formations.armures.bouclier" value="{{data.formations.armures.bouclier}}" type="checkbox" value="1" checked/>
+                {{#if data.trainings.armors.shield}}
+                <input name="data.trainings.armors.shield" value="{{data.trainings.armors.shield}}" type="checkbox" value="1" checked/>
                 {{else}}
-                <input name="data.formations.armures.bouclier" value="{{data.formations.armures.bouclier}}" type="checkbox" value="0" />
+                <input name="data.trainings.armors.shield" value="{{data.trainings.armors.shield}}" type="checkbox" value="0" />
                 {{/if}}
             {{else}}
-                {{#if data.formations.armures.bouclier}}
+                {{#if data.trainings.armors.shield}}
                 <i class="fas fa-square"></i>
                 {{else}}
                 <i class="far fa-square"></i>
                 {{/if}}
             {{/if}}
-            <div class="formation-name">{{localize "cleenmain.armure.categorie.bouclier"}}</div>
+            <div class="trainings-name">{{localize "cleenmain.armor.category.shield"}}</div>
         </div>
     </div>
-    <div class="armures">
+    <div class="armors">
         <table>
             <tr>
                 <th>{{localize "cleenmain.label.nom"}}</th>
-                <th>{{localize "cleenmain.label.categorie"}}</th>
-                <th>{{localize "cleenmain.armure.protection"}}</th>
-                <th>{{localize "cleenmain.armure.malus"}}</th>
-                <th>{{localize "cleenmain.armure.special"}}</th>
+                <th>{{localize "cleenmain.label.category"}}</th>
+                <th>{{localize "cleenmain.armor.protection"}}</th>
+                <th>{{localize "cleenmain.armor.malus"}}</th>
+                <th>{{localize "cleenmain.armor.special"}}</th>
                 <th></th>
             </tr>
             {{#each armors as |item id|}}
@@ -77,13 +77,13 @@
                 {{name}}
             </th>
             <th>
-                {{item.data.data.categorie}}
+                {{item.data.data.category}}
             </th>
             <th>
                 {{item.data.data.protection}}
             </th>
             <th>
-                {{item.data.data.degats}}
+                {{item.data.data.damage}}
             </th>
             <th>
                 {{item.data.data.special}}
@@ -103,46 +103,46 @@
         </table>
     </div>
     <div class="title-line">
-        <h2><div class="combat-domain-label">{{localize "cleenmain.label.armes"}}</div></h2>
+        <h2><div class="combat-domain-label">{{localize "cleenmain.label.weapons"}}</div></h2>
         {{#if unlocked}}
-        <a class="item-create right-icon" data-type="weapon" title="{{localize "cleenmain.arme.add"}}">
+        <a class="item-create right-icon" data-type="weapon" title="{{localize "cleenmain.weapon.add"}}">
                 <i class="fas fa-plus"></i>
         </a>
         {{/if}}
     </div>
-    <div class="combat-group-label">{{localize "cleenmain.label.formation"}}</div>
-    <div class="formations-list">
-        <div class="formations-group">
+    <div class="combat-group-label">{{localize "cleenmain.label.trainings"}}</div>
+    <div class="trainings-list">
+        <div class="trainings-group">
             {{#if unlocked}}
-                {{#if data.formations.armes.guerre}}
-                <input name="data.formations.armes.guerre" value="{{data.formations.armes.guerre}}" type="checkbox" value="1" checked/>
+                {{#if data.trainings.weapons.war}}
+                <input name="data.trainings.weapons.war" value="{{data.trainings.weapons.war}}" type="checkbox" value="1" checked/>
                 {{else}}
-                <input name="data.formations.armes.guerre" value="{{data.formations.armes.guerre}}" type="checkbox" value="0" />
+                <input name="data.trainings.weapons.war" value="{{data.trainings.weapons.war}}" type="checkbox" value="0" />
                 {{/if}}
             {{else}}
-                {{#if data.formations.armes.guerre}}
+                {{#if data.trainings.weapons.war}}
                 <i class="fas fa-square"></i>
                 {{else}}
                 <i class="far fa-square"></i>
                 {{/if}}
             {{/if}}
-            <div class="formation-name">{{localize "cleenmain.arme.categorie.guerre"}}</div>
+            <div class="trainings-name">{{localize "cleenmain.weapon.category.war"}}</div>
         </div>
-        <div class="formations-group">
+        <div class="trainings-group">
             {{#if unlocked}}
-                {{#if data.formations.armes.lourde}}
-                <input name="data.formations.armes.lourde" value="{{data.formations.armes.lourde}}" type="checkbox" value="1" checked/>
+                {{#if data.trainings.weapons.heavy}}
+                <input name="data.trainings.weapons.heavy" value="{{data.trainings.weapons.heavy}}" type="checkbox" value="1" checked/>
                 {{else}}
-                <input name="data.formations.armes.lourde" value="{{data.formations.armes.lourde}}" type="checkbox" value="0" />
+                <input name="data.trainings.weapons.heavy" value="{{data.trainings.weapons.heavy}}" type="checkbox" value="0" />
                 {{/if}}
             {{else}}
-                {{#if data.formations.armes.lourde}}
+                {{#if data.trainings.weapons.heavy}}
                 <i class="fas fa-square"></i>
                 {{else}}
                 <i class="far fa-square"></i>
                 {{/if}}
             {{/if}}
-            <div class="formation-name">{{localize "cleenmain.arme.categorie.lourde"}}</div>
+            <div class="trainings-name">{{localize "cleenmain.weapon.category.heavy"}}</div>
         </div>
     </div>
     <div class="combat-group-label">{{localize "cleenmain.label.bonus"}} : </div>
@@ -150,30 +150,30 @@
         <div class="bonus-line">
             <div class="bonus-name">{{localize "cleenmain.label.cac"}} : </div>
             {{#if unlocked}}
-            <input class="bonus-text" id="bonuscac" name="data.bonusDegats.cac" type="number" value="{{data.bonusDegats.cac}}"/>
+            <input class="bonus-text" id="bonuscac" name="data.bonusdamageBonus.cac" type="number" value="{{data.bonusdamageBonus.cac}}"/>
         </div>
         <div class="bonus-line">
             <div class="bonus-name">{{localize "cleenmain.label.distance"}} : </div>
-            <input class="bonus-text" id="bonusdistance" name="data.bonusDegats.distance" type="number" value="{{data.bonusDegats.distance }}"/>
+            <input class="bonus-text" id="bonusdistance" name="data.bonusdamageBonus.distance" type="number" value="{{data.bonusdamageBonus.distance }}"/>
         {{else}}
-            <div class="bonus-text">{{data.bonusDegats.cac}}</div>
+            <div class="bonus-text">{{data.bonusdamageBonus.cac}}</div>
         </div>
         <div class="bonus-line">
             <div class="bonus-name">{{localize "cleenmain.label.distance"}} : </div>
-            <div class="bonus-text">{{data.bonusDegats.distance}}</div>
+            <div class="bonus-text">{{data.bonusdamageBonus.distance}}</div>
         {{/if}}
         </div>
     </div>
     <div class="weapons">
         <table>
             <tr>
-                <th>{{localize "cleenmain.arme.attaque"}}</th>
-                <th>{{localize "cleenmain.label.categorie"}}</th>
-                <th>{{localize "cleenmain.arme.score"}}</th>
-                <th>{{localize "cleenmain.arme.degats"}}</th>
-                <th>{{localize "cleenmain.arme.portee"}}</th>
-                <th>{{localize "cleenmain.arme.cibles"}}</th>
-                <th>{{localize "cleenmain.arme.special"}}</th>
+                <th>{{localize "cleenmain.weapon.attaque"}}</th>
+                <th>{{localize "cleenmain.label.category"}}</th>
+                <th>{{localize "cleenmain.weapon.skillvalue"}}</th>
+                <th>{{localize "cleenmain.weapon.damage"}}</th>
+                <th>{{localize "cleenmain.weapon.range"}}</th>
+                <th>{{localize "cleenmain.weapon.targets"}}</th>
+                <th>{{localize "cleenmain.weapon.special"}}</th>
                 <th></th>
             </tr>
             {{#each weapons as |item id|}}
@@ -182,19 +182,19 @@
                 {{name}}
             </th>
             <th>
-                {{item.data.data.categorie}}
+                {{item.data.data.category}}
             </th>
             <th>
-                {{item.data.data.score}}
+                {{item.data.data.skillvalue}}
             </th>
             <th>
-                {{item.data.data.degats}}
+                {{item.data.data.damage}}
             </th>
             <th>
-                {{item.data.data.portee}}
+                {{item.data.data.range}}
             </th>
             <th>
-                {{item.data.data.cibles}}
+                {{item.data.data.targets}}
             </th>
             <th>
                 {{item.data.data.special}}

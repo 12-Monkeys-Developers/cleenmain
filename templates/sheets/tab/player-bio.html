@@ -1,46 +1,33 @@
-
-<div class="bio">
+<div class="tab-bio">
     {{#if unlocked}}
-        {{#unless isPj}}
-        <div class="line-label">{{localize "cleenmain.label.description"}}: </div>
-        {{editor content=data.bio.description target="data.bio.description" button=true owner=owner editable=editable}}
-            <div class="line-label">{{localize "cleenmain.label.tactique"}}: </div>
-            {{editor content=data.bio.tactique target="data.bio.tactique" button=true owner=owner editable=editable}}
+        {{#unless isPlayer}}
+            <div class="line-label">{{localize "cleenmain.label.tactics"}}: </div>
+            {{editor content=data.bio.tactics target="data.bio.tactics" button=true owner=owner editable=editable}}
             <div class="line-label">{{localize "cleenmain.label.equipment"}}: </div>
             {{editor content=data.bio.equipment target="data.bio.equipment" button=true owner=owner editable=editable}}
-        {{/unless}}
-        <div class="line-label">{{localize "cleenmain.label.ideal"}}: </div>
-        {{editor content=data.bio.ideal target="data.bio.ideal" button=true owner=owner editable=editable}}
-        <div class="line-label">{{localize "cleenmain.label.lien"}}: </div>
-        {{editor content=data.bio.lien target="data.bio.lien" button=true owner=owner editable=editable}}
-        <div class="line-label">{{localize "cleenmain.label.defaut"}}: </div>
-        {{editor content=data.bio.defaut target="data.bio.defaut" button=true owner=owner editable=editable}}
+            <div class="line-label">{{localize "cleenmain.label.description"}}: </div>
+            {{editor content=data.bio.description target="data.bio.description" button=true owner=owner editable=editable}}
+            {{/unless}}
+        <div class="line-label">{{localize "cleenmain.label.goal"}}: </div>
+        {{editor content=data.bio.goal target="data.bio.goal" button=true owner=owner editable=editable}}
+        <div class="line-label">{{localize "cleenmain.label.bond"}}: </div>
+        {{editor content=data.bio.bond target="data.bio.bond" button=true owner=owner editable=editable}}
+        <div class="line-label">{{localize "cleenmain.label.flaw"}}: </div>
+        {{editor content=data.bio.flaw target="data.bio.flaw" button=true owner=owner editable=editable}}
     {{else}}
-        {{#unless isPj}}
-            {{#if (isStringNotEmpty data.bio.description)}}
-                <div class="line-label">{{localize "cleenmain.label.description"}}: </div>
-                <div class="line-content">{{data.bio.description}}</div>
-            {{/if}}
-            {{#if (isStringNotEmpty data.bio.tactique)}}
-                <div class="line-label">{{localize "cleenmain.label.tactique"}}: </div>
-                <div class="line-content">{{data.bio.tactique}}</div>
-            {{/if}}
-            {{#if (isStringNotEmpty data.bio.equipment)}}
-                <div class="line-label">{{localize "cleenmain.label.equipment"}}: </div>
-                <div class="line-content">{{data.bio.equipment}}</div>
-            {{/if}}
+    {{#unless isPlayer}}
+        <div class="line-label">{{localize "cleenmain.label.description"}}: </div>
+        <div class="line-content">{{removeMarkup data.bio.description}}</div>
+        <div class="line-label">{{localize "cleenmain.label.tactics"}}: </div>
+        <div class="line-content">{{removeMarkup data.bio.tactics}}</div>
+        <div class="line-label">{{localize "cleenmain.label.equipment"}}: </div>
+        <div class="line-content">{{removeMarkup data.bio.equipment}}</div>
         {{/unless}}
-            {{#if (isStringNotEmpty data.bio.ideal)}}
-                <div class="line-label">{{localize "cleenmain.label.ideal"}}: </div>
-                <div class="line-content">{{data.bio.ideal}}</div>
-            {{/if}}
-            {{#if (isStringNotEmpty data.bio.lien)}}
-                <div class="line-label">{{localize "cleenmain.label.lien"}}: </div>
-                <div class="line-content">{{data.bio.lien}}</div>
-            {{/if}}
-            {{#if (isStringNotEmpty data.bio.defaut)}}
-                <div class="line-label">{{localize "cleenmain.label.defaut"}}: </div>
-                <div class="line-content">{{data.bio.defaut}}</div>
-            {{/if}}
+        <div class="line-label">{{localize "cleenmain.label.goal"}}: </div>
+        <div class="line-content">{{removeMarkup data.bio.goal}}</div>
+        <div class="line-label">{{localize "cleenmain.label.bond"}}: </div>
+        <div class="line-content">{{removeMarkup data.bio.bond}}</div>
+        <div class="line-label">{{localize "cleenmain.label.flaw"}}: </div>
+        <div class="line-content">{{removeMarkup data.bio.flaw}}</div>
     {{/if}}
 </div>

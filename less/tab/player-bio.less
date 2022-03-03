@@ -1,0 +1,16 @@
+.tab-bio{
+  display: flex;
+  flex-direction: column;
+  .line-label{
+      padding-top: 1em;
+  }
+  .editor{
+    min-height: @editor-height;
+    .editor-content{
+      min-height: @editor-height;
+    }
+    .tox.tox-tinymce{
+      min-height: @editor-height * 2;
+    }
+  }
+}

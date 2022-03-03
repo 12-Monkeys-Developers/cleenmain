@@ -24,7 +24,7 @@
   ],
   "gridDistance": 1,
   "gridUnits": "m",
-  "primaryTokenAttribute": "vitalite",
+  "primaryTokenAttribute": "health",
   "initiative": "3d6+@reflexes",
   "url": "https://github.com/Khaali-dev/cleenmain",
   "manifest": "https://github.com/Khaali-dev/cleenmain/releases/latest/download/system.json",

@@ -1,0 +1,20 @@
+<div class="chatroll">
+    <div class="intro">
+        <div class="introImg" style="background-image: url('{{skillData.actingCharImg}}')">
+            <div class="introTxt">{{skillData.introText}}</div>
+        </div>
+        <div class="modifierText">{{skillData.modifierText}}</div>  
+        {{#if skillData.useHeroism}}    
+        <div class="modifierText">{{skillData.heroismText}}</div>
+        {{/if}}
+        {{#if skillData.weaponRoll}} 
+        <img src="{{skillData.subImg}}"/>
+        {{/if}}
+        <div class="finalTxt">
+            <div class="tooltip">
+                <p>{{cleenmain.chatmessage.rollresult}} {{skillData.skillRoll.total}}</p>
+                <span class="tooltiptext">{{skillData.skillRoll.tooltip}}</span>
+            </div>
+        </div>
+    </div>
+</div>

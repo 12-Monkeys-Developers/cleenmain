@@ -1,15 +1,15 @@
-<div class="atout-card">
+<div class="boon-card">
     <a class="item-edit">
-        <div class="atout-header item" data-item-id="{{item.id}}">
-            <p>{{localize "cleenmain.label.atout"}}</p>
+        <div class="boon-header item" data-item-id="{{item.id}}">
+            <p>{{localize "cleenmain.label.boon"}}</p>
         </div>
-            <div class="atout-name-line">
+            <div class="boon-name-line">
             {{#if item.data.data.developed}}
             <div class="inline-edit" data-field="data.developed" id="{{id}}" name="item.data.data.developed" type="checkbox" value="1" checked/>
             {{else}}
             <div class="inline-edit" data-field="data.developed" id="{{id}}" name="data.developed" type="checkbox" value="0" />
             {{/if}}
-            <div class="atout-name">{{item.data.data.description}}</div>
+            <div class="boon-name">{{item.data.data.description}}</div>
         </div>
         <div class="description">
             <p>{{item.data.data.description}}</p>

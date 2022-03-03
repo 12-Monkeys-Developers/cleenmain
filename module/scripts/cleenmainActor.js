@@ -7,7 +7,7 @@ export default class CleenmainActor extends Actor {
           'token.disposition': CONST.TOKEN_DISPOSITIONS.NEUTRAL,
         });
         
-        if (this.data.type === 'pj') {
+        if (this.data.type === 'player') {
           createChanges.token.vision = true;
           createChanges.token.actorLink = true;
       
@@ -25,23 +25,24 @@ export default class CleenmainActor extends Actor {
     prepareData(){
         super.prepareData();
 
-        if(this.type === "pnj"){
-            let numberofpj = game.settings.get('cleenmain', 'numberOfPlayers');
-            if (numberofpj < 2) numberofpj=2;
-            else if (numberofpj > 5) numberofpj=5;
+        if(this.type === "npc"){
+            let numberofplayers = game.settings.get('cleenmain', 'numberOfPlayers');
+            let numberofplayersString="fivepcs";
+            if (numberofplayers <= 2) numberofplayersString="twopcs";
+            else if (numberofplayers == 3) numberofplayersString="threepcs";
+            else if (numberofplayers == 4) numberofplayersString="fourpcs";
             
-            if(this.data.data.level === "figurant"){
-                this.data.data.vitalite.value = this.data.data.vitalite.max = 1;
+            if(this.data.data.level === "support"){
+                this.data.data.health.value = this.data.data.health.max = 1;
             }
             else{
-                let test = numberofpj.toString();
                 console.log(this.data);
-                let vitaliteMax = this.data.data.vitalite2couteau[test];
-                if(this.data.data.level === "boss")  vitaliteMax = vitaliteMax*2;
-                if(this.data.data.vitalite.value === this.data.data.vitalite.max){
-                    this.data.data.vitalite.value = this.data.data.vitalite.max = vitaliteMax;
+                let healthMax = this.data.data.healthsecondfiddle[numberofplayersString];
+                if(this.data.data.level === "boss")  healthMax = healthMax*2;
+                if(this.data.data.health.value === this.data.data.health.max){
+                    this.data.data.health.value = this.data.data.health.max = healthMax;
                 }
-                else this.data.data.vitalite.max = vitaliteMax;
+                else this.data.data.health.max = healthMax;
             }
         }
     }
@@ -51,31 +52,97 @@ export default class CleenmainActor extends Actor {
     async roll(elements){
         let item = this.items.get(elements.itemId);
         if (typeof(item) === 'undefined') return;
-        let skillData= {};
-        if(elements.type === "weapon"){
-            /*let skillName = item.data.type ==="melee" ? "combatcac" : "combatdist";
-            let skill = this.actor.items.filter(element => element.data.data.type === "skill" && element.name === skillName);
-            if(skill.length == 0){
-                console.log("No skill found for item ", item.name);
-                return;
-            }
-            skillData.value = skill[0].data.data.value + (skill[0].data.data.developed ? 2 : 0);
-            skillData.name = skill[0].name;*/
+        let skillData= {
+            itemname: item.name,
+            weaponRoll: false,
+            modifierText: "",
+            rollModifier: "",
+            heroismText: ""
+        };
 
-            skillData={name: "cac", value: 5};//
-
-            let skillFormula = "3d6 + " + skillData.value.toString();
-            let damageFormula=item.data.data.degats;
-
-            let skillRoll = new Roll(skillFormula, {});
-            let messageData = {
-                speaker : ChatMessage.getSpeaker()
-            }
-            skillRoll.toMessage(messageData);
-
-
-
-
+        if (elements.type === "skill"){
+            skillData.skillvalue = item.data.value;
         }
+        //get the active token
+        let tokenList = this.getActiveTokens();
+        let actingToken = tokenList[0];
+//if there is a token active for this actor, we use its name and image instead of the actor's
+        skillData.actingCharName = actingToken?.data?.name ?? this.name;
+        skillData.actingCharImg= actingToken?.data?.img ?? this.data.img;
+        skillData.subImg = item.data.img;
+        
+        if(elements.type === "weapon"){
+            skillData.weaponRoll = true;
+            if(this.type="npc"){
+                skillData.skillvalue = this.data.data.elite ? item.data.data.skillvaluenpcelite : item.data.skillvaluenpc;
+            }
+            else skillData.skillvalue = item.data.data.skillvalue;
+
+            skillData.damageFormula=item.data.data.damage;
+        } else skillData.skillvalue = item.data.data.value;
+        skillData.skillRollFormula = "3d6 + " + skillData.skillvalue.toString();
+        skillData.introText = game.i18n.format("cleenmain.dialog.intro", skillData);
+
+        
+        const html = await renderTemplate('systems/cleenmain/templates/chat/rollDialog.html', {
+            skillData: skillData
+        });
+
+        let dialog = new Dialog({
+            title: skillData.name,
+            content: html,
+            buttons: {
+            roll: {
+                icon: '<i class="fas fa-check"></i>',
+                label: game.i18n.localize("cleenmain.dialog.button.roll"),
+                callback: async (html) => {
+
+                    let rollModifier = html.find("#rollmodifier")[0].value;
+                    if(rollModifier.length > 0){
+                        skillData.rollModifier = rollModifier ?? "";
+                    }
+
+                    skillData.useHeroism = html.find("#heroism")[0].checked;
+            
+                    let skillFormula = skillData.skillRollFormula;
+                    if(skillData.rollModifier.length > 0){
+                        skillFormula =+ " + " +skillData.rollModifier;
+                        skillData.modifierText = game.i18n.localize("cleenmain.chatmessage.custommodifier", skillData);
+                    }
+                    
+                    if(skillData.useHeroism){
+                        skillFormula =+ " +1d6";
+                        skillData.heroismText = game.i18n.localize("cleenmain.chatmessage.heroismmodifier", skillData);
+                    }
+                    skillData.skillRoll = new Roll(skillFormula).evaluate({async:false});
+                    
+
+                    const chatTemplate = await renderTemplate("systems/cleenmain/templates/chat/rollResult.html", {
+                        skillData: skillData,
+                    });
+                    const chatData = {
+                        user: game.user.id,
+                        speaker: ChatMessage.getSpeaker({ 
+                            alias: game.user.name
+                        }),
+                        rollMode: game.settings.get('core', 'rollMode'),    
+                        content: chatTemplate
+                    }
+
+                    let NewMessage = await ChatMessage.create(chatData);
+
+
+                },
+            },
+            cancel: {
+                icon: '<i class="fas fa-times"></i>',
+                label: game.i18n.localize("cleenmain.dialog.button.cancel"),
+                callback: () => {},
+            },
+            },
+            default: 'roll',
+            close: () => {},
+        });
+        dialog.render(true);
     }
 }

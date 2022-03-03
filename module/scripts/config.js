@@ -1,30 +1,30 @@
 export const cleenmain = {};
 
-cleenmain.arme={
-        categorie : {
-                normale: "cleenmain.arme.categorie.normale",
-                guerre: "cleenmain.arme.categorie.guerre",
-                lourde: "cleenmain.arme.categorie.lourde"
+cleenmain.weapon={
+        category : {
+                standard: "cleenmain.weapon.category.standard",
+                war: "cleenmain.weapon.category.war",
+                heavy: "cleenmain.weapon.category.heavy"
         },
         type : {
-                melee: "cleenmain.arme.type.melee",
-                distance: "cleenmain.arme.type.distance"
+                melee: "cleenmain.weapon.type.melee",
+                distance: "cleenmain.weapon.type.distance"
         }
 };
 
-cleenmain.pnjskills = {
-        physique : ["acrobatie", "athletisme", "combatcac", "defense", "equitation", "muscles", "resistance"],
-        habilete : ["combatdist", "discretion", "pilotage", "reflexes", "soins", "technique"],
-        social : ["art", "autorite", "eloquence", "psychologie"],
-        mental : ["connaissance", "documentation", "intellect", "langue", "perception", "survie", "volonte"]
+cleenmain.npcskills = {
+        physical : ["acrobatics", "athletics", "meleecombat", "defence", "riding", "strenght", "resistance"],
+        dexterity : ["rangedcombat", "stealth", "pilot", "reflexes", "healing", "technical"],
+        social : ["art", "command", "eloquence", "psychology"],
+        mental : ["knowledge", "research", "intellect", "langage", "perception", "survival", "volonte"]
 };
 
-cleenmain.skill = ["acrobatie", "athletisme", "combatcac", "defense", "equitation", "muscles", "resistance",
-"combatdist", "discretion", "pilotage", "reflexes", "soins", "technique","art", "autorite", "eloquence", "psychologie",
-"connaissance", "documentation", "intellect", "langue", "perception", "survie", "volonte"];
+cleenmain.skill = ["acrobatics", "athletics", "meleecombat", "defence", "riding", "strenght", "resistance",
+"rangedcombat", "stealth", "pilot", "reflexes", "healing", "technical","art", "command", "eloquence", "psychology",
+"knowledge", "research", "intellect", "langage", "perception", "survival", "willpower"];
         
-cleenmain.pnjcategorie = {
-        figurant: "cleenmain.pnjcategorie.figurant",
-        secondcouteau: "cleenmain.pnjcategorie.secondcouteau",
-        boss: "cleenmain.pnjcategorie.boss"
+cleenmain.npccategory = {
+        support: "cleenmain.npccategory.support",
+        secondfiddle: "cleenmain.npccategory.secondfiddle",
+        boss: "cleenmain.npccategory.boss"
 }

@@ -1,42 +1,44 @@
 {
     "cleenmain": {
         "label": {
-            "armes": "Armes",
-            "atouts": "Atouts",
-            "atout": "Atout",
-            "blessures": "Blessures",
+            "activity": "Occupation",
+            "bond": "Lien",
             "bonus": "Bonus aux dégâts",
+            "boons": "Atouts",
+            "boon": "Atout",
             "cac": "Corps-à-corps",
             "cap_off": "Capacités Offensives",
-            "categorie": "Catégorie",
+            "category": "Catégorie",
             "character": "Personnage",
-            "defaut": "Défaut",
+            "combat": "Combat",
             "description": "Description",
             "distance": "Distance",
             "equipment": "Équipement",
-            "formation": "Formé aux: ",
-            "heroisme": "Héroisme",
-            "ideal": "Idéal",
-            "lien": "Lien",
-            "nom": "Nom",
-            "occupation": "Occupation",
+            "flaw": "Défaut",
+            "goal": "Idéal",
+            "health": "Vitalité",
+            "heroism": "Héroisme",
+            "name": "Nom",
             "protections": "Protections",
             "skills" : "Compétences",
-            "tactique": "Tactique",
+            "tactics": "Tactique",
+            "trainings": "Formé aux: ",
             "type": "Type",
             "unlock_sheet": "Verrouiller/Déverrouiller la feuille",
-            "vitalite": "Vitalité",
-            "wealth": "Richesses"
+            "wealth": "Richesses",
+            "weapons": "Armes",
+            "wounds": "Blessures"
         },
-        "atout":{
+        "boon":{
             "add": "Nouvel atout",
-            "delete": "Supprimer l'atout"
+            "delete": "Supprimer l'atout",
+            "developedinfo": "Cochez si appris."
         },
-        "arme": {
-            "categorie": {
-                "normale": "Normale",
-                "guerre": "Armes de guerre",
-                "lourde": "Armes lourdes"
+        "weapon": {
+            "category": {
+                "standard": "Normale",
+                "war": "Armes de guerre",
+                "heavy": "Armes lourdes"
             },
             "type": {
                 "melee": "Mélée",
@@ -45,32 +47,29 @@
             "add": "Nouvelle arme",
             "delete": "Supprimer l'arme",
             "attaque": "Attaque",
-            "cibles": "Cibles",
-            "degats": "Dégâts",
-            "portee": "Portée",
-            "score": "Score",
+            "targets": "Cibles",
+            "damage": "Dégâts",
+            "range": "Portée",
+            "skillvalue": "Compétence",
             "special": "Spécial"
         },
-        "armure": {
-            "categorie": {
-                "normale": "Normale",
-                "guerre": "Armures de guerre",
-                "lourde": "Armures lourdes",
-                "bouclier": "Bouclier"
+        "armor": {
+            "category": {
+                "standard": "Normale",
+                "war": "Armures de guerre",
+                "heavy": "Armures lourdes",
+                "shield": "Bouclier"
             },
-            "type": {
-                "melee": "Mélée",
-                "distance": "à distance"
-            },
-            "add": "Nouvlle armure",
+            "add": "Nouvelle armure",
             "malus": "Malus",
             "protection": "Protection",
+            "quality": "Qualité",
             "special": "Spécial"
         },
         "equipment":{
             "add": "New equipment"
         },
-        "heroisme": {
+        "heroism": {
             "current": "Valeur actuelle",
             "max": "Maximum"
         },
@@ -78,23 +77,23 @@
             "edit": "Modifier",
             "delete": "Supprimer",
             "tab":{
-                "atouts": "Atouts",
+                "boons": "Atouts",
                 "bio": "Bio",
                 "combat": "Combat",
                 "equipment": "Equipment",
                 "notes": "Notes"
             }
         },
-        "pnjcategorie": {
-                    "figurant": "Figurant",
-                    "secondcouteau": "Second Couteau",
+        "npccategory": {
+                    "support": "Figurant",
+                    "secondfiddle": "Second Couteau",
                     "boss": "Boss"
         },
-        "pnjskill":{
-            "physique": {
+        "npcskill":{
+            "physical": {
                 "name": "Physique"
             },
-            "habilete": {
+            "dexterity": {
                 "name": "Habileté"
             },
             "social": {
@@ -105,7 +104,7 @@
             }
         },
         "skill":{
-            "acrobatie":{
+            "acrobatics":{
                 "name": "Acrobatie",
                 "description": "Les activités gymniques comme les sauts, la voltige, l’escalade ou la contorsion."
             },
@@ -113,35 +112,35 @@
                 "name": "Art",
                 "description": "Effectuer et comprendre des œuvres artistiques. Chaque art maîtrisé est indiqué entre parenthèses derrière le nom de la compétence. Par exemple : Art (Musique)."
             },
-            "athletisme": {
+            "athletics": {
                 "name": "Athlétisme",
                 "description": "Les activités physiques intenses comme la course, la nage ou le grimper à la corde."
             },
-            "autorite": {
+            "command": {
                 "name": "Autorité",
                 "description": "Diriger un groupe, intimider un interlocuteur, donner des ordres, etc."
             },
-            "combatcac": {
+            "meleecombat": {
                 "name": "Combat au corps à corps",
                 "description": "Combattre avec des armes de mêlée ou à mains nues."
             },
-            "combatdist": {
+            "rangedcombat": {
                 "name": "Combat à distance",
                 "description": "Viser, tirer avec une arme, lancer."
             },
-            "connaissance": {
+            "knowledge": {
                 "name": "Connaissance",
                 "description": "Déterminer les informations détenues sur un sujet particulier. Chaque famille de savoir connu est indiquée entre parenthèses derrière le nom de la compétence. Par exemple : Connaissance (Histoire)."
             },
-            "defense": {
+            "defence": {
                 "name": "Défense",
                 "description": "Eviter d’être touché par une attaque grâce à une esquive, une parade ou l’utilisation d’un élément de l’environnement"
             },
-            "discretion": {
+            "stealth": {
                 "name": "Discrétion",
                 "description": "Ne pas se faire remarquer, se déplacer en silence, se dissimuler, prendre un objet sans être vu, camoufler un objet sur soi ou dans un lieu."
             },
-            "documentation": {
+            "research": {
                 "name": "Documentation",
                 "description": "Effectuer des recherches documentaires, mais aussi lire et analyser un texte, écrire un document, etc."
             },
@@ -149,7 +148,7 @@
                 "name": "Éloquence",
                 "description": "Parler à un auditoire, influencer un interlocuteur, calmer des personnes hostiles, séduire, etc."
             },
-            "equitation": {
+            "riding": {
                 "name": "Équitation",
                 "description": "Dresser, chevaucher et s’occuper d’une monture."
             },
@@ -157,11 +156,11 @@
                 "name": "Intellect",
                 "description": "Résoudre un problème, calculer, trouver le meilleur coup à jouer, etc."
             },
-            "langue": {
+            "langage": {
                 "name": "Langue",
                 "description": "Parler une langue. Chaque langue maîtrisée est indiquée entre parenthèses derrière le nom de la compétence. Par exemple : Langue (Français)."
             },
-            "muscles": {
+            "strenght": {
                 "name": "Muscles",
                 "description": "Les actions purement physiques sans technique spécifique comme défoncer une porte, tordre une barre de fer ou hisser un poids"
             },
@@ -169,11 +168,11 @@
                 "name": "Perception",
                 "description": "Mobiliser ses cinq sens, de manière volontaire ou instinctive."
             },
-            "pilotage": {
+            "pilot": {
                 "name": "Pilotage",
                 "description": "Conduire un véhicule. Chaque type de véhicule maîtrisé est indiqué entre parenthèses derrière le nom de la compétence. Par exemple : Pilotage (Automobiles)."
             },
-            "psychologie": {
+            "psychology": {
                 "name": "Psychologie",
                 "description": "Cerner un interlocuteur, saisir ses ressentis et comprendre ses motivations."
             },
@@ -185,19 +184,19 @@
                 "name": "Résistance",
                 "description": "Résister physiquement et endurer des efforts prolongés."
             },
-            "soins": {
+            "healing": {
                 "name": "Soins",
                 "description": "Effectuer les gestes d’urgence et soigner."
             },
-            "survie": {
+            "survival": {
                 "name": "Survie",
                 "description": "Chasser, monter un camp, suivre des traces et trouver son chemin."
             },
-            "technique": {
+            "technical": {
                 "name": "Technique",
                 "description": "Effectuer et comprendre des tâches artisanales ou technologiques. Chaque technologie ou artisanat maîtrisé est indiqué entre parenthèses derrière le nom de la compétence. Par exemple : Technique (Mécanique)."
             },
-            "volonte": {
+            "willpower": {
                 "name": "Volonté",
                 "description": "Se concentrer, résister aux influences extérieures, se maîtriser."
             },
@@ -210,9 +209,13 @@
                 "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs (valeur doit être entre 2 et 5)."
             }
         },
-        "vitalite": {
+        "health": {
             "current": "Valeur actuelle",
-            "max": "Maximum"
+            "max": "Maximum",
+            "twopcs": "2 PJs",
+            "threepcs": "3 PJs",
+            "fourpcs": "4 PJs",
+            "fivepcs": "5 PJs"
         },
         "wealth": {
             "platinium": "Platine",
@@ -220,6 +223,19 @@
             "electrum": "Électrum",
             "silver": "Argent",
             "copper": "Cuivre"
+        },
+        "dialog":{
+            "rollmodifier": "Modificateur pour le jet: ",
+            "heroism": "Utiliser un point d'héroïsme pour +1d6.",
+            "intro": "{actingCharName} utilise la compétence {itemName}.",
+            "button":{
+                "cancel": "Annuler",
+                "roll": "Lancer"
+            }
+        },
+        "chatmessage":{
+            "custommodifier": "Modificateur libre ajouté : ({rollModifier}).",
+            "heroismmodifier": "Point d'Héroïsme utilisé : +1d6 ajouté au jet."
         }
     }
 }

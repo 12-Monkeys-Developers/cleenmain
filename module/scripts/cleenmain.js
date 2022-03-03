@@ -3,8 +3,8 @@ import {cleenmain} from "./config.js";
 import CleenmainItem from "./cleenmainItem.js";
 import CleenmainActor from "./cleenmainActor.js";
 import CleenmainItemSheet from "../sheets/cleenmainItemSheet.js";
-import CleenmainPjSheet from "../sheets/cleenmainPjSheet.js";
-import CleenmainPnjSheet from "../sheets/cleenmainPnjSheet.js";
+import CleenmainPlayerSheet from "../sheets/cleenmainPlayerSheet.js";
+import CleenmainNpcSheet from "../sheets/cleenmainNpcSheet.js";
 import { initializeHandlebars } from './handlebars.js';
 
 Hooks.once("init", function(){
@@ -17,8 +17,8 @@ Hooks.once("init", function(){
     Items.registerSheet('cleenmain', CleenmainItemSheet, {makeDefault: true });
 
     Actors.unregisterSheet('core', ActorSheet);
-    Actors.registerSheet('cleenmain', CleenmainPjSheet, {types: ['pj'], makeDefault: true });
-    Actors.registerSheet('cleenmain', CleenmainPnjSheet, {types: ['pnj'], makeDefault: true });
+    Actors.registerSheet('cleenmain', CleenmainPlayerSheet, {types: ['player'], makeDefault: true });
+    Actors.registerSheet('cleenmain', CleenmainNpcSheet, {types: ['npc'], makeDefault: true });
 
     initializeHandlebars();
 
@@ -40,7 +40,7 @@ Hooks.on('createActor', async (document, options, userId) => {
             'token.disposition': CONST.TOKEN_DISPOSITIONS.NEUTRAL,
         });
         
-        if (document.data.type === 'pj') {
+        if (document.data.type === 'player') {
             createChanges.token.vision = true;
             createChanges.token.actorLink = true;
 

@@ -1,0 +1,120 @@
+.cleenmain.sheet.npc {
+    .input-short{
+        width: 2em;
+    }
+    .input-long{
+        width: 12em;
+    }
+    .window-content {
+        background: no-repeat url('./assets/image/paxelfica-fondfdp.webp');
+        background-color: @clear-background;
+        font-family: "Museo Slab";
+        input {
+            color: @core-main-color;
+        }
+    }
+    .npc-main {
+        display: flex;
+        flex-direction: column;
+        .name-line{
+            margin: .5em;
+            font-size: 2rem;
+            display: flex;
+            flex-direction: row;
+            .sheet-unlock{
+                margin-left: auto;
+                padding-left: .5em;
+                color: @icon-color;
+            }
+        }
+        .npcstat-block{
+            display: flex;
+            flex-direction: row;
+            .npcstat-block-left{
+                display: flex;
+                flex-direction: column;
+                flex-basis: 70%;
+                select{
+                    margin: 0.5em 0.5em;
+                    width:12em;
+                    height:auto;
+                    }
+                .weapons{
+                    .weapon-line{
+                        display: flex;
+                        flex-direction: row;
+                        margin: 0.5em 0.5em;
+                        font-family: "Museo Slab";
+                        font-size: 1rem;
+                        font-weight: bold;
+                        .line-label{
+                            color: @title-color;
+                            margin-left: 0.5em;
+                        }
+                        .weapon-el{
+                            margin-left: 0.5em;
+                        }
+                        .item-create{
+                            padding-left: .5em;
+                            color: @icon-color;}
+                    }
+                }
+                .npcskills-line{
+                    display: flex;
+                    flex-direction: row;
+                    margin-left: .5em;
+                    .npcskills-block{
+                        display: flex;
+                        flex-direction: row;
+                        flex-basis: 25%;
+                        margin: 0.5em 0.5em;
+                        font-size: 1rem;
+                        .npcskill-label{
+                            font-weight: bold;
+                        }
+                        .npcskill-value{
+                            display: flex;
+                            flex-direction: row;
+                            padding: 0 .5em 0 .5em;
+                        }
+                    }
+                }
+                .skills{
+                    .skill-line{
+                        display: flex;
+                        flex-direction: row;
+                        margin-left: .5em;
+                        .skill-block{
+                            display: flex;
+                            flex-direction: row;
+                            flex-basis: 25%;
+                            margin: 0.5em 0.5em;
+                            .skill-value{
+                                padding: 0 .5em 0 .5em;
+
+                            }
+                        }
+                    }
+                }
+                .npchealth-line{
+                    display: flex;
+                    flex-direction: row;
+                    margin: 1em;
+                    .central-text{
+                        margin: 0.3em .2em 0 .1em;
+                    }
+                    .health-block{
+                        display: flex;
+                        flex-direction: row;
+                        margin-left: 1em;
+                    }
+                }
+            }
+            .npcstat-block-right{
+                flex-basis: 30%;
+                text-align: center;
+            }
+        }
+        
+    }
+}

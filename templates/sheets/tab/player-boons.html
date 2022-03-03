@@ -1,0 +1,37 @@
+<div class="boons-tab">
+    {{#if ../unlocked}}
+    <h1>
+        <a class="item-create" data-type="boon" title="{{localize "cleenmain.boon.add"}}">
+            <i class="fas fa-plus"></i>
+        </a>
+    </h1>
+    {{/if}}
+    <div class="boon-group">
+        {{#each boons as |item id|}}
+        <div class="boon-card" data-item-id="{{item.id}}">
+                <div class="boon-name-line">
+                    {{#if ../isPlayer}}
+                    {{#if item.data.data.developed}}
+                    <i class="fas fa-square"></i>
+                    {{else}}
+                    <i class="far fa-square"></i>
+                    {{/if}}
+                    {{/if}}
+                    <div class="boon-name">{{item.name}}</div>
+                    {{#if ../unlocked}}
+                    <div class="icon-group">
+                        <a class="item-open-sheet" data-type="boon" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.edit"}}">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        <a class="inline-delete" data-type="boon" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.delete"}}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="boon-description">{{{item.data.data.description}}}</div>
+
+        </div>
+        {{/each}}
+    </div>
+</div>

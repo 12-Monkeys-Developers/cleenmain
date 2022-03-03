@@ -5,14 +5,15 @@ export const initializeHandlebars = () => {
   
   function preloadHandlebarsTemplates() {
     const templatePaths = [
-        "systems/cleenmain/templates/sheets/atout-sheet.html",
+        "systems/cleenmain/templates/sheets/boon-sheet.html",
         "systems/cleenmain/templates/sheets/equipment-sheet.html",
-        "systems/cleenmain/templates/sheets/pj-sheet.html",
-        "systems/cleenmain/templates/sheets/pnj-sheet.html",
+        "systems/cleenmain/templates/sheets/player-sheet.html",
+        "systems/cleenmain/templates/sheets/npc-sheet.html",
+        "systems/cleenmain/templates/sheets/armor-sheet.html",
         "systems/cleenmain/templates/sheets/weapon-sheet.html",
-        "systems/cleenmain/templates/partials/atout-card.html",
+        "systems/cleenmain/templates/partials/boon-card.html",
         "systems/cleenmain/templates/sheets/tab/player-combat.html",
-        "systems/cleenmain/templates/sheets/tab/player-atouts.html",
+        "systems/cleenmain/templates/sheets/tab/player-boons.html",
         "systems/cleenmain/templates/sheets/tab/player-equipment.html",
         "systems/cleenmain/templates/sheets/tab/player-bio.html",
         "systems/cleenmain/templates/sheets/tab/player-notes.html"
@@ -21,12 +22,12 @@ export const initializeHandlebars = () => {
   }
   
   function registerHandlebarsHelpers() {
-    Handlebars.registerHelper('isStringNotEmpty', function (text) {
-      return text.length > 0;
+    Handlebars.registerHelper('isStringNotEmpty', function (stringtotest) {
+      return stringtotest.length > 0;
     });
   
-    Handlebars.registerHelper('hasAnyFormation', function (data) {
-      return data.formations.armes.guerre || data.formations.armes.lourde || data.formations.armures.bouclier || data.formations.armures.guerre || data.formations.armures.lourde;
+    Handlebars.registerHelper('hasAnytraining', function (data) {
+      return data.trainings.weapons.war || data.trainings.weapons.heavy || data.trainings.armors.shield || data.trainings.armors.war || data.trainings.armors.heavy;
     });
 
 

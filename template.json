@@ -1,40 +1,40 @@
 {
     "Actor":{
         "types":[
-            "pj",
-            "pnj"
+            "player",
+            "npc"
         ],
         "templates": {
-            "vitalite": {
-                "vitalite": {
+            "health": {
+                "health": {
                     "max": 0,
                     "value": 0
                 }
             },
-            "formations": {
-                "formations": {
-                    "armes": {
-                        "guerre": false,
-                        "lourde": false
+            "trainings": {
+                "trainings": {
+                    "weapons": {
+                        "war": false,
+                        "heavy": false
                     },
-                    "armures": {
-                        "guerre": false,
-                        "lourde": false,
-                        "bouclier": false
+                    "armors": {
+                        "war": false,
+                        "heavy": false,
+                        "shield": false
                     }
                 }
             },
             "bio":{
                 "bio": {
                     "age": "",
-                    "defaut": "",
+                    "flaw": "",
                     "equipment": "",
-                    "ideal": "",
-                    "lien": "",
-                    "occupation": "",
-                    "origine": "",
+                    "goal": "",
+                    "bond": "",
+                    "activity": "",
+                    "origin": "",
                     "quote": "",
-                    "tactique":"",
+                    "tactics":"",
                     "description": ""
                 }
             },
@@ -48,81 +48,81 @@
                 }
             }
         },
-        "pj": {
+        "player": {
             "templates": [
-                "formations",
-                "vitalite",
+                "trainings",
+                "health",
                 "bio",
                 "wealth"
             ],
-            "heroisme": {
+            "heroism": {
                 "max": 0,
                 "value": 0
             },
             "blessure": "0",
-            "bonusDegats" :{
+            "damageBonus" :{
                 "cac": 4,
                 "distance": 4
             }
         },
-        "pnj": {
+        "npc": {
             "templates": [
-                "vitalite",
+                "health",
                 "bio",
                 "wealth"
             ],
-            "level": "secondcouteau",
+            "level": "secondfiddle",
             "elite": false,
-            "pnjskills":{
-                "physique": {
-                    "label": "cleenmain.pnjskill.physique.name",
+            "npcskills":{
+                "physical": {
+                    "label": "cleenmain.npcskill.physical.name",
                     "normal": 4,
                     "elite": 4
                 },
-                "habilete": {
-                    "label": "cleenmain.pnjskill.habilete.name",
+                "dexterity": {
+                    "label": "cleenmain.npcskill.dexterity.name",
                     "normal": 4,
                     "elite": 4
                 },
                 "social":{
-                    "label": "cleenmain.pnjskill.social.name",
+                    "label": "cleenmain.npcskill.social.name",
                     "normal": 4,
                     "elite": 4
                 },
                 "mental":{
-                    "label": "cleenmain.pnjskill.mental.name",
+                    "label": "cleenmain.npcskill.mental.name",
                     "normal": 4,
                     "elite": 4
                 }
             },
-            "defense": {
-                "score": 4,
-                "scorepnjelite": 4,
-                "scorepnj": 4,
+            "defence": {
+                "skillvalue": 4,
+                "skillvaluenpcelite": 4,
+                "skillvaluenpc": 4,
                 "protection":0,
-                "name":"",
+                "name":"No armor",
                 "special": "",
                 "relance":false
             },
-            "vitalite2couteau":{
-                "2": 6,
-                "3": 9,
-                "4": 12,
-                "5": 15
+            "healthsecondfiddle":{
+                "twopcs": 6,
+                "threepcs": 9,
+                "fourpcs": 12,
+                "fivepcs": 15
             },
-            "primes":{
-                "attaquemeurtriere":0,
-                "attaquemultiple":0,
-                "efficacite":0,
-                "prudence":0,
-                "rapidite":0
+            "bonus":{
+                "hardhit":0,
+                "manytargets":0,
+                "efficient":0,
+                "cover":0,
+                "quick":0
             },
-            "penalite":{
-                "blessurelegere":0,
-                "endanger":0,
-                "difficulte":0,
-                "lenteur":0,
-                "risque":0
+            "penalty":{
+                "lightwound":0,
+                "exposed":0,
+                "difficulty":0,
+                "slow":0,
+                "jeopardy":0
             }
         }
     },
@@ -131,7 +131,7 @@
             "weapon",
             "armor",
             "equipment",
-            "atout",
+            "boon",
             "skill"
         ],
         "templates": {
@@ -141,25 +141,25 @@
         },
         "weapon":{
             "templates": ["itemdescription"],
-            "categorie":"normale",
+            "category":"standard",
             "type": "melee",
-            "degats":"2d6",
-            "portee":0,
-            "cibles":1,
-            "score": 4,
-            "scorepnjelite": 4,
-            "scorepnj": 4,
+            "damage":"2d6",
+            "range":0,
+            "targets":1,
+            "skillvalue": 4,
+            "skillvaluenpcelite": 4,
+            "skillvaluenpc": 4,
             "special": "",
             "quality": ""
         },
         "armor":{
             "templates": ["itemdescription"],
-            "categorie": "normale",
+            "category": "standard",
             "protection":0,
             "special": "",
             "quality": ""
         },
-        "atout":{
+        "boon":{
             "templates": ["itemdescription"],
             "developed": false
         },

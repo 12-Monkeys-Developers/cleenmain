@@ -1,9 +1,9 @@
-export default class CleenmainPjSheet extends ActorSheet {
+export default class CleenmainPlayerSheet extends ActorSheet {
 
   static get defaultOptions(){
     return mergeObject(super.defaultOptions, {
-      template: "systems/cleenmain/templates/sheets/pj-sheet.html",
-      classes: ["cleenmain", "sheet", "actor", "pj"],
+      template: "systems/cleenmain/templates/sheets/player-sheet.html",
+      classes: ["cleenmain", "sheet", "actor", "player"],
       width: 700,
       height: 800,
       tabs: [
@@ -40,10 +40,10 @@ export default class CleenmainPjSheet extends ActorSheet {
     context.data = actorData.data;
     context.flags = actorData.flags;
     context.id= this.actor.id;
-    context.isPj= true;
+    context.isPlayer= true;
     context.config= CONFIG.cleenmain;
     context.editable= this.isEditable,
-    context.atouts= context.actor.data.items.filter(function(item){return item.type==="atout"});
+    context.boons= context.actor.data.items.filter(function(item){return item.type==="boon"});
     context.skills= context.actor.data.items.filter(function(item){return item.type==="skill"});
     context.armors= context.actor.data.items.filter(function(item){return item.type==="armor"});
     context.weapons= context.actor.data.items.filter(function(item){return item.type==="weapon"});
@@ -63,7 +63,7 @@ export default class CleenmainPjSheet extends ActorSheet {
       actor: foundry.utils.deepClone(this.actor),
       data: foundry.utils.deepClone(this.actor.data.data),
       config: CONFIG.cleenmain,
-      atouts: context.actor.data.items.filter(function(item){return item.type==="atout"}),
+      boons: context.actor.data.items.filter(function(item){return item.type==="boon"}),
       armor: context.actor.data.items.filter(function(item){return item.type==="armor"}),
       weapons: context.actor.data.items.filter(function(item){return item.type==="weapon"}),
       equipments: context.actor.data.items.filter(function(item){return item.type==="equipment"})
@@ -78,10 +78,9 @@ export default class CleenmainPjSheet extends ActorSheet {
     html.find("item-edit").click(this._onItemEdit.bind(this));
     html.find(".item-open-sheet").click(this._onItemEdit.bind(this));
     html.find(".inline-delete").click(this._onEmbeddedItemDelete.bind(this));
-    html.find("formations-edit").click(this._onFormationsEdit.bind(this));
     html.find(".sheet-unlock").click(this._onSheetUnlock.bind(this));
 
-    new ContextMenu(html, ".atout-card", this.itemContextMenu);
+    new ContextMenu(html, ".boon-card", this.itemContextMenu);
 
     html.find(".item-roll").click(this._onItemRoll.bind(this));
 
@@ -93,17 +92,17 @@ export default class CleenmainPjSheet extends ActorSheet {
     let element=event.currentTarget;
     let newName = "New";
     switch (element.type){
-      case "atout":
-        newName = game.i18n.localize("cleenmain.atout.add");
+      case "boon":
+        newName = game.i18n.localize("cleenmain.boon.add");
         break;
       case "weapon":
-        newName = game.i18n.localize("cleenmain.arme.add");
+        newName = game.i18n.localize("cleenmain.weapon.add");
         break;
       case "skill":
         newName = game.i18n.localize("cleenmain.skill.add");
         break;
       case "armor":
-        newName = game.i18n.localize("cleenmain.armure.add");
+        newName = game.i18n.localize("cleenmain.armor.add");
         break;
       case "equipment":
         newName = game.i18n.localize("cleenmain.equipment.add");
@@ -119,22 +118,14 @@ export default class CleenmainPjSheet extends ActorSheet {
   _onEmbeddedItemEdit(event){
     event.preventDefault();
     let element=event.currentTarget;
-    console.log("element: ", element);
     const itemId = element.id;
-    console.log("id: ", itemId);
     let item = this.actor.items.get(itemId);
-    console.log("item: ", item);
     let field = element.dataset.field;
-    console.log("field: ", field);
-    console.log("type: ", element.type);
-    console.log("value: ", element.value);
-    console.log("testvalue: ", item[field]);
     let newValue;
     if(element.type === "checkbox"){
       newValue = element.value == "1";
     }
-    else newValue = element.value
-    console.log("newValue: ", newValue);
+    else newValue = element.value;
     return item.update({[field]: newValue});
   }
   
@@ -147,7 +138,7 @@ export default class CleenmainPjSheet extends ActorSheet {
     item.sheet.render(true);
   }
 
-  _onFormationsEdit(event){
+  _ontrainingsEdit(event){
     event.preventDefault();
     let element=event.currentTarget;
     console.log("element: ", element);
@@ -172,15 +163,13 @@ export default class CleenmainPjSheet extends ActorSheet {
 
   async _onSheetUnlock(event){
     event.preventDefault();
-    let element=event.currentTarget;
-    let unlockLocation = element.dataset.type;
 
     let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
     if(flagData){
         await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
     }
     else{
-        await this.actor.setFlag(game.system.id, "SheetUnlocked", unlockLocation);
+        await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
     }
     this.actor.sheet.render(true);
   }
