@@ -523,6 +523,86 @@
 .tab-bio .line-label {
   color: #693d25;
 }
+.dialog {
+  background-color: #fffdfc;
+  display: flex;
+  flex-direction: column;
+  font-family: "Museo Slab";
+}
+.dialog .intro {
+  display: flex;
+  flex-direction: row;
+}
+.dialog .intro .introImg {
+  border: none;
+  vertical-align: left;
+  text-align: center;
+  padding: 0px 5px 0px 55px;
+  background-size: 50px 70px;
+  background-position: 5px;
+  background-repeat: no-repeat;
+  height: 80px;
+  min-height: 80px;
+}
+.dialog .intro .introtext {
+  padding-top: 1.5em;
+  text-align: center;
+  font-weight: bold;
+}
+.dialog .formula {
+  text-align: center;
+  margin: 0.5em;
+  color: #693d25;
+  font-weight: bold;
+}
+.dialog .rollmodifier {
+  display: flex;
+  flex-direction: row;
+  margin: 1em;
+}
+.dialog .rollmodifier input {
+  width: 6em;
+  margin: 0 0 1em  1em;
+}
+.dialog .bonus-block {
+  display: flex;
+  flex-flow: row wrap;
+  /* Tooltip text */
+}
+.dialog .bonus-block .bonus-line {
+  margin: 1em 0 1em 0;
+  display: flex;
+  flex-direction: row;
+  flex-basis: 50%;
+  text-align: end;
+}
+.dialog .bonus-block input {
+  width: 3em;
+  -webkit-appearance: auto;
+}
+.dialog .bonus-block .tooltip {
+  position: relative;
+  display: inline-block;
+}
+.dialog .bonus-block .tooltip .tooltiptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 1;
+}
+.dialog .bonus-block .tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.dialog .paddingend {
+  padding: 0 0 5em 0;
+}
 .chatroll {
   background: no-repeat url('./assets/image/chat_background.webp');
   background-color: #fffdfc;

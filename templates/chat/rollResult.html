@@ -3,11 +3,10 @@
         <div class="introImg" style="background-image: url('{{skillData.actingCharImg}}')">
             <div class="introText">{{skillData.introText}}</div>
         </div>
-    </div>
-        <div class="modifierText">{{skillData.modifierText}}</div>  
-        {{#if skillData.useHeroism}}    
-        <div class="modifierText">{{skillData.heroismText}}</div>
-        {{/if}}
+    </div>  
+        {{#each skillData.applyModifier as |mod id|}}    
+        <div class="modifierText">{{mod}}</div>
+        {{/each}}
         <div class="formulaText">
             {{localize "cleenmain.chatmessage.rollformula"}}  {{skillData.skillRollFormula}}
         </div>

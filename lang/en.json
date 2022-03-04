@@ -232,13 +232,69 @@
                 "rollmodifier": "Modifier for the roll: ",
                 "cancel": "Cancel",
                 "roll": "Roll"
-            }
+            },
+            "bonus": "Add a bonus?",
+            "penalty": "Add a penalty?"
         },
         "chatmessage":{
             "custommodifier": "Custom modifier used : ({rollModifier}).",
             "heroismmodifier": "One Heroism point used : +1d6 added to roll.",
             "rollformula": "Final dice rolled:",
             "rollresult": "Result of the dice roll: "
+        },
+        "bonus":{
+            "murderous":{
+                "label": "Murderous",
+                "description": "les dégâts de l’attaque augmentent de 1d6. Plusieurs Attaques meurtrières augmentent les dégâts d’autant de d6 que d’Attaques meurtrières.",
+                "chatmessage": "Bonus: Murderous (x{murderous})."
+            },
+            "manytargets":{
+                "label": "manytargets",
+                "description": "l’attaque vise deux cibles à la fois, à condition qu’elles soient accessibles au personnage – à son contact pour une attaque de corps à corps, groupées pour un tir. Un seul test est e{ectué et les dégâts, après tous les autres calculs, sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur.",
+                "chatmessage": "Bonus: manytargets."
+            },
+            "efficient":{
+                "label": "efficient",
+                "description":  "l’action en cours bénéficie d’un bonus de 2. Plusieurs Efficacités confèrent un bonus de 2 pour chaque Efficacité.",
+                "chatmessage": "Bonus: efficient (x{efficient})."
+            },
+            "cover":{
+                "label": "cover",
+                "description":  "le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage bénéficie d’un bonus de 2. Plusieurs Prudences augmentent le nombre de tests successifs bénéficiant de ce bonus.",
+                "chatmessage": "Bonus: cover (x{cover})."
+            },
+            "quick":{
+                "label": "quick",
+                "description":  "en combat, une attaque rapide ne donne pas la main à l’adversaire. En dehors d’un combat, la durée d’exécution d’une tâche est divisée par deux. Non cumulable.",
+                "chatmessage": "Bonus: quick."
+            }
+        },
+        "penalty":{
+            "lightwound":{
+                "label": "lightwound",
+                "description":  "les dégâts sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur",
+                "chatmessage": "Penalty: lightwound."
+            },
+            "exposed":{
+                "label": "exposed",
+                "description":  "le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage subit un malus de 2. D’autres Dangers augmentent le nombre de tests successifs subissant ce malus.",
+                "chatmessage": "Penalty: exposed (x{exposed})."
+            },
+            "difficulty":{
+                "label": "difficulty",
+                "description":  "l’action en cours subit un malus de 2. Plusieurs Difficultés imposent un malus de 2 pour chaque Difficulté.",
+                "chatmessage": "Penalty: difficulty (x{difficulty})."
+            },
+            "slow": {
+                "label": "slow",
+                "description": "en combat, une action lente donne la main à l’adversaire, même s’il ne s’agissait pas d’une attaque. En dehors d’un combat, la durée d’une tâche augmente de moitié. Non cumulable.",
+                "chatmessage": "Penalty: slow."
+            },
+            "jeopardy":{
+                "label": "jeopardy",
+                "description":  "si l’action en cours échoue, un incident, déterminé par le MJ, survient. Par exemple l’arme est coincée ou détruite, le personnage glisse et tombe au sol, il lâche un objet, un de ses vêtements s’accroche quelque part et lui fait perdre une action, l’attaque touche un allié, etc. Plusieurs Risques différents exposent le personnage à des déboires multiples simultanés. Plusieurs risques identiques ne sont pas cumulables.",
+                "chatmessage": "Penalty: jeopardy (x{jeopardy})."
+            }
         }
     }
 }

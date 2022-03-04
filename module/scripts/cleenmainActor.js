@@ -110,23 +110,87 @@ export default class CleenmainActor extends Actor {
                 icon: '<i class="fas fa-check"></i>',
                 label: game.i18n.localize("cleenmain.dialog.button.roll"),
                 callback: async (html) => {
-
+                    //parsing of the dialog window
                     let rollModifier = html.find("#rollmodifier")[0].value;
                     if(rollModifier.length > 0){
-                        console.log(": rollModifier: ", rollModifier);
                         skillData.rollModifier = rollModifier;
                     }
 
                     skillData.useHeroism = html.find("#heroism")[0].checked;
             
+                    let murderous = html.find("#murderous")[0].value;
+                    skillData.murderous = parseInt(murderous) ?? 0;
+            console.log(murderous, typeof(murderous));
+                    let manytargets = html.find("#manytargets")[0].value;
+                    skillData.manytargets = parseInt(manytargets) ?? 0;
+            
+                    let efficient = html.find("#efficient")[0].value;
+                    skillData.efficient = parseInt(efficient) ?? 0;
+            
+                    let cover = html.find("#cover")[0].value;
+                    skillData.cover = parseInt(cover) ?? 0;
+            
+                    let quick = html.find("#quick")[0].value;
+                    skillData.quick = parseInt(quick) ?? 0;
+            
+                    let lightwound = html.find("#lightwound")[0].value;
+                    skillData.lightwound = parseInt(lightwound) ?? 0;
+            
+                    let exposed = html.find("#exposed")[0].value;
+                    skillData.exposed = parseInt(exposed) ?? 0;
+            
+                    let difficulty = html.find("#difficulty")[0].value;
+                    skillData.difficulty = parseInt(difficulty) ?? 0;
+            
+                    let slow = html.find("#slow")[0].value;
+                    skillData.slow = parseInt(slow) ?? 0;
+            
+                    let jeopardy = html.find("#jeopardy")[0].value;
+                    skillData.jeopardy = parseInt(jeopardy) ?? 0;
+
+                    //modify roll formula
+                    skillData.applyModifier=[];
                     if(skillData.rollModifier.length > 0){
                         skillData.skillRollFormula += " + " +skillData.rollModifier;
-                        skillData.modifierText = game.i18n.format("cleenmain.chatmessage.custommodifier", skillData);
+                        skillData.applyModifier.push(game.i18n.format("cleenmain.chatmessage.custommodifier", skillData));
                     }
                     
                     if(skillData.useHeroism){
                         skillData.skillRollFormula += " +1d6";
-                        skillData.heroismText = game.i18n.localize("cleenmain.chatmessage.heroismmodifier", skillData);
+                        skillData.applyModifier.push(game.i18n.format("cleenmain.chatmessage.heroismmodifier", skillData));
+                    }
+
+                    if(skillData.murderous){
+                        skillData.applyModifier.push(game.i18n.format("cleenmain.bonus.murderous.chatmessage", skillData));
+                    }
+                    if(skillData.manytargets){
+                        skillData.applyModifier.push(game.i18n.format("cleenmain.bonus.manytargets.chatmessage", skillData));
+                    }
+                    if(skillData.efficient){
+                        skillData.skillRollFormula += " +"+ (skillData.efficient*2).toString();
+                        skillData.applyModifier.push(game.i18n.format("cleenmain.bonus.efficient.chatmessage", skillData));
+                    }
+                    if(skillData.cover){
+                        skillData.applyModifier.push(game.i18n.format("cleenmain.bonus.cover.chatmessage", skillData));
+                    }
+                    if(skillData.quick){
+                        skillData.applyModifier.push(game.i18n.format("cleenmain.bonus.quick.chatmessage", skillData));
+                    }
+                    if(skillData.lightwound){
+                        skillData.applyModifier.push(game.i18n.format("cleenmain.penalty.lightwound.chatmessage", skillData));
+                    }
+                    if(skillData.exposed){
+                        skillData.applyModifier.push(game.i18n.format("cleenmain.penalty.exposed.chatmessage", skillData));
+                    }
+                    if(skillData.difficulty){
+                        skillData.skillRollFormula += " -"+ (skillData.difficulty*2).toString();
+                        skillData.applyModifier.push(game.i18n.format("cleenmain.penalty.difficulty.chatmessage", skillData));
+                    }
+                    if(skillData.slow){
+                        skillData.applyModifier.push(game.i18n.format("cleenmain.penalty.slow.chatmessage", skillData));
+                    }
+                    if(skillData.jeopardy){
+                        skillData.applyModifier.push(game.i18n.format("cleenmain.penalty.jeopardy.chatmessage", skillData));
                     }
                     skillData.skillRoll = new Roll(skillData.skillRollFormula).evaluate({async:false});
                     skillData.tooltip= new Handlebars.SafeString(await skillData.skillRoll.getTooltip());
