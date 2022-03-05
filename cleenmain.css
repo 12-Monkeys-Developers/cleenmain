@@ -363,6 +363,9 @@
 .boons-tab .boon-group .boon-card .boon-name-line .boon-name {
   color: #51602f;
 }
+.boons-tab .boon-group .boon-card .icon-group {
+  margin-left: auto;
+}
 .tab-bio {
   display: flex;
   flex-direction: column;
@@ -609,6 +612,7 @@
   display: flex;
   flex-direction: column;
   font-family: "Museo Slab";
+  color: black;
 }
 .chatroll .intro .introImg {
   display: flex;
@@ -634,12 +638,12 @@
 .chatroll .formulaText {
   background: top / 50% no-repeat url('./assets/image/Deco_feuilles.webp');
   padding: 4em 0 1em 0;
-  color: #fff;
+  color: white;
   text-align: center;
 }
 .chatroll .finalText {
   margin: 1em 0 1em 0;
-  color: #fff;
+  color: white;
   text-align: center;
   /* Tooltip text */
 }

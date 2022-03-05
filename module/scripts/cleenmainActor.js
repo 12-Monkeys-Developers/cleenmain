@@ -1,30 +1,9 @@
 export default class CleenmainActor extends Actor {
-    static async create(data, options) {
-        super.create(data, options);
-/*
-        let createChanges = {};
-        mergeObject(createChanges, {
-          'token.disposition': CONST.TOKEN_DISPOSITIONS.NEUTRAL,
-        });
-        
-        if (this.data.type === 'player') {
-          createChanges.token.vision = true;
-          createChanges.token.actorLink = true;
-      
-          let skillData = {
-            name: game.i18n.localize('cleenmain.skill.autorite'),
-            type: 'skill',
-            data: {}
-          };
-          await Item.create(skillData, { parent: this }, { renderSheet: true });
-        }
-        console.log("createChanges",createChanges);
-        this.data.update(createChanges);*/
-    }
 
     prepareData(){
         super.prepareData();
 
+        //evaluate the max health of the NPC depending of the number of players option
         if(this.type === "npc"){
             let numberofplayers = game.settings.get('cleenmain', 'numberOfPlayers');
             let numberofplayersString="fivepcs";
@@ -36,7 +15,6 @@ export default class CleenmainActor extends Actor {
                 this.data.data.health.value = this.data.data.health.max = 1;
             }
             else{
-                console.log(this.data);
                 let healthMax = this.data.data.healthsecondfiddle[numberofplayersString];
                 if(this.data.data.level === "boss")  healthMax = healthMax*2;
                 if(this.data.data.health.value === this.data.data.health.max){
@@ -48,7 +26,11 @@ export default class CleenmainActor extends Actor {
     }
 
     /* roll a player action
-    arguments: {type: itemType, itemId}*/
+    arguments: {
+        type: : weapon/armor/skill/boon/pbjskill,
+        itemId: the id of the item (if relevant),
+        attribute : the name of the npcskill (if relevant)
+        }*/
     async roll(elements){
         let skillData= {
             weaponRoll: false,
@@ -56,7 +38,7 @@ export default class CleenmainActor extends Actor {
             rollModifier: "",
             heroismText: ""
         };
-        if(elements.attribute){
+        if(elements.attribute){ //npc skill roll
             if(elements.attribute === "defence"){
                 skillData.itemName= game.i18n.localize("cleenmain.skill.defence.name");
                 if(this.data.data.elite) skillData.skillvalue = this.data.data.defence.skillvaluenpcelite;
@@ -115,39 +97,39 @@ export default class CleenmainActor extends Actor {
                     if(rollModifier.length > 0){
                         skillData.rollModifier = rollModifier;
                     }
-
                     skillData.useHeroism = html.find("#heroism")[0].checked;
-            
-                    let murderous = html.find("#murderous")[0].value;
-                    skillData.murderous = parseInt(murderous) ?? 0;
-            console.log(murderous, typeof(murderous));
-                    let manytargets = html.find("#manytargets")[0].value;
-                    skillData.manytargets = parseInt(manytargets) ?? 0;
-            
-                    let efficient = html.find("#efficient")[0].value;
-                    skillData.efficient = parseInt(efficient) ?? 0;
-            
-                    let cover = html.find("#cover")[0].value;
-                    skillData.cover = parseInt(cover) ?? 0;
-            
-                    let quick = html.find("#quick")[0].value;
-                    skillData.quick = parseInt(quick) ?? 0;
-            
-                    let lightwound = html.find("#lightwound")[0].value;
-                    skillData.lightwound = parseInt(lightwound) ?? 0;
-            
-                    let exposed = html.find("#exposed")[0].value;
-                    skillData.exposed = parseInt(exposed) ?? 0;
-            
-                    let difficulty = html.find("#difficulty")[0].value;
-                    skillData.difficulty = parseInt(difficulty) ?? 0;
-            
-                    let slow = html.find("#slow")[0].value;
-                    skillData.slow = parseInt(slow) ?? 0;
-            
-                    let jeopardy = html.find("#jeopardy")[0].value;
-                    skillData.jeopardy = parseInt(jeopardy) ?? 0;
 
+                    if(skillData.weaponRoll){
+                        let murderous = html.find("#murderous")[0].value;
+                        skillData.murderous = parseInt(murderous) ?? 0;
+
+                        let manytargets = html.find("#manytargets")[0].value;
+                        skillData.manytargets = parseInt(manytargets) ?? 0;
+                
+                        let efficient = html.find("#efficient")[0].value;
+                        skillData.efficient = parseInt(efficient) ?? 0;
+                
+                        let cover = html.find("#cover")[0].value;
+                        skillData.cover = parseInt(cover) ?? 0;
+                
+                        let quick = html.find("#quick")[0].value;
+                        skillData.quick = parseInt(quick) ?? 0;
+                
+                        let lightwound = html.find("#lightwound")[0].value;
+                        skillData.lightwound = parseInt(lightwound) ?? 0;
+                
+                        let exposed = html.find("#exposed")[0].value;
+                        skillData.exposed = parseInt(exposed) ?? 0;
+                
+                        let difficulty = html.find("#difficulty")[0].value;
+                        skillData.difficulty = parseInt(difficulty) ?? 0;
+                
+                        let slow = html.find("#slow")[0].value;
+                        skillData.slow = parseInt(slow) ?? 0;
+                
+                        let jeopardy = html.find("#jeopardy")[0].value;
+                        skillData.jeopardy = parseInt(jeopardy) ?? 0;
+                    }
                     //modify roll formula
                     skillData.applyModifier=[];
                     if(skillData.rollModifier.length > 0){

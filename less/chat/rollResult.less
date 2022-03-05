@@ -1,9 +1,10 @@
 .chatroll{
-    background: no-repeat url('./assets/image/chat_background.webp');
+    background: @chat-background;
     background-color: @clear-background;
     display: flex;
     flex-direction: column;
     font-family: @default-font;
+    color:@chat-introtext;
     .intro{
         .introImg {
             display: flex;
@@ -23,20 +24,19 @@
         }
     }
     .modifierText{
-        
         margin: 1em 0 1em 0;
-        color: rgb(206, 233, 86);
+        color: @chat-modifiertext;
         text-align: center;
     }
     .formulaText{
-        background: top/50% no-repeat url('./assets/image/Deco_feuilles.webp');
+        background: @chat-divider;
         padding: 4em 0 1em 0;
-        color: #fff;
+        color: @chat-formulatext;
         text-align: center;
     }
     .finalText{
         margin: 1em 0 1em 0;
-        color: #fff;
+        color: @chat-finaltext;
         text-align: center;
         .tooltip {
         position: relative;

@@ -91,7 +91,7 @@ export default class CleenmainPlayerSheet extends ActorSheet {
     event.preventDefault();
     let element=event.currentTarget;
     let newName = "New";
-    switch (element.type){
+    switch (element.dataset.type){
       case "boon":
         newName = game.i18n.localize("cleenmain.boon.add");
         break;
