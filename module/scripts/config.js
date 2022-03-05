@@ -11,6 +11,14 @@ cleenmain.weapon={
                 distance: "cleenmain.weapon.type.distance"
         }
 };
+cleenmain.armor={
+        category : {
+                standard: "cleenmain.armor.category.standard",
+                war: "cleenmain.armor.category.war",
+                heavy: "cleenmain.armor.category.heavy",
+                shield: "cleenmain.armor.category.shield"
+        }
+};
 
 cleenmain.npcskills = {
         physical : ["acrobatics", "athletics", "meleecombat", "defence", "riding", "strenght", "resistance"],

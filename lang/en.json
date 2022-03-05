@@ -2,6 +2,7 @@
     "cleenmain": {
         "label": {
             "activity": "Activity",
+            "armors": "Armors",
             "bond": "Lien",
             "boons": "Boons",
             "boon": "Boon",
@@ -29,6 +30,19 @@
             "weapons": "Weapons",
             "wounds": "Wounds"
         },
+        "armor": {
+            "category": {
+                "standard": "Standard",
+                "war": "War Armor",
+                "heavy": "Heavy armor",
+                "shield": "Shield"
+            },
+            "add": "New armor",
+            "malus": "Malus",
+            "quality": "Quality",
+            "protection": "Protection",
+            "special": "Special"
+        },
         "boon":{
             "add": "New boon",
             "delete": "Delete boon",
@@ -52,20 +66,6 @@
             "range": "Portée",
             "skillvalue": "Skill",
             "special": "Spécial"
-        },
-
-        "armor": {
-            "category": {
-                "standard": "Standard",
-                "war": "War Armor",
-                "heavy": "Heavy armor",
-                "shield": "Shield"
-            },
-            "add": "New armor",
-            "malus": "Malus",
-            "quality": "Quality",
-            "protection": "Protection",
-            "special": "Special"
         },
         "equipment":{
             "add": "New equipment"

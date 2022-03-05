@@ -2,6 +2,7 @@
     "cleenmain": {
         "label": {
             "activity": "Occupation",
+            "armors": "Armures",
             "bond": "Lien",
             "bonus": "Bonus aux dégâts",
             "boons": "Atouts",
@@ -29,6 +30,19 @@
             "weapons": "Armes",
             "wounds": "Blessures"
         },
+        "armor": {
+            "category": {
+                "standard": "Normale",
+                "war": "Armures de guerre",
+                "heavy": "Armures lourdes",
+                "shield": "Bouclier"
+            },
+            "add": "Nouvelle armure",
+            "malus": "Malus",
+            "protection": "Protection",
+            "quality": "Qualité",
+            "special": "Spécial"
+        },
         "boon":{
             "add": "Nouvel atout",
             "delete": "Supprimer l'atout",
@@ -51,19 +65,6 @@
             "damage": "Dégâts",
             "range": "Portée",
             "skillvalue": "Compétence",
-            "special": "Spécial"
-        },
-        "armor": {
-            "category": {
-                "standard": "Normale",
-                "war": "Armures de guerre",
-                "heavy": "Armures lourdes",
-                "shield": "Bouclier"
-            },
-            "add": "Nouvelle armure",
-            "malus": "Malus",
-            "protection": "Protection",
-            "quality": "Qualité",
             "special": "Spécial"
         },
         "equipment":{

@@ -155,6 +155,7 @@
         "armor":{
             "templates": ["itemdescription"],
             "category": "standard",
+            "malus": 0,
             "protection":0,
             "special": "",
             "quality": ""
