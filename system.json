@@ -6,7 +6,7 @@
   "minimumCoreVersion": "0.9.4",
   "compatibleCoreVersion": "9",
   "author": "Khaali",
-  "esmodules": ["module/scripts/cleenmain.js"],
+  "esmodules": ["cleenmain.js"],
   "scripts": [],
   "styles": ["cleenmain.css"],
   "packs": [],

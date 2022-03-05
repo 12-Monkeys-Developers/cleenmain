@@ -1,42 +1,55 @@
-export default class CleenmainNpcSheet extends ActorSheet {
+import { BaseSheet } from "./base.js";
 
-    static get defaultOptions(){
+export default class CleenmainNpcSheet extends BaseSheet {
+
+  /**
+    * @constructor
+    * @param  {...any} args
+    */
+   constructor(...args) {
+    super(...args);
+  } 
+  
+  /**
+   * @override
+   */
+  static get defaultOptions(){
       return mergeObject(super.defaultOptions, {
-        template: "systems/cleenmain/templates/sheets/npc-sheet.html",
+        template: "systems/cleenmain/templates/actor/npc.html",
         classes: ["cleenmain", "sheet", "actor", "npc"],
         width: 900,
         height: 900,
         tabs: [
         ]
       });
-    }
-    async getData() {
-      const context = super.getData();
-  
-      const actorData = this.actor.data.toObject(false);
-      context.data = actorData.data;
-      context.flags = actorData.flags;
-      context.id= this.actor.id;
-      context.isPlayer= false;
-      context.config= CONFIG.cleenmain;
-      context.editable= this.isEditable,
-      context.boons= context.actor.data.items.filter(function(item){return item.type==="boon"});
-      context.skills= context.actor.data.items.filter(function(item){return item.type==="skill"});
-      context.weapons= context.actor.data.items.filter(function(item){return item.type==="weapon"});
-      context.numberofplayers = game.settings.get('cleenmain', 'numberOfPlayers');
+  }
 
-      let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
-      if(flagData){
-        context.unlocked = true;
-      }
-      else{
-        context.unlocked = false;
-      }  
-      return context;
-    }
+  /**
+   * @override
+   */
+  getData() {
+    const context = super.getData();
+
+    const actorData = this.actor.data.toObject(false);
+    context.data = actorData.data;
+    context.flags = actorData.flags;
+    context.id= this.actor.id;
+    context.isPlayer= false;
+    context.config= CONFIG.cleenmain;
+    context.editable= this.isEditable,
+    context.boons= context.actor.data.items.filter(function(item){return item.type==="boon"});
+    context.skills= context.actor.data.items.filter(function(item){return item.type==="skill"});
+    context.weapons= context.actor.data.items.filter(function(item){return item.type==="weapon"});
+    context.numberofplayers = game.settings.get('cleenmain', 'numberOfPlayers');
+
+    context.unlocked = this.actor.getFlag(game.system.id, "SheetUnlocked"); 
+    return context;
+  }
   
 
     activateListeners(html){
+      super.activateListeners(html);
+
         html.find(".item-create").click(this._onItemCreate.bind(this));
         html.find(".inline-edit").change(this._onBoonEdit.bind(this));
         html.find(".inline-delete").click(this._onEmbeddedItemDelete.bind(this));
@@ -47,7 +60,7 @@ export default class CleenmainNpcSheet extends ActorSheet {
         html.find(".item-roll").click(this._onItemRoll.bind(this));
         html.find(".npcskill-roll").click(this._onNpcSkillRoll.bind(this));
     
-        super.activateListeners(html)
+        
       }
     
       _onItemCreate(event){
@@ -119,6 +132,6 @@ export default class CleenmainNpcSheet extends ActorSheet {
         }
         this.actor.sheet.render(true);
       }
-    
-    }
+
+}
     
