@@ -5,10 +5,6 @@ cleenmain.weapon={
                 standard: "cleenmain.weapon.category.standard",
                 war: "cleenmain.weapon.category.war",
                 heavy: "cleenmain.weapon.category.heavy"
-        },
-        type : {
-                melee: "cleenmain.weapon.type.melee",
-                distance: "cleenmain.weapon.type.distance"
         }
 };
 cleenmain.armor={
@@ -35,4 +31,21 @@ cleenmain.npccategory = {
         support: "cleenmain.npccategory.support",
         secondfiddle: "cleenmain.npccategory.secondfiddle",
         boss: "cleenmain.npccategory.boss"
-}
+};
+
+
+cleenmain.bonus = [
+        "murderous",
+        "manytargets",
+        "efficient",
+        "cover"/*,
+        "quick"*/
+];
+
+cleenmain.penalty= [
+        "lightwound",
+        "exposed",
+        "difficulty",
+        "jeopardy"/*,
+        "slow"*/
+]

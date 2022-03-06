@@ -5,6 +5,7 @@
             "armors": "Armures",
             "bond": "Lien",
             "bonus": "Bonus aux dégâts",
+            "bio": "Traits de personnalité",
             "boons": "Atouts",
             "boon": "Atout",
             "cac": "Corps-à-corps",
@@ -42,6 +43,9 @@
             "protection": "Protection",
             "quality": "Qualité",
             "special": "Spécial"
+        },
+        "biodata":{
+            "add": "Nouveau trait de personnalité"
         },
         "boon":{
             "add": "Nouvel atout",

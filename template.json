@@ -24,36 +24,15 @@
                     }
                 }
             },
-            "bio":{
-                "bio": {
-                    "age": "",
-                    "flaw": "",
-                    "equipment": "",
-                    "goal": "",
-                    "bond": "",
-                    "activity": "",
-                    "origin": "",
-                    "quote": "",
-                    "tactics":"",
-                    "description": ""
-                }
-            },
-            "wealth": {
-                "wealth": {
-                    "platinium": 0,
-                    "gold": 0,
-                    "electrum": 0,
-                    "silver": 0,
-                    "copper": 0
-                }
+            "base": {
+                "description": ""
             }
         },
         "player": {
             "templates": [
                 "trainings",
                 "health",
-                "bio",
-                "wealth"
+                "base"
             ],
             "heroism": {
                 "max": 0,
@@ -68,8 +47,7 @@
         "npc": {
             "templates": [
                 "health",
-                "bio",
-                "wealth"
+                "base"
             ],
             "level": "secondfiddle",
             "elite": false,
@@ -109,20 +87,6 @@
                 "threepcs": 9,
                 "fourpcs": 12,
                 "fivepcs": 15
-            },
-            "bonus":{
-                "murderous":0,
-                "manytargets":0,
-                "efficient":0,
-                "cover":0,
-                "quick":0
-            },
-            "penalty":{
-                "lightwound":0,
-                "exposed":0,
-                "difficulty":0,
-                "slow":0,
-                "jeopardy":0
             }
         }
     },
@@ -132,17 +96,19 @@
             "armor",
             "equipment",
             "boon",
-            "skill"
+            "skill",
+            "biodata",
+            "ammunition"
         ],
         "templates": {
-            "commun": {
+            "base": {
                 "description": ""
             }
         },
         "weapon":{
-            "templates": ["commun"],
+            "templates": ["base"],
             "category":"standard",
-            "type": "melee",
+            "type": "",
             "damage":"2d6",
             "range":0,
             "targets":1,
@@ -153,7 +119,7 @@
             "quality": ""
         },
         "armor":{
-            "templates": ["commun"],
+            "templates": ["base"],
             "category": "standard",
             "malus": 0,
             "protection":0,
@@ -161,17 +127,24 @@
             "quality": ""
         },
         "boon":{
-            "templates": ["commun"],
+            "templates": ["base"],
             "developed": false
         },
         "equipment":{
-            "templates": ["commun"]
+            "templates": ["base"]
         },
         "skill":{
-            "templates": ["commun"],
+            "templates": ["base"],
             "reference": "",
             "value": 2,
             "developed": false
+        },
+        "ammunition":{
+            "templates": ["base"],
+            "number": 0
+        },
+        "biodata":{
+            "templates": ["base"]
         }
     }
 }

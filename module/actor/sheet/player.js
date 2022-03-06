@@ -65,20 +65,9 @@ export default class CleenmainPlayerSheet extends BaseSheet {
     context.armors = context.actor.data.items.filter(function(item){return item.type==="armor"});
     context.weapons = context.actor.data.items.filter(function(item){return item.type==="weapon"});
     context.equipments = context.actor.data.items.filter(function(item){return item.type==="equipment"});
+    context.biodatas = context.actor.data.items.filter(function(item){return item.type==="biodata"});
 
     context.unlocked = this.actor.getFlag(game.system.id, "SheetUnlocked");
-
-    /*let sheetData = {
-      id:this.actor.id,
-      editable: this.editable,
-      actor: foundry.utils.deepClone(this.actor),
-      data: foundry.utils.deepClone(this.actor.data.data),
-      config: CONFIG.cleenmain,
-      boons: context.actor.data.items.filter(function(item){return item.type==="boon"}),
-      armor: context.actor.data.items.filter(function(item){return item.type==="armor"}),
-      weapons: context.actor.data.items.filter(function(item){return item.type==="weapon"}),
-      equipments: context.actor.data.items.filter(function(item){return item.type==="equipment"})
-    }*/
 
     return context;
   }
@@ -116,6 +105,9 @@ export default class CleenmainPlayerSheet extends BaseSheet {
         break;
       case "equipment":
         newName = game.i18n.localize("cleenmain.equipment.add");
+        break;
+      case "biodata":
+        newName = game.i18n.localize("cleenmain.biodata.add");
         break;
     }
     

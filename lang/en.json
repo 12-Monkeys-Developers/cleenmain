@@ -3,6 +3,7 @@
         "label": {
             "activity": "Activity",
             "armors": "Armors",
+            "bio": "Character",
             "bond": "Lien",
             "boons": "Boons",
             "boon": "Boon",
@@ -42,6 +43,9 @@
             "quality": "Quality",
             "protection": "Protection",
             "special": "Special"
+        },
+        "biodata":{
+            "add": "New personality entry"
         },
         "boon":{
             "add": "New boon",

@@ -1,33 +1,28 @@
 <div class="tab-bio">
-    {{#if unlocked}}
-        {{#unless isPlayer}}
-            <div class="line-label">{{localize "cleenmain.label.tactics"}}: </div>
-            {{editor content=data.bio.tactics target="data.bio.tactics" button=true owner=owner editable=editable}}
-            <div class="line-label">{{localize "cleenmain.label.equipment"}}: </div>
-            {{editor content=data.bio.equipment target="data.bio.equipment" button=true owner=owner editable=editable}}
-            <div class="line-label">{{localize "cleenmain.label.description"}}: </div>
-            {{editor content=data.bio.description target="data.bio.description" button=true owner=owner editable=editable}}
-            {{/unless}}
-        <div class="line-label">{{localize "cleenmain.label.goal"}}: </div>
-        {{editor content=data.bio.goal target="data.bio.goal" button=true owner=owner editable=editable}}
-        <div class="line-label">{{localize "cleenmain.label.bond"}}: </div>
-        {{editor content=data.bio.bond target="data.bio.bond" button=true owner=owner editable=editable}}
-        <div class="line-label">{{localize "cleenmain.label.flaw"}}: </div>
-        {{editor content=data.bio.flaw target="data.bio.flaw" button=true owner=owner editable=editable}}
-    {{else}}
-    {{#unless isPlayer}}
-        <div class="line-label">{{localize "cleenmain.label.description"}}: </div>
-        <div class="line-content">{{removeMarkup data.bio.description}}</div>
-        <div class="line-label">{{localize "cleenmain.label.tactics"}}: </div>
-        <div class="line-content">{{removeMarkup data.bio.tactics}}</div>
-        <div class="line-label">{{localize "cleenmain.label.equipment"}}: </div>
-        <div class="line-content">{{removeMarkup data.bio.equipment}}</div>
-        {{/unless}}
-        <div class="line-label">{{localize "cleenmain.label.goal"}}: </div>
-        <div class="line-content">{{removeMarkup data.bio.goal}}</div>
-        <div class="line-label">{{localize "cleenmain.label.bond"}}: </div>
-        <div class="line-content">{{removeMarkup data.bio.bond}}</div>
-        <div class="line-label">{{localize "cleenmain.label.flaw"}}: </div>
-        <div class="line-content">{{removeMarkup data.bio.flaw}}</div>
-    {{/if}}
+    <div class="title-line">
+        <h1><div class="column-title">{{localize "cleenmain.label.bio"}}</div></h1>
+        {{#if unlocked}}
+        <a class="item-create right-icon" data-type="biodata" title="{{localize "cleenmain.biodata.add"}}">
+                <i class="fas fa-plus"></i>
+        </a>
+        {{/if}}
+    </div>
+    <div class="biodata-column">
+        {{#each biodatas as |item id|}}
+        <div class="biodata-line">
+            <div class="biodata-name">{{item.name}} : </div>
+            <div class="biodata-description">{{removeMarkup item.data.data.description}}</div>
+            {{#if ../unlocked}}
+            <div class="icon-group">
+                <a class="item-open-sheet" data-type="biodata" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.edit"}}">
+                    <i class="fas fa-pen"></i>
+                </a>
+                <a class="inline-delete" data-type="biodata" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.delete"}}">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
+            {{/if}}
+        </div>
+        {{/each}}
+    </div>
 </div>

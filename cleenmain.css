@@ -369,18 +369,39 @@
 .tab-bio {
   display: flex;
   flex-direction: column;
+  padding: 0 0 2em 0;
 }
-.tab-bio .line-label {
-  padding-top: 1em;
+.tab-bio .title-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1em 0 0.5em 0;
 }
-.tab-bio .editor {
-  min-height: 5em;
+.tab-bio .title-line .item-create {
+  margin-left: auto;
 }
-.tab-bio .editor .editor-content {
-  min-height: 5em;
+.tab-bio .biodata-column {
+  display: flex;
+  flex-direction: column;
 }
-.tab-bio .editor .tox.tox-tinymce {
-  min-height: 10em;
+.tab-bio .biodata-column .biodata-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin: 1em 0.3em 0 1em;
+}
+.tab-bio .biodata-column .biodata-line .biodata-name {
+  font-weight: bold;
+}
+.tab-bio .biodata-column .biodata-line .icon-group {
+  margin-left: auto;
+}
+.tab-bio label {
+  display: flex;
+  flex-direction: row;
+}
+.tab-bio label .item-create {
+  margin-left: auto;
 }
 .cleenmain.sheet.player .main .central .combat-tab {
   margin: 1em 0 0.5em 0;
@@ -472,21 +493,6 @@
 }
 .equipment-tab .equipment-column .equipment-line .icon-group {
   margin-left: auto;
-}
-.equipment-tab .wealth-line {
-  display: flex;
-  flex-direction: row;
-  white-space: nowrap;
-  height: 1em;
-  margin: 1em;
-}
-.equipment-tab .wealth-line .wealth-name {
-  margin: 0.3em 0.3em 0 0.3em;
-  width: 25%;
-}
-.equipment-tab .wealth-line input {
-  width: 3em;
-  margin: 0 1em 1em 0.3em;
 }
 .equipment-tab label {
   display: flex;

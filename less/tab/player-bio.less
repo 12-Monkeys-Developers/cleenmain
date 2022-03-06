@@ -1,16 +1,38 @@
 .tab-bio{
-  display: flex;
-  flex-direction: column;
-  .line-label{
-      padding-top: 1em;
-  }
-  .editor{
-    min-height: @editor-height;
-    .editor-content{
-      min-height: @editor-height;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 2em 0;
+    .title-line{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 1em 0 0.5em 0;
+        .item-create{
+            margin-left: auto;
+        }
     }
-    .tox.tox-tinymce{
-      min-height: @editor-height * 2;
+    .biodata-column{
+        display: flex;
+        flex-direction: column;
+        .biodata-line{
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+            margin: 1em 0.3em 0 1em;
+            .biodata-name{
+              font-weight: bold;
+            }
+            .icon-group{
+                margin-left: auto;
+            }
+        }
     }
-  }
+    label {
+        display: flex;
+        flex-direction: row;
+
+        .item-create{
+            margin-left: auto;
+        }
+    }
 }
