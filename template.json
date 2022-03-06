@@ -135,12 +135,12 @@
             "skill"
         ],
         "templates": {
-            "itemdescription": {
+            "commun": {
                 "description": ""
             }
         },
         "weapon":{
-            "templates": ["itemdescription"],
+            "templates": ["commun"],
             "category":"standard",
             "type": "melee",
             "damage":"2d6",
@@ -153,7 +153,7 @@
             "quality": ""
         },
         "armor":{
-            "templates": ["itemdescription"],
+            "templates": ["commun"],
             "category": "standard",
             "malus": 0,
             "protection":0,
@@ -161,14 +161,14 @@
             "quality": ""
         },
         "boon":{
-            "templates": ["itemdescription"],
+            "templates": ["commun"],
             "developed": false
         },
         "equipment":{
-            "templates": ["itemdescription"]
+            "templates": ["commun"]
         },
         "skill":{
-            "templates": ["itemdescription"],
+            "templates": ["commun"],
             "reference": "",
             "value": 2,
             "developed": false

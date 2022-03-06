@@ -1,11 +1,25 @@
-export default class CleenmainPlayerSheet extends ActorSheet {
+import { BaseSheet } from "./base.js";
 
+export default class CleenmainPlayerSheet extends BaseSheet {
+
+  /**
+    * @constructor
+    * @param  {...any} args
+    */
+  constructor(...args) {
+    super(...args);
+  } 
+
+
+  /**
+    * @override
+    */
   static get defaultOptions(){
     return mergeObject(super.defaultOptions, {
-      template: "systems/cleenmain/templates/sheets/player-sheet.html",
-      classes: ["cleenmain", "sheet", "actor", "player"],
-      width: 700,
       height: 800,
+      width: 700,
+      template: "systems/cleenmain/templates/actor/player.html",
+      classes: ["cleenmain", "sheet", "actor", "player"],
       tabs: [
           {
               navSelector: ".sheet-tabs",
@@ -33,29 +47,26 @@ export default class CleenmainPlayerSheet extends ActorSheet {
     }
   }];
 
-  async getData() {
+  /**
+   * @override
+   */
+  getData() {
     const context = super.getData();
 
     const actorData = this.actor.data.toObject(false);
     context.data = actorData.data;
     context.flags = actorData.flags;
-    context.id= this.actor.id;
-    context.isPlayer= true;
-    context.config= CONFIG.cleenmain;
-    context.editable= this.isEditable,
-    context.boons= context.actor.data.items.filter(function(item){return item.type==="boon"});
-    context.skills= context.actor.data.items.filter(function(item){return item.type==="skill"});
-    context.armors= context.actor.data.items.filter(function(item){return item.type==="armor"});
-    context.weapons= context.actor.data.items.filter(function(item){return item.type==="weapon"});
-    context.equipments= context.actor.data.items.filter(function(item){return item.type==="equipment"});
+    context.id = this.actor.id;
+    context.isPlayer = true;
+    context.config = CONFIG.cleenmain;
+    context.editable = this.isEditable,
+    context.boons = context.actor.data.items.filter(function(item){return item.type==="boon"});
+    context.skills = context.actor.data.items.filter(function(item){return item.type==="skill"});
+    context.armors = context.actor.data.items.filter(function(item){return item.type==="armor"});
+    context.weapons = context.actor.data.items.filter(function(item){return item.type==="weapon"});
+    context.equipments = context.actor.data.items.filter(function(item){return item.type==="equipment"});
 
-    let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
-    if(flagData){
-      context.unlocked = true;
-    }
-    else{
-      context.unlocked = false;
-    }
+    context.unlocked = this.actor.getFlag(game.system.id, "SheetUnlocked");
 
     /*let sheetData = {
       id:this.actor.id,
@@ -73,23 +84,22 @@ export default class CleenmainPlayerSheet extends ActorSheet {
   }
 
   activateListeners(html){
+    super.activateListeners(html);
+    
     html.find(".item-create").click(this._onItemCreate.bind(this));
     html.find(".inline-edit").change(this._onEmbeddedItemEdit.bind(this));
     html.find("item-edit").click(this._onItemEdit.bind(this));
     html.find(".item-open-sheet").click(this._onItemEdit.bind(this));
     html.find(".inline-delete").click(this._onEmbeddedItemDelete.bind(this));
     html.find(".sheet-unlock").click(this._onSheetUnlock.bind(this));
-
-    new ContextMenu(html, ".boon-card", this.itemContextMenu);
-
     html.find(".item-roll").click(this._onItemRoll.bind(this));
 
-    super.activateListeners(html)
+    new ContextMenu(html, ".boon-card", this.itemContextMenu);        
   }
 
   _onItemCreate(event){
     event.preventDefault();
-    let element=event.currentTarget;
+    let element = event.currentTarget;
     let newName = "New";
     switch (element.dataset.type){
       case "boon":
@@ -107,7 +117,7 @@ export default class CleenmainPlayerSheet extends ActorSheet {
       case "equipment":
         newName = game.i18n.localize("cleenmain.equipment.add");
         break;
-}
+    }
     
     let itemData = {
       name: newName,
@@ -115,9 +125,10 @@ export default class CleenmainPlayerSheet extends ActorSheet {
     }
     return(this.actor.createEmbeddedDocuments("Item", [itemData]));
   }
+
   _onEmbeddedItemEdit(event){
     event.preventDefault();
-    let element=event.currentTarget;
+    let element = event.currentTarget;
     const itemId = element.id;
     let item = this.actor.items.get(itemId);
     let field = element.dataset.field;
