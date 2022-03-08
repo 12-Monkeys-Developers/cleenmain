@@ -7,11 +7,8 @@
             <input title="{{localize "cleenmain.label.value"}}" id="skill" name="data.value" type="number" value="{{data.value}}"/>
         </div>
         <div class="skill-name-line">
-            {{#if data.developed}}
-            <input name="data.developed" value="{{data.developed}}" type="checkbox" value="1" checked/>
-            {{else}}
-            <input name="data.developed" value="{{data.developed}}" type="checkbox" value="0"/>
-            {{/if}}
+            <input class="checkbox" name="data.developed" type="checkbox" {{checked data.developed}}>
+        </div>
     </div>
 </form>
 

@@ -9,4 +9,13 @@ export default function registerSystemSettings() {
         type: Number,
         onChange: foundry.utils.debounce(() => window.location.reload(), 100)
     });
+    game.settings.register('cleenmain', 'advancedRules', {
+        name: 'cleenmain.options.advancedrules.name',
+        hint: 'cleenmain.options.advancedrules.hint',
+        scope: 'world',
+        config: true,
+        type: Boolean,
+        default: false,
+        onChange: foundry.utils.debounce(() => window.location.reload(), 100)
+    });
 }

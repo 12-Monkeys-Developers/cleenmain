@@ -50,7 +50,9 @@
         "boon":{
             "add": "Nouvel atout",
             "delete": "Supprimer l'atout",
-            "developedinfo": "Cochez si appris."
+            "developedinfo": "Cochez si appris : ",
+            "limiteduseinfo": "Cochez si l'atout est à usage limité : ",
+            "used": "Utilisé : "
         },
         "weapon": {
             "category": {
@@ -212,6 +214,10 @@
             "numberofplayers":{
                 "name":"Nombre de Joueuses et joueurs",
                 "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs (valeur doit être entre 2 et 5)."
+            },
+            "advancedrules":{
+                "name":"Règles avancées",
+                "hint": "Utilisation des règles Clé en main avancées."
             }
         },
         "health": {

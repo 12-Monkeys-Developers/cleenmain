@@ -20,7 +20,26 @@
 .MuseoSlab(){
     font-family: "Museo Slab";
 }
+
 @default-font: "Museo Slab";
+@title-font: "Morris Roman";
+
+h1 {
+    font-family: "Morris Roman";
+    font-size: 1.2rem;
+    color: @title-color;
+    text-transform: uppercase;
+    border: none;
+}
+h2 {
+    font-family: "Morris Roman";
+    font-size: 1rem;
+    color: @title-color;
+}
+
+input {
+    color: @core-main-color;
+}
 
 //colors
 @title-color: #693d25;
@@ -29,6 +48,10 @@
 @boon-color: #51602f;
 @icon-color: rgb(112, 90, 16);
 @clear-background: #fffdfc;
+@edit-background: #f5fdfb;
+@editactive-background: #c3d4d0;
+@font-color-booncard: white;
+
 @chat-introtext: black;
 @chat-formulatext: white;
 @chat-finaltext: white;
@@ -41,6 +64,8 @@
 
 //images
 @playersheet-background: no-repeat url('./assets/image/paxelfica-fondfdp.webp');
+@itemsheet-background: no-repeat url('./assets/image/itemhheet_background.webp');
 @npcsheet-background: no-repeat url('./assets/image/paxelfica-fondfdp.webp');
 @chat-background: no-repeat url('./assets/image/chat_background.webp');
 @chat-divider: top/50% no-repeat url('./assets/image/Deco_feuilles.webp');
+@booncard-background: url('./assets/image/booncard_background.webp');

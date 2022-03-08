@@ -67,7 +67,7 @@ export default class CleenmainNpcSheet extends BaseSheet {
         event.preventDefault();
         let element=event.currentTarget;
         let itemData = {
-          name: game.i18n.localize("cleenmain.boon.newboon"),
+          name: game.i18n.localize("cleenmain.boon.add"),
           type: element.dataset.type
         }
         console.log("itemdata: ",itemData);

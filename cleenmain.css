@@ -16,12 +16,46 @@
   src: url("./assets/fonts/Museo_Slab_700.otf");
   font-weight: bold;
 }
+h1 {
+  font-family: "Morris Roman";
+  font-size: 1.2rem;
+  color: #693d25;
+  text-transform: uppercase;
+  border: none;
+}
+h2 {
+  font-family: "Morris Roman";
+  font-size: 1rem;
+  color: #693d25;
+}
+input {
+  color: #456;
+}
 .cleenmain.sheet.player .window-content {
   background: no-repeat url('./assets/image/paxelfica-fondfdp.webp');
   background-color: #fffdfc;
+  font-family: "Museo Slab";
 }
 .cleenmain.sheet.player textarea {
   resize: none;
+}
+.cleenmain.sheet.player .editor {
+  height: 100%;
+  width: 100%;
+  background: #f5fdfb;
+  box-shadow: inset 0 0 6px black;
+}
+.cleenmain.sheet.player input {
+  background-color: #f5fdfb;
+  box-shadow: inset 0 0 3px black;
+}
+.cleenmain.sheet.player input:focus {
+  background-color: #c3d4d0;
+}
+.cleenmain.sheet.player select {
+  background-color: #f5fdfb;
+  box-shadow: inset 0 0 3px black;
+  height: 1.5em;
 }
 .cleenmain.sheet.player form {
   display: flex;
@@ -95,6 +129,9 @@
   justify-content: space-between;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line {
+  font-family: "Museo Slab";
+  font-size: 1rem;
+  font-weight: bold;
   display: flex;
   flex-flow: row nowrap;
   margin: 0.5em;
@@ -156,6 +193,11 @@
 .cleenmain.sheet.player .main .central .sheet-body {
   background: #fffdfc;
 }
+.cleenmain.sheet.player .right-icon {
+  font-family: "Museo Slab";
+  font-size: 1.2rem;
+  color: #705a10;
+}
 .cleenmain.sheet.npc .input-short {
   width: 2em;
 }
@@ -167,8 +209,23 @@
   background-color: #fffdfc;
   font-family: "Museo Slab";
 }
-.cleenmain.sheet.npc .window-content input {
-  color: #456;
+.cleenmain.sheet.npc .editor {
+  height: 100%;
+  width: 100%;
+  background: #f5fdfb;
+  box-shadow: inset 0 0 6px black;
+}
+.cleenmain.sheet.npc input {
+  background-color: #f5fdfb;
+  box-shadow: inset 0 0 3px black;
+}
+.cleenmain.sheet.npc input:focus {
+  background-color: #c3d4d0;
+}
+.cleenmain.sheet.npc select {
+  background-color: #f5fdfb;
+  box-shadow: inset 0 0 3px black;
+  height: 1.5em;
 }
 .cleenmain.sheet.npc .npc-main {
   display: flex;
@@ -179,6 +236,10 @@
   font-size: 2rem;
   display: flex;
   flex-direction: row;
+}
+.cleenmain.sheet.npc .npc-main .name-line input {
+  height: 1.5em;
+  text-align: center;
 }
 .cleenmain.sheet.npc .npc-main .name-line .sheet-unlock {
   margin-left: auto;
@@ -293,6 +354,37 @@
   flex-grow: 100%;
   height: 100%;
 }
+.cleenmain.sheet.item .window-content {
+  background: no-repeat url('./assets/image/itemhheet_background.webp');
+  background-color: #fffdfc;
+  font-family: "Museo Slab";
+}
+.cleenmain.sheet.item .editor {
+  height: 100%;
+  width: 100%;
+  background: #f5fdfb;
+  box-shadow: inset 0 0 6px black;
+}
+.cleenmain.sheet.item input {
+  background-color: #f5fdfb;
+  box-shadow: inset 0 0 3px black;
+  height: 1.5em;
+}
+.cleenmain.sheet.item select {
+  background-color: #f5fdfb;
+  box-shadow: inset 0 0 3px black;
+  height: 1.5em;
+}
+.cleenmain.sheet.item input:focus {
+  background-color: #c3d4d0;
+}
+.cleenmain.sheet.item .sheet-header input {
+  font-size: 2rem;
+  text-align: center;
+}
+.cleenmain.sheet.item {
+  background-color: #fffdfc;
+}
 .cleenmain.sheet.item form {
   display: flex;
   flex-direction: column;
@@ -306,8 +398,10 @@
   display: flex;
   flex-direction: row;
 }
-.cleenmain.sheet.item .sheet-content .editor {
-  height: 100%;
+.cleenmain.sheet.item .sheet-content .boon-line .boon-block {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 50%;
 }
 .cleenmain.sheet.item form {
   display: flex;
@@ -318,28 +412,12 @@
   display: flex;
   flex-direction: column;
 }
-.cleenmain.sheet.item .sheet-content .boon-line {
-  display: flex;
-  flex-direction: row;
-}
-.cleenmain.sheet.item .sheet-content .editor {
-  height: 100%;
-}
-.cleenmain.sheet.item form {
-  display: flex;
-  flex-direction: column;
-}
-.cleenmain.sheet.item .sheet-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+.cleenmain.sheet.item .sheet-content select {
+  margin: 0 0.5em 0 0;
 }
 .cleenmain.sheet.item .sheet-content .boon-line {
   display: flex;
   flex-direction: row;
-}
-.cleenmain.sheet.item .sheet-content .editor {
-  height: 100%;
 }
 .boons-tab .item-create {
   margin-left: auto;
@@ -363,6 +441,12 @@
 .boons-tab .boon-group .boon-card .boon-name-line .boon-name {
   color: #51602f;
 }
+.boons-tab .boon-group .boon-card .boon-description {
+  background: url('./assets/image/booncard_background.webp');
+  padding: 0.5em;
+  box-shadow: inset 0 0 3px black;
+  color: white;
+}
 .boons-tab .boon-group .boon-card .icon-group {
   margin-left: auto;
 }
@@ -370,6 +454,9 @@
   display: flex;
   flex-direction: column;
   padding: 0 0 2em 0;
+}
+.tab-bio .line-label {
+  color: #693d25;
 }
 .tab-bio .title-line {
   display: flex;
@@ -500,37 +587,6 @@
 }
 .equipment-tab label .item-create {
   margin-left: auto;
-}
-.cleenmain.sheet.player .window-content {
-  font-family: "Museo Slab";
-}
-.cleenmain.sheet.player .window-content input {
-  color: #456;
-}
-.cleenmain.sheet.player h1 {
-  font-family: "Morris Roman";
-  font-size: 1.2rem;
-  color: #693d25;
-  text-transform: uppercase;
-  border: none;
-}
-.cleenmain.sheet.player h2 {
-  font-family: "Morris Roman";
-  font-size: 1rem;
-  color: #693d25;
-}
-.cleenmain.sheet.player .main .central .central-line {
-  font-family: "Morris Roman";
-  font-size: 1rem;
-  font-weight: bold;
-}
-.cleenmain.sheet.player .right-icon {
-  font-family: "Morris Roman";
-  font-size: 1.2rem;
-  color: #705a10;
-}
-.tab-bio .line-label {
-  color: #693d25;
 }
 .dialog {
   background-color: #fffdfc;

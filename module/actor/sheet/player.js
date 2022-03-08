@@ -53,6 +53,7 @@ export default class CleenmainPlayerSheet extends BaseSheet {
   getData() {
     const context = super.getData();
 
+
     const actorData = this.actor.data.toObject(false);
     context.data = actorData.data;
     context.flags = actorData.flags;
@@ -61,11 +62,16 @@ export default class CleenmainPlayerSheet extends BaseSheet {
     context.config = CONFIG.cleenmain;
     context.editable = this.isEditable,
     context.boons = context.actor.data.items.filter(function(item){return item.type==="boon"});
-    context.skills = context.actor.data.items.filter(function(item){return item.type==="skill"});
     context.armors = context.actor.data.items.filter(function(item){return item.type==="armor"});
     context.weapons = context.actor.data.items.filter(function(item){return item.type==="weapon"});
     context.equipments = context.actor.data.items.filter(function(item){return item.type==="equipment"});
     context.biodatas = context.actor.data.items.filter(function(item){return item.type==="biodata"});
+
+    //alphabetic order for skills
+    let skilllist = this.actor.data.items.filter(function(item){return item.type==="skill"});
+    context.skills =  skilllist.sort(function (a, b) {
+      return a.data.name.localeCompare(b.data.name);
+    });
 
     context.unlocked = this.actor.getFlag(game.system.id, "SheetUnlocked");
 

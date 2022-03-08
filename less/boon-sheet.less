@@ -1,4 +1,5 @@
 .cleenmain.sheet.item {
+    background-color: @clear-background;
     form {
         display: flex;
         flex-direction: column;
@@ -10,9 +11,11 @@
         .boon-line{
             display: flex;
             flex-direction: row;
-        }
-        .editor {
-            height: 100%;
+            .boon-block{
+                display: flex;
+                flex-direction: row;
+                flex-basis: 50%;
+            }
         }
     }
 }

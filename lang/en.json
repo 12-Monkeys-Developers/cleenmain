@@ -50,7 +50,9 @@
         "boon":{
             "add": "New boon",
             "delete": "Delete boon",
-            "developedinfo": "Check when learned."
+            "developedinfo": "Check when learned:",
+            "limiteduseinfo": "Check for limited Use boon",
+            "used": "Used"
         },
         "weapon": {
             "category": {
@@ -212,6 +214,10 @@
             "numberofplayers":{
                 "name":"Nombre de Joueuses et joueurs",
                 "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs (valeur doit être entre 2 et 5)."
+            },
+            "advancedrules":{
+                "name":"Advanced rules",
+                "hint": "Use the system advanced rules."
             }
         },
         "health": {

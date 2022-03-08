@@ -128,7 +128,9 @@
         },
         "boon":{
             "templates": ["base"],
-            "developed": false
+            "developed": false,
+            "limitedUse" : false,
+            "used" : false
         },
         "equipment":{
             "templates": ["base"]

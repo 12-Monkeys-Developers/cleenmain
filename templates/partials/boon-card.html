@@ -4,11 +4,7 @@
             <p>{{localize "cleenmain.label.boon"}}</p>
         </div>
             <div class="boon-name-line">
-            {{#if item.data.data.developed}}
-            <div class="inline-edit" data-field="data.developed" id="{{id}}" name="item.data.data.developed" type="checkbox" value="1" checked/>
-            {{else}}
-            <div class="inline-edit" data-field="data.developed" id="{{id}}" name="data.developed" type="checkbox" value="0" />
-            {{/if}}
+                <input class="checkbox inline-edit" data-field="data.developed" id="{{id}}" name="item.data.data.developed" type="checkbox" {{checked item.data.data.developed}}>
             <div class="boon-name">{{item.data.data.description}}</div>
         </div>
         <div class="description">

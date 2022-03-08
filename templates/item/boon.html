@@ -4,12 +4,14 @@
     </header>
     <div class="sheet-content">
         <div class="boon-line">
-            {{#if data.developed}}
-            <input name="data.developed" value="{{data.developed}}" type="checkbox" value="1" checked/>
-            {{else}}
-            <input name="data.developed" value="{{data.developed}}" type="checkbox" value="0"/>
-            {{/if}}
-            {{localize cleenmain.boon.developedinfo}}
+            <div class="boon-block">
+                <div class="label-dev">{{localize "cleenmain.boon.developedinfo"}}</div>
+                <input class="checkbox" name="data.developed" type="checkbox" {{checked data.developed}}>
+            </div>
+            <div class="boon-block">
+                <div class="label-dev">{{localize "cleenmain.boon.limiteduseinfo"}}</div>
+                <input class="checkbox" name="data.limitedUse" type="checkbox" {{checked data.limitedUse}}>
+            </div>
         </div>
         {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
     </div>

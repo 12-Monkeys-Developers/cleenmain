@@ -1,18 +1,32 @@
 .cleenmain.sheet.item {
-    form {
-        display: flex;
-        flex-direction: column;
+    .window-content {
+        background: @itemsheet-background;
+        background-color: @clear-background;
+        font-family: @default-font;
     }
-    .sheet-content {
+    .editor {
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        .boon-line{
-            display: flex;
-            flex-direction: row;
-        }
-        .editor {
-            height: 100%;
+        width: 100%;
+        background:@edit-background;
+        box-shadow: inset 0 0 6px black;
+    }
+    input{
+        background-color: @edit-background;
+        box-shadow: inset 0 0 3px black;
+        height: 1.5em;
+    }
+    select{
+        background-color: @edit-background;
+        box-shadow: inset 0 0 3px black;
+        height: 1.5em;
+    }
+    input:focus {
+        background-color: @editactive-background;
+    }
+    .sheet-header{
+        input{
+        font-size: 2rem;
+        text-align: center;
         }
     }
 }

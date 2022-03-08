@@ -9,9 +9,24 @@
         background: @npcsheet-background;
         background-color: @clear-background;
         font-family: @default-font;
-        input {
-            color: @core-main-color;
-        }
+    }
+    .editor {
+        height: 100%;
+        width: 100%;
+        background:@edit-background;
+        box-shadow: inset 0 0 6px black;
+    }
+    input {
+        background-color: @edit-background;
+        box-shadow: inset 0 0 3px black;
+    }
+    input:focus {
+        background-color: @editactive-background;
+    }
+    select{
+        background-color: @edit-background;
+        box-shadow: inset 0 0 3px black;
+        height: 1.5em;
     }
     .npc-main {
         display: flex;
@@ -21,6 +36,10 @@
             font-size: 2rem;
             display: flex;
             flex-direction: row;
+            input{
+                height: 1.5em;
+                text-align: center;
+            }
             .sheet-unlock{
                 margin-left: auto;
                 padding-left: .5em;
