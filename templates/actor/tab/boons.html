@@ -30,6 +30,13 @@
                 {{/if}}
             </div>
             <div class="boon-description">{{{item.data.data.description}}}</div>
+            {{#if item.data.data.limitedUse}}
+            <div class="boon-used-line">
+                <label for="item.data.data.used">{{localize "cleenmain.boon.used"}}</label>
+                <input class="checkbox inline-edit" data-field="data.used" id="{{item.id}}" name="item.data.data.used" type="checkbox" {{checked item.data.data.used}}>
+                
+            </div>
+            {{/if}}
         </div>
         {{/each}}
     </div>

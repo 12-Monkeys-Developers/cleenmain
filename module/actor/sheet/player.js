@@ -132,7 +132,7 @@ export default class CleenmainPlayerSheet extends BaseSheet {
     let field = element.dataset.field;
     let newValue;
     if(element.type === "checkbox"){
-      newValue = element.value == "1";
+      newValue = element.checked;
     }
     else newValue = element.value;
     return item.update({[field]: newValue});
