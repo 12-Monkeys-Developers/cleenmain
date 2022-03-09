@@ -91,7 +91,7 @@
                             <div class="central-text">/</div>
                             <input class="input-short" title="{{localize "cleenmain.skill.defence.name"}}" id="defence" name="attribute.elite" type="number" value="{{attribute.elite}}"/>
                             {{else}}
-                            {{#if data.elite}} {{attribute.elite}} {{else}} {{attribute.normal}} {{/if}}
+                            {{#if ../data.elite}} {{attribute.elite}} {{else}} {{attribute.normal}} {{/if}}
                             <a class="npcskill-roll" data-type="npcskill" data-attribute="{{key}}">
                                 <i class="fas fa-dice"></i>
                             </a>
