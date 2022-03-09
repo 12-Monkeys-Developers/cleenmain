@@ -16,6 +16,7 @@
             "description": "Description",
             "distance": "Distance",
             "equipment": "Equipment",
+            "elite": "Elite",
             "flaw": "Flaw",
             "heroism": "Heroism",
             "goal": "Goal",
@@ -68,12 +69,14 @@
             },
             "add": "New weapon",
             "delete": "Delete weapon",
-            "attaque": "Attaque",
+            "attaque": "Attack",
             "targets": "targets",
-            "damage": "Dégâts",
-            "range": "Portée",
+            "damage": "Damage",
+            "range": "Range",
             "skillvalue": "Skill",
-            "special": "Spécial"
+            "special": "Special",
+            "skillvaluenpc": "skill",
+            "skillvaluenpcelite": "skill (elite)"
         },
         "equipment":{
             "add": "New equipment"

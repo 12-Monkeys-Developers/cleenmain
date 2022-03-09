@@ -16,6 +16,7 @@
             "description": "Description",
             "distance": "Distance",
             "equipment": "Équipement",
+            "elite": "Élite",
             "flaw": "Défaut",
             "goal": "Idéal",
             "health": "Vitalité",
@@ -73,10 +74,12 @@
             "damage": "Dégâts",
             "range": "Portée",
             "skillvalue": "Compétence",
-            "special": "Spécial"
+            "special": "Spécial",
+            "skillvaluenpc": "Comp.",
+            "skillvaluenpcelite": "Comp. (élite)"
         },
         "equipment":{
-            "add": "New equipment"
+            "add": "Nouvel équipement"
         },
         "heroism": {
             "current": "Valeur actuelle",
@@ -89,7 +92,7 @@
                 "boons": "Atouts",
                 "bio": "Bio",
                 "combat": "Combat",
-                "equipment": "Equipment",
+                "equipment": "Équipment",
                 "notes": "Notes"
             }
         },
@@ -266,7 +269,7 @@
                 "chatmessage": "Prime: Attaques multiples."
             },
             "efficient":{
-                "label": "Efficacité",
+                "label": "Éfficacité",
                 "description":  "l’action en cours bénéficie d’un bonus de 2. Plusieurs Efficacités confèrent un bonus de 2 pour chaque Efficacité.",
                 "chatmessage": "Prime: Efficacité (x{efficient})."
             },

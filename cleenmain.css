@@ -255,7 +255,11 @@ input {
   flex-direction: column;
   flex-basis: 70%;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left select {
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .level-line {
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .level-line select {
   margin: 0.5em 0.5em;
   width: 12em;
   height: auto;

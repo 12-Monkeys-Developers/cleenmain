@@ -33,14 +33,14 @@ export default class CleenmainItemSheet extends ItemSheet {
    */
   getData() {
     const context = super.getData();
-
     let sheetData = {
       id: this.item.id,
       owner: this.object.isOwner,
       editable : this.isEditable,
       item: context.item,
       data: context.item.data.data,
-      config: CONFIG.cleenmain
+      config: CONFIG.cleenmain,
+      hasnpcowner: this.item.parent?.data.type === "npc"
     }
 
     return sheetData;

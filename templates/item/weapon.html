@@ -12,7 +12,12 @@
                 <th>{{localize "cleenmain.weapon.range"}}</th>
                 <th>{{localize "cleenmain.weapon.targets"}}</th>
                 <th>{{localize "cleenmain.weapon.special"}}</th>
+                {{#if hasnpcowner}}
+                <th>{{localize "cleenmain.weapon.skillvaluenpc"}}</th>
+                <th>{{localize "cleenmain.weapon.skillvaluenpcelite"}}</th>
+                {{else}}
                 <th>{{localize "cleenmain.weapon.skillvalue"}}</th>
+                {{/if}}
             </tr>
             <td>
                 <select name="data.category">
@@ -38,9 +43,18 @@
             <td>
                 <input name="data.special" type="text" value="{{data.special}}" />
             </td>
+            {{#if hasnpcowner}}
+            <td>
+                <input name="data.skillvaluenpc" type="text" value="{{data.skillvaluenpc}}" />
+            </td>
+            <td>
+                <input name="data.skillvaluenpcelite" type="text" value="{{data.skillvaluenpcelite}}" />
+            </td>
+            {{else}}
             <td>
                 <input name="data.skillvalue" type="text" value="{{data.skillvalue}}" />
             </td>
+            {{/if}}
             </table>
             
             <div class="description">{{localize "cleenmain.label.description"}}</div>

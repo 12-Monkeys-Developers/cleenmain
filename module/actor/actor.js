@@ -4,6 +4,7 @@ export default class CleenmainActor extends Actor {
         super.prepareData();
 
         if(this.type === "npc"){
+            if(this.data.data.level === "boss") this.data.data.elite = true;
             this._initializeNpcHealth();
         }
     }
@@ -23,9 +24,9 @@ export default class CleenmainActor extends Actor {
             let healthMax = this.data.data.healthsecondfiddle[numberofplayersString];
             if(this.data.data.level === "boss")  healthMax = healthMax*2;
             if(this.data.data.health.value === this.data.data.health.max){
-                this.data.data.health.value = this.data.data.health.max = healthMax;
+                this.data.data.health.value = healthMax;
             }
-            else this.data.data.health.max = healthMax;
+            this.data.data.health.max = healthMax;
         }
     }
 
@@ -64,7 +65,7 @@ export default class CleenmainActor extends Actor {
 
             if(elements.type === "weapon"){
                 skillData.weaponRoll = true;
-                if(this.type==="npc"){
+                if(this.data.type==="npc"){
                     skillData.skillvalue = this.data.data.elite ? item.data.data.skillvaluenpcelite : item.data.data.skillvaluenpc;
                 }
                 else skillData.skillvalue = item.data.data.skillvalue;
