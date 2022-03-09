@@ -243,7 +243,9 @@
         "dialog":{
             "rollmodifier": "Modificateur pour le jet: ",
             "heroism": "Utiliser un point d'héroïsme pour +1d6.",
-            "intro": "{actingCharName} utilise la compétence {itemName}.",
+            "introskill": "{actingCharName} utilise la compétence {itemName}.",
+            "introweapon": "{actingCharName} attaque avec {itemName}.",
+            "introdamage": "{actingCharName} blesse son adversaire avec {itemName}.",
             "button":{
                 "cancel": "Annuler",
                 "roll": "Lancer"

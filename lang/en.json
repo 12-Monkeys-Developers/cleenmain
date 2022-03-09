@@ -241,7 +241,9 @@
             "copper": "Copper"
         },
         "dialog":{
-            "intro": "{actingCharName} uses the skill {itemName}.",
+            "introskill": "{actingCharName} uses the skill {itemName}.",
+            "introweapon": "{actingCharName} attacks with {itemName}.",
+            "introdamage": "{actingCharName} does damage with {itemName}.",
             "heroism": "Spend an heroism point for +1d6.",
             "button":{
                 "rollmodifier": "Modifier for the roll: ",

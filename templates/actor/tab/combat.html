@@ -166,9 +166,15 @@
             </th>
             <th>
                 {{item.data.data.skillvalue}}
+                <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="attack">
+                    <i class="fas fa-dice"></i>
+                </a>
             </th>
             <th>
                 {{item.data.data.damage}}
+                <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="damage">
+                    <i class="fas fa-dice"></i>
+                </a>
             </th>
             <th>
                 {{item.data.data.range}}
@@ -186,10 +192,6 @@
                 </a>
                 <a class="inline-delete" data-type="weapon" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.delete"}}">
                     <i class="fas fa-trash"></i>
-                </a>
-                {{else}}
-                <a class="item-roll" data-type="weapon" data-id="{{item.id}}">
-                    <i class="fas fa-dice"></i>
                 </a>
                 {{/if}}
             </th>

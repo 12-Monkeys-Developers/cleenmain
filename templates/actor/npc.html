@@ -41,6 +41,9 @@
                         <div class="line-label">{{localize "cleenmain.label.combat"}}</div>
                         <div class="weapon-el">({{name}})</div>
                         <div class="weapon-el">{{item.data.data.skillvaluenpc}} / {{item.data.data.skillvaluenpcelite}}</div>
+                        <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="attack">
+                            <i class="fas fa-dice"></i>
+                        </a>
                         <div class="weapon-el">( {{item.data.data.damage}} {{item.data.data.special}})</div>
                         <div class="right-icon"></div>
                         {{#if ../unlocked}}
@@ -51,7 +54,7 @@
                             <i class="fas fa-trash"></i>
                         </a>
                         {{else}}
-                        <a class="item-roll" data-type="weapon" data-id="{{item.id}}">
+                        <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="damage">
                             <i class="fas fa-dice"></i>
                         </a>
                         {{/if}}

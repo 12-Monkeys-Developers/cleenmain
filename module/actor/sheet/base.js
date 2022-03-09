@@ -117,6 +117,7 @@ export class BaseSheet extends ActorSheet {
     let element= event.currentTarget;
     let itemId = element.dataset.id;
     let itemType = element.dataset.type;
-    this.actor.roll({type: itemType, itemId: itemId});
+    let rolltype = element.dataset?.rolltype;
+    this.actor.roll({type: itemType, itemId: itemId, rolltype: rolltype});
   }
 }

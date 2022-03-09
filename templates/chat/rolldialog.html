@@ -13,9 +13,11 @@
     <label>{{localize "cleenmain.dialog.rollmodifier"}}</label><input id="rollmodifier" value="" type="text" data-dtype="Text"/>
   </div>
 
+  {{#ifn skillData.damageRoll}}
   <div class="rollmodifier">
     <label>{{localize "cleenmain.dialog.heroism"}}</label><input type="checkbox" id="heroism" />
   </div>
+  {{/ifn}}
   {{#if skillData.weaponRoll}}
   <div class="bonus">
     <h2>{{localize "cleenmain.dialog.bonus"}}</h2>
