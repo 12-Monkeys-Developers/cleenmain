@@ -541,6 +541,7 @@ input {
 .notes-tab {
   display: flex;
   flex-direction: column;
+  margin: 1em;
 }
 .notes-tab .editor {
   min-height: 5em;
