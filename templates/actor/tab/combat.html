@@ -130,17 +130,17 @@
         <div class="bonus-line">
             <div class="bonus-name">{{localize "cleenmain.label.cac"}} : </div>
             {{#if unlocked}}
-            <input class="bonus-text" id="bonuscac" name="data.bonusdamageBonus.cac" type="number" value="{{data.bonusdamageBonus.cac}}"/>
+            <input class="bonus-text" id="bonuscac" name="data.damageBonus.cac" type="number" value="{{data.damageBonus.cac}}"/>
         </div>
         <div class="bonus-line">
             <div class="bonus-name">{{localize "cleenmain.label.distance"}} : </div>
-            <input class="bonus-text" id="bonusdistance" name="data.bonusdamageBonus.distance" type="number" value="{{data.bonusdamageBonus.distance }}"/>
+            <input class="bonus-text" id="bonusdistance" name="data.damageBonus.distance" type="number" value="{{data.damageBonus.distance }}"/>
         {{else}}
-            <div class="bonus-text">{{data.bonusdamageBonus.cac}}</div>
+            <div class="bonus-text">{{data.damageBonus.cac}}</div>
         </div>
         <div class="bonus-line">
             <div class="bonus-name">{{localize "cleenmain.label.distance"}} : </div>
-            <div class="bonus-text">{{data.bonusdamageBonus.distance}}</div>
+            <div class="bonus-text">{{data.damageBonus.distance}}</div>
         {{/if}}
         </div>
     </div>
