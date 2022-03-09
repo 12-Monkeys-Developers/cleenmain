@@ -35,8 +35,8 @@
                 "base"
             ],
             "heroism": {
-                "max": 0,
-                "value": 0
+                "max": 8,
+                "value": 8
             },
             "blessure": "0",
             "damageBonus" :{

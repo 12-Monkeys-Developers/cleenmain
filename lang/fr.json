@@ -21,6 +21,8 @@
             "health": "Vitalité",
             "heroism": "Héroisme",
             "name": "Nom",
+            "origin": "Origine",
+            "quote": "Citation",
             "protections": "Protections",
             "skills" : "Compétences",
             "tactics": "Tactique",

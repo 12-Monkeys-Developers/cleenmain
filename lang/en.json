@@ -20,6 +20,8 @@
             "heroism": "Heroism",
             "goal": "Goal",
             "name": "Name",
+            "origin": "Origin",
+            "quote": "Quote",
             "protections": "Protections",
             "skills" : "Compétences",
             "tactics": "Tactics",

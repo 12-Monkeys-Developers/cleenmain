@@ -22,7 +22,7 @@ export default function registerHooks() {
                         reference: prop
                     }
                     };
-                    await Item.create(skillData, { parent: document }, { renderSheet: true });
+                    await document.createEmbeddedDocuments("Item", [skillData]);
                     }
             }
             document.data.update(createChanges);
