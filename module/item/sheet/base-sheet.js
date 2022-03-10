@@ -1,4 +1,4 @@
-export default class CleenmainItemSheet extends ItemSheet {
+export default class CemBaseItemSheet extends ItemSheet {
 
   /**
    * @constructor
@@ -24,7 +24,8 @@ export default class CleenmainItemSheet extends ItemSheet {
       width: 530,
       height: 340,
       resizable: true,
-      classes: ["cleenmain", "sheet", "item"]
+      classes: ["cleenmain", "sheet", "item"],
+      dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }]
     });
   }
 

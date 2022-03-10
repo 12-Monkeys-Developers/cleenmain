@@ -13,17 +13,17 @@ export default function registerHooks() {
                 createChanges.token.actorLink = true;
     
                 //add all the base skills to the new actor
-                for (var prop of CONFIG.cleenmain.skill) {
+                for (const skill of CONFIG.CLEENMAIN.skills) {
                     let skillData = {
-                    name: game.i18n.localize("cleenmain.skill."+prop+".name"),
-                    type: 'skill',
-                    data: {
-                        description: game.i18n.localize("cleenmain.skill."+prop+".description"),
-                        reference: prop
-                    }
+                        name: game.i18n.localize("cleenmain.skill."+skill+".name"),
+                        type: 'skill',
+                        data: {
+                            description: game.i18n.localize("cleenmain.skill."+skill+".description"),
+                            reference: skill
+                        }
                     };
                     await document.createEmbeddedDocuments("Item", [skillData]);
-                    }
+                }
             }
             document.data.update(createChanges);
         }

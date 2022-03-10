@@ -1,55 +1,36 @@
-export const cleenmain = {};
-
-cleenmain.weapon={
-        category : {
-                standard: "cleenmain.weapon.category.standard",
-                war: "cleenmain.weapon.category.war",
-                heavy: "cleenmain.weapon.category.heavy"
+export const CLEENMAIN = {
+        skills: ["acrobatics", "art", "athletics", "authority", "combat", "knowledge","defense", "stealth", "research", "riding","eloquence", "intellect", "language",
+                "muscles","perception", "drive", "psychology", "reflexes","resistance","healing", "survival", "technical", "willpower"],
+        weapon: {
+                category: {
+                        standard: "CLEENMAIN.weapon.category.standard",
+                        war: "CLEENMAIN.weapon.category.war",
+                        heavy: "CLEENMAIN.weapon.category.heavy"
+                },
+                type: {
+                        "melee": "CLEENMAIN.weapon.type.melee",
+                        "ranged": "CLEENMAIN.weapon.type.ranged"
+                }
         },
-        type : {
-                "melee": "cleenmain.weapon.type.melee",
-                "ranged": "cleenmain.weapon.type.ranged"
-        }
+        armor: {
+                category : {
+                        standard: "CLEENMAIN.armor.category.standard",
+                        war: "CLEENMAIN.armor.category.war",
+                        heavy: "CLEENMAIN.armor.category.heavy",
+                        shield: "CLEENMAIN.armor.category.shield"
+                }
+        },
+        npcskills: {
+                physical: ["acrobatics", "athletics", "combat", "defense", "riding", "muscles", "resistance"],
+                dexterity: ["stealth", "drive", "reflexes", "healing", "technical"],
+                social: ["art", "command", "eloquence", "psychology"],
+                mental: ["knowledge", "research", "intellect", "langage", "perception", "survival", "willpower"]
+        },
+        npccategory: {
+                support: "CLEENMAIN.npccategory.support",
+                secondfiddle: "CLEENMAIN.npccategory.secondfiddle",
+                boss: "CLEENMAIN.npccategory.boss"
+        },
+        bonus: ["lethalattack", "mutlipleattacks", "efficiency", "caution"], /*"quick"*/
+        penalty: ["minorinjury", "danger", "difficulty", "risk"] /*"slow"*/
 };
-cleenmain.armor={
-        category : {
-                standard: "cleenmain.armor.category.standard",
-                war: "cleenmain.armor.category.war",
-                heavy: "cleenmain.armor.category.heavy",
-                shield: "cleenmain.armor.category.shield"
-        }
-};
-
-cleenmain.npcskills = {
-        physical : ["acrobatics", "athletics", "meleecombat", "defence", "riding", "strenght", "resistance"],
-        dexterity : ["rangedcombat", "stealth", "pilot", "reflexes", "healing", "technical"],
-        social : ["art", "command", "eloquence", "psychology"],
-        mental : ["knowledge", "research", "intellect", "langage", "perception", "survival", "volonte"]
-};
-
-cleenmain.skill = ["acrobatics", "athletics", "meleecombat", "defence", "riding", "strenght", "resistance",
-"rangedcombat", "stealth", "pilot", "reflexes", "healing", "technical","art", "command", "eloquence", "psychology",
-"knowledge", "research", "intellect", "langage", "perception", "survival", "willpower"];
-        
-cleenmain.npccategory = {
-        support: "cleenmain.npccategory.support",
-        secondfiddle: "cleenmain.npccategory.secondfiddle",
-        boss: "cleenmain.npccategory.boss"
-};
-
-
-cleenmain.bonus = [
-        "murderous",
-        "manytargets",
-        "efficient",
-        "cover"/*,
-        "quick"*/
-];
-
-cleenmain.penalty= [
-        "lightwound",
-        "exposed",
-        "difficulty",
-        "jeopardy"/*,
-        "slow"*/
-]

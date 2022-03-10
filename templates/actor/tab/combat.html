@@ -1,4 +1,3 @@
-<div class="combat-tab">
     <div class="title-line">
         <h1><div class="tab-title">{{localize "cleenmain.label.cap_off"}}</div></h1>
     </div>
@@ -144,55 +143,46 @@
         {{/if}}
         </div>
     </div>
-    <div class="weapons">
+    <div class="weapons items droppable">
         <table>
-            <tr>
-                <th>{{localize "cleenmain.weapon.attaque"}}</th>
-                <th>{{localize "cleenmain.label.category"}}</th>
-                <th>{{localize "cleenmain.weapon.skillvalue"}}</th>
-                <th>{{localize "cleenmain.weapon.damage"}}</th>
-                <th>{{localize "cleenmain.weapon.range"}}</th>
-                <th>{{localize "cleenmain.weapon.special"}}</th>
-                <th></th>
-            </tr>
-            {{#each weapons as |item id|}}
-            <tr>
-            <th>
-                {{name}}
-            </th>
-            <th>
-                {{item.data.data.category}}
-            </th>
-            <th>
-                {{item.data.data.skillvalue}}
-                <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="attack">
-                    <i class="fas fa-dice"></i>
-                </a>
-            </th>
-            <th>
-                {{item.data.data.damage}}
-                <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="damage">
-                    <i class="fas fa-dice"></i>
-                </a>
-            </th>
-            <th>
-                {{item.data.data.range}}
-            </th>
-            <th>
-                {{item.data.data.special}}
-            </th>
-            <th>
-                {{#if ../unlocked}}
-                <a class="item-open-sheet" data-type="weapon" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.edit"}}">
-                    <i class="fas fa-pen"></i>
-                </a>
-                <a class="inline-delete" data-type="weapon" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.delete"}}">
-                    <i class="fas fa-trash"></i>
-                </a>
-                {{/if}}
-            </th>
-        </tr>
+            <thead>
+                <tr>
+                    <th>{{localize "cleenmain.weapon.attaque"}}</th>
+                    <th>{{localize "cleenmain.label.category"}}</th>
+                    <th>{{localize "cleenmain.weapon.skillvalue"}}</th>
+                    <th>{{localize "cleenmain.weapon.damage"}}</th>
+                    <th>{{localize "cleenmain.weapon.range"}}</th>
+                    <th>{{localize "cleenmain.weapon.special"}}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each weapons as |item id|}}
+                    <tr class="item" data-item-id="{{item.id}}">
+                        <th>{{item.name}}</th>
+                        <th>{{item.data.data.category}}</th>
+                        <th>
+                            {{item.data.data.skillvalue}}
+                            <a class="item-roll item" data-type="weapon" data-id="{{item.id}}" data-rolltype="attack"><i class="fas fa-dice"></i></a>
+                        </th>
+                        <th>
+                            {{item.data.data.damage}}
+                            <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="damage"><i class="fas fa-dice"></i></a>
+                        </th>
+                        <th>{{item.data.data.range}}</th>
+                        <th>{{item.data.data.special}}</th>
+                        <th>
+                            {{#if ../unlocked}}
+                                <a class="item-open-sheet" data-type="weapon" data-id="{{item.id}}" title="{{localize 'cleenmain.sheet.edit'}}">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <a class="inline-delete" data-type="weapon" data-id="{{item.id}}" title="{{localize 'cleenmain.sheet.delete'}}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            {{/if}}
+                        </th>
+                    </tr>
                 {{/each}}
+            </tbody>
         </table>
     </div>
-</div>

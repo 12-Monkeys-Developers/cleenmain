@@ -114,6 +114,7 @@
             "damage":"2d6",
             "range":0,
             "targets":1,
+            "skillname": "",
             "skillvalue": 4,
             "skillvaluenpcelite": 4,
             "skillvaluenpc": 4,
@@ -140,6 +141,8 @@
         "skill":{
             "templates": ["base"],
             "reference": "",
+            "base": 2,
+            "bonus": 0,
             "value": 2,
             "developed": false
         },

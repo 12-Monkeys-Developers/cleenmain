@@ -4,38 +4,30 @@
             <div class="title-line">
                 <h1><div class="column-title">{{localize "cleenmain.label.skills"}}</div></h1>
                 {{#if unlocked}}
-                <a class="item-create right-icon" data-type="skill" title="{{localize "cleenmain.skill.add"}}">
-                        <i class="fas fa-plus"></i>
-                </a>
+                    <a class="item-create right-icon" data-type="skill" title="{{localize "cleenmain.skill.add"}}"><i class="fas fa-plus"></i></a>
                 {{/if}}
             </div>
             {{#if unlocked}}
-            <div class="skills">
-                {{#each skills as |skill type|}}
-                <div class="skill-line">
-                    <input class="inline-edit skill-name" data-field="name" id="{{id}}" type="text" value="{{skill.name}}" data-dtype="Text" />
-                    <input class="inline-edit skill-value" data-field="data.value" id="{{id}}" type="number" value="{{skill.data.data.value}}" data-dtype="Number" />
-                    {{#if skill.data.data.developed}}
-                    <input class="inline-edit skill-dev" data-field="data.developed" id="{{id}}" name="skill.data.developed" type="checkbox" value="0" checked/>
-                    {{else}}
-                    <input class="inline-edit skill-dev" data-field="data.developed" id="{{id}}" name="skill.data.developed" type="checkbox" value="1"/>
-                    {{/if}}
-                    <a class="inline-delete" data-type="skill" data-id="{{id}}" title="{{localize "cleenmain.skill.delete"}}">
-                        <i class="fas fa-trash"></i>
-                    </a>
+                <div class="skills item-list">
+                    {{#each skills as |skill type|}}
+                        <div class="skill-line item" data-item-id="{{id}}">
+                            <input class="inline-edit skill-name" data-field="name" id="{{id}}" type="text" value="{{skill.name}}" data-dtype="Text"/>
+                            <input class="inline-edit skill-value" data-field="data.base" id="{{id}}" type="number" name="skill.data.base" value="{{skill.data.data.base}}" data-dtype="Number" />
+                            <input class="inline-edit skill-dev checkbox" data-field="data.developed" id="{{id}}" name="skill.data.developed" type="checkbox" {{checked skill.data.data.developed}}>
+                            <a class="inline-delete" data-type="skill" data-id="{{id}}" title="{{localize 'cleenmain.skill.delete'}}"><i class="fas fa-trash"></i></a>
+                        </div>
+                    {{/each}}
                 </div>
-                {{/each}}
-            </div>
             {{else}}
             <div class="skills">
                 {{#each skills as |skill type|}}
-                <div class="skill-line">
-                    <div class="skill-name" title="{{skill.data.data.description}}" >{{skill.name}}</div>
-                    <div class="skill-value">{{skill.data.data.value}}</div>
-                    <a class="item-roll" data-type="skill" data-id="{{skill.id}}">
-                        <i class="fas fa-dice"></i>
-                    </a></th>
-                </div>
+                    <div class="skill-line">
+                        <div class="skill-name" title="{{skill.data.data.description}}" >{{skill.name}}</div>
+                        <div class="skill-value">{{skill.data.data.value}}</div>
+                        <a class="item-roll" data-type="skill" data-id="{{skill.id}}">
+                            <i class="fas fa-dice"></i>
+                        </a></th>
+                    </div>
                 {{/each}}
             </div>
             {{/if}}
@@ -113,7 +105,7 @@
             </div>
     
             <div class="sheet-body">
-                <div class="tab" data-group="primary" data-tab="combat">{{> systems/cleenmain/templates/actor/tab/combat.html}}</div>
+                <div class="tab combat-tab" data-group="primary" data-tab="combat">{{> systems/cleenmain/templates/actor/tab/combat.html}}</div>
                 <div class="tab" data-group="primary" data-tab="boons">{{> systems/cleenmain/templates/actor/tab/boons.html}}</div>
                 <div class="tab" data-group="primary" data-tab="equipment">{{> systems/cleenmain/templates/actor/tab/equipment.html}}</div>
                 <div class="tab" data-group="primary" data-tab="bio">{{> systems/cleenmain/templates/actor/tab/bio.html}}</div>

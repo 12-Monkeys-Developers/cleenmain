@@ -1,6 +1,6 @@
-import { BaseSheet } from "./base.js";
+import { CemBaseActorSheet } from "./base-sheet.js";
 
-export default class CleenmainNpcSheet extends BaseSheet {
+export default class NpcSheet extends CemBaseActorSheet {
 
   /**
     * @constructor
@@ -35,7 +35,7 @@ export default class CleenmainNpcSheet extends BaseSheet {
     context.flags = actorData.flags;
     context.id= this.actor.id;
     context.isPlayer= false;
-    context.config= CONFIG.cleenmain;
+    context.config= CONFIG.CLEENMAIN;
     context.editable= this.isEditable,
     context.boons= context.actor.data.items.filter(function(item){return item.type==="boon"});
     context.skills= context.actor.data.items.filter(function(item){return item.type==="skill"});

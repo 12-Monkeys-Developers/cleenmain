@@ -1,33 +1,8 @@
-export default class CleenmainActor extends Actor {
+export default class CemBaseActor extends Actor {
 
+    /** @override */
     prepareData(){
         super.prepareData();
-
-        if(this.type === "npc"){
-            if(this.data.data.level === "boss") this.data.data.elite = true;
-            this._initializeNpcHealth();
-        }
-    }
-
-   //evaluate the max health of the NPC depending of the number of players option 
-    _initializeNpcHealth(){
-        let numberofplayers = game.settings.get('cleenmain', 'numberOfPlayers');
-        let numberofplayersString="fivepcs";
-        if (numberofplayers <= 2) numberofplayersString="twopcs";
-        else if (numberofplayers == 3) numberofplayersString="threepcs";
-        else if (numberofplayers == 4) numberofplayersString="fourpcs";
-        
-        if(this.data.data.level === "support"){
-            this.data.data.health.value = this.data.data.health.max = 1;
-        }
-        else{
-            let healthMax = this.data.data.healthsecondfiddle[numberofplayersString];
-            if(this.data.data.level === "boss")  healthMax = healthMax*2;
-            if(this.data.data.health.value === this.data.data.health.max){
-                this.data.data.health.value = healthMax;
-            }
-            this.data.data.health.max = healthMax;
-        }
     }
 
     /* roll a player action

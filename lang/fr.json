@@ -125,9 +125,13 @@
                 "name": "Athlétisme",
                 "description": "Les activités physiques intenses comme la course, la nage ou le grimper à la corde."
             },
-            "command": {
+            "authority": {
                 "name": "Autorité",
                 "description": "Diriger un groupe, intimider un interlocuteur, donner des ordres, etc."
+            },
+            "combat": {
+                "name": "Combat",
+                "description": "Sert pour combattre, avec des armes ou à mains nues. Chaque famille d’armes maîtrisée est indiquée entre parenthèses derrière le nom de la compétence. Par exemple : Combat (épée)."
             },
             "meleecombat": {
                 "name": "Combat au corps à corps",
@@ -141,7 +145,7 @@
                 "name": "Connaissance",
                 "description": "Déterminer les informations détenues sur un sujet particulier. Chaque famille de savoir connu est indiquée entre parenthèses derrière le nom de la compétence. Par exemple : Connaissance (Histoire)."
             },
-            "defence": {
+            "defense": {
                 "name": "Défense",
                 "description": "Eviter d’être touché par une attaque grâce à une esquive, une parade ou l’utilisation d’un élément de l’environnement"
             },
@@ -153,23 +157,23 @@
                 "name": "Documentation",
                 "description": "Effectuer des recherches documentaires, mais aussi lire et analyser un texte, écrire un document, etc."
             },
-            "eloquence": {
-                "name": "Éloquence",
-                "description": "Parler à un auditoire, influencer un interlocuteur, calmer des personnes hostiles, séduire, etc."
-            },
             "riding": {
                 "name": "Équitation",
                 "description": "Dresser, chevaucher et s’occuper d’une monture."
+            },
+            "eloquence": {
+                "name": "Éloquence",
+                "description": "Parler à un auditoire, influencer un interlocuteur, calmer des personnes hostiles, séduire, etc."
             },
             "intellect": {
                 "name": "Intellect",
                 "description": "Résoudre un problème, calculer, trouver le meilleur coup à jouer, etc."
             },
-            "langage": {
+            "language": {
                 "name": "Langue",
                 "description": "Parler une langue. Chaque langue maîtrisée est indiquée entre parenthèses derrière le nom de la compétence. Par exemple : Langue (Français)."
             },
-            "strenght": {
+            "muscles": {
                 "name": "Muscles",
                 "description": "Les actions purement physiques sans technique spécifique comme défoncer une porte, tordre une barre de fer ou hisser un poids"
             },
@@ -177,7 +181,7 @@
                 "name": "Perception",
                 "description": "Mobiliser ses cinq sens, de manière volontaire ou instinctive."
             },
-            "pilot": {
+            "drive": {
                 "name": "Pilotage",
                 "description": "Conduire un véhicule. Chaque type de véhicule maîtrisé est indiqué entre parenthèses derrière le nom de la compétence. Par exemple : Pilotage (Automobiles)."
             },

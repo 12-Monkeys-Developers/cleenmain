@@ -1,5 +1,5 @@
 
-export class BaseSheet extends ActorSheet {
+export class CemBaseActorSheet extends ActorSheet {
 
     /**
      * @constructor
@@ -10,18 +10,23 @@ export class BaseSheet extends ActorSheet {
         this.options.submitOnClose = true;
     }
 
+    /** @override */
     activateListeners(html){
         super.activateListeners(html);
         
         html.find(".item-create").click(this._onItemCreate.bind(this));
-        html.find(".inline-edit").change(this._onEmbeddedItemEdit.bind(this));
         html.find("item-edit").click(this._onItemEdit.bind(this));
-        html.find(".item-open-sheet").click(this._onItemEdit.bind(this));
+
+        html.find(".inline-edit").change(this._onEmbeddedItemEdit.bind(this));        
         html.find(".inline-delete").click(this._onEmbeddedItemDelete.bind(this));
+        
+        html.find(".item-open-sheet").click(this._onItemEdit.bind(this));
+        
         html.find(".sheet-unlock").click(this._onSheetUnlock.bind(this));
         html.find(".item-roll").click(this._onItemRoll.bind(this));
 
     }
+
     _onItemCreate(event){
         event.preventDefault();
         let element = event.currentTarget;
@@ -108,7 +113,6 @@ export class BaseSheet extends ActorSheet {
     this.actor.sheet.render(true);
   }
 
-  
   _onItemRoll(event){
     event.preventDefault();
     let element= event.currentTarget;
