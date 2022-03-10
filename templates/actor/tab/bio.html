@@ -1,28 +1,20 @@
 <div class="tab-bio">
     <div class="title-line">
         <h1><div class="column-title">{{localize "cleenmain.label.bio"}}</div></h1>
-        {{#if unlocked}}
-    <a class="item-create right-icon" data-type="biodata" title="{{localize "cleenmain.biodata.add"}}">
-    <h1><i class="fas fa-plus"></i></h1>
-        </a>
-        {{/if}}
     </div>
-    <div class="biodata-column">
-        {{#each biodatas as |item id|}}
-        <div class="biodata-line">
-            <div class="biodata-name">{{item.name}} : </div>
-            <div class="biodata-description">{{removeMarkup item.data.data.description}}</div>
-            {{#if ../unlocked}}
-            <div class="icon-group">
-                <a class="item-open-sheet" data-type="biodata" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.edit"}}">
-                    <i class="fas fa-pen"></i>
-                </a>
-                <a class="inline-delete" data-type="biodata" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.delete"}}">
-                    <i class="fas fa-trash"></i>
-                </a>
-            </div>
-            {{/if}}
-        </div>
-        {{/each}}
+    {{#if unlocked}}
+    <div class="description-block">
+        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
     </div>
+    <div class="traits-block">
+        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+    </div>
+    {{else}}
+    <div class="description-block">
+        {{{data.description}}}
+    </div>
+    <div class="traits-block">
+        {{{data.traits}}}
+    </div>
+    {{/if}}
 </div>

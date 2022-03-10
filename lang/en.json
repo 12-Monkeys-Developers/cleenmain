@@ -47,9 +47,6 @@
             "protection": "Protection",
             "special": "Special"
         },
-        "biodata":{
-            "add": "New personality entry"
-        },
         "boon":{
             "add": "New boon",
             "delete": "Delete boon",

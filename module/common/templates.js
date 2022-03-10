@@ -19,7 +19,6 @@
         "systems/cleenmain/templates/item/equipment.html",
         "systems/cleenmain/templates/item/skill.html",
         "systems/cleenmain/templates/item/weapon.html",
-        "systems/cleenmain/templates/item/biodata.html",
         "systems/cleenmain/templates/item/ammunition.html",
 
         "systems/cleenmain/templates/partials/boon-card.html",

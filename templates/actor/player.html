@@ -59,7 +59,11 @@
                     </div>
                     <div class="central-line">
                         <div class="name-text">{{localize "cleenmain.label.activity"}} :</div>
-                        <input id="activity" name="data.bio.activity" type="text" value="{{data.bio.activity}}" />
+                        {{#if unlocked}}
+                        <input id="activity" name="data.activity" type="text" value="{{data.activity}}" />
+                        {{else}}
+                        <div class="activity-text">{{data.activity}}</div>
+                        {{/if}}
                     </div>
                     <div class="central-line space-between">
                         <div class="health-block">

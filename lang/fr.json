@@ -47,9 +47,6 @@
             "quality": "Qualité",
             "special": "Spécial"
         },
-        "biodata":{
-            "add": "Nouveau trait de personnalité"
-        },
         "boon":{
             "add": "Nouvel atout",
             "delete": "Supprimer l'atout",

@@ -156,6 +156,11 @@ input {
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-text {
   margin: 0.3em 0.3em 0 0.3em;
 }
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .activity-text {
+  font-weight: normal;
+  font-size: small;
+  white-space: normal;
+}
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-block {
   display: flex;
   flex-direction: row;
@@ -471,26 +476,14 @@ input {
 .tab-bio .title-line .item-create {
   margin-left: auto;
 }
-.tab-bio .biodata-column {
-  display: flex;
-  flex-direction: column;
+.tab-bio .editor {
+  min-height: 5em;
 }
-.tab-bio .biodata-column .biodata-line {
-  justify-content: left;
-  margin: 1em 0.3em 0 1em;
+.tab-bio .editor .editor-content {
+  min-height: 5em;
 }
-.tab-bio .biodata-column .biodata-line .biodata-name {
-  font-weight: bold;
-}
-.tab-bio .biodata-column .biodata-line .icon-group {
-  margin-left: auto;
-}
-.tab-bio label {
-  display: flex;
-  flex-direction: row;
-}
-.tab-bio label .item-create {
-  margin-left: auto;
+.tab-bio .editor .tox.tox-tinymce {
+  min-height: 10em;
 }
 .cleenmain.sheet.player .main .central .combat-tab {
   margin: 1em 0 0.5em 0;

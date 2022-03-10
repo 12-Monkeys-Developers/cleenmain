@@ -41,7 +41,6 @@ export default class CleenmainNpcSheet extends BaseSheet {
     context.skills= context.actor.data.items.filter(function(item){return item.type==="skill"});
     context.weapons= context.actor.data.items.filter(function(item){return item.type==="weapon"});
     context.equipments = context.actor.data.items.filter(function(item){return item.type==="equipment"});
-    context.biodatas = context.actor.data.items.filter(function(item){return item.type==="biodata"});
     context.numberofplayers = game.settings.get('cleenmain', 'numberOfPlayers');
 
     context.unlocked = this.actor.getFlag(game.system.id, "SheetUnlocked"); 

@@ -42,9 +42,6 @@ export class BaseSheet extends ActorSheet {
           case "equipment":
             newName = game.i18n.localize("cleenmain.equipment.add");
             break;
-          case "biodata":
-            newName = game.i18n.localize("cleenmain.biodata.add");
-            break;
         }
         
         let itemData = {

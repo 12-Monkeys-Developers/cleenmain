@@ -48,7 +48,6 @@ export default class CleenmainPlayerSheet extends BaseSheet {
     context.armors = context.actor.data.items.filter(function(item){return item.type==="armor"});
     context.weapons = context.actor.data.items.filter(function(item){return item.type==="weapon"});
     context.equipments = context.actor.data.items.filter(function(item){return item.type==="equipment"});
-    context.biodatas = context.actor.data.items.filter(function(item){return item.type==="biodata"});
 
     //alphabetic order for skills
     let skilllist = this.actor.data.items.filter(function(item){return item.type==="skill"});

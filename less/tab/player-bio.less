@@ -13,27 +13,14 @@
         .item-create{
             margin-left: auto;
         }
-    }
-    .biodata-column{
-        display: flex;
-        flex-direction: column;
-        .biodata-line{
-            justify-content: left;
-            margin: 1em 0.3em 0 1em;
-            .biodata-name{
-              font-weight: bold;
-            }
-            .icon-group{
-                margin-left: auto;
-            }
+    }   
+    .editor{
+        min-height: @editor-height;
+        .editor-content{
+            min-height: @editor-height;
         }
-    }
-    label {
-        display: flex;
-        flex-direction: row;
-
-        .item-create{
-            margin-left: auto;
+        .tox.tox-tinymce{
+            min-height: @editor-height * 2;
         }
     }
 }

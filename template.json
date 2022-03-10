@@ -25,7 +25,9 @@
                 }
             },
             "base": {
-                "description": ""
+                "description": "",
+                "activity": "",
+                "traits": ""
             }
         },
         "player": {
@@ -42,7 +44,8 @@
             "damageBonus" :{
                 "cac": 4,
                 "distance": 4
-            }
+            },
+            "notebook":""
         },
         "npc": {
             "templates": [
@@ -97,7 +100,6 @@
             "equipment",
             "boon",
             "skill",
-            "biodata",
             "ammunition"
         ],
         "templates": {
@@ -144,9 +146,6 @@
         "ammunition":{
             "templates": ["base"],
             "number": 0
-        },
-        "biodata":{
-            "templates": ["base"]
         }
     }
 }
