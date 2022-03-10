@@ -8,13 +8,13 @@
             "boons": "Boons",
             "boon": "Boon",
             "bonus": "Damage Bonus",
-            "cac": "Corps-à-corps",
+            "melee": "Corps-à-corps",
             "cap_off": "Attacks",
             "category": "Category",
             "character": "Character",
             "combat": "Combat",
             "description": "Description",
-            "distance": "Distance",
+            "ranged": "Distance",
             "equipment": "Equipment",
             "elite": "Elite",
             "flaw": "Flaw",
@@ -62,7 +62,7 @@
             },
             "type": {
                 "melee": "Melee",
-                "distance": "Distance"
+                "ranged": "Ranged"
             },
             "add": "New weapon",
             "delete": "Delete weapon",

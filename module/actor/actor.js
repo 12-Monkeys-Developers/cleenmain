@@ -76,6 +76,11 @@ export default class CleenmainActor extends Actor {
 
             if(elements.type === "weapon"){
                 skillData.damageFormula=item.data.data.damage;
+                
+                if(this.data.type==="player"){
+                    let damageBonus = this.data.data.damageBonus[item.data.data.type];
+                    if(damageBonus) skillData.damageFormula += " + "+damageBonus.toString();
+                }
                 if(elements.rolltype !== "damage"){
                     skillData.weaponRoll = true;
                     if(this.data.type==="npc"){

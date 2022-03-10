@@ -42,8 +42,8 @@
             },
             "blessure": "0",
             "damageBonus" :{
-                "cac": 4,
-                "distance": 4
+                "melee": 4,
+                "ranged": 4
             },
             "notebook":""
         },

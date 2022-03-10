@@ -5,6 +5,10 @@ cleenmain.weapon={
                 standard: "cleenmain.weapon.category.standard",
                 war: "cleenmain.weapon.category.war",
                 heavy: "cleenmain.weapon.category.heavy"
+        },
+        type : {
+                "melee": "cleenmain.weapon.type.melee",
+                "ranged": "cleenmain.weapon.type.ranged"
         }
 };
 cleenmain.armor={

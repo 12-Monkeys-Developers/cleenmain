@@ -128,19 +128,19 @@
     <div class="combat-group-label">{{localize "cleenmain.label.bonus"}} : </div>
     <div class="bonus-list">
         <div class="bonus-line">
-            <div class="bonus-name">{{localize "cleenmain.label.cac"}} : </div>
+            <div class="bonus-name">{{localize "cleenmain.label.melee"}} : </div>
             {{#if unlocked}}
-            <input class="bonus-text" id="bonuscac" name="data.damageBonus.cac" type="number" value="{{data.damageBonus.cac}}"/>
+            <input class="bonus-text" id="bonusmelee" name="data.damageBonus.melee" type="number" value="{{data.damageBonus.melee}}"/>
         </div>
         <div class="bonus-line">
-            <div class="bonus-name">{{localize "cleenmain.label.distance"}} : </div>
-            <input class="bonus-text" id="bonusdistance" name="data.damageBonus.distance" type="number" value="{{data.damageBonus.distance }}"/>
+            <div class="bonus-name">{{localize "cleenmain.label.ranged"}} : </div>
+            <input class="bonus-text" id="bonusranged" name="data.damageBonus.ranged" type="number" value="{{data.damageBonus.ranged }}"/>
         {{else}}
-            <div class="bonus-text">{{data.damageBonus.cac}}</div>
+            <div class="bonus-text">{{data.damageBonus.melee}}</div>
         </div>
         <div class="bonus-line">
-            <div class="bonus-name">{{localize "cleenmain.label.distance"}} : </div>
-            <div class="bonus-text">{{data.damageBonus.distance}}</div>
+            <div class="bonus-name">{{localize "cleenmain.label.ranged"}} : </div>
+            <div class="bonus-text">{{data.damageBonus.ranged}}</div>
         {{/if}}
         </div>
     </div>
@@ -152,7 +152,6 @@
                 <th>{{localize "cleenmain.weapon.skillvalue"}}</th>
                 <th>{{localize "cleenmain.weapon.damage"}}</th>
                 <th>{{localize "cleenmain.weapon.range"}}</th>
-                <th>{{localize "cleenmain.weapon.targets"}}</th>
                 <th>{{localize "cleenmain.weapon.special"}}</th>
                 <th></th>
             </tr>
@@ -178,9 +177,6 @@
             </th>
             <th>
                 {{item.data.data.range}}
-            </th>
-            <th>
-                {{item.data.data.targets}}
             </th>
             <th>
                 {{item.data.data.special}}

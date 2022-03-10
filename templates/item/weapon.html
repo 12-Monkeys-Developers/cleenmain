@@ -29,7 +29,13 @@
                 </select>
             </td>
             <td>
-                <input name="data.type" type="text" value="{{data.type}}" />
+                <select name="data.type">
+                    {{#select data.type}}
+                    {{#each config.weapon.type as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
             </td>
             <td>
                 <input name="data.damage" type="text" value="{{data.damage}}" />

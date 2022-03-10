@@ -8,13 +8,13 @@
             "bio": "Traits de personnalité",
             "boons": "Atouts",
             "boon": "Atout",
-            "cac": "Corps-à-corps",
+            "melee": "Corps-à-corps",
             "cap_off": "Capacités Offensives",
             "category": "Catégorie",
             "character": "Personnage",
             "combat": "Combat",
             "description": "Description",
-            "distance": "Distance",
+            "ranged": "Distance",
             "equipment": "Équipement",
             "elite": "Élite",
             "flaw": "Défaut",
@@ -61,8 +61,8 @@
                 "heavy": "Armes lourdes"
             },
             "type": {
-                "melee": "Mélée",
-                "distance": "à distance"
+                "melee": "Corps-à-corps",
+                "ranged": "à distance"
             },
             "add": "Nouvelle arme",
             "delete": "Supprimer l'arme",
