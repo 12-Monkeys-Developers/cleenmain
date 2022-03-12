@@ -15,10 +15,10 @@ export default function registerHooks() {
                 //add all the base skills to the new actor
                 for (const skill of CONFIG.CLEENMAIN.skills) {
                     let skillData = {
-                        name: game.i18n.localize("cleenmain.skill."+skill+".name"),
+                        name: game.i18n.localize("CLEENMAIN.skill."+skill+".name"),
                         type: 'skill',
                         data: {
-                            description: game.i18n.localize("cleenmain.skill."+skill+".description"),
+                            description: game.i18n.localize("CLEENMAIN.skill."+skill+".description"),
                             reference: skill
                         }
                     };

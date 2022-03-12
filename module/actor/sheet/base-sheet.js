@@ -33,19 +33,19 @@ export class CemBaseActorSheet extends ActorSheet {
         let newName = "New";
         switch (element.dataset.type){
           case "boon":
-            newName = game.i18n.localize("cleenmain.boon.add");
+            newName = game.i18n.localize("CLEENMAIN.boon.add");
             break;
           case "weapon":
-            newName = game.i18n.localize("cleenmain.weapon.add");
+            newName = game.i18n.localize("CLEENMAIN.weapon.add");
             break;
           case "skill":
-            newName = game.i18n.localize("cleenmain.skill.add");
+            newName = game.i18n.localize("CLEENMAIN.skill.add");
             break;
           case "armor":
-            newName = game.i18n.localize("cleenmain.armor.add");
+            newName = game.i18n.localize("CLEENMAIN.armor.add");
             break;
           case "equipment":
-            newName = game.i18n.localize("cleenmain.equipment.add");
+            newName = game.i18n.localize("CLEENMAIN.equipment.add");
             break;
         }
         

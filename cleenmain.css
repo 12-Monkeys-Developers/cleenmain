@@ -33,6 +33,7 @@ input {
 }
 .cleenmain.sheet.player .window-content {
   background: no-repeat url('./assets/image/paxelfica-fondfdp.webp');
+  background-size: 100% 100%;
   background-color: #fffdfc;
   font-family: "Museo Slab";
 }
@@ -71,6 +72,8 @@ input {
 .cleenmain.sheet.player .main .leftcolumn {
   display: flex;
   flex-direction: column;
+  min-width: 200px;
+  margin-right: 20px;
 }
 .cleenmain.sheet.player .main .leftcolumn .title-line {
   display: flex;
@@ -367,6 +370,7 @@ input {
   background: no-repeat url('./assets/image/itemhheet_background.webp');
   background-color: #fffdfc;
   font-family: "Museo Slab";
+  background-size: 100% 100%;
 }
 .cleenmain.sheet.item .editor {
   height: 100%;

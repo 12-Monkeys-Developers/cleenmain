@@ -1,5 +1,5 @@
 {
-    "cleenmain": {
+    "CLEENMAIN": {
         "label": {
             "activity": "Occupation",
             "armors": "Armures",
@@ -66,14 +66,17 @@
             },
             "add": "Nouvelle arme",
             "delete": "Supprimer l'arme",
-            "attaque": "Attaque",
+            "attack": "Attaque",
             "targets": "Cibles",
             "damage": "Dégâts",
             "range": "Portée",
-            "skillvalue": "Compétence",
+            "skillName": "Compétence",
+            "skillValue": "Valeur",
             "special": "Spécial",
-            "skillvaluenpc": "Comp.",
-            "skillvaluenpcelite": "Comp. (élite)"
+            "zone": "Zone",
+            "sixPlus": "6+",
+            "skillValueNpc": "Comp.",
+            "skillValueNpcElite": "Comp. (élite)"
         },
         "equipment":{
             "add": "Nouvel équipement"
@@ -89,7 +92,7 @@
                 "boons": "Atouts",
                 "bio": "Bio",
                 "combat": "Combat",
-                "equipment": "Équipment",
+                "equipment": "Équipement",
                 "notes": "Notes"
             }
         },
@@ -145,7 +148,7 @@
                 "name": "Connaissance",
                 "description": "Déterminer les informations détenues sur un sujet particulier. Chaque famille de savoir connu est indiquée entre parenthèses derrière le nom de la compétence. Par exemple : Connaissance (Histoire)."
             },
-            "defense": {
+            "defence": {
                 "name": "Défense",
                 "description": "Eviter d’être touché par une attaque grâce à une esquive, une parade ou l’utilisation d’un élément de l’environnement"
             },

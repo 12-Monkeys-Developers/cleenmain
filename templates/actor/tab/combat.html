@@ -1,15 +1,16 @@
+<div class="combat-tab">
     <div class="title-line">
-        <h1><div class="tab-title">{{localize "cleenmain.label.cap_off"}}</div></h1>
+        <h1><div class="tab-title">{{localize "CLEENMAIN.label.cap_off"}}</div></h1>
     </div>
     <div class="title-line">
-        <h2><div class="combat-domain-label">{{localize "cleenmain.label.protections"}}</div></h2>
+        <h2><div class="combat-domain-label">{{localize "CLEENMAIN.label.protections"}}</div></h2>
         {{#if unlocked}}
-        <a class="item-create right-icon" data-type="armor" title="{{localize "cleenmain.armor.add"}}">
+        <a class="item-create right-icon" data-type="armor" title="{{localize "CLEENMAIN.armor.add"}}">
                 <i class="fas fa-plus"></i>
         </a>
         {{/if}}
     </div>
-    <div class="combat-group-label">{{localize "cleenmain.label.trainings"}}</div>
+    <div class="combat-group-label">{{localize "CLEENMAIN.label.trainings"}}</div>
     <div class="trainings-list">
         <div class="trainings-group">
             {{#if unlocked}}
@@ -21,7 +22,7 @@
                 <i class="far fa-square"></i>
                 {{/if}}
             {{/if}}
-            <div class="trainings-name">{{localize "cleenmain.armor.category.war"}}</div>
+            <div class="trainings-name">{{localize "CLEENMAIN.armor.category.war"}}</div>
         </div>
         <div class="trainings-group">
             {{#if unlocked}}
@@ -33,7 +34,7 @@
                 <i class="far fa-square"></i>
                 {{/if}}
             {{/if}}
-            <div class="trainings-name">{{localize "cleenmain.armor.category.heavy"}}</div>
+            <div class="trainings-name">{{localize "CLEENMAIN.armor.category.heavy"}}</div>
         </div>
         <div class="trainings-group">
             {{#if unlocked}}
@@ -45,17 +46,17 @@
                 <i class="far fa-square"></i>
                 {{/if}}
             {{/if}}
-            <div class="trainings-name">{{localize "cleenmain.armor.category.shield"}}</div>
+            <div class="trainings-name">{{localize "CLEENMAIN.armor.category.shield"}}</div>
         </div>
     </div>
     <div class="armors">
         <table>
             <tr>
-                <th>{{localize "cleenmain.label.armors"}}</th>
-                <th>{{localize "cleenmain.label.category"}}</th>
-                <th>{{localize "cleenmain.armor.protection"}}</th>
-                <th>{{localize "cleenmain.armor.malus"}}</th>
-                <th>{{localize "cleenmain.armor.special"}}</th>
+                <th>{{localize "CLEENMAIN.label.armors"}}</th>
+                <th>{{localize "CLEENMAIN.label.category"}}</th>
+                <th>{{localize "CLEENMAIN.armor.protection"}}</th>
+                <th>{{localize "CLEENMAIN.armor.malus"}}</th>
+                <th>{{localize "CLEENMAIN.armor.special"}}</th>
                 <th></th>
             </tr>
             {{#each armors as |item id|}}
@@ -77,10 +78,10 @@
             </th>
             {{#if ../unlocked}}
             <th>
-            <a class="item-open-sheet" data-type="armor" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.edit"}}">
+            <a class="item-open-sheet" data-type="armor" data-id="{{item.id}}" title="{{localize "CLEENMAIN.sheet.edit"}}">
                 <i class="fas fa-pen"></i>
             </a>
-            <a class="inline-delete" data-type="armor" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.delete"}}">
+            <a class="inline-delete" data-type="armor" data-id="{{item.id}}" title="{{localize "CLEENMAIN.sheet.delete"}}">
                 <i class="fas fa-trash"></i>
             </a>
             </th>
@@ -90,14 +91,14 @@
         </table>
     </div>
     <div class="title-line">
-        <h2><div class="combat-domain-label">{{localize "cleenmain.label.weapons"}}</div></h2>
+        <h2><div class="combat-domain-label">{{localize "CLEENMAIN.label.weapons"}}</div></h2>
         {{#if unlocked}}
-        <a class="item-create right-icon" data-type="weapon" title="{{localize "cleenmain.weapon.add"}}">
+        <a class="item-create right-icon" data-type="weapon" title="{{localize "CLEENMAIN.weapon.add"}}">
                 <i class="fas fa-plus"></i>
         </a>
         {{/if}}
     </div>
-    <div class="combat-group-label">{{localize "cleenmain.label.trainings"}}</div>
+    <div class="combat-group-label">{{localize "CLEENMAIN.label.trainings"}}</div>
     <div class="trainings-list">
         <div class="trainings-group">
             {{#if unlocked}}
@@ -109,7 +110,7 @@
                 <i class="far fa-square"></i>
                 {{/if}}
             {{/if}}
-            <div class="trainings-name">{{localize "cleenmain.weapon.category.war"}}</div>
+            <div class="trainings-name">{{localize "CLEENMAIN.weapon.category.war"}}</div>
         </div>
         <div class="trainings-group">
             {{#if unlocked}}
@@ -121,68 +122,78 @@
                 <i class="far fa-square"></i>
                 {{/if}}
             {{/if}}
-            <div class="trainings-name">{{localize "cleenmain.weapon.category.heavy"}}</div>
+            <div class="trainings-name">{{localize "CLEENMAIN.weapon.category.heavy"}}</div>
         </div>
     </div>
-    <div class="combat-group-label">{{localize "cleenmain.label.bonus"}} : </div>
+    <div class="combat-group-label">{{localize "CLEENMAIN.label.bonus"}}</div>
     <div class="bonus-list">
-        <div class="bonus-line">
-            <div class="bonus-name">{{localize "cleenmain.label.melee"}} : </div>
+        <div class="bonus-line">            
             {{#if unlocked}}
-            <input class="bonus-text" id="bonusmelee" name="data.damageBonus.melee" type="number" value="{{data.damageBonus.melee}}"/>
-        </div>
-        <div class="bonus-line">
-            <div class="bonus-name">{{localize "cleenmain.label.ranged"}} : </div>
-            <input class="bonus-text" id="bonusranged" name="data.damageBonus.ranged" type="number" value="{{data.damageBonus.ranged }}"/>
-        {{else}}
-            <div class="bonus-text">{{data.damageBonus.melee}}</div>
-        </div>
-        <div class="bonus-line">
-            <div class="bonus-name">{{localize "cleenmain.label.ranged"}} : </div>
-            <div class="bonus-text">{{data.damageBonus.ranged}}</div>
-        {{/if}}
+                <div class="bonus-name">{{localize "CLEENMAIN.label.melee"}}</div>
+                <input class="bonus-text" id="bonusmelee" name="data.damageBonus.melee" type="number" value="{{data.damageBonus.melee}}"/>
+                <div class="bonus-name">{{localize "CLEENMAIN.label.ranged"}}</div>
+                <input class="bonus-text" id="bonusranged" name="data.damageBonus.ranged" type="number" value="{{data.damageBonus.ranged}}"/>
+            {{else}}
+                <div class="bonus-name">{{localize "CLEENMAIN.label.melee"}}</div>
+                <div class="bonus-text">{{data.damageBonus.melee}}</div>
+                <div class="bonus-name">{{localize "CLEENMAIN.label.ranged"}}</div>
+                <div class="bonus-text">{{data.damageBonus.ranged}}</div>
+            {{/if}}
         </div>
     </div>
-    <div class="weapons items droppable">
+    <div class="items weapons">
         <table>
             <thead>
                 <tr>
-                    <th>{{localize "cleenmain.weapon.attaque"}}</th>
-                    <th>{{localize "cleenmain.label.category"}}</th>
-                    <th>{{localize "cleenmain.weapon.skillvalue"}}</th>
-                    <th>{{localize "cleenmain.weapon.damage"}}</th>
-                    <th>{{localize "cleenmain.weapon.range"}}</th>
-                    <th>{{localize "cleenmain.weapon.special"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.attack"}}</th>
+                    <th>{{localize "CLEENMAIN.label.category"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.skillName"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.skillValue"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.damage"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.range"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.zone"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.sixPlus"}}</th>
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
-                {{#each weapons as |item id|}}
-                    <tr class="item" data-item-id="{{item.id}}">
-                        <th>{{item.name}}</th>
-                        <th>{{item.data.data.category}}</th>
-                        <th>
-                            {{item.data.data.skillvalue}}
-                            <a class="item-roll item" data-type="weapon" data-id="{{item.id}}" data-rolltype="attack"><i class="fas fa-dice"></i></a>
-                        </th>
-                        <th>
-                            {{item.data.data.damage}}
-                            <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="damage"><i class="fas fa-dice"></i></a>
-                        </th>
-                        <th>{{item.data.data.range}}</th>
-                        <th>{{item.data.data.special}}</th>
-                        <th>
-                            {{#if ../unlocked}}
-                                <a class="item-open-sheet" data-type="weapon" data-id="{{item.id}}" title="{{localize 'cleenmain.sheet.edit'}}">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <a class="inline-delete" data-type="weapon" data-id="{{item.id}}" title="{{localize 'cleenmain.sheet.delete'}}">
-                                    <i class="fas fa-trash"></i>
-                                </a>
+            {{#each weapons as |item id|}}
+                <tr class="droppable" data-id="{{item.id}}">
+                    <th>{{name}}</th>
+                    <th>{{item.data.data.category}}</th>
+                    <th>{{item.data.data.skillName}}</th>
+                    <th>
+                        {{item.data.data.skillValue}}
+                        <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="attack"><i class="fas fa-dice"></i></a>
+                    </th>
+                    <th>
+                        {{item.data.data.damage}}
+                        <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="damage"><i class="fas fa-dice"></i></a>
+                    </th>
+                    <th>{{item.data.data.range}}</th>
+                    <th>{{item.data.data.zone}}</th>
+                    <th>
+                        {{#if unlocked}}
+                            <input class="checkbox" name="item.data.data.sixPlus" type="checkbox" {{checked item.data.data.sixPlus}}>
+                        {{else}}
+                            {{#if item.data.data.sixPlus}}
+                                <i class="fas fa-square"></i>
+                            {{else}}
+                                <i class="far fa-square"></i>
                             {{/if}}
-                        </th>
-                    </tr>
-                {{/each}}
-            </tbody>
+                        {{/if}}
+                    </th>
+                    <th>
+                        {{#if ../unlocked}}
+                            <a class="item-open-sheet" data-type="weapon" data-id="{{item.id}}" title="{{localize 'CLEENMAIN.sheet.edit'}}">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                            <a class="inline-delete" data-type="weapon" data-id="{{item.id}}" title="{{localize 'CLEENMAIN.sheet.delete'}}">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        {{/if}}
+                    </th>
+                </tr>
+            {{/each}}
         </table>
     </div>
+</div>

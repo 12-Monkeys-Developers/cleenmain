@@ -1,3 +1,4 @@
+import { Skills } from "../common/skills.js";
 export default class CemBaseItem extends Item {
 
     prepareData(){
@@ -11,9 +12,9 @@ export default class CemBaseItem extends Item {
         const itemData = this.data;
         const data = itemData.data;
     
-        // Classes
+        // Skill item
         if ( itemData.type === "skill" ) {
-          data.value = parseInt(data.base) + parseInt(data.bonus) + parseInt((data.developed ? 2 : 0));
+          data.value = Skills.getSkillValue(data.base, data.bonus, data.developed);
         }
     }
 }

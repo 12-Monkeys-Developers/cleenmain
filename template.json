@@ -54,38 +54,38 @@
             ],
             "level": "secondfiddle",
             "elite": false,
-            "npcskills":{
+            "npcSkills":{
                 "physical": {
-                    "label": "cleenmain.npcskill.physical.name",
+                    "label": "CLEENMAIN.npcskill.physical.name",
                     "normal": 4,
                     "elite": 4
                 },
                 "dexterity": {
-                    "label": "cleenmain.npcskill.dexterity.name",
+                    "label": "CLEENMAIN.npcskill.dexterity.name",
                     "normal": 4,
                     "elite": 4
                 },
                 "social":{
-                    "label": "cleenmain.npcskill.social.name",
+                    "label": "CLEENMAIN.npcskill.social.name",
                     "normal": 4,
                     "elite": 4
                 },
                 "mental":{
-                    "label": "cleenmain.npcskill.mental.name",
+                    "label": "CLEENMAIN.npcskill.mental.name",
                     "normal": 4,
                     "elite": 4
                 }
             },
             "defence": {
-                "skillvalue": 4,
-                "skillvaluenpcelite": 4,
-                "skillvaluenpc": 4,
+                "skillValue": 4,
+                "skillValueNpcElite": 4,
+                "skillValueNpc": 4,
                 "protection":0,
                 "name":"No armor",
                 "special": "",
                 "relance":false
             },
-            "healthsecondfiddle":{
+            "healthSecondFiddle":{
                 "twopcs": 6,
                 "threepcs": 9,
                 "fourpcs": 12,
@@ -109,16 +109,19 @@
         },
         "weapon":{
             "templates": ["base"],
-            "category":"standard",
+            "category": "standard",
             "type": "",
-            "damage":"2d6",
-            "range":0,
-            "targets":1,
-            "skillname": "",
-            "skillvalue": 4,
-            "skillvaluenpcelite": 4,
-            "skillvaluenpc": 4,
+            "damage": "2d6",
+            "range": 0,
+            "targets": 1,
+            "skillId": null,
+            "skillName": "",
+            "skillValue": 4,
+            "skillValueNpcElite": 4,
+            "skillValueNpc": 4,
             "special": "",
+            "zone": "",
+            "sixPlus": false,
             "quality": ""
         },
         "armor":{

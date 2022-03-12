@@ -1,5 +1,5 @@
 {
-    "cleenmain": {
+    "CLEENMAIN": {
         "label": {
             "activity": "Activity",
             "armors": "Armors",
@@ -70,10 +70,13 @@
             "targets": "targets",
             "damage": "Damage",
             "range": "Range",
-            "skillvalue": "Skill",
+            "skillName": "Skill",
+            "skillValue": "Value",
             "special": "Special",
-            "skillvaluenpc": "skill",
-            "skillvaluenpcelite": "skill (elite)"
+            "zone": "Zone",
+            "sixPlus": "6+",
+            "skillValueNpc": "skill",
+            "skillValueNpcElite": "skill (elite)"
         },
         "equipment":{
             "add": "New equipment"
@@ -125,9 +128,13 @@
                 "name": "Athletics",
                 "description": "Les activités physicals intenses comme la course, la nage ou le grimper à la corde."
             },
-            "command": {
+            "authority": {
                 "name": "Command",
                 "description": "Diriger un groupe, intimider un interlocuteur, donner des ordres, etc."
+            },
+            "combat": {
+                "name": "Combat",
+                "description": "Sert pour combattre, avec des armes ou à mains nues. Chaque famille d’armes maîtrisée est indiquée entre parenthèses derrière le nom de la compétence. Par exemple : Combat (épée)."
             },
             "meleecombat": {
                 "name": "Melee combat",
@@ -153,31 +160,31 @@
                 "name": "Research",
                 "description": "Effectuer des recherches documentaires, mais aussi lire et analyser un texte, écrire un document, etc."
             },
-            "eloquence": {
-                "name": "Eloquence",
-                "description": "Parler à un auditoire, influencer un interlocuteur, calmer des personnes hostiles, séduire, etc."
-            },
             "riding": {
                 "name": "Riding",
                 "description": "Dresser, chevaucher et s’occuper d’une monture."
+            },
+            "eloquence": {
+                "name": "Eloquence",
+                "description": "Parler à un auditoire, influencer un interlocuteur, calmer des personnes hostiles, séduire, etc."
             },
             "intellect": {
                 "name": "Intellect",
                 "description": "Résoudre un problème, calculer, trouver le meilleur coup à jouer, etc."
             },
-            "langage": {
+            "language": {
                 "name": "Langue",
                 "description": "Parler une langue. Chaque langue maîtrisée est indiquée entre parenthèses derrière le nom de la compétence. Par exemple : Langue (Français)."
             },
-            "strenght": {
-                "name": "Strenght",
+            "muscles": {
+                "name": "Muscles",
                 "description": "Les actions purement physiques sans technique spécifique comme défoncer une porte, tordre une barre de fer ou hisser un poids"
             },
             "perception": {
                 "name": "Perception",
                 "description": "Mobiliser ses cinq sens, de manière volontaire ou instinctive."
             },
-            "pilot": {
+            "drive": {
                 "name": "Pilot",
                 "description": "Conduire un véhicule. Chaque type de véhicule maîtrisé est indiqué entre parenthèses derrière le nom de la compétence. Par exemple : Pilotage (Automobiles)."
             },

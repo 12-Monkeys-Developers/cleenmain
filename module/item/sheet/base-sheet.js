@@ -1,3 +1,4 @@
+import { CLEENMAIN } from "../../common/config.js";
 export default class CemBaseItemSheet extends ItemSheet {
 
   /**
@@ -40,8 +41,8 @@ export default class CemBaseItemSheet extends ItemSheet {
       editable : this.isEditable,
       item: context.item,
       data: context.item.data.data,
-      config: CONFIG.cleenmain,
-      hasnpcowner: this.item.parent?.data.type === "npc"
+      config: CONFIG.CLEENMAIN,
+      hasNpcOwner: this.item.parent?.data.type === "npc"
     }
 
     return sheetData;

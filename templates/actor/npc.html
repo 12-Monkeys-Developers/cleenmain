@@ -3,7 +3,7 @@
         <div class="name-line">
             <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
             <div class="right-icon">
-                <a class="sheet-unlock" title="{{localize "cleenmain.label.unlock_sheet"}}">
+                <a class="sheet-unlock" title="{{localize "CLEENMAIN.label.unlock_sheet"}}">
                     {{#if unlocked}}
                     <i class="fas fa-lock-open"></i>
                     {{else}}
@@ -23,22 +23,22 @@
                         {{/select}}
                     </select>
                     <div class="elite-block">
-                        <label for="data.elite">{{localize "cleenmain.label.elite"}} : </label>
+                        <label for="data.elite">{{localize "CLEENMAIN.label.elite"}} : </label>
                         <input class="checkbox" data-field="data.elite" name="data.elite" type="checkbox" {{checked data.elite}}>
                     </div>
                 </div>
                 <div class="weapons">
                     {{#if unlocked}}
                     <div class="weapon-line">
-                        <div class="line-label">{{localize "cleenmain.weapon.add"}}</div>
-                        <a class="item-create" data-type="weapon" title="{{localize "cleenmain.weapon.add"}}">
+                        <div class="line-label">{{localize "CLEENMAIN.weapon.add"}}</div>
+                        <a class="item-create" data-type="weapon" title="{{localize "CLEENMAIN.weapon.add"}}">
                                 <i class="fas fa-plus"></i>
                         </a>
                     </div>
                     {{/if}}
                     {{#each weapons as |item id|}}
                     <div class="weapon-line">
-                        <div class="line-label">{{localize "cleenmain.label.combat"}}</div>
+                        <div class="line-label">{{localize "CLEENMAIN.label.combat"}}</div>
                         <div class="weapon-el">({{name}})</div>
                         <div class="weapon-el">{{item.data.data.skillvaluenpc}} / {{item.data.data.skillvaluenpcelite}}</div>
                         <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="attack">
@@ -47,10 +47,10 @@
                         <div class="weapon-el">( {{item.data.data.damage}} {{item.data.data.special}})</div>
                         <div class="right-icon"></div>
                         {{#if ../unlocked}}
-                        <a class="item-open-sheet" data-type="weapon" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.edit"}}">
+                        <a class="item-open-sheet" data-type="weapon" data-id="{{item.id}}" title="{{localize "CLEENMAIN.sheet.edit"}}">
                             <i class="fas fa-pen"></i>
                         </a>
-                        <a class="inline-delete" data-type="weapon" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.delete"}}">
+                        <a class="inline-delete" data-type="weapon" data-id="{{item.id}}" title="{{localize "CLEENMAIN.sheet.delete"}}">
                             <i class="fas fa-trash"></i>
                         </a>
                         {{else}}
@@ -61,20 +61,20 @@
                     </div>
                     {{/each}}
                     <div class="weapon-line">
-                        <div class="line-label">{{localize "cleenmain.skill.defence.name"}} : </div>
+                        <div class="line-label">{{localize "CLEENMAIN.skill.defence.name"}} : </div>
                         {{#if unlocked}}
-                        <input class="input-short" title="{{localize "cleenmain.skill.defence.name"}}" id="defence" name="data.defence.skillvaluenpc" type="number" value="{{data.defence.skillvaluenpc}}"/>
+                        <input class="input-short" title="{{localize "CLEENMAIN.skill.defence.name"}}" id="defence" name="data.defence.skillValueNpc" type="number" value="{{data.defence.skillValueNpc}}"/>
                         <div class="central-text">/</div>
-                        <input class="input-short" title="{{localize "cleenmain.skill.defence.name"}}" id="defence" name="data.defence.skillvaluenpcelite" type="number" value="{{data.defence.skillvaluenpcelite}}"/>
+                        <input class="input-short" title="{{localize "CLEENMAIN.skill.defence.name"}}" id="defence" name="data.defence.skillValueNpcElite" type="number" value="{{data.defence.skillValueNpcElite}}"/>
                         <div class="central-text">( </div>
-                        <input class="input-long" title="{{localize "cleenmain.armor.add"}}" id="defence" name="data.defence.name" type="text" value="{{data.defence.name}}"/>
+                        <input class="input-long" title="{{localize "CLEENMAIN.armor.add"}}" id="defence" name="data.defence.name" type="text" value="{{data.defence.name}}"/>
                         <div class="central-text"> </div>
-                        <input class="input-short" title="{{localize "cleenmain.armor.protection"}}" id="defence" name="data.defence.protection" type="number" value="{{data.defence.protection}}"/>
+                        <input class="input-short" title="{{localize "CLEENMAIN.armor.protection"}}" id="defence" name="data.defence.protection" type="number" value="{{data.defence.protection}}"/>
                         <div class="central-text"> </div>
-                        <input class="input-long" title="{{localize "cleenmain.armor.special"}}" id="defence" name="data.defence.special" type="text" value="{{data.defence.special}}"/>
+                        <input class="input-long" title="{{localize "CLEENMAIN.armor.special"}}" id="defence" name="data.defence.special" type="text" value="{{data.defence.special}}"/>
                         <div class="central-text"> )</div>
                         {{else}}
-                        <div class="central-text">{{data.defence.skillvaluenpc}} / {{data.defence.skillvaluenpcelite}} ( {{data.defence.name}}  {{data.defence.protection}} {{data.defence.special}} )</div>
+                        <div class="central-text">{{data.defence.skillValueNpc}} / {{data.defence.skillValueNpcElite}} ( {{data.defence.name}}  {{data.defence.protection}} {{data.defence.special}} )</div>
                         <a class="npcskill-roll" data-type="npcdefence" data-attribute="defence">
                             <i class="fas fa-dice"></i>
                         </a>
@@ -87,9 +87,9 @@
                         <div class="npcskill-label">{{localize attribute.label}}:</div>
                         <div class="npcskill-value">
                             {{#if ../unlocked}}
-                            <input class="input-short" title="{{localize "cleenmain.skill.defence.name"}}" id="defence" name="attribute.normal" type="number" value="{{attribute.normal}}"/>
+                            <input class="input-short" title="{{localize "CLEENMAIN.skill.defence.name"}}" id="defence" name="attribute.normal" type="number" value="{{attribute.normal}}"/>
                             <div class="central-text">/</div>
-                            <input class="input-short" title="{{localize "cleenmain.skill.defence.name"}}" id="defence" name="attribute.elite" type="number" value="{{attribute.elite}}"/>
+                            <input class="input-short" title="{{localize "CLEENMAIN.skill.defence.name"}}" id="defence" name="attribute.elite" type="number" value="{{attribute.elite}}"/>
                             {{else}}
                             {{#if ../data.elite}} {{attribute.elite}} {{else}} {{attribute.normal}} {{/if}}
                             <a class="npcskill-roll" data-type="npcskill" data-attribute="{{key}}">
@@ -103,8 +103,8 @@
                 <div class="skills">
                     {{#if ../unlocked}}
                     <div class="skill-line">
-                        <div class="line-label">{{localize "cleenmain.skill.add"}}</div>
-                        <a class="item-create" data-type="skill" title="{{localize "cleenmain.skill.add"}}">
+                        <div class="line-label">{{localize "CLEENMAIN.skill.add"}}</div>
+                        <a class="item-create" data-type="skill" title="{{localize "CLEENMAIN.skill.add"}}">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -115,7 +115,7 @@
                             {{#if ../unlocked}}
                             <input class="inline-edit skill-name input-long" data-field="name" id="{{id}}" type="text" value="{{skill.name}}" data-dtype="Text" />
                             <input class="inline-edit skill-value input-short" data-field="data.value" id="{{id}}" type="number" value="{{skill.data.data.value}}" data-dtype="Number" />
-                            <a class="inline-delete" data-type="skill" data-id="{{id}}" title="{{localize "cleenmain.skill.delete"}}">
+                            <a class="inline-delete" data-type="skill" data-id="{{id}}" title="{{localize "CLEENMAIN.skill.delete"}}">
                                 <i class="fas fa-trash"></i>
                             </a>
                             {{else}}
@@ -130,24 +130,24 @@
                     </div>
                 </div>
                 <div class="npchealth-line">
-                    <div class="central-text">{{localize "cleenmain.label.health"}} : </div>
-                    <input class="input-short" title="{{localize "cleenmain.health.current"}}" id="health" name="data.health.value" type="number" value="{{data.health.value}}"/>
+                    <div class="central-text">{{localize "CLEENMAIN.label.health"}} : </div>
+                    <input class="input-short" title="{{localize "CLEENMAIN.health.current"}}" id="health" name="data.health.value" type="number" value="{{data.health.value}}"/>
                     <div class="central-text">/</div>
                     {{#if unlocked}}
                     <div class="health-block">
-                        <div class="central-text">{{localize "cleenmain.health.twopcs"}} : </div>
+                        <div class="central-text">{{localize "CLEENMAIN.health.twopcs"}} : </div>
                         <input class="input-short" id="twopcs" name="data.healthsecondfiddle.twopcs" type="number" value="{{data.healthsecondfiddle.twopcs}}"/>
                     </div>
                     <div class="health-block">
-                        <div class="central-text">{{localize "cleenmain.health.threepcs"}} : </div>
+                        <div class="central-text">{{localize "CLEENMAIN.health.threepcs"}} : </div>
                         <input class="input-short" id="threepcs" name="data.healthsecondfiddle.threepcs" type="number" value="{{data.healthsecondfiddle.threepcs}}"/>
                     </div>
                     <div class="health-block">
-                        <div class="central-text">{{localize "cleenmain.health.fourpcs"}} : </div>
+                        <div class="central-text">{{localize "CLEENMAIN.health.fourpcs"}} : </div>
                         <input class="input-short" id="fourpcs" name="data.healthsecondfiddle.fourpcs" type="number" value="{{data.healthsecondfiddle.fourpcs}}"/>
                     </div>
                     <div class="health-block">
-                        <div class="central-text">{{localize "cleenmain.health.fivepcs"}} : </div>
+                        <div class="central-text">{{localize "CLEENMAIN.health.fivepcs"}} : </div>
                         <input class="input-short" id="fivepcs" name="data.healthsecondfiddle.fivepcs" type="number" value="{{data.healthsecondfiddle.fivepcs}}"/>
                     </div>
                     {{else}}

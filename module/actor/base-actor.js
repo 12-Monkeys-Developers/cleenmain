@@ -29,17 +29,17 @@ export default class CemBaseActor extends Actor {
 
         if(elements.attribute){ //npc skill roll
             if(elements.attribute === "defence"){
-                skillData.itemName= game.i18n.localize("cleenmain.skill.defence.name");
-                if(this.data.data.elite) skillData.skillvalue = this.data.data.defence.skillvaluenpcelite;
-                else skillData.skillvalue = this.data.data.defence.skillvaluenpc;
+                skillData.itemName= game.i18n.localize("CLEENMAIN.skill.defence.name");
+                if(this.data.data.elite) skillData.skillValue = this.data.data.defence.skillValueNpcElite;
+                else skillData.skillValue = this.data.data.defence.skillValueNpc;
             }
             else{
                 skillData.itemName= game.i18n.localize(this.data.data.npcskills[elements.attribute].label);
-                if(this.data.data.elite) skillData.skillvalue = this.data.data.npcskills[elements.attribute].elite;
-                else skillData.skillvalue = this.data.data.npcskills[elements.attribute].normal;
+                if(this.data.data.elite) skillData.skillValue = this.data.data.npcskills[elements.attribute].elite;
+                else skillData.skillValue = this.data.data.npcskills[elements.attribute].normal;
             }
-            skillData.skillRollFormula = "3d6 + " + skillData.skillvalue.toString();
-            skillData.introText = game.i18n.format("cleenmain.dialog.introskill", skillData);
+            skillData.skillRollFormula = "3d6 + " + skillData.skillValue.toString();
+            skillData.introText = game.i18n.format("CLEENMAIN.dialog.introskill", skillData);
             
             skillData.subImg= "icons/skills/trades/woodcutting-logging-splitting.webp"; //to be replaced
         }
@@ -59,24 +59,24 @@ export default class CemBaseActor extends Actor {
                 if(elements.rolltype !== "damage"){
                     skillData.weaponRoll = true;
                     if(this.data.type==="npc"){
-                        skillData.skillvalue = this.data.data.elite ? item.data.data.skillvaluenpcelite : item.data.data.skillvaluenpc;
+                        skillData.skillValue = this.data.data.elite ? item.data.data.skillValueNpcElite : item.data.data.skillValueNpc;
                     }
                     else{
-                        skillData.skillvalue = item.data.data.skillvalue;
+                        skillData.skillValue = item.data.data.skillValue;
                     }
-                    skillData.skillRollFormula = "3d6 + " + skillData.skillvalue.toString();
-                    skillData.introText = game.i18n.format("cleenmain.dialog.introweapon", skillData);
+                    skillData.skillRollFormula = "3d6 + " + skillData.skillValue.toString();
+                    skillData.introText = game.i18n.format("CLEENMAIN.dialog.introweapon", skillData);
                 }
                 else{
                     skillData.damageRoll = true;
                     skillData.skillRollFormula = skillData.damageFormula;
-                    skillData.introText = game.i18n.format("cleenmain.dialog.introdamage", skillData);
+                    skillData.introText = game.i18n.format("CLEENMAIN.dialog.introdamage", skillData);
                 }
             } else{
-                skillData.skillvalue = item.data.data.value;
+                skillData.skillValue = item.data.data.value;
                 skillData.skillRoll = true;
-                skillData.skillRollFormula = "3d6 + " + skillData.skillvalue.toString();
-                skillData.introText = game.i18n.format("cleenmain.dialog.introskill", skillData);
+                skillData.skillRollFormula = "3d6 + " + skillData.skillValue.toString();
+                skillData.introText = game.i18n.format("CLEENMAIN.dialog.introskill", skillData);
             }
         };
         
@@ -90,7 +90,7 @@ export default class CemBaseActor extends Actor {
             buttons: {
             roll: {
                 icon: '<i class="fas fa-check"></i>',
-                label: game.i18n.localize("cleenmain.dialog.button.roll"),
+                label: game.i18n.localize("CLEENMAIN.dialog.button.roll"),
                 callback: async (html) => {
                     //parsing of the dialog window
                     let rollModifier = html.find("#rollmodifier")[0].value;
@@ -137,45 +137,45 @@ export default class CemBaseActor extends Actor {
                     skillData.applyModifier=[];
                     if(skillData.rollModifier.length > 0){
                         skillData.skillRollFormula += " + " +skillData.rollModifier;
-                        skillData.applyModifier.push(game.i18n.format("cleenmain.chatmessage.custommodifier", skillData));
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.chatmessage.custommodifier", skillData));
                     }
                     
                     if(skillData.useHeroism){
                         skillData.skillRollFormula += " +1d6";
-                        skillData.applyModifier.push(game.i18n.format("cleenmain.chatmessage.heroismmodifier", skillData));
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.chatmessage.heroismmodifier", skillData));
                     }
 
                     if(skillData.murderous){
-                        skillData.applyModifier.push(game.i18n.format("cleenmain.bonus.murderous.chatmessage", skillData));
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.murderous.chatmessage", skillData));
                     }
                     if(skillData.manytargets){
-                        skillData.applyModifier.push(game.i18n.format("cleenmain.bonus.manytargets.chatmessage", skillData));
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.manytargets.chatmessage", skillData));
                     }
                     if(skillData.efficient){
                         skillData.skillRollFormula += " +"+ (skillData.efficient*2).toString();
-                        skillData.applyModifier.push(game.i18n.format("cleenmain.bonus.efficient.chatmessage", skillData));
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.efficient.chatmessage", skillData));
                     }
                     if(skillData.cover){
-                        skillData.applyModifier.push(game.i18n.format("cleenmain.bonus.cover.chatmessage", skillData));
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.cover.chatmessage", skillData));
                     }
                     if(skillData.quick){
-                        skillData.applyModifier.push(game.i18n.format("cleenmain.bonus.quick.chatmessage", skillData));
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.quick.chatmessage", skillData));
                     }
                     if(skillData.lightwound){
-                        skillData.applyModifier.push(game.i18n.format("cleenmain.penalty.lightwound.chatmessage", skillData));
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.penalty.lightwound.chatmessage", skillData));
                     }
                     if(skillData.exposed){
-                        skillData.applyModifier.push(game.i18n.format("cleenmain.penalty.exposed.chatmessage", skillData));
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.penalty.exposed.chatmessage", skillData));
                     }
                     if(skillData.difficulty){
                         skillData.skillRollFormula += " -"+ (skillData.difficulty*2).toString();
-                        skillData.applyModifier.push(game.i18n.format("cleenmain.penalty.difficulty.chatmessage", skillData));
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.penalty.difficulty.chatmessage", skillData));
                     }
                     if(skillData.slow){
-                        skillData.applyModifier.push(game.i18n.format("cleenmain.penalty.slow.chatmessage", skillData));
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.penalty.slow.chatmessage", skillData));
                     }
                     if(skillData.jeopardy){
-                        skillData.applyModifier.push(game.i18n.format("cleenmain.penalty.jeopardy.chatmessage", skillData));
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.penalty.jeopardy.chatmessage", skillData));
                     }
                     skillData.skillRoll = new Roll(skillData.skillRollFormula).evaluate({async:false});
                     skillData.tooltip= new Handlebars.SafeString(await skillData.skillRoll.getTooltip());
@@ -205,7 +205,7 @@ export default class CemBaseActor extends Actor {
             },
             cancel: {
                 icon: '<i class="fas fa-times"></i>',
-                label: game.i18n.localize("cleenmain.dialog.button.cancel"),
+                label: game.i18n.localize("CLEENMAIN.dialog.button.cancel"),
                 callback: () => {},
             },
             },

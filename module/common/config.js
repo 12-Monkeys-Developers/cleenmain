@@ -1,5 +1,5 @@
 export const CLEENMAIN = {
-        skills: ["acrobatics", "art", "athletics", "authority", "combat", "knowledge","defense", "stealth", "research", "riding","eloquence", "intellect", "language",
+        skills: ["acrobatics", "art", "athletics", "authority", "combat", "knowledge","defence", "stealth", "research", "riding","eloquence", "intellect", "language",
                 "muscles","perception", "drive", "psychology", "reflexes","resistance","healing", "survival", "technical", "willpower"],
         weapon: {
                 category: {
@@ -21,7 +21,7 @@ export const CLEENMAIN = {
                 }
         },
         npcskills: {
-                physical: ["acrobatics", "athletics", "combat", "defense", "riding", "muscles", "resistance"],
+                physical: ["acrobatics", "athletics", "combat", "defence", "riding", "muscles", "resistance"],
                 dexterity: ["stealth", "drive", "reflexes", "healing", "technical"],
                 social: ["art", "command", "eloquence", "psychology"],
                 mental: ["knowledge", "research", "intellect", "langage", "perception", "survival", "willpower"]
