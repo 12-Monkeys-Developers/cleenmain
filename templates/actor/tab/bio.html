@@ -1,20 +1,24 @@
 <div class="tab-bio">
     <div class="title-line">
-        <h1><div class="column-title">{{localize "CLEENMAIN.label.bio"}}</div></h1>
+        <h1 class="column-title">{{localize "CLEENMAIN.label.bio"}}</h1>
     </div>
     {{#if unlocked}}
-    <div class="description-block">
-        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-    </div>
-    <div class="traits-block">
-        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-    </div>
+        <div class="description-block">
+            <h2 class="column-title">{{localize "CLEENMAIN.label.description"}}</h2>
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        </div>
+        <div class="traits-block">
+            <h2 class="column-title">{{localize "CLEENMAIN.label.traits"}}</h2>
+            {{editor content=data.traits target="data.traits" button=true owner=owner editable=editable}}
+        </div>
     {{else}}
-    <div class="description-block">
-        {{{data.description}}}
-    </div>
-    <div class="traits-block">
-        {{{data.traits}}}
-    </div>
+        <div class="description-block">
+            <h2 class="column-title">{{localize "CLEENMAIN.label.description"}}</h2>
+            {{{data.description}}}
+        </div>
+        <div class="traits-block">
+            <h2 class="column-title">{{localize "CLEENMAIN.label.traits"}}</h2>
+            {{{data.traits}}}
+        </div>
     {{/if}}
 </div>
