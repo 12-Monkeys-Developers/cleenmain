@@ -11,6 +11,31 @@ export class CemBaseActorSheet extends ActorSheet {
     }
 
     /** @override */
+    getData(options) {
+      const context = super.getData(options);
+      context.actorData = context.data;      
+      context.data = context.actorData.data;
+      context.flags = context.actorData.flags;
+      context.id = context.actor.id;
+      context.config = CONFIG.CLEENMAIN;
+      context.editable = this.isEditable;
+      context.isGm = game.user.isGM;
+
+      context.boons = context.items.filter(function(item){return item.type==="boon"});    
+      context.weapons = context.items.filter(function(item){return item.type==="weapon"});	
+      context.armors = context.items.filter(function(item){return item.type==="armor"});
+      context.equipments = context.items.filter(function(item){return item.type==="equipment"});
+
+      // Alphabetic order for skills
+      context.skills = context.items.filter(function(item){return item.type==="skill"}).sort(function (a, b) {return a.name.localeCompare(b.name);});
+
+      context.unlocked = this.actor.getFlag(game.system.id, "SheetUnlocked");
+
+      return context;
+    }
+
+
+    /** @override */
     activateListeners(html){
         super.activateListeners(html);
         

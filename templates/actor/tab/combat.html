@@ -47,10 +47,10 @@
             {{#each armors as |item id|}}
                 <tr>
                     <th>{{name}}</th>
-                    <th>{{getCategoryLabel "armor" item.data.data.category}}</th>
-                    <th>{{item.data.data.protection}}</th>
-                    <th>{{item.data.data.malus}}</th>
-                    <th>{{item.data.data.special}}</th>
+                    <th>{{getCategoryLabel "armor" item.data.category}}</th>
+                    <th>{{item.data.protection}}</th>
+                    <th>{{item.data.malus}}</th>
+                    <th>{{item.data.special}}</th>
                     {{#if ../unlocked}}
                         <th>
                             <a class="item-open-sheet" data-type="armor" data-id="{{item.id}}" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i class="fas fa-pen"></i></a>
@@ -123,23 +123,23 @@
             {{#each weapons as |item id|}}
                 <tr class="droppable" data-id="{{item.id}}">
                     <th>{{name}}</th>
-                    <th>{{getCategoryLabel "weapon" item.data.data.category}}</th>
-                    <th>{{item.data.data.skillName}}</th>
+                    <th>{{getCategoryLabel "weapon" item.data.category}}</th>
+                    <th>{{item.data.skillName}}</th>
                     <th>
-                        {{item.data.data.skillValue}}
+                        {{item.data.skillValue}}
                         <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="attack"><i class="fas fa-dice"></i></a>
                     </th>
                     <th>
-                        {{item.data.data.damage}}
+                        {{item.data.damage}}
                         <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="damage"><i class="fas fa-dice"></i></a>
                     </th>
-                    <th>{{item.data.data.range}}</th>
-                    <th>{{item.data.data.zone}}</th>
+                    <th>{{item.data.range}}</th>
+                    <th>{{item.data.zone}}</th>
                     <th>
                         {{#if unlocked}}
-                            <input class="checkbox" name="item.data.data.sixPlus" type="checkbox" {{checked item.data.data.sixPlus}}>
+                            <input class="checkbox" name="item.data.sixPlus" type="checkbox" {{checked item.data.sixPlus}}>
                         {{else}}
-                            <i class="{{getCheckboxIcon  item.data.data.sixPlus}}"></i>
+                            <i class="{{getCheckboxIcon  item.data.sixPlus}}"></i>
                         {{/if}}
                     </th>
                     <th>

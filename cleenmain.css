@@ -84,7 +84,7 @@ input {
 .cleenmain.sheet.player .main .leftcolumn .skills {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 0.2em;
 }
 .cleenmain.sheet.player .main .leftcolumn .skills .skill-line {
   display: flex;

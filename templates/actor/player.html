@@ -1,35 +1,38 @@
 <form class="{{cssClass}}" autocomplete="off">
+    {{log 'this' this}}
     <div class="main">
         <div class="leftcolumn">
             <div class="title-line">
-                <h1><div class="column-title">{{localize "CLEENMAIN.label.skills"}}</div></h1>
-                {{#if unlocked}}
-                    <a class="item-create right-icon" data-type="skill" title="{{localize "CLEENMAIN.skill.add"}}"><i class="fas fa-plus"></i></a>
-                {{/if}}
+                <h1 class="column-title">{{localize "CLEENMAIN.label.skills"}}
+                    {{#if unlocked}}
+                        <a class="item-create right-icon" data-type="skill" title="{{localize 'CLEENMAIN.skill.add'}}"><i class="fas fa-plus"></i></a>
+                    {{/if}}
+                </h1>                    
             </div>
             {{#if unlocked}}
                 <div class="skills item-list">
                     {{#each skills as |skill type|}}
-                        <div class="skill-line item" data-item-id="{{id}}">
-                            <input class="inline-edit skill-name" data-field="name" id="{{id}}" type="text" value="{{skill.name}}" data-dtype="Text"/>
-                            <input class="inline-edit skill-value" data-field="data.base" id="{{id}}" type="number" name="skill.data.base" value="{{skill.data.data.base}}" data-dtype="Number" />
-                            <input class="inline-edit skill-dev checkbox" data-field="data.developed" id="{{id}}" name="skill.data.developed" type="checkbox" {{checked skill.data.data.developed}}>
-                            <a class="inline-delete" data-type="skill" data-id="{{id}}" title="{{localize 'CLEENMAIN.skill.delete'}}"><i class="fas fa-trash"></i></a>
+                    {{log 'skill' this}}
+                        <div class="skill-line item" data-item-id="{{_id}}">
+                            <input class="inline-edit skill-name" data-field="name" id="{{_id}}" type="text" value="{{skill.name}}" data-dtype="Text"/>
+                            <input class="inline-edit skill-value" data-field="data.base" id="{{_id}}" type="number" name="skill.data.base" value="{{skill.data.base}}" data-dtype="Number" />
+                            <input class="inline-edit skill-dev checkbox" data-field="data.developed" id="{{_id}}" name="skill.data.developed" type="checkbox" {{checked skill.data.developed}}>
+                            <a class="inline-delete" data-type="skill" data-id="{{_id}}" title="{{localize 'CLEENMAIN.skill.delete'}}"><i class="fas fa-trash"></i></a>
                         </div>
                     {{/each}}
                 </div>
             {{else}}
-            <div class="skills">
-                {{#each skills as |skill type|}}
-                    <div class="skill-line">
-                        <div class="skill-name" title="{{skill.data.data.description}}" >{{skill.name}}</div>
-                        <div class="skill-value">{{skill.data.data.value}}</div>
-                        <a class="item-roll" data-type="skill" data-id="{{skill.id}}">
-                            <i class="fas fa-dice"></i>
-                        </a></th>
-                    </div>
-                {{/each}}
-            </div>
+                <div class="skills">
+                    {{#each skills as |skill type|}}
+                        <div class="skill-line">
+                            <div class="skill-name" title="{{skill.data.description}}" >{{skill.name}}</div>
+                            <div class="skill-value">{{skill.data.value}}</div>
+                            <a class="item-roll" data-type="skill" data-id="{{skill._id}}">
+                                <i class="fas fa-dice"></i>
+                            </a></th>
+                        </div>
+                    {{/each}}
+                </div>
             {{/if}}
         </div>
         <div class="central">
