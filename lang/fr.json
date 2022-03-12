@@ -27,7 +27,7 @@
             "protections": "Protections",
             "skills" : "Compétences",
             "tactics": "Tactique",
-            "trainings": "Formé aux: ",
+            "trainings": "Formé aux : ",
             "type": "Type",
             "unlock_sheet": "Verrouiller/Déverrouiller la feuille",
             "wealth": "Richesses",
@@ -39,7 +39,7 @@
                 "standard": "Normale",
                 "war": "Armures de guerre",
                 "heavy": "Armures lourdes",
-                "shield": "Bouclier"
+                "shield": "Boucliers"
             },
             "add": "Nouvelle armure",
             "malus": "Malus",
@@ -66,6 +66,7 @@
             },
             "add": "Nouvelle arme",
             "delete": "Supprimer l'arme",
+            "name": "Nom",
             "attack": "Attaque",
             "targets": "Cibles",
             "damage": "Dégâts",

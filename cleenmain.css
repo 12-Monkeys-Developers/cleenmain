@@ -32,8 +32,8 @@ input {
   color: #456;
 }
 .cleenmain.sheet.player .window-content {
-  background: no-repeat url('./assets/image/paxelfica-fondfdp.webp');
-  background-size: 100% 100%;
+  background: no-repeat url('./assets/image/fond.png');
+  background-size: 250px 100%;
   background-color: #fffdfc;
   font-family: "Museo Slab";
 }

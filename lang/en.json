@@ -26,7 +26,7 @@
             "protections": "Protections",
             "skills" : "Compétences",
             "tactics": "Tactics",
-            "trainings": "Trainings: ",
+            "trainings": "Trained in : ",
             "type": "Type",
             "unlock_sheet": "Unlock Sheet",
             "health": "Health",
@@ -39,7 +39,7 @@
                 "standard": "Standard",
                 "war": "War Armor",
                 "heavy": "Heavy armor",
-                "shield": "Shield"
+                "shield": "Shields"
             },
             "add": "New armor",
             "malus": "Malus",
@@ -66,6 +66,7 @@
             },
             "add": "New weapon",
             "delete": "Delete weapon",
+            "name": "Name",
             "attaque": "Attack",
             "targets": "targets",
             "damage": "Damage",

@@ -26,7 +26,6 @@
 
             <td>
                 <select name="data.category">
-                    {{log 'config' config}}
                     {{#select data.category}}
                         {{#each config.weapon.category as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>

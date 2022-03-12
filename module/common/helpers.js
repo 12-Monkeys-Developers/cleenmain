@@ -82,4 +82,14 @@ export const registerHandlebarsHelpers = function() {
             accum += block.fn(i);
         return accum;
     });  
+
+    // Times
+    Handlebars.registerHelper('getCategoryLabel', function(type, category) {
+        if (type === "armor") {
+            return game.i18n.localize("CLEENMAIN.armor.category."+category);
+        }
+        else if (type === "weapon") {
+            return game.i18n.localize("CLEENMAIN.weapon.category."+category);
+        }        
+    });
 }
