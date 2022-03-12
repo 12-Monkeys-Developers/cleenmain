@@ -13,7 +13,7 @@
             {{#if unlocked}}
                 <input class="checkbox" name="data.trainings.armors.war" type="checkbox" {{checked data.trainings.armors.war}}>
             {{else}}
-                {{#if data.trainings.armors.war}}<i class="fas fa-square"></i>{{else}}<i class="far fa-square"></i>{{/if}}
+                <i class="{{getCheckboxIcon  data.trainings.armors.war}}"></i>
             {{/if}}
             <div class="trainings-name">{{localize "CLEENMAIN.armor.category.war"}}</div>
         </div>
@@ -21,7 +21,7 @@
             {{#if unlocked}}
                 <input class="checkbox" name="data.trainings.armors.heavy" type="checkbox" {{checked data.trainings.armors.heavy}}>
             {{else}}
-                {{#if data.trainings.armors.heavy}}<i class="fas fa-square"></i>{{else}}<i class="far fa-square"></i>{{/if}}
+                <i class="{{getCheckboxIcon  data.trainings.armors.heavy}}"></i>
             {{/if}}
             <div class="trainings-name">{{localize "CLEENMAIN.armor.category.heavy"}}</div>
         </div>
@@ -29,7 +29,7 @@
             {{#if unlocked}}
                 <input class="checkbox" name="data.trainings.armors.shield" type="checkbox" {{checked data.trainings.armors.shield}}>
             {{else}}
-                {{#if data.trainings.armors.shield}}<i class="fas fa-square"></i>{{else}}<i class="far fa-square"></i>{{/if}}
+                <i class="{{getCheckboxIcon  data.trainings.armors.shield}}"></i>
             {{/if}}
             <div class="trainings-name">{{localize "CLEENMAIN.armor.category.shield"}}</div>
         </div>
@@ -76,7 +76,7 @@
             {{#if unlocked}}
                 <input class="checkbox" name="data.trainings.weapons.war" type="checkbox" {{checked data.trainings.weapons.war}}>
             {{else}}
-                {{#if data.trainings.weapons.war}}<i class="fas fa-square"></i>{{else}}<i class="far fa-square"></i>{{/if}}
+                <i class="{{getCheckboxIcon  data.trainings.weapons.war}}"></i>
             {{/if}}
             <div class="trainings-name">{{localize "CLEENMAIN.weapon.category.war"}}</div>
         </div>
@@ -84,7 +84,7 @@
             {{#if unlocked}}
             <input class="checkbox" name="data.trainings.weapons.heavy" type="checkbox" {{checked data.trainings.weapons.heavy}}>
             {{else}}
-                {{#if data.trainings.weapons.heavy}}<i class="fas fa-square"></i>{{else}}<i class="far fa-square"></i>{{/if}}
+            <i class="{{getCheckboxIcon  data.trainings.weapons.heavy}}"></i>
             {{/if}}
             <div class="trainings-name">{{localize "CLEENMAIN.weapon.category.heavy"}}</div>
         </div>
@@ -139,7 +139,7 @@
                         {{#if unlocked}}
                             <input class="checkbox" name="item.data.data.sixPlus" type="checkbox" {{checked item.data.data.sixPlus}}>
                         {{else}}
-                            {{#if item.data.data.sixPlus}}<i class="fas fa-square"></i>{{else}}<i class="far fa-square"></i>{{/if}}
+                            <i class="{{getCheckboxIcon  item.data.data.sixPlus}}"></i>
                         {{/if}}
                     </th>
                     <th>

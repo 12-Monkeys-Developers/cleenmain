@@ -26,9 +26,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
     });
   }
   
-  /**
-   * @override
-   */
+  /** @override */
   getData() {
     const context = super.getData();
     const actorData = this.actor.data.toObject(false);

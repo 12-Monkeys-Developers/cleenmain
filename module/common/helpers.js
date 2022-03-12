@@ -92,4 +92,11 @@ export const registerHandlebarsHelpers = function() {
             return game.i18n.localize("CLEENMAIN.weapon.category."+category);
         }        
     });
+
+
+    Handlebars.registerHelper('getCheckboxIcon', function (value) {
+        if (value) return "fas fa-square";
+        return "far fa-square";
+    });
+
 }

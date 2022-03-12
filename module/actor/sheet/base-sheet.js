@@ -15,7 +15,7 @@ export class CemBaseActorSheet extends ActorSheet {
         super.activateListeners(html);
         
         html.find(".item-create").click(this._onItemCreate.bind(this));
-        html.find("item-edit").click(this._onItemEdit.bind(this));
+        html.find(".item-edit").click(this._onItemEdit.bind(this));
 
         html.find(".inline-edit").change(this._onEmbeddedItemEdit.bind(this));        
         html.find(".inline-delete").click(this._onEmbeddedItemDelete.bind(this));
