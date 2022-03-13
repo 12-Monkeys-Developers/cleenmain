@@ -10,17 +10,12 @@ export default class CemBaseActor extends Actor {
      * @name check
      * @description Rolls dices
      * @param {*} itemId Id of the Item used for roll
-     * @param {*} type type of the Item skill, weapon
-     * @param {*} rolltype  skill, weapon attack, weapon damage
+     * @param {*} rollType  skill, weapon attack, weapon damage
      * @returns 
      */
-    async check(itemId, type, rolltype) {
+    async check(itemId, rollType) {
         const item = this.items.get(itemId);
         if (!item) return;
-
-        if (type === "skill") {
-            rolltype = item.name;
-        }
 
         // Get the active token
         let tokenList = this.getActiveTokens();
@@ -30,7 +25,7 @@ export default class CemBaseActor extends Actor {
         const actingCharacterName = actingToken?.data?.name ?? this.name;
         const actingCharacterImage = actingToken?.data?.img ?? this.img; 
 
-        return Rolls.check(this, item, rolltype, {
+        return Rolls.check(this, item, rollType, {
             ...item.data,
             owner: this.id,
             actingCharacterName: actingCharacterName,

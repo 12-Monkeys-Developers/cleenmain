@@ -48,7 +48,10 @@ export class CemBaseActorSheet extends ActorSheet {
         html.find(".item-open-sheet").click(this._onItemEdit.bind(this));
         
         html.find(".sheet-unlock").click(this._onSheetUnlock.bind(this));
-        html.find(".item-roll").click(this._onItemRoll.bind(this));
+        
+        html.find(".skill-roll").click(this._onSkillRoll.bind(this));
+        html.find(".weapon-attack-roll").click(this._onWeaponAttackRoll.bind(this));
+        html.find(".weapon-damage-roll").click(this._onWeaponDamageRoll.bind(this));
 
     }
 
@@ -138,14 +141,42 @@ export class CemBaseActorSheet extends ActorSheet {
     this.actor.sheet.render(true);
   }
 
-  async _onItemRoll(event){
+  /**
+   * 
+   * @param {*} event 
+   * @returns 
+   */
+  async _onSkillRoll(event){
     event.preventDefault();
-    let element= event.currentTarget;
+    let element = event.currentTarget;
     let itemId = element.dataset.id;
-    let itemType = element.dataset.type;
-    let rolltype = element.dataset?.rolltype;
    
-    //this.actor.roll({itemId: itemId, type: itemType, rolltype: rolltype});
-    return this.actor.check(itemId, itemType, rolltype);    
+    return this.actor.check(itemId, "skill");    
+  }
+
+  /**
+   * 
+   * @param {*} event 
+   * @returns 
+   */
+   async _onWeaponAttackRoll(event){
+    event.preventDefault();
+    let element = event.currentTarget;
+    let itemId = element.dataset.id;
+   
+    return this.actor.check(itemId, "weapon-attack");    
+  }
+
+  /**
+   * 
+   * @param {*} event 
+   * @returns 
+   */
+   async _onWeaponDamageRoll(event){
+    event.preventDefault();
+    let element = event.currentTarget;
+    let itemId = element.dataset.id;
+   
+    return this.actor.check(itemId, "weapon-damage");    
   }
 }

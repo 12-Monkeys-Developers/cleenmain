@@ -12,20 +12,58 @@ export class Rolls {
      */
        static async check(actor, item, type, data) {       
         
+        let title = "";
+        let introText;
+        let skillRoll = false;
+        let attackRoll = false;
+        let damageRoll = false;
+
+        let rollFormula;
+
+        if (type === "skill") {
+            title += "Jet de " + item.name;
+            skillRoll = true;
+            rollFormula = "3d6 + " + item.data.data.value.toString();
+
+            introText = game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: data.actingCharacterName, itemName: item.name});
+        }
+        if (type === "weapon-attack") {
+            title += "Attaque de " + item.name;
+            attackRoll = true;
+            rollFormula = "3d6 + " + item.data.data.skillValue.toString();
+
+            introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingCharacterName, itemName: item.name});
+        }
+        if (type === "weapon-damage") {
+            title += "Dommages de " + item.name;
+            damageRoll = true;
+
+            rollFormula = item.data.data.damage;
+
+            if (actor.data.type === "player") {
+                let damageBonus = actor.data.data.damageBonus[item.data.data.type];
+                if (damageBonus) rollFormula.concat(' + ', damageBonus.toString());
+            }
+            introText = game.i18n.format("CLEENMAIN.dialog.introdamage", {actingCharName: data.actingCharacterName, itemName: item.name});
+        }
+
         // Create the dialog panel to display.
         const html = await renderTemplate('systems/cleenmain/templates/chat/rollDialog.html', {
                 actor: actor,
                 item: item,
                 type: type,
                 action: data,
-                introText: game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: data.actingCharacterName, itemName: item.name}),
+                introText: introText,
                 actingCharImg: data.actingCharacterImage,
-                skillRollFormula: "3d6 + " + item.data.data.value.toString()
+                rollFormula: rollFormula,
+                skillRoll: skillRoll,
+                attackRoll: attackRoll,
+                damageRoll: damageRoll
         });
 
         // Display the action panel
         await new Dialog({
-            title: "Jet de " + type,
+            title: title,
             content: html,
             buttons: {
                 roll: {
@@ -33,18 +71,38 @@ export class Rolls {
                     label: game.i18n.localize("CLEENMAIN.dialog.button.roll"),
                     callback: async (html) => {
 
+                        data.applyModifiers = [];
+
                         // The optional modifier
-                        const modifier = parseInt(Math.floor(parseInt(html.find("#rollmodifier")[0].value)));
-                        if (modifier.length > 0) {
-                            data.modifier = modifier;
+                        const modifierInput = html.find("#rollmodifier")[0].value;
+                        if (modifierInput !== "") {
+                            data.modifier = parseInt(Math.floor(parseInt(modifierInput)));
+                        }
+
+                        // Define the formula
+                        if (skillRoll) {
+                            data.formula = "3d6".concat(' + ', item.data.data.value.toString());
+                        }
+                        if (attackRoll) {
+                            data.formula = "3d6".concat(' + ', item.data.data.skillValue.toString());
+                        }
+                        if (damageRoll) {
+                            data.formula = item.data.data.damage;
+                        }
+
+                        if (data.modifier) {
+                            data.formula = data.formula.concat(' + ', data.modifier.toString());
+                            data.applyModifiers.push(game.i18n.format("CLEENMAIN.chatmessage.custommodifier", {rollModifier: data.modifier}));
                         }
 
                         // The optional heroism use
-                        data.useHeroism = html.find("#heroism")[0].checked;
+                        data.useHeroism = false;
 
-                        // Define the formula
-                        const skillValue = item.data.data.value;
-                        data.formula = "3d6 + " + skillValue.toString();
+                        if (html.find("#heroism")[0]?.checked) {
+                            data.useHeroism = true;
+                            data.formula = data.formula.concat(' + 1d6');
+                            data.applyModifiers.push(game.i18n.format("CLEENMAIN.chatmessage.heroismmodifier"));
+                        }
 
                         // Calculate the final difficulty
                         // data.difficulty = parseInt(data.difficulty) + (isNaN(modifier) ? 0 : modifier) + (skipWoundModifier ? 0 : woundModifier) + additionalKa + approche;
@@ -93,6 +151,7 @@ export class Rolls {
                 introText: game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: actor.name, itemName: item.name}),
                 actingCharImg: data.actingCharacterImage,
                 formula: data.formula,
+                applyModifiers: data.applyModifiers,
                 result: result         
             })
             .withRoll(true)

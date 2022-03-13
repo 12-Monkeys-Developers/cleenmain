@@ -268,54 +268,54 @@
         "bonus":{
             "murderous":{
                 "label": "Attaque meurtrière",
-                "description": "les dégâts de l’attaque augmentent de 1d6. Plusieurs Attaques meurtrières augmentent les dégâts d’autant de d6 que d’Attaques meurtrières.",
+                "description": "Les dégâts de l’attaque augmentent de 1d6. Plusieurs Attaques meurtrières augmentent les dégâts d’autant de d6 que d’Attaques meurtrières.",
                 "chatmessage": "Prime: Attaque meurtrière (x{murderous})."
             },
             "manytargets":{
                 "label": "Attaques multiples",
-                "description": "l’attaque vise deux cibles à la fois, à condition qu’elles soient accessibles au personnage – à son contact pour une attaque de corps à corps, groupées pour un tir. Un seul test est e{ectué et les dégâts, après tous les autres calculs, sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur.",
+                "description": "L’attaque vise deux cibles à la fois, à condition qu’elles soient accessibles au personnage – à son contact pour une attaque de corps à corps, groupées pour un tir. Un seul test est e{ectué et les dégâts, après tous les autres calculs, sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur.",
                 "chatmessage": "Prime: Attaques multiples."
             },
             "efficient":{
-                "label": "Éfficacité",
-                "description":  "l’action en cours bénéficie d’un bonus de 2. Plusieurs Efficacités confèrent un bonus de 2 pour chaque Efficacité.",
+                "label": "Efficacité",
+                "description":  "L’action en cours bénéficie d’un bonus de 2. Plusieurs Efficacités confèrent un bonus de 2 pour chaque Efficacité.",
                 "chatmessage": "Prime: Efficacité (x{efficient})."
             },
             "cover":{
                 "label": "Prudence",
-                "description":  "le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage bénéficie d’un bonus de 2. Plusieurs Prudences augmentent le nombre de tests successifs bénéficiant de ce bonus.",
+                "description":  "Le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage bénéficie d’un bonus de 2. Plusieurs Prudences augmentent le nombre de tests successifs bénéficiant de ce bonus.",
                 "chatmessage": "Prime: Prudence (x{cover})."
             },
             "quick":{
                 "label": "Rapidité",
-                "description":  "en combat, une attaque rapide ne donne pas la main à l’adversaire. En dehors d’un combat, la durée d’exécution d’une tâche est divisée par deux. Non cumulable.",
+                "description":  "En combat, une attaque rapide ne donne pas la main à l’adversaire. En dehors d’un combat, la durée d’exécution d’une tâche est divisée par deux. Non cumulable.",
                 "chatmessage": "Prime: Rapidité."
             }
         },
         "penalty":{
             "lightwound":{
                 "label": "Blessure légère",
-                "description":  "les dégâts sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur",
+                "description":  "Les dégâts sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur",
                 "chatmessage": "Pénalité: Blessure légère."
             },
             "exposed":{
                 "label": "Danger",
-                "description":  "le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage subit un malus de 2. D’autres Dangers augmentent le nombre de tests successifs subissant ce malus.",
+                "description":  "Le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage subit un malus de 2. D’autres Dangers augmentent le nombre de tests successifs subissant ce malus.",
                 "chatmessage": "Pénalité: Danger (x{exposed})."
             },
             "difficulty":{
                 "label": "Difficulté",
-                "description":  "l’action en cours subit un malus de 2. Plusieurs Difficultés imposent un malus de 2 pour chaque Difficulté.",
+                "description":  "L’action en cours subit un malus de 2. Plusieurs Difficultés imposent un malus de 2 pour chaque Difficulté.",
                 "chatmessage": "Pénalité: Difficulté (x{difficulty})."
             },
             "slow": {
                 "label": "Lenteur",
-                "description": "en combat, une action lente donne la main à l’adversaire, même s’il ne s’agissait pas d’une attaque. En dehors d’un combat, la durée d’une tâche augmente de moitié. Non cumulable.",
+                "description": "En combat, une action lente donne la main à l’adversaire, même s’il ne s’agissait pas d’une attaque. En dehors d’un combat, la durée d’une tâche augmente de moitié. Non cumulable.",
                 "chatmessage": "Pénalité: Lenteur."
             },
             "jeopardy":{
                 "label": "Risque",
-                "description":  "si l’action en cours échoue, un incident, déterminé par le MJ, survient. Par exemple l’arme est coincée ou détruite, le personnage glisse et tombe au sol, il lâche un objet, un de ses vêtements s’accroche quelque part et lui fait perdre une action, l’attaque touche un allié, etc. Plusieurs Risques différents exposent le personnage à des déboires multiples simultanés. Plusieurs risques identiques ne sont pas cumulables.",
+                "description":  "Si l’action en cours échoue, un incident, déterminé par le MJ, survient. Par exemple l’arme est coincée ou détruite, le personnage glisse et tombe au sol, il lâche un objet, un de ses vêtements s’accroche quelque part et lui fait perdre une action, l’attaque touche un allié, etc. Plusieurs Risques différents exposent le personnage à des déboires multiples simultanés. Plusieurs risques identiques ne sont pas cumulables.",
                 "chatmessage": "Pénalité: Risque (x{jeopardy})."
             }
         }

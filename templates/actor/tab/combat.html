@@ -121,17 +121,17 @@
                 </tr>
             </thead>
             {{#each weapons as |item id|}}
-                <tr class="droppable" data-id="{{item.id}}">
+                <tr class="droppable" data-id="{{item._id}}">
                     <th>{{name}}</th>
                     <th>{{getCategoryLabel "weapon" item.data.category}}</th>
                     <th>{{item.data.skillName}}</th>
                     <th>
                         {{item.data.skillValue}}
-                        <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="attack"><i class="fas fa-dice"></i></a>
+                        <a class="weapon-attack-roll" data-id="{{item._id}}"><i class="fas fa-dice"></i></a>
                     </th>
                     <th>
                         {{item.data.damage}}
-                        <a class="item-roll" data-type="weapon" data-id="{{item.id}}" data-rolltype="damage"><i class="fas fa-dice"></i></a>
+                        <a class="weapon-damage-roll" data-id="{{item._id}}"><i class="fas fa-dice"></i></a>
                     </th>
                     <th>{{item.data.range}}</th>
                     <th>{{item.data.zone}}</th>
