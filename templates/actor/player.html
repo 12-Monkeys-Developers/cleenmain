@@ -1,5 +1,4 @@
 <form class="{{cssClass}}" autocomplete="off">
-    {{log 'this' this}}
     <div class="main">
         <div class="leftcolumn">
             <div class="title-line">
@@ -12,7 +11,6 @@
             {{#if unlocked}}
                 <div class="skills item-list">
                     {{#each skills as |skill type|}}
-                    {{log 'skill' this}}
                         <div class="skill-line item" data-item-id="{{_id}}">
                             <input class="inline-edit skill-name" data-field="name" id="{{_id}}" type="text" value="{{skill.name}}" data-dtype="Text"/>
                             <input class="inline-edit skill-value" data-field="data.base" id="{{_id}}" type="number" name="skill.data.base" value="{{skill.data.base}}" data-dtype="Number" />

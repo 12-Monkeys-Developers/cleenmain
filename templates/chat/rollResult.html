@@ -1,19 +1,19 @@
 <div class="chatroll">
     <div class="intro">
-        <div class="introImg" style="background-image: url('{{skillData.actingCharImg}}')">
-            <div class="introText">{{skillData.introText}}</div>
+        <div class="introImg" style="background-image: url('{{actingCharImg}}')">
+            <div class="introText">{{introText}}</div>
         </div>
     </div>  
         {{#each skillData.applyModifier as |mod id|}}    
         <div class="modifierText">{{mod}}</div>
         {{/each}}
         <div class="formulaText">
-            {{localize "CLEENMAIN.chatmessage.rollformula"}}  {{skillData.skillRollFormula}}
+            {{localize "CLEENMAIN.chatmessage.rollformula"}}  {{formula}}
         </div>
         <div class="finalText">
             <div class="tooltip">
-                <p>{{localize "CLEENMAIN.chatmessage.rollresult"}} {{skillData.skillRoll.total}}</p>
-                <span class="tooltiptext">{{skillData.tooltip}}</span>
+                <p>{{localize "CLEENMAIN.chatmessage.rollresult"}} {{result.total}}</p>
+                <span class="tooltiptext">{{result.tooltip}}</span>
             </div>
         </div>
 </div>

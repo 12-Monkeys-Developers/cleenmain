@@ -138,12 +138,14 @@ export class CemBaseActorSheet extends ActorSheet {
     this.actor.sheet.render(true);
   }
 
-  _onItemRoll(event){
+  async _onItemRoll(event){
     event.preventDefault();
     let element= event.currentTarget;
     let itemId = element.dataset.id;
     let itemType = element.dataset.type;
     let rolltype = element.dataset?.rolltype;
-    this.actor.roll({type: itemType, itemId: itemId, rolltype: rolltype});
+   
+    //this.actor.roll({itemId: itemId, type: itemType, rolltype: rolltype});
+    return this.actor.check(itemId, itemType, rolltype);    
   }
 }

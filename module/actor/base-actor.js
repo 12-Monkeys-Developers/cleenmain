@@ -1,8 +1,41 @@
+import { Rolls } from "../common/rolls.js";
 export default class CemBaseActor extends Actor {
 
     /** @override */
     prepareData(){
         super.prepareData();
+    }
+
+    /**
+     * @name check
+     * @description Rolls dices
+     * @param {*} itemId Id of the Item used for roll
+     * @param {*} type type of the Item skill, weapon
+     * @param {*} rolltype  skill, weapon attack, weapon damage
+     * @returns 
+     */
+    async check(itemId, type, rolltype) {
+        const item = this.items.get(itemId);
+        if (!item) return;
+
+        if (type === "skill") {
+            rolltype = item.name;
+        }
+
+        // Get the active token
+        let tokenList = this.getActiveTokens();
+        let actingToken = tokenList[0];
+
+        // If there is a token active for this actor, we use its name and image instead of the actor's
+        const actingCharacterName = actingToken?.data?.name ?? this.name;
+        const actingCharacterImage = actingToken?.data?.img ?? this.img; 
+
+        return Rolls.check(this, item, rolltype, {
+            ...item.data,
+            owner: this.id,
+            actingCharacterName: actingCharacterName,
+            actingCharacterImage: actingCharacterImage
+        });
     }
 
     /* roll a player action

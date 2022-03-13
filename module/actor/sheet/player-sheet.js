@@ -83,16 +83,16 @@ export default class PlayerSheet extends CemBaseActorSheet {
    * @returns
    */
   _onDropSkillItem(event, itemData) {
-    console.log("skill", itemData);
     event.preventDefault();
     const id = event.target.parentElement.dataset["id"];
     const target = this.actor.items.get(id);
     if (!target || target.type !== "weapon") return;
-    console.log("target", target);
+
     let targetData = duplicate(target.data);
     targetData.data.skillName = itemData.name;
     targetData.data.skillValue = Skills.getSkillValue(itemData.data.base, itemData.data.bonus, itemData.data.developed);
     targetData.data.skillId = id;
+    
     this.actor.updateEmbeddedDocuments("Item", [targetData]);
   }
 }
