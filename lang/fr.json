@@ -250,8 +250,11 @@
             "rollmodifier": "Modificateur pour le jet: ",
             "heroism": "Utiliser un point d'héroïsme pour +1d6.",
             "introskill": "{actingCharName} utilise la compétence {itemName}.",
+            "titleskill": "Jet de {itemName}",
             "introweapon": "{actingCharName} attaque avec {itemName}.",
+            "titleweapon": "Attaque de {itemName}",
             "introdamage": "{actingCharName} blesse son adversaire avec {itemName}.",
+            "titledamage": "Dommages de {itemName}",
             "button":{
                 "cancel": "Annuler",
                 "roll": "Lancer"

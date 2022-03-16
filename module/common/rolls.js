@@ -11,39 +11,41 @@ export class Rolls {
      * @param data  The action data
      */
        static async check(actor, item, type, data) {       
-        
-        let title = "";
-        let introText;
+                
         let skillRoll = false;
         let attackRoll = false;
         let damageRoll = false;
 
+        let titleDialog = "";
+        let introText;
         let rollFormula;
 
         if (type === "skill") {
-            title += "Jet de " + item.name;
+            titleDialog += game.i18n.format("CLEENMAIN.dialog.titleskill", {itemName: item.name});
             skillRoll = true;
             rollFormula = "3d6 + " + item.data.data.value.toString();
 
             introText = game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: data.actingCharacterName, itemName: item.name});
         }
         if (type === "weapon-attack") {
-            title += "Attaque de " + item.name;
+            titleDialog += game.i18n.format("CLEENMAIN.dialog.titleweapon", {itemName: item.name});
             attackRoll = true;
             rollFormula = "3d6 + " + item.data.data.skillValue.toString();
 
             introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingCharacterName, itemName: item.name});
         }
         if (type === "weapon-damage") {
-            title += "Dommages de " + item.name;
+            titleDialog += game.i18n.format("CLEENMAIN.dialog.titledamage", {itemName: item.name});
             damageRoll = true;
 
             rollFormula = item.data.data.damage;
 
+            /*
             if (actor.data.type === "player") {
                 let damageBonus = actor.data.data.damageBonus[item.data.data.type];
-                if (damageBonus) rollFormula.concat(' + ', damageBonus.toString());
+                if (damageBonus) rollFormula = rollFormula.concat(' + ', damageBonus.toString());
             }
+            */
             introText = game.i18n.format("CLEENMAIN.dialog.introdamage", {actingCharName: data.actingCharacterName, itemName: item.name});
         }
 
@@ -63,13 +65,15 @@ export class Rolls {
 
         // Display the action panel
         await new Dialog({
-            title: title,
+            title: titleDialog,
             content: html,
             buttons: {
                 roll: {
                     icon: '<i class="fas fa-check"></i>',
                     label: game.i18n.localize("CLEENMAIN.dialog.button.roll"),
                     callback: async (html) => {
+
+                        data.introText = introText;
 
                         data.applyModifiers = [];
 
@@ -80,6 +84,7 @@ export class Rolls {
                         }
 
                         // Define the formula
+                        /*
                         if (skillRoll) {
                             data.formula = "3d6".concat(' + ', item.data.data.value.toString());
                         }
@@ -88,7 +93,8 @@ export class Rolls {
                         }
                         if (damageRoll) {
                             data.formula = item.data.data.damage;
-                        }
+                        }*/
+                        data.formula = rollFormula;
 
                         if (data.modifier) {
                             data.formula = data.formula.concat(' + ', data.modifier.toString());
@@ -148,7 +154,7 @@ export class Rolls {
                 item: item,
                 sentence: data.sentence,
                 difficulty: data.difficulty,
-                introText: game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: actor.name, itemName: item.name}),
+                introText: data.introText,
                 actingCharImg: data.actingCharacterImage,
                 formula: data.formula,
                 applyModifiers: data.applyModifiers,

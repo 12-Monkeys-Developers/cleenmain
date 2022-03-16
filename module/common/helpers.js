@@ -93,7 +93,6 @@ export const registerHandlebarsHelpers = function() {
         }        
     });
 
-
     Handlebars.registerHelper('getCheckboxIcon', function (value) {
         if (value) return "fas fa-square";
         return "far fa-square";

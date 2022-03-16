@@ -39,15 +39,14 @@ export class CemBaseActorSheet extends ActorSheet {
     activateListeners(html){
         super.activateListeners(html);
         
+        html.find(".sheet-unlock").click(this._onSheetUnlock.bind(this));
+
         html.find(".item-create").click(this._onItemCreate.bind(this));
         html.find(".item-edit").click(this._onItemEdit.bind(this));
+        html.find(".item-open-sheet").click(this._onItemEdit.bind(this));
 
         html.find(".inline-edit").change(this._onEmbeddedItemEdit.bind(this));        
-        html.find(".inline-delete").click(this._onEmbeddedItemDelete.bind(this));
-        
-        html.find(".item-open-sheet").click(this._onItemEdit.bind(this));
-        
-        html.find(".sheet-unlock").click(this._onSheetUnlock.bind(this));
+        html.find(".inline-delete").click(this._onEmbeddedItemDelete.bind(this));               
         
         html.find(".skill-roll").click(this._onSkillRoll.bind(this));
         html.find(".weapon-attack-roll").click(this._onWeaponAttackRoll.bind(this));
@@ -55,40 +54,62 @@ export class CemBaseActorSheet extends ActorSheet {
 
     }
 
-    _onItemCreate(event){
-        event.preventDefault();
-        let element = event.currentTarget;
-        let newName = "New";
-        switch (element.dataset.type){
-          case "boon":
-            newName = game.i18n.localize("CLEENMAIN.boon.add");
-            break;
-          case "weapon":
-            newName = game.i18n.localize("CLEENMAIN.weapon.add");
-            break;
-          case "skill":
-            newName = game.i18n.localize("CLEENMAIN.skill.add");
-            break;
-          case "armor":
-            newName = game.i18n.localize("CLEENMAIN.armor.add");
-            break;
-          case "equipment":
-            newName = game.i18n.localize("CLEENMAIN.equipment.add");
-            break;
-        }
-        
-        let itemData = {
-          name: newName,
-          type: element.dataset.type
-        }
-        return(this.actor.createEmbeddedDocuments("Item", [itemData]));
-    }
-    
-  _onEmbeddedItemEdit(event){
+
+  async _onSheetUnlock(event){
     event.preventDefault();
-    let element = event.currentTarget;
-    const itemId = element.id;
+
+    let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
+    if (flagData) {
+        await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
+    }
+    else {
+        await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
+    }
+    this.actor.sheet.render(true);
+  }
+
+  _onItemCreate(event){
+      event.preventDefault();
+      let element = event.currentTarget;
+      let newName = "New";
+      switch (element.dataset.type){
+        case "boon":
+          newName = game.i18n.localize("CLEENMAIN.boon.add");
+          break;
+        case "weapon":
+          newName = game.i18n.localize("CLEENMAIN.weapon.add");
+          break;
+        case "skill":
+          newName = game.i18n.localize("CLEENMAIN.skill.add");
+          break;
+        case "armor":
+          newName = game.i18n.localize("CLEENMAIN.armor.add");
+          break;
+        case "equipment":
+          newName = game.i18n.localize("CLEENMAIN.equipment.add");
+          break;
+      }
+      
+      let itemData = {
+        name: newName,
+        type: element.dataset.type
+      }
+      return(this.actor.createEmbeddedDocuments("Item", [itemData]));
+  }
+    
+  _onItemEdit(event){
+    event.preventDefault();
+    const itemId = $(event.currentTarget).parents(".item").data('itemId');    
     let item = this.actor.items.get(itemId);
+    item.sheet.render(true);
+  }
+
+  _onEmbeddedItemEdit(event){
+    event.preventDefault();  
+    const itemId = $(event.currentTarget).parents(".item").data('itemId');    
+    let item = this.actor.items.get(itemId);
+
+    const element  = event.currentTarget;
     let field = element.dataset.field;
     let newValue;
     if(element.type === "checkbox"){
@@ -98,47 +119,10 @@ export class CemBaseActorSheet extends ActorSheet {
     return item.update({[field]: newValue});
   }
   
-  _onItemEdit(event){
-    event.preventDefault();
-    let element= event.currentTarget;
-    let itemId = element.dataset.id;
-    let item = this.actor.items.get(itemId);
-    item.sheet.render(true);
-  }
-
-  _ontrainingsEdit(event){
-    event.preventDefault();
-    let element=event.currentTarget;
-    console.log("element: ", element);
-    const itemId = element.id
-    let item = this.actor.items.get(itemId);
-    let field = element.dataset.field;
-    let newValue;
-    if(element.type === "checkbox"){
-      newValue = element.value == "1";
-    }
-    else newValue = element.value
-    return item.update({[field]: newValue});
-  }
-
   _onEmbeddedItemDelete(event){
     event.preventDefault();
-    let element=event.currentTarget;
-    let itemId = element.dataset.id;
+    const itemId = $(event.currentTarget).parents(".item").data('itemId');    
     return this.actor.deleteEmbeddedDocuments("Item", [itemId]);
-  }
-
-  async _onSheetUnlock(event){
-    event.preventDefault();
-
-    let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
-    if(flagData){
-        await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
-    }
-    else{
-        await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
-    }
-    this.actor.sheet.render(true);
   }
 
   /**
@@ -148,8 +132,7 @@ export class CemBaseActorSheet extends ActorSheet {
    */
   async _onSkillRoll(event){
     event.preventDefault();
-    let element = event.currentTarget;
-    let itemId = element.dataset.id;
+    const itemId = $(event.currentTarget).parents(".item").data('itemId');  
    
     return this.actor.check(itemId, "skill");    
   }
@@ -161,8 +144,7 @@ export class CemBaseActorSheet extends ActorSheet {
    */
    async _onWeaponAttackRoll(event){
     event.preventDefault();
-    let element = event.currentTarget;
-    let itemId = element.dataset.id;
+    const itemId = $(event.currentTarget).parents(".item").data('itemId');  
    
     return this.actor.check(itemId, "weapon-attack");    
   }
@@ -174,8 +156,7 @@ export class CemBaseActorSheet extends ActorSheet {
    */
    async _onWeaponDamageRoll(event){
     event.preventDefault();
-    let element = event.currentTarget;
-    let itemId = element.dataset.id;
+    const itemId = $(event.currentTarget).parents(".item").data('itemId');  
    
     return this.actor.check(itemId, "weapon-damage");    
   }

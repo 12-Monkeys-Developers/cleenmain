@@ -111,6 +111,7 @@
             "templates": ["base"],
             "category": "standard",
             "type": "",
+            "damageBase": "1d6",
             "damage": "2d6",
             "range": 0,
             "targets": 1,

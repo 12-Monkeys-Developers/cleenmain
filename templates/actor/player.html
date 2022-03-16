@@ -12,20 +12,20 @@
                 <div class="skills item-list">
                     {{#each skills as |skill type|}}
                         <div class="skill-line item" data-item-id="{{_id}}">
-                            <input class="inline-edit skill-name" data-field="name" id="{{_id}}" type="text" value="{{skill.name}}" data-dtype="Text"/>
-                            <input class="inline-edit skill-value" data-field="data.base" id="{{_id}}" type="number" name="skill.data.base" value="{{skill.data.base}}" data-dtype="Number" />
-                            <input class="inline-edit skill-dev checkbox" data-field="data.developed" id="{{_id}}" name="skill.data.developed" type="checkbox" {{checked skill.data.developed}}>
-                            <a class="inline-delete" data-type="skill" data-id="{{_id}}" title="{{localize 'CLEENMAIN.skill.delete'}}"><i class="fas fa-trash"></i></a>
+                            <input class="inline-edit skill-name" data-field="name" type="text" value="{{skill.name}}" data-dtype="Text"/>
+                            <input class="inline-edit skill-value" data-field="data.base" type="number" name="skill.data.base" value="{{skill.data.base}}" data-dtype="Number" />
+                            <input class="inline-edit skill-dev checkbox" data-field="data.developed" name="skill.data.developed" type="checkbox" {{checked skill.data.developed}}>
+                            <a class="inline-delete" data-type="skill" title="{{localize 'CLEENMAIN.skill.delete'}}"><i class="fas fa-trash"></i></a>
                         </div>
                     {{/each}}
                 </div>
             {{else}}
                 <div class="skills">
                     {{#each skills as |skill type|}}
-                        <div class="skill-line">
+                        <div class="skill-line item" data-item-id="{{_id}}">
                             <div class="skill-name" title="{{skill.data.description}}" >{{skill.name}}</div>
                             <div class="skill-value">{{skill.data.value}}</div>
-                            <a class="skill-roll" data-id="{{skill._id}}">
+                            <a class="skill-roll">
                                 <i class="fas fa-dice"></i>
                             </a></th>
                         </div>
@@ -53,9 +53,9 @@
                     <div class="central-line">
                         <div class="name-text">{{localize "CLEENMAIN.label.activity"}} :</div>
                         {{#if unlocked}}
-                        <input id="activity" name="data.activity" type="text" value="{{data.activity}}" />
+                            <input id="activity" name="data.activity" type="text" value="{{data.activity}}" />
                         {{else}}
-                        <div class="activity-text">{{data.activity}}</div>
+                            <div class="activity-text">{{data.activity}}</div>
                         {{/if}}
                     </div>
                     <div class="central-line space-between">
@@ -66,18 +66,18 @@
                                 {{#if unlocked}}
                                     <input title="{{localize "CLEENMAIN.health.max"}}" id="health" name="data.health.max" type="number" value="{{data.health.max}}"/>
                                 {{else}}
-                                <div class="central-text">{{data.health.max}}</div>
+                                    <div class="central-text">{{data.health.max}}</div>
                                 {{/if}}
                         </div>
                             <div class="blessure-block">
                                 <div class="blessure-text">{{localize "CLEENMAIN.label.wounds"}} :</div>
                                 <select id="blessure" name="data.blessure">
                                     {{#select data.blessure}}
-                                    <option value="0">0</option>
-                                    <option value="-5">-5</option>
-                                    <option value="-10">-10</option>
-                                    <option value="-15">-15</option>
-                                    <option value="-20">-20</option>
+                                        <option value="0">0</option>
+                                        <option value="-5">-5</option>
+                                        <option value="-10">-10</option>
+                                        <option value="-15">-15</option>
+                                        <option value="-20">-20</option>
                                     {{/select}}
                                 </select>
                             </div>
@@ -88,9 +88,9 @@
                                 <input title="{{localize "CLEENMAIN.heroism.current"}}" id="heroism" name="data.heroism.value" type="number" value="{{data.heroism.value}}"/>
                                 <div class="central-text">/</div>
                                 {{#if unlocked}}
-                                <input title="{{localize "CLEENMAIN.heroism.max"}}" id="heroismmax" name="data.heroism.max" type="number" value="{{data.heroism.max}}"/>
+                                    <input title="{{localize "CLEENMAIN.heroism.max"}}" id="heroismmax" name="data.heroism.max" type="number" value="{{data.heroism.max}}"/>
                                 {{else}}
-                                <div class="central-text">{{data.heroism.max}}</div>
+                                    <div class="central-text">{{data.heroism.max}}</div>
                                 {{/if}}
                         </div>
                     </div>
