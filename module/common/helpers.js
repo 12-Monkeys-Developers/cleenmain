@@ -98,4 +98,15 @@ export const registerHandlebarsHelpers = function() {
         return "far fa-square";
     });
 
+    Handlebars.registerHelper('getWeaponSkill', function (actor, item) {
+        const it = actor.items.get(item._id);
+        const weaponSkill = it.weaponSkill(actor);
+       return weaponSkill;
+    });
+
+    Handlebars.registerHelper('getWeaponDamage', function (actor, item) {
+        const it = actor.items.get(item._id);
+        const weaponDamage = it.weaponDamage(actor);
+       return weaponDamage;
+    });
 }

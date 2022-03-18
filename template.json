@@ -112,7 +112,7 @@
             "category": "standard",
             "type": "",
             "damageBase": "1d6",
-            "damage": "2d6",
+            "damage": "",
             "range": 0,
             "targets": 1,
             "skillId": null,

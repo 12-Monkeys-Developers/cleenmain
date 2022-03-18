@@ -30,22 +30,15 @@ export class Rolls {
         if (type === "weapon-attack") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleweapon", {itemName: item.name});
             attackRoll = true;
-            rollFormula = "3d6 + " + item.data.data.skillValue.toString();
+            rollFormula = "3d6 + " + item.weaponSkill(actor);
 
             introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingCharacterName, itemName: item.name});
         }
         if (type === "weapon-damage") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titledamage", {itemName: item.name});
             damageRoll = true;
-
-            rollFormula = item.data.data.damage;
-
-            /*
-            if (actor.data.type === "player") {
-                let damageBonus = actor.data.data.damageBonus[item.data.data.type];
-                if (damageBonus) rollFormula = rollFormula.concat(' + ', damageBonus.toString());
-            }
-            */
+            rollFormula = item.weaponDamage(actor);
+            
             introText = game.i18n.format("CLEENMAIN.dialog.introdamage", {actingCharName: data.actingCharacterName, itemName: item.name});
         }
 

@@ -33,19 +33,6 @@ export default class CemBaseActor extends Actor {
         });
     }
 
-
-    /**
-     * 
-     * @param {*} range 
-     * @returns 
-     */
-    getWeaponDamage(range) {
-        if (range > 0) {
-            return this.data.data.damageBonus.ranged;
-        }
-        return this.data.data.damageBonus.melee;
-    }
-
     /* roll a player action
     arguments: {
         type: : weapon/armor/skill/boon/pbjskill,

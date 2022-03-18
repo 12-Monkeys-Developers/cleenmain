@@ -125,8 +125,8 @@
                     <th>{{name}}</th>
                     <th>{{getCategoryLabel "weapon" item.data.category}}</th>
                     <th>{{item.data.skillName}}</th>
-                    <th>{{item.data.skillValue}}<a class="weapon-attack-roll"><i class="fas fa-dice"></i></a></th>
-                    <th>{{item.data.damage}}<a class="weapon-damage-roll"><i class="fas fa-dice"></i></a></th>
+                    <th>{{getWeaponSkill @root.actor item}}<a class="weapon-attack-roll"><i class="fas fa-dice"></i></a></th>
+                    <th>{{getWeaponDamage @root.actor item}}<a class="weapon-damage-roll"><i class="fas fa-dice"></i></a></th>
                     <th>{{item.data.range}}</th>
                     <th>{{item.data.zone}}</th>
                     <th>

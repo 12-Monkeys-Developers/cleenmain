@@ -63,7 +63,7 @@
             },
             "type": {
                 "melee": "Corps-à-corps",
-                "ranged": "à distance"
+                "ranged": "A distance"
             },
             "add": "Nouvelle arme",
             "delete": "Supprimer l'arme",

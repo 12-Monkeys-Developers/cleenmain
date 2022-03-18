@@ -34,6 +34,11 @@ export default class PlayerSheet extends CemBaseActorSheet {
   }
 
   /** @override */
+  activateListeners(html){
+    super.activateListeners(html);
+  }
+
+  /** @override */
   _onDrop(event) {
     event.preventDefault();
     if (!this.options.editable) return false;
@@ -93,9 +98,8 @@ export default class PlayerSheet extends CemBaseActorSheet {
     let targetData = duplicate(target.data);
     targetData.data.skillName = itemData.name;
     targetData.data.skillValue = Skills.getSkillValue(itemData.data.base, itemData.data.bonus, itemData.data.developed);
-    targetData.data.skillId = id;
-    
-    targetData.data.damage = targetData.data.damageBase + " + " + this.actor.getWeaponDamage(targetData.data.range);
+    targetData.data.skillId = itemData._id;    
+    targetData.data.damage = target.weaponDamage(this.actor);
 
     this.actor.updateEmbeddedDocuments("Item", [targetData]);
   }
