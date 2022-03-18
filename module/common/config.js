@@ -34,3 +34,10 @@ export const CLEENMAIN = {
         bonus: ["lethalattack", "mutlipleattacks", "efficiency", "caution"], /*"quick"*/
         penalty: ["minorinjury", "danger", "difficulty", "risk"] /*"slow"*/
 };
+
+export const MAXHEROISM = {
+        "TWO_PLAYERS": 10,
+        "THREE_PLAYERS": 8,
+        "FOUR_PLAYERS": 6,
+        "FIVE_PLAYERS": 4        
+};

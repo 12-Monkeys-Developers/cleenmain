@@ -38,10 +38,11 @@
             ],
             "heroism": {
                 "max": 8,
-                "value": 8
+                "value": 8,
+                "developed": false
             },
             "blessure": "0",
-            "damageBonus" :{
+            "damageBonus": {
                 "melee": 4,
                 "ranged": 4
             },

@@ -5,7 +5,14 @@ export default function registerSystemSettings() {
         hint: 'CLEENMAIN.options.numberofplayers.hint',
         scope: 'world',
         config: true,
-        default: 3,
+        type: Number,
+        choices: {
+            2 : "2",
+            3 : "3",
+            4 : "4",
+            5 : "5"
+        },
+        default: "0",        
         type: Number,
         onChange: foundry.utils.debounce(() => window.location.reload(), 100)
     });

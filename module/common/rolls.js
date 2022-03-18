@@ -2,8 +2,7 @@ import { CemChat } from "./chat.js";
 
 export class Rolls {
 
-
-      /**
+    /**
      * Rolls dices 
      * @param actor The actor which performs the action
      * @param item  The purpose of the action, that is the item, the attribute

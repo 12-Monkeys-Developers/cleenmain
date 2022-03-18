@@ -41,11 +41,11 @@
                         <div class="name-text">{{localize "CLEENMAIN.label.character"}} :</div>
                         <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
                         <div class="right-icon">
-                            <a class="sheet-unlock" title="{{localize "CLEENMAIN.label.unlock_sheet"}}">
+                            <a class="sheet-unlock" title="{{localize 'CLEENMAIN.label.unlock_sheet'}}">
                                 {{#if unlocked}}
-                                <i class="fas fa-lock-open"></i>
+                                    <i class="fas fa-lock-open"></i>
                                 {{else}}
-                                <i class="fas fa-lock"></i>
+                                    <i class="fas fa-lock"></i>
                                 {{/if}}
                             </a>
                         </div>
@@ -61,7 +61,7 @@
                     <div class="central-line space-between">
                         <div class="health-block">
                             <div class="health-text">{{localize "CLEENMAIN.label.health"}} :</div>
-                                <input class="health-input" title="{{localize "CLEENMAIN.health.current"}}" id="health" name="data.health.value" type="number" value="{{data.health.value}}"/>
+                                <input class="health-input" title="{{localize 'CLEENMAIN.health.current'}}" id="health" name="data.health.value" type="number" value="{{data.health.value}}"/>
                                 <div class="central-text">/</div>
                                 {{#if unlocked}}
                                     <input title="{{localize "CLEENMAIN.health.max"}}" id="health" name="data.health.max" type="number" value="{{data.health.max}}"/>
@@ -85,12 +85,13 @@
                     <div class="central-line">
                             <div class="heroism-text">{{localize "CLEENMAIN.label.heroism"}}:</div>
                             <div class="input-heroism">
-                                <input title="{{localize "CLEENMAIN.heroism.current"}}" id="heroism" name="data.heroism.value" type="number" value="{{data.heroism.value}}"/>
+                                <input title="{{localize 'CLEENMAIN.heroism.current'}}" id="heroism" name="data.heroism.value" type="number" value="{{data.heroism.value}}"/>
                                 <div class="central-text">/</div>
                                 {{#if unlocked}}
-                                    <input title="{{localize "CLEENMAIN.heroism.max"}}" id="heroismmax" name="data.heroism.max" type="number" value="{{data.heroism.max}}"/>
+                                    <input title="{{localize 'CLEENMAIN.heroism.max'}}" id="heroismmax" name="data.heroism.max" type="number" value="{{data.heroism.max}}" readonly/>
+                                    <input class="checkbox" data-field="data.heroism.developed" name="data.heroism.developed" type="checkbox" {{checked data.heroism.developed}}>
                                 {{else}}
-                                    <div class="central-text">{{data.heroism.max}}</div>
+                                    <div class="central-text">{{data.heroism.max}}</div><i class="{{getCheckboxIcon  data.heroism.max}}"></i>
                                 {{/if}}
                         </div>
                     </div>

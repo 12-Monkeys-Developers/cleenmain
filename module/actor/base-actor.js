@@ -1,9 +1,17 @@
 import { Rolls } from "../common/rolls.js";
+import { Utils } from "../common/utils.js";
 export default class CemBaseActor extends Actor {
 
     /** @override */
-    prepareData(){
-        super.prepareData();
+    prepareBaseData(){
+        super.prepareBaseData();
+
+        if (this.data.type === "player") this._prepareBaseDataPlayer();
+    }
+
+    _prepareBaseDataPlayer() {
+
+        this.data.data.heroism.max = Utils.getMaxHeroism() + (this.data.data.heroism.developed ? 1 : 0);
     }
 
     /**
