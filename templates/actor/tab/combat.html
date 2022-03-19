@@ -43,9 +43,9 @@
                 <th>{{localize "CLEENMAIN.armor.malus"}}</th>
                 <th>{{localize "CLEENMAIN.armor.special"}}</th>
                 <th></th>
-            </tr>
-            {{#each armors as |item id|}}
-                <tr>
+            </tr> 
+            {{#each armors as |item id|}}  <tr class="item droppable" data-item-id="{{_id}}"></tr>
+            <tr class="item" data-item-id="{{_id}}">
                     <th>{{name}}</th>
                     <th>{{getCategoryLabel "armor" item.data.category}}</th>
                     <th>{{item.data.protection}}</th>
@@ -94,14 +94,14 @@
         <div class="bonus-line">            
             {{#if unlocked}}
                 <div class="bonus-name">{{localize "CLEENMAIN.label.melee"}}</div>
-                <input class="bonus-text" id="bonusmelee" name="data.damageBonus.melee" type="number" value="{{data.damageBonus.melee}}"/>
+                <input class="bonus-text input-small" id="bonusmelee" name="data.damageBonus.melee" type="number" value="{{data.damageBonus.melee}}"/>
                 <div class="bonus-name">{{localize "CLEENMAIN.label.ranged"}}</div>
-                <input class="bonus-text" id="bonusranged" name="data.damageBonus.ranged" type="number" value="{{data.damageBonus.ranged}}"/>
+                <input class="bonus-text input-small" id="bonusranged" name="data.damageBonus.ranged" type="number" value="{{data.damageBonus.ranged}}"/>
             {{else}}
                 <div class="bonus-name">{{localize "CLEENMAIN.label.melee"}}</div>
-                <div class="bonus-text">{{data.damageBonus.melee}}</div>
+                <div class="bonus-text input-small">{{data.damageBonus.melee}}</div>
                 <div class="bonus-name">{{localize "CLEENMAIN.label.ranged"}}</div>
-                <div class="bonus-text">{{data.damageBonus.ranged}}</div>
+                <div class="bonus-text input-small">{{data.damageBonus.ranged}}</div>
             {{/if}}
         </div>
     </div>

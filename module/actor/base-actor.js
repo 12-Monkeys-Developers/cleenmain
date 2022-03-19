@@ -41,6 +41,15 @@ export default class CemBaseActor extends Actor {
         });
     }
 
+    /**
+     * @description Use nbPoints of Heroism
+     * @param {*} nbPoints 
+     */
+    async useHeroism(nbPoints) {
+        let newValue = this.data.data.heroism.value - nbPoints;
+        await this.update({'data.heroism.value': newValue});
+    }
+
     /* roll a player action
     arguments: {
         type: : weapon/armor/skill/boon/pbjskill,

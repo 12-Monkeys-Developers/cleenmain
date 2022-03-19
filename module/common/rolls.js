@@ -89,6 +89,7 @@ export class Rolls {
                             data.useHeroism = true;
                             data.formula = data.formula.concat(' + 1d6');
                             data.applyModifiers.push(game.i18n.format("CLEENMAIN.chatmessage.heroismmodifier"));
+                            actor.useHeroism(1);
                         }
 
                         // Boons
@@ -129,8 +130,7 @@ export class Rolls {
                             if (data.difficulty > 0)  {
                                 data.formula = data.formula.concat(' - ').concat((data.difficulty*2).toString());
                                 data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.difficulty.chatmessage", data));
-                            }
-                                
+                            }                                
                     
                             let slow = html.find("#slow")[0].value;
                             data.slow = parseInt(slow) ?? 0;
