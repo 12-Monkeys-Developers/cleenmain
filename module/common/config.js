@@ -31,8 +31,8 @@ export const CLEENMAIN = {
                 secondfiddle: "CLEENMAIN.npccategory.secondfiddle",
                 boss: "CLEENMAIN.npccategory.boss"
         },
-        bonus: ["lethalattack", "mutlipleattacks", "efficiency", "caution"], /*"quick"*/
-        penalty: ["minorinjury", "danger", "difficulty", "risk"] /*"slow"*/
+        bonus: ["lethalattack", "mutlipleattacks", "efficiency", "caution"],
+        penalty: ["minorinjury", "danger", "difficulty", "risk"]
 };
 
 export const MAXHEROISM = {

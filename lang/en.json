@@ -270,25 +270,25 @@
             "rollresult": "Result of the dice roll: "
         },
         "bonus":{
-            "murderous":{
-                "label": "Murderous",
+            "lethalattack":{
+                "label": "lethalattack",
                 "description": "les dégâts de l’attaque augmentent de 1d6. Plusieurs Attaques meurtrières augmentent les dégâts d’autant de d6 que d’Attaques meurtrières.",
-                "chatmessage": "Bonus: Murderous (x{murderous})."
+                "chatmessage": "Bonus: Lethal Attack (x{lethalattack})."
             },
-            "manytargets":{
-                "label": "manytargets",
+            "mutlipleattacks":{
+                "label": "mutlipleattacks",
                 "description": "l’attaque vise deux cibles à la fois, à condition qu’elles soient accessibles au personnage – à son contact pour une attaque de corps à corps, groupées pour un tir. Un seul test est e{ectué et les dégâts, après tous les autres calculs, sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur.",
-                "chatmessage": "Bonus: manytargets."
+                "chatmessage": "Bonus: mutlipleattacks."
             },
-            "efficient":{
-                "label": "efficient",
+            "efficiency":{
+                "label": "efficiency",
                 "description":  "l’action en cours bénéficie d’un bonus de 2. Plusieurs Efficacités confèrent un bonus de 2 pour chaque Efficacité.",
-                "chatmessage": "Bonus: efficient (x{efficient})."
+                "chatmessage": "Bonus: efficiency (x{efficiency})."
             },
-            "cover":{
-                "label": "cover",
+            "caution":{
+                "label": "caution",
                 "description":  "le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage bénéficie d’un bonus de 2. Plusieurs Prudences augmentent le nombre de tests successifs bénéficiant de ce bonus.",
-                "chatmessage": "Bonus: cover (x{cover})."
+                "chatmessage": "Bonus: caution (x{caution})."
             },
             "quick":{
                 "label": "quick",

@@ -269,25 +269,25 @@
             "rollresult": "Résultat du jet : "
         },
         "bonus":{
-            "murderous":{
+            "lethalattack":{
                 "label": "Attaque meurtrière",
                 "description": "Les dégâts de l’attaque augmentent de 1d6. Plusieurs Attaques meurtrières augmentent les dégâts d’autant de d6 que d’Attaques meurtrières.",
-                "chatmessage": "Prime: Attaque meurtrière (x{murderous})."
+                "chatmessage": "Prime: Attaque meurtrière (x{lethalattack})."
             },
-            "manytargets":{
+            "mutlipleattacks":{
                 "label": "Attaques multiples",
                 "description": "L’attaque vise deux cibles à la fois, à condition qu’elles soient accessibles au personnage – à son contact pour une attaque de corps à corps, groupées pour un tir. Un seul test est e{ectué et les dégâts, après tous les autres calculs, sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur.",
                 "chatmessage": "Prime: Attaques multiples."
             },
-            "efficient":{
+            "efficiency":{
                 "label": "Efficacité",
                 "description":  "L’action en cours bénéficie d’un bonus de 2. Plusieurs Efficacités confèrent un bonus de 2 pour chaque Efficacité.",
-                "chatmessage": "Prime: Efficacité (x{efficient})."
+                "chatmessage": "Prime: Efficacité (x{efficiency})."
             },
-            "cover":{
+            "caution":{
                 "label": "Prudence",
                 "description":  "Le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage bénéficie d’un bonus de 2. Plusieurs Prudences augmentent le nombre de tests successifs bénéficiant de ce bonus.",
-                "chatmessage": "Prime: Prudence (x{cover})."
+                "chatmessage": "Prime: Prudence (x{caution})."
             },
             "quick":{
                 "label": "Rapidité",

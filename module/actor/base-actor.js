@@ -138,17 +138,17 @@ export default class CemBaseActor extends Actor {
                         skillData.useHeroism = html.find("#heroism")[0].checked;
 
                         if(skillData.weaponRoll){
-                            let murderous = html.find("#murderous")[0].value;
-                            skillData.murderous = parseInt(murderous) ?? 0;
+                            let lethalattack = html.find("#lethalattack")[0].value;
+                            skillData.lethalattack = parseInt(lethalattack) ?? 0;
 
-                            let manytargets = html.find("#manytargets")[0].value;
-                            skillData.manytargets = parseInt(manytargets) ?? 0;
+                            let mutlipleattacks = html.find("#mutlipleattacks")[0].value;
+                            skillData.mutlipleattacks = parseInt(mutlipleattacks) ?? 0;
                     
-                            let efficient = html.find("#efficient")[0].value;
-                            skillData.efficient = parseInt(efficient) ?? 0;
+                            let efficiency = html.find("#efficiency")[0].value;
+                            skillData.efficiency = parseInt(efficiency) ?? 0;
                     
-                            let cover = html.find("#cover")[0].value;
-                            skillData.cover = parseInt(cover) ?? 0;
+                            let caution = html.find("#caution")[0].value;
+                            skillData.caution = parseInt(caution) ?? 0;
                     
                             let quick = html.find("#quick")[0].value;
                             skillData.quick = parseInt(quick) ?? 0;
@@ -181,18 +181,18 @@ export default class CemBaseActor extends Actor {
                         skillData.applyModifier.push(game.i18n.format("CLEENMAIN.chatmessage.heroismmodifier", skillData));
                     }
 
-                    if(skillData.murderous){
-                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.murderous.chatmessage", skillData));
+                    if(skillData.lethalattack){
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.lethalattack.chatmessage", skillData));
                     }
-                    if(skillData.manytargets){
-                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.manytargets.chatmessage", skillData));
+                    if(skillData.mutlipleattacks){
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.mutlipleattacks.chatmessage", skillData));
                     }
-                    if(skillData.efficient){
-                        skillData.skillRollFormula += " +"+ (skillData.efficient*2).toString();
-                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.efficient.chatmessage", skillData));
+                    if(skillData.efficiency){
+                        skillData.skillRollFormula += " +"+ (skillData.efficiency*2).toString();
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.efficiency.chatmessage", skillData));
                     }
-                    if(skillData.cover){
-                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.cover.chatmessage", skillData));
+                    if(skillData.caution){
+                        skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.caution.chatmessage", skillData));
                     }
                     if(skillData.quick){
                         skillData.applyModifier.push(game.i18n.format("CLEENMAIN.bonus.quick.chatmessage", skillData));

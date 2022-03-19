@@ -75,17 +75,6 @@ export class Rolls {
                             data.modifier = parseInt(Math.floor(parseInt(modifierInput)));
                         }
 
-                        // Define the formula
-                        /*
-                        if (skillRoll) {
-                            data.formula = "3d6".concat(' + ', item.data.data.value.toString());
-                        }
-                        if (attackRoll) {
-                            data.formula = "3d6".concat(' + ', item.data.data.skillValue.toString());
-                        }
-                        if (damageRoll) {
-                            data.formula = item.data.data.damage;
-                        }*/
                         data.formula = rollFormula;
 
                         if (data.modifier) {
@@ -100,6 +89,56 @@ export class Rolls {
                             data.useHeroism = true;
                             data.formula = data.formula.concat(' + 1d6');
                             data.applyModifiers.push(game.i18n.format("CLEENMAIN.chatmessage.heroismmodifier"));
+                        }
+
+                        // Boons
+                        if (type === "weapon-attack") {
+                            let lethalattack = html.find("#lethalattack")[0].value;
+                            data.lethalattack = parseInt(lethalattack) ?? 0;
+                            if (data.lethalattack > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.lethalattack.chatmessage", data));
+
+                            let mutlipleattacks = html.find("#mutlipleattacks")[0].value;
+                            data.mutlipleattacks = parseInt(mutlipleattacks) ?? 0;
+                            if (data.mutlipleattacks > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.mutlipleattacks.chatmessage"));
+                    
+                            let efficiency = html.find("#efficiency")[0].value;
+                            data.efficiency = parseInt(efficiency) ?? 0;
+                            if (data.efficiency > 0) {
+                                data.formula = data.formula.concat(' + ').concat((data.efficiency*2).toString());
+                                data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.efficiency.chatmessage", data));
+                            }
+                    
+                            let caution = html.find("#caution")[0].value;
+                            data.caution = parseInt(caution) ?? 0;
+                            if (data.caution > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.caution.chatmessage", data));
+                    
+                            let quick = html.find("#quick")[0].value;
+                            data.quick = parseInt(quick) ?? 0;
+                            if (data.quick > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.quick.chatmessage"));
+                    
+                            let lightwound = html.find("#lightwound")[0].value;
+                            data.lightwound = parseInt(lightwound) ?? 0;
+                            if (data.lightwound > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.lightwound.chatmessage"));
+                    
+                            let exposed = html.find("#exposed")[0].value;
+                            data.exposed = parseInt(exposed) ?? 0;
+                            if (data.exposed > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.exposed.chatmessage", data));
+                    
+                            let difficulty = html.find("#difficulty")[0].value;
+                            data.difficulty = parseInt(difficulty) ?? 0;
+                            if (data.difficulty > 0)  {
+                                data.formula = data.formula.concat(' - ').concat((data.difficulty*2).toString());
+                                data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.difficulty.chatmessage", data));
+                            }
+                                
+                    
+                            let slow = html.find("#slow")[0].value;
+                            data.slow = parseInt(slow) ?? 0;
+                            if (data.slow > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.slow.chatmessage"));
+                    
+                            let jeopardy = html.find("#jeopardy")[0].value;
+                            data.jeopardy = parseInt(jeopardy) ?? 0;
+                            if (data.jeopardy > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.jeopardy.chatmessage", data));
                         }
 
                         // Calculate the final difficulty

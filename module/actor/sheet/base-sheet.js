@@ -55,19 +55,24 @@ export class CemBaseActorSheet extends ActorSheet {
     }
 
 
+  /**
+   * 
+   * @param {*} event 
+   */
   async _onSheetUnlock(event){
     event.preventDefault();
 
     let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
-    if (flagData) {
-        await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
-    }
-    else {
-        await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
-    }
+    flagData ? await this.actor.unsetFlag(game.system.id, "SheetUnlocked") : await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
+    
     this.actor.sheet.render(true);
   }
 
+  /**
+   * 
+   * @param {*} event 
+   * @returns 
+   */
   _onItemCreate(event){
       event.preventDefault();
       let element = event.currentTarget;
@@ -96,7 +101,11 @@ export class CemBaseActorSheet extends ActorSheet {
       }
       return(this.actor.createEmbeddedDocuments("Item", [itemData]));
   }
-    
+
+  /**
+   * 
+   * @param {*} event 
+   */
   _onItemEdit(event){
     event.preventDefault();
     const itemId = $(event.currentTarget).parents(".item").data('itemId');    
@@ -104,6 +113,11 @@ export class CemBaseActorSheet extends ActorSheet {
     item.sheet.render(true);
   }
 
+  /**
+   * 
+   * @param {*} event 
+   * @returns 
+   */
   _onEmbeddedItemEdit(event){
     event.preventDefault();  
     const itemId = $(event.currentTarget).parents(".item").data('itemId');    
@@ -119,6 +133,11 @@ export class CemBaseActorSheet extends ActorSheet {
     return item.update({[field]: newValue});
   }
   
+  /**
+   * 
+   * @param {*} event 
+   * @returns 
+   */
   _onEmbeddedItemDelete(event){
     event.preventDefault();
     const itemId = $(event.currentTarget).parents(".item").data('itemId');    
