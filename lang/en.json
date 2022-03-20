@@ -265,7 +265,7 @@
         },
         "chatmessage":{
             "custommodifier": "Custom modifier used : ({rollModifier}).",
-            "heroismmodifier": "One Heroism point used : +1d6 added to roll.",
+            "heroismmodifier": "One Heroism point used : +1d6",
             "rollformula": "Final dice rolled:",
             "rollresult": "Result of the dice roll: "
         },
@@ -297,30 +297,30 @@
             }
         },
         "penalty":{
-            "lightwound":{
-                "label": "lightwound",
+            "minorinjury":{
+                "label": "minorinjury",
                 "description":  "les dégâts sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur",
-                "chatmessage": "Penalty: lightwound."
+                "chatmessage": "Penalty: minorinjury."
             },
-            "exposed":{
-                "label": "exposed",
+            "danger":{
+                "label": "danger",
                 "description":  "le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage subit un malus de 2. D’autres Dangers augmentent le nombre de tests successifs subissant ce malus.",
-                "chatmessage": "Penalty: exposed (x{exposed})."
+                "chatmessage": "Penalty: danger (x{danger})."
             },
             "difficulty":{
                 "label": "difficulty",
                 "description":  "l’action en cours subit un malus de 2. Plusieurs Difficultés imposent un malus de 2 pour chaque Difficulté.",
                 "chatmessage": "Penalty: difficulty (x{difficulty})."
             },
-            "slow": {
-                "label": "slow",
+            "risk": {
+                "label": "risk",
                 "description": "en combat, une action lente donne la main à l’adversaire, même s’il ne s’agissait pas d’une attaque. En dehors d’un combat, la durée d’une tâche augmente de moitié. Non cumulable.",
-                "chatmessage": "Penalty: slow."
+                "chatmessage": "Penalty: (x{risk})."
             },
-            "jeopardy":{
-                "label": "jeopardy",
+            "slowness":{
+                "label": "slowness",
                 "description":  "si l’action en cours échoue, un incident, déterminé par le MJ, survient. Par exemple l’arme est coincée ou détruite, le personnage glisse et tombe au sol, il lâche un objet, un de ses vêtements s’accroche quelque part et lui fait perdre une action, l’attaque touche un allié, etc. Plusieurs Risques différents exposent le personnage à des déboires multiples simultanés. Plusieurs risques identiques ne sont pas cumulables.",
-                "chatmessage": "Penalty: jeopardy (x{jeopardy})."
+                "chatmessage": "Penalty: slowness."
             }
         }
     }

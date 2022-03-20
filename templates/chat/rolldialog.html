@@ -1,4 +1,5 @@
 <div class="dialog">
+  {{log 'dialog' this}}
   <div class="intro">
     <div class="introImg" style="background-image: url('{{actingCharImg}}')"></div>
     <div class="introtext">{{introText}}</div>
@@ -40,41 +41,45 @@
         <input type="number" id="caution" name="caution" min="0" max="10" value="0"/>
         <span class="tooltiptext">{{localize "CLEENMAIN.bonus.caution.description"}}</span>
       </div>
+      <!-- Règles avancées
       <div class="bonus-line tooltip">
         <label for="quick">{{localize "CLEENMAIN.bonus.quick.label"}}</label>
         <input type="number" id="quick" name="quick" min="0" max="1" value="0"/>
         <span class="tooltiptext">{{localize "CLEENMAIN.bonus.quick.description"}}</span>
       </div>
+      -->
     </div>
     <div class="bonus">
       <h2>{{localize "CLEENMAIN.dialog.penalty"}}</h2>
     </div>
     <div class="bonus-block paddingend">
       <div class="bonus-line tooltip">
-        <label for="lightwound">{{localize "CLEENMAIN.penalty.lightwound.label"}}</label>
-        <input type="number" id="lightwound" name="lightwound" min="0" max="1" value="0"/>
-        <span class="tooltiptext">{{localize "CLEENMAIN.penalty.lightwound.description"}}</span>
+        <label for="minorinjury">{{localize "CLEENMAIN.penalty.minorinjury.label"}}</label>
+        <input type="number" id="minorinjury" name="minorinjury" min="0" max="1" value="0"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.penalty.minorinjury.description"}}</span>
       </div>
       <div class="bonus-line tooltip">
-        <label for="exposed">{{localize "CLEENMAIN.penalty.exposed.label"}}</label>
-        <input type="number" id="exposed" name="exposed" min="0" max="10" value="0"/>
-        <span class="tooltiptext">{{localize "CLEENMAIN.penalty.exposed.description"}}</span>
+        <label for="danger">{{localize "CLEENMAIN.penalty.danger.label"}}</label>
+        <input type="number" id="danger" name="danger" min="0" max="10" value="0"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.penalty.danger.description"}}</span>
       </div>
       <div class="bonus-line tooltip">
         <label for="difficulty">{{localize "CLEENMAIN.penalty.difficulty.label"}}</label>
-        <input type="number" id="difficulty" name="difficulty" min="0" max="10" value="0"/>
+        <input type="number" id="difficulty" name="difficulty" min="0" max="10" value="{{action.difficulty}}"/>
         <span class="tooltiptext">{{localize "CLEENMAIN.penalty.difficulty.description"}}</span>
       </div>
       <div class="bonus-line tooltip">
-        <label for="slow">{{localize "CLEENMAIN.penalty.slow.label"}}</label>
-        <input type="number" id="slow" name="slow" min="0" max="1" value="0"/>
-        <span class="tooltiptext">{{localize "CLEENMAIN.penalty.slow.description"}}</span>
+        <label for="risk">{{localize "CLEENMAIN.penalty.risk.label"}}</label>
+        <input type="number" id="risk" name="risk" min="0" max="1" value="{{action.risk}}"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.penalty.risk.description"}}</span>
       </div>
+      <!-- Règles avancées
       <div class="bonus-line tooltip">
-        <label for="jeopardy">{{localize "CLEENMAIN.penalty.jeopardy.label"}}</label>
-        <input type="number" id="jeopardy" name="jeopardy" min="0" max="10" value="0"/>
-        <span class="tooltiptext">{{localize "CLEENMAIN.penalty.jeopardy.description"}}</span>
+        <label for="slowness">{{localize "CLEENMAIN.penalty.slowness.label"}}</label>
+        <input type="number" id="slowness" name="slowness" min="0" max="10" value="0"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.penalty.slowness.description"}}</span>
       </div>
+    -->
     </div>
   {{/if}}
 </div>

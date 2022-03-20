@@ -32,6 +32,24 @@ export class Rolls {
             rollFormula = "3d6 + " + item.weaponSkill(actor);
 
             introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingCharacterName, itemName: item.name});
+
+            // Check formations
+            if (item.data.data.category === "war") {
+                if (!actor.data.data.trainings.weapons.war && !actor.data.data.trainings.weapons.heavy) {
+                    data.difficulty = 1;
+                    data.risk = 1;
+                }
+            }
+            if (item.data.data.category === "heavy") {
+                if (!actor.data.data.trainings.weapons.war && !actor.data.data.trainings.weapons.heavy) {
+                    data.difficulty = 2;
+                    data.risk = 1;
+                }
+                if (actor.data.data.trainings.weapons.war) {
+                    data.difficulty = 1;
+                    data.risk = 1;
+                }
+            }
         }
         if (type === "weapon-damage") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titledamage", {itemName: item.name});
@@ -113,17 +131,19 @@ export class Rolls {
                             data.caution = parseInt(caution) ?? 0;
                             if (data.caution > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.caution.chatmessage", data));
                     
+                            /* Règles avancées
                             let quick = html.find("#quick")[0].value;
                             data.quick = parseInt(quick) ?? 0;
                             if (data.quick > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.quick.chatmessage"));
+                            */
                     
-                            let lightwound = html.find("#lightwound")[0].value;
-                            data.lightwound = parseInt(lightwound) ?? 0;
-                            if (data.lightwound > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.lightwound.chatmessage"));
+                            let minorinjury = html.find("#minorinjury")[0].value;
+                            data.minorinjury = parseInt(minorinjury) ?? 0;
+                            if (data.minorinjury > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.minorinjury.chatmessage"));
                     
-                            let exposed = html.find("#exposed")[0].value;
-                            data.exposed = parseInt(exposed) ?? 0;
-                            if (data.exposed > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.exposed.chatmessage", data));
+                            let danger = html.find("#danger")[0].value;
+                            data.danger = parseInt(danger) ?? 0;
+                            if (data.danger > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.danger.chatmessage", data));
                     
                             let difficulty = html.find("#difficulty")[0].value;
                             data.difficulty = parseInt(difficulty) ?? 0;
@@ -132,13 +152,15 @@ export class Rolls {
                                 data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.difficulty.chatmessage", data));
                             }                                
                     
-                            let slow = html.find("#slow")[0].value;
-                            data.slow = parseInt(slow) ?? 0;
-                            if (data.slow > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.slow.chatmessage"));
+                            let risk = html.find("#risk")[0].value;
+                            data.risk = parseInt(risk) ?? 0;
+                            if (data.risk > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.risk.chatmessage", data));
                     
-                            let jeopardy = html.find("#jeopardy")[0].value;
-                            data.jeopardy = parseInt(jeopardy) ?? 0;
-                            if (data.jeopardy > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.jeopardy.chatmessage", data));
+                            /* Règles avancées
+                            let slowness = html.find("#slowness")[0].value;
+                            data.slowness = parseInt(slowness) ?? 0;
+                            if (data.slowness > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.slowness.chatmessage"));
+                            */
                         }
 
                         // Calculate the final difficulty
@@ -215,17 +237,16 @@ export class Rolls {
      * @return the roll result according to the difficulty level.
      */
      static async getResult(roll, difficulty) {
-        /*const fail = roll === 100 || (roll > (level * 10) && roll !== 1);
+        /*
+        const fail = roll === 100 || (roll > (level * 10) && roll !== 1);
         const fumble = Rolls.isDouble(roll) && fail;
         const critical = Rolls.isDouble(roll) && !fail;
-        const margin = fail ? 0 : Math.floor(roll / 10) + (level > 10 ? level - 10 : 0);
         */
         let toolTip = new Handlebars.SafeString(await roll.getTooltip());
         return {
             /*success: !fail,
             fumble: fumble,
             critical: critical,
-            margin: margin
             success: true*/
             total: roll._total,
             tooltip: toolTip
