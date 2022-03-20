@@ -91,6 +91,10 @@ export class Rolls {
                     label: game.i18n.localize("CLEENMAIN.dialog.button.roll"),
                     callback: async (html) => {
 
+                        data.skillRoll = skillRoll;
+                        data.attackRoll = attackRoll;
+                        data.damageRoll = damageRoll;
+
                         data.introText = introText;
 
                         data.applyModifiers = [];
@@ -119,7 +123,7 @@ export class Rolls {
                         }
 
                         // Boons
-                        if (type === "weapon-attack") {
+                        if (attackRoll) {
                             let lethalattack = html.find("#lethalattack")[0].value;
                             data.lethalattack = parseInt(lethalattack) ?? 0;
                             if (data.lethalattack > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.lethalattack.chatmessage", data));
@@ -169,6 +173,7 @@ export class Rolls {
                             data.slowness = parseInt(slowness) ?? 0;
                             if (data.slowness > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.slowness.chatmessage"));
                             */
+
                         }
 
                         // Calculate the final difficulty
@@ -207,19 +212,30 @@ export class Rolls {
             token: null,
         }, data.formula, data.difficulty);
 
+        // Calculate the damages if this is an attack roll
+        let attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack);
+        let otherRollTooltip = "";
+        if (attackDamage.otherRoll) {
+            otherRollTooltip = new Handlebars.SafeString(await attackDamage.otherRoll.getTooltip());
+        }
+
         // Display the roll action
         await new CemChat(actor)
             .withTemplate("systems/cleenmain/templates/chat/rollResult.html")
             .withData({
                 actor: actor,
                 item: item,
-                sentence: data.sentence,
                 difficulty: data.difficulty,
                 introText: data.introText,
                 actingCharImg: data.actingCharacterImage,
                 formula: data.formula,
                 applyModifiers: data.applyModifiers,
-                result: result         
+                result: result,
+                damage: attackDamage.damage,
+                otherRollTooltip: otherRollTooltip,
+                skillRoll: data.skillRoll,
+                attackRoll: data.attackRoll,
+                damageRoll: data.damageRoll
             })
             .withRoll(true)
             .create();        
@@ -240,9 +256,9 @@ export class Rolls {
     }
 
     /**
-     * @param {*} roll  The roll value is 1d100.
-     * @param {*} level The difficulty level, multiply by 10 to get %.
-     * @return the roll result according to the difficulty level.
+     * @param {*} roll  The roll value is several d6
+     * @param {*} difficulty The difficulty to succeed
+     * @return the roll result
      */
      static async getResult(roll, difficulty) {
         /*
@@ -250,15 +266,35 @@ export class Rolls {
         const fumble = Rolls.isDouble(roll) && fail;
         const critical = Rolls.isDouble(roll) && !fail;
         */
+        const critical = Rolls._isTriple(roll,1);
+        const fumble = Rolls._isTriple(roll,6);
         let toolTip = new Handlebars.SafeString(await roll.getTooltip());
+
+        let dices = [];
+        for (let index = 0; index < roll.dice.length; index++) {
+            const dice = roll.dice[index];
+            dices.push(...dice.results);
+        }
+
         return {
-            /*success: !fail,
+            /*success: !fail,*/
             fumble: fumble,
             critical: critical,
-            success: true*/
             total: roll._total,
-            tooltip: toolTip
+            tooltip: toolTip,
+            dices: dices
         }
+    }
+
+    /**
+     * 
+     * @param {*} roll 
+     * @param {*} value 
+     * @returns 
+     */
+    static _isTriple(roll, value) {
+        if (roll.dice[0].results[0] == value && roll.dice[0].results[1] == value && roll.dice[0].results[2] == value) return true;
+        return false;
     }
 
 }

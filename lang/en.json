@@ -269,7 +269,8 @@
             "custommodifier": "Custom modifier used : ({rollModifier}).",
             "heroismmodifier": "One Heroism point used : +1d6",
             "rollformula": "Final dice rolled:",
-            "rollresult": "Result of the dice roll: "
+            "rollresult": "Result of the dice roll: ",
+            "damageresult": "Damages are: "
         },
         "bonus":{
             "lethalattack":{

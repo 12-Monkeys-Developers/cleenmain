@@ -52,4 +52,55 @@ export default class CemBaseItem extends Item {
         else damage += " + " + actor.data.data.damageBonus.melee;
         return damage;
     }
+
+    /**
+     * @name calculateWeaponDamage
+     * @description For weapon Item, calculates the value of the damage depending of the damageBase and the results of the dices
+     *  damage = damageBase + melee/range bonus
+     * @param {*} actor 
+     * @param {*} dices The dices results of a roll
+     * @param {*} useHeroism 
+     * @param {*} lethalattack 
+    * @returns 
+     */
+     calculateWeaponDamage(actor, dices, useHeroism, lethalattack) {
+        if (this.data.type !== "weapon") return;
+        if (actor.data.type !== "player") return;
+
+        let nbDices = parseInt(this.data.data.damageBase.substring(0,1));
+        let damage = 0;
+        let otherRoll = null;
+
+        switch (nbDices) {
+            case 1:
+                damage += dices[0].result;
+                break;
+            case 2:
+                damage += dices[0].result + dices[1].result;
+                break;
+            case 3:
+                damage += dices[0].result + dices[1].result + dices[2].result;
+                break;
+            default:
+                break;
+        }
+        if (useHeroism) {
+            damage += dices[3].result;
+        }
+        if (lethalattack > 0) {
+            const lethalFormula = lethalattack + "d6";
+            const lethalRoll = new Roll(lethalFormula, {}).roll({ async: false });
+            console.log("lethalRoll = ", lethalRoll);
+            otherRoll = lethalRoll;
+            damage += lethalRoll._total;
+        }
+        if (this.data.data.range > 0) {
+            damage += parseInt(actor.data.data.damageBonus.ranged);
+        }
+        else damage += parseInt(actor.data.data.damageBonus.melee);
+        return {
+            damage: damage,
+            otherRoll: otherRoll
+        }
+    }
 }

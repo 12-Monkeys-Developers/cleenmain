@@ -268,7 +268,8 @@
             "custommodifier": "Modificateur libre ajouté : ({rollModifier}).",
             "heroismmodifier": "Point d'Héroïsme utilisé : +1d6",
             "rollformula": "Dés lancés :",
-            "rollresult": "Résultat du jet : "
+            "rollresult": "Résultat du jet : ",
+            "damageresult": "Les dommages sont : "
         },
         "bonus":{
             "lethalattack":{

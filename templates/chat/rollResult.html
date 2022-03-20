@@ -9,11 +9,19 @@
         {{/each}}
         <div class="formulaText">
             {{localize "CLEENMAIN.chatmessage.rollformula"}}  {{formula}}
-        </div>
+        </div>        
         <div class="finalText">
             <div class="tooltip">
                 <p>{{localize "CLEENMAIN.chatmessage.rollresult"}} {{result.total}}</p>
                 <span class="tooltiptext">{{{result.tooltip.string}}}</span>
             </div>
         </div>
+        {{#if attackRoll}}
+            <div class="finalText">
+                <div class="tooltip">
+                    <p>{{localize  "CLEENMAIN.chatmessage.damageresult"}} {{damage}}</p>
+                    <span class="tooltiptext">{{{otherRollTooltip.string}}}</span>
+                </div>                        
+            </div>
+        {{/if}}
 </div>
