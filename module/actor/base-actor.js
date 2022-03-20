@@ -50,4 +50,34 @@ export default class CemBaseActor extends Actor {
         await this.update({'data.heroism.value': newValue});
     }
 
+    /**
+     * @description Calculates the armor malus
+     * @returns the malus or 0
+     */
+    getArmorMalus() {
+        let malus = 0;
+        const armors = this.items.filter(i=>i.type === "armor");
+        armors.forEach(armor => {
+            if (armor.data.data.category === "war") {
+                if (!this.isTrainedWithWarArmor() && !this.isTrainedWithHeavyArmor()) malus+= 2;
+            }
+            else if (armor.data.data.category === "heavy") {
+                if (!this.isTrainedWithWarArmor() && !this.isTrainedWithHeavyArmor()) malus+= 4;
+                else if (this.isTrainedWithWarArmor()) malus += 2;
+            }
+        });
+        return malus;
+    }
+
+    isTrainedWithWarArmor() {
+        return this.data.data.trainings.armors.war;
+    }
+
+    isTrainedWithHeavyArmor() {
+        return this.data.data.trainings.armors.heavy;
+    }
+
+    isTrainedWithShield() {
+        return this.data.data.trainings.armors.shield;
+    }
 }

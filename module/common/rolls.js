@@ -25,6 +25,14 @@ export class Rolls {
             rollFormula = "3d6 + " + item.data.data.value.toString();
 
             introText = game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: data.actingCharacterName, itemName: item.name});
+
+            // Check armors training
+            if (item.data.data.physical) {
+                const armorMalus = actor.getArmorMalus();
+                if (armorMalus > 0) {
+                    rollFormula = rollFormula.concat(' - ', armorMalus);
+                } 
+            }   
         }
         if (type === "weapon-attack") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleweapon", {itemName: item.name});
@@ -33,7 +41,7 @@ export class Rolls {
 
             introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingCharacterName, itemName: item.name});
 
-            // Check formations
+            // Check weapons trainings
             if (item.data.data.category === "war") {
                 if (!actor.data.data.trainings.weapons.war && !actor.data.data.trainings.weapons.heavy) {
                     data.difficulty = 1;

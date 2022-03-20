@@ -219,7 +219,9 @@
                 "description": "Se concentrer, résister aux influences extérieures, se maîtriser."
             },
             "add": "Nouvelle compétence",
-            "delete": "Supprimer la compétence"
+            "delete": "Supprimer la compétence",
+            "developed": "Cocher si développée",
+            "physical": "Cocher si compétence physique"
         },
         "options":{
             "numberofplayers":{

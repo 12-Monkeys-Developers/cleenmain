@@ -1,6 +1,29 @@
 export const CLEENMAIN = {
-        skills: ["acrobatics", "art", "athletics", "authority", "combat", "knowledge","defence", "stealth", "research", "riding","eloquence", "intellect", "language",
-                "muscles","perception", "drive", "psychology", "reflexes","resistance","healing", "survival", "technical", "willpower"],
+        skills: [
+                {name: "acrobatics", physical: true},
+                {name: "art", physical: false},
+                {name: "athletics", physical: true},
+                {name: "authority", physical: false},
+                {name: "combat", physical: true},
+                {name: "knowledge", physical: false},
+                {name: "defence", physical: true},
+                {name: "stealth", physical: true},
+                {name: "research", physical: false},
+                {name: "riding", physical: true},
+                {name: "eloquence", physical: false},
+                {name: "intellect", physical: false},
+                {name: "language", physical: false},
+                {name: "muscles", physical: true},
+                {name: "perception", physical: false},
+                {name: "drive", physical: true},
+                {name: "psychology", physical: false},
+                {name: "reflexes", physical: true},
+                {name: "resistance", physical: true},
+                {name: "healing", physical: false},
+                {name: "survival", physical: true},
+                {name: "technical", physical: false},
+                {name: "willpower", physical: false}
+        ],
         weapon: {
                 category: {
                         standard: "CLEENMAIN.weapon.category.standard",

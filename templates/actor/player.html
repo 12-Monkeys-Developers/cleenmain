@@ -14,7 +14,8 @@
                         <div class="skill-line item" data-item-id="{{_id}}">
                             <input class="inline-edit skill-name" data-field="name" type="text" value="{{skill.name}}" data-dtype="Text"/>
                             <input class="inline-edit skill-value" data-field="data.base" type="number" name="skill.data.base" value="{{skill.data.base}}" data-dtype="Number" />
-                            <input class="inline-edit skill-dev checkbox" data-field="data.developed" name="skill.data.developed" type="checkbox" {{checked skill.data.developed}}>
+                            <input title="{{localize 'CLEENMAIN.skill.developed'}}" class="inline-edit skill-dev checkbox" data-field="data.developed" name="skill.data.developed" type="checkbox" {{checked skill.data.developed}}>
+                            <input title="{{localize 'CLEENMAIN.skill.physical'}}" class="inline-edit skill-physical checkbox" data-field="data.physical" name="skill.data.physical" type="checkbox" {{checked skill.data.physical}}>
                             <a class="inline-delete" data-type="skill" title="{{localize 'CLEENMAIN.skill.delete'}}"><i class="fas fa-trash"></i></a>
                         </div>
                     {{/each}}
