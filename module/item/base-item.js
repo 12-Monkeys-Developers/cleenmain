@@ -28,12 +28,19 @@ export default class CemBaseItem extends Item {
      */
     weaponSkill(actor) {
         if (this.data.type !== "weapon") return;
-        const skillId = this.data.data.skillId;
-        if (!skillId) return;
-        const skill = actor.items.get(skillId);
-        if (skill.type !== "skill") return;
-        const skillValue = skill.data.data.value;
-        return skillValue;
+        
+        if (actor.type === "player") {            
+            const skillId = this.data.data.skillId;
+            if (!skillId) return;
+            const skill = actor.items.get(skillId);            
+            if (skill.type !== "skill") return;
+            const skillValue = skill.data.data.value;
+            return skillValue;
+        }
+
+        if (actor.type === "npc") {
+            return this.data.data.skillValueNpc;
+        }        
     }
 
     /**
@@ -63,7 +70,7 @@ export default class CemBaseItem extends Item {
      * @param {*} lethalattack 
     * @returns 
      */
-     calculateWeaponDamage(actor, dices, useHeroism, lethalattack) {
+     calculateWeaponDamageForPlayer(actor, dices, useHeroism, lethalattack) {
         if (this.data.type !== "weapon") return;
         if (actor.data.type !== "player") return;
 
@@ -103,4 +110,30 @@ export default class CemBaseItem extends Item {
             otherRoll: otherRoll
         }
     }
+
+    /**
+     * @name calculateWeaponDamage
+     * @description For weapon Item, calculates the value of the damage
+     * @param {*} actor 
+    * @returns 
+     */
+     calculateWeaponDamageForNpc(actor) {
+        if (this.data.type !== "weapon") return;
+        if (actor.data.type !== "npc") return;
+
+        const damage = this.data.data.damageBase;
+
+        if (!damage.includes("d") && !damage.includes("D")){
+            return {
+                damage: parseInt(damage),
+                otherRoll: null
+            }
+        }
+
+        const damageRoll = new Roll(damage, {}).roll({ async: false });
+        return {
+            damage: damageRoll._total,
+            otherRoll: damageRoll
+        }
+    }    
 }

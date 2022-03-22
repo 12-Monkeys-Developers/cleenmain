@@ -212,13 +212,23 @@ export class Rolls {
             token: null,
         }, data.formula, data.difficulty);
 
-        // Calculate the damages if this is an attack roll
-        let attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack);
+        // Calculate damages
         let otherRollTooltip = "";
-        if (attackDamage.otherRoll) {
-            otherRollTooltip = new Handlebars.SafeString(await attackDamage.otherRoll.getTooltip());
-        }
+        let attackDamage = null;
 
+        if (item.type === "weapon") {
+            if (actor.type === "player") {
+                attackDamage = item.calculateWeaponDamageForPlayer(actor, result.dices, data.useHeroism, data.lethalattack);
+                
+            }
+            if (actor.type === "npc") {
+                attackDamage = item.calculateWeaponDamageForNpc(actor);
+            }     
+            if (attackDamage.otherRoll !== null) {
+                otherRollTooltip = new Handlebars.SafeString(await attackDamage.otherRoll.getTooltip());
+            }     
+        }  
+          
         // Display the roll action
         await new CemChat(actor)
             .withTemplate("systems/cleenmain/templates/chat/rollResult.html")
@@ -231,7 +241,7 @@ export class Rolls {
                 formula: data.formula,
                 applyModifiers: data.applyModifiers,
                 result: result,
-                damage: attackDamage.damage,
+                damage: attackDamage?.damage,
                 otherRollTooltip: otherRollTooltip,
                 skillRoll: data.skillRoll,
                 attackRoll: data.attackRoll,

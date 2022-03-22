@@ -20,7 +20,10 @@
             <div class="finalText">
                 <div class="tooltip">
                     <p>{{localize  "CLEENMAIN.chatmessage.damageresult"}} {{damage}}</p>
-                    <span class="tooltiptext">{{{otherRollTooltip.string}}}</span>
+                    {{log 'tooltip' this}}
+                        {{#if (isNotEmptyString otherRollTooltip)}}
+                            <span class="tooltiptext">{{{otherRollTooltip.string}}}</span>
+                        {{/if}}
                 </div>                        
             </div>
         {{/if}}

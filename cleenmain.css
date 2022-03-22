@@ -266,6 +266,7 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .level-line {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .level-line select {
   margin: 0.5em 0.5em;
@@ -275,6 +276,7 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   margin: 0.5em 0.5em;
   font-family: "Museo Slab";
   font-size: 1rem;

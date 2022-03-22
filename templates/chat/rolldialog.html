@@ -10,9 +10,11 @@
   </div>
 
   {{#ifn damageRoll}}
-    <div class="rollmodifier">
-      <label>{{localize "CLEENMAIN.dialog.heroism"}}</label><input type="checkbox" id="heroism" />
-    </div>
+    {{#if isPlayer}}
+      <div class="rollmodifier">
+        <label>{{localize "CLEENMAIN.dialog.heroism"}}</label><input type="checkbox" id="heroism" />
+      </div>
+    {{/if}}
   {{/ifn}}
 
   {{#if attackRoll}}

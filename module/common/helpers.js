@@ -83,7 +83,10 @@ export const registerHandlebarsHelpers = function() {
         return accum;
     });  
 
-    // Times
+    Handlebars.registerHelper('and', function (val1, val2) {
+        return val1 && val2;
+    });
+    
     Handlebars.registerHelper('getCategoryLabel', function(type, category) {
         if (type === "armor") {
             return game.i18n.localize("CLEENMAIN.armor.category."+category);
@@ -108,5 +111,11 @@ export const registerHandlebarsHelpers = function() {
         const it = actor.items.get(item._id);
         const weaponDamage = it.weaponDamage(actor);
        return weaponDamage;
+    });
+
+    Handlebars.registerHelper('isNotEmptyString', function (value) {
+        if (value === null ) return false;
+        if (value === "") return false;
+        return true;
     });
 }

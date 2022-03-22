@@ -225,8 +225,8 @@
         },
         "options":{
             "numberofplayers":{
-                "name":"Nombre de Joueuses et joueurs",
-                "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs (valeur doit être entre 2 et 5)."
+                "name":"Nombre de joueuses et joueurs",
+                "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs."
             },
             "advancedrules":{
                 "name":"Règles avancées",
