@@ -32,7 +32,8 @@ input {
   color: #456;
 }
 .cleenmain.sheet.player .window-content {
-  background: no-repeat url('./assets/image/paxelfica-fondfdp.webp');
+  background: no-repeat url('./assets/image/fond.png');
+  background-size: 250px 100%;
   background-color: #fffdfc;
   font-family: "Museo Slab";
 }
@@ -71,6 +72,8 @@ input {
 .cleenmain.sheet.player .main .leftcolumn {
   display: flex;
   flex-direction: column;
+  min-width: 200px;
+  margin-right: 20px;
 }
 .cleenmain.sheet.player .main .leftcolumn .title-line {
   display: flex;
@@ -81,7 +84,7 @@ input {
 .cleenmain.sheet.player .main .leftcolumn .skills {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 0.2em;
 }
 .cleenmain.sheet.player .main .leftcolumn .skills .skill-line {
   display: flex;
@@ -101,7 +104,7 @@ input {
 .cleenmain.sheet.player .main .leftcolumn .skills .skill-line .skill-dev {
   width: 10%;
 }
-.cleenmain.sheet.player .main .leftcolumn .skills .skill-line .item-roll {
+.cleenmain.sheet.player .main .leftcolumn .skills .skill-line .skill-roll {
   width: 20%;
   text-align: center;
 }
@@ -263,6 +266,7 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .level-line {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .level-line select {
   margin: 0.5em 0.5em;
@@ -272,6 +276,7 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   margin: 0.5em 0.5em;
   font-family: "Museo Slab";
   font-size: 1rem;
@@ -367,6 +372,7 @@ input {
   background: no-repeat url('./assets/image/itemhheet_background.webp');
   background-color: #fffdfc;
   font-family: "Museo Slab";
+  background-size: 100% 100%;
 }
 .cleenmain.sheet.item .editor {
   height: 100%;
@@ -689,7 +695,7 @@ input {
   padding-top: 1em;
 }
 .chatroll .modifierText {
-  margin: 1em 0 1em 0;
+  margin: 3px 0 2px 0;
   color: #cee956;
   text-align: center;
 }

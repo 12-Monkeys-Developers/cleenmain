@@ -3,6 +3,7 @@
         background: @playersheet-background;
         background-color: @clear-background;
         font-family: @default-font;
+        background-size: 250px 100%;
     }
     textarea {
         resize: none;
@@ -38,6 +39,8 @@
         .leftcolumn {
             display: flex;
             flex-direction: column;
+            min-width: 200px;
+            margin-right: 20px;
             .title-line{
                 display: flex;
                 flex-direction: row;
@@ -47,7 +50,7 @@
             .skills{
                 display: flex;
                 flex-direction: column;
-                gap: .5em;
+                gap: .2em;
                 .skill-line{
                     display: flex;
                     flex-direction: row;
@@ -65,7 +68,7 @@
                     .skill-dev{       
                         width: 10%;
                     }
-                    .item-roll{       
+                    .skill-roll{       
                         width: 20%;
                         text-align: center;
                     }

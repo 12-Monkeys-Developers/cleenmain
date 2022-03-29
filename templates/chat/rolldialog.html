@@ -1,83 +1,86 @@
 <div class="dialog">
-  <div class="intro">
-    <div class="introImg" style="background-image: url('{{skillData.actingCharImg}}')"></div>
-    <div class="introtext">
-      {{skillData.introText}} 
-    </div>
+    <div class="intro">
+    <div class="introImg" style="background-image: url('{{actingCharImg}}')"></div>
+    <div class="introtext">{{introText}}</div>
   </div>
-  <div class="formula">
-    {{skillData.skillRollFormula}}
-  </div>
+  <div class="formula">{{rollFormula}}</div>
 
   <div class="rollmodifier">
-    <label>{{localize "cleenmain.dialog.rollmodifier"}}</label><input id="rollmodifier" value="" type="text" data-dtype="Text"/>
+    <label>{{localize "CLEENMAIN.dialog.rollmodifier"}}</label><input id="rollmodifier" value="" type="text" data-dtype="Text"/>
   </div>
 
-  {{#ifn skillData.damageRoll}}
-  <div class="rollmodifier">
-    <label>{{localize "cleenmain.dialog.heroism"}}</label><input type="checkbox" id="heroism" />
-  </div>
+  {{#ifn damageRoll}}
+    {{#if isPlayer}}
+      <div class="rollmodifier">
+        <label>{{localize "CLEENMAIN.dialog.heroism"}}</label><input type="checkbox" id="heroism" />
+      </div>
+    {{/if}}
   {{/ifn}}
-  {{#if skillData.weaponRoll}}
-  <div class="bonus">
-    <h2>{{localize "cleenmain.dialog.bonus"}}</h2>
-  </div>
-  <div class="bonus-block">
-    <div class="bonus-line tooltip">
-      <label for="murderous">{{localize "cleenmain.bonus.murderous.label"}}</label>
-      <input type="number" id="murderous" name="murderous" min="0" max="10" value="0"/>
-      <span class="tooltiptext">{{localize "cleenmain.bonus.murderous.description"}}</span>
+
+  {{#if attackRoll}}
+    <div class="bonus">
+      <h2>{{localize "CLEENMAIN.dialog.bonus"}}</h2>
     </div>
-    <div class="bonus-line tooltip">
-      <label for="manytargets">{{localize "cleenmain.bonus.manytargets.label"}}</label>
-      <input type="number" id="manytargets" name="manytargets" min="0" max="1" value="0"/>
-      <span class="tooltiptext">{{localize "cleenmain.bonus.manytargets.description"}}</span>
+    <div class="bonus-block">
+      <div class="bonus-line tooltip">
+        <label for="lethalattack">{{localize "CLEENMAIN.bonus.lethalattack.label"}}</label>
+        <input type="number" id="lethalattack" name="lethalattack" min="0" max="10" value="0"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.bonus.lethalattack.description"}}</span>
+      </div>
+      <div class="bonus-line tooltip">
+        <label for="mutlipleattacks">{{localize "CLEENMAIN.bonus.mutlipleattacks.label"}}</label>
+        <input type="number" id="mutlipleattacks" name="mutlipleattacks" min="0" max="1" value="0"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.bonus.mutlipleattacks.description"}}</span>
+      </div>
+      <div class="bonus-line tooltip">
+        <label for="efficiency">{{localize "CLEENMAIN.bonus.efficiency.label"}}</label>
+        <input type="number" id="efficiency" name="efficiency" min="0" max="10" value="0"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.bonus.efficiency.description"}}</span>
+      </div>
+      <div class="bonus-line tooltip">
+        <label for="caution">{{localize "CLEENMAIN.bonus.caution.label"}}</label>
+        <input type="number" id="caution" name="caution" min="0" max="10" value="0"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.bonus.caution.description"}}</span>
+      </div>
+      <!-- Règles avancées
+      <div class="bonus-line tooltip">
+        <label for="quick">{{localize "CLEENMAIN.bonus.quick.label"}}</label>
+        <input type="number" id="quick" name="quick" min="0" max="1" value="0"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.bonus.quick.description"}}</span>
+      </div>
+      -->
     </div>
-    <div class="bonus-line tooltip">
-      <label for="efficient">{{localize "cleenmain.bonus.efficient.label"}}</label>
-      <input type="number" id="efficient" name="efficient" min="0" max="10" value="0"/>
-      <span class="tooltiptext">{{localize "cleenmain.bonus.efficient.description"}}</span>
+    <div class="bonus">
+      <h2>{{localize "CLEENMAIN.dialog.penalty"}}</h2>
     </div>
-    <div class="bonus-line tooltip">
-      <label for="cover">{{localize "cleenmain.bonus.cover.label"}}</label>
-      <input type="number" id="cover" name="cover" min="0" max="10" value="0"/>
-      <span class="tooltiptext">{{localize "cleenmain.bonus.cover.description"}}</span>
+    <div class="bonus-block paddingend">
+      <div class="bonus-line tooltip">
+        <label for="minorinjury">{{localize "CLEENMAIN.penalty.minorinjury.label"}}</label>
+        <input type="number" id="minorinjury" name="minorinjury" min="0" max="1" value="0"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.penalty.minorinjury.description"}}</span>
+      </div>
+      <div class="bonus-line tooltip">
+        <label for="danger">{{localize "CLEENMAIN.penalty.danger.label"}}</label>
+        <input type="number" id="danger" name="danger" min="0" max="10" value="0"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.penalty.danger.description"}}</span>
+      </div>
+      <div class="bonus-line tooltip">
+        <label for="difficulty">{{localize "CLEENMAIN.penalty.difficulty.label"}}</label>
+        <input type="number" id="difficulty" name="difficulty" min="0" max="10" value="{{action.difficulty}}"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.penalty.difficulty.description"}}</span>
+      </div>
+      <div class="bonus-line tooltip">
+        <label for="risk">{{localize "CLEENMAIN.penalty.risk.label"}}</label>
+        <input type="number" id="risk" name="risk" min="0" max="1" value="{{action.risk}}"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.penalty.risk.description"}}</span>
+      </div>
+      <!-- Règles avancées
+      <div class="bonus-line tooltip">
+        <label for="slowness">{{localize "CLEENMAIN.penalty.slowness.label"}}</label>
+        <input type="number" id="slowness" name="slowness" min="0" max="10" value="0"/>
+        <span class="tooltiptext">{{localize "CLEENMAIN.penalty.slowness.description"}}</span>
+      </div>
+    -->
     </div>
-    <div class="bonus-line tooltip">
-      <label for="quick">{{localize "cleenmain.bonus.quick.label"}}</label>
-      <input type="number" id="quick" name="quick" min="0" max="1" value="0"/>
-      <span class="tooltiptext">{{localize "cleenmain.bonus.quick.description"}}</span>
-    </div>
-  </div>
-  <div class="bonus">
-    <h2>{{localize "cleenmain.dialog.penalty"}}</h2>
-  </div>
-  <div class="bonus-block paddingend">
-    <div class="bonus-line tooltip">
-      <label for="lightwound">{{localize "cleenmain.penalty.lightwound.label"}}</label>
-      <input type="number" id="lightwound" name="lightwound" min="0" max="1" value="0"/>
-      <span class="tooltiptext">{{localize "cleenmain.penalty.lightwound.description"}}</span>
-    </div>
-    <div class="bonus-line tooltip">
-      <label for="exposed">{{localize "cleenmain.penalty.exposed.label"}}</label>
-      <input type="number" id="exposed" name="exposed" min="0" max="10" value="0"/>
-      <span class="tooltiptext">{{localize "cleenmain.penalty.exposed.description"}}</span>
-    </div>
-    <div class="bonus-line tooltip">
-      <label for="difficulty">{{localize "cleenmain.penalty.difficulty.label"}}</label>
-      <input type="number" id="difficulty" name="difficulty" min="0" max="10" value="0"/>
-      <span class="tooltiptext">{{localize "cleenmain.penalty.difficulty.description"}}</span>
-    </div>
-    <div class="bonus-line tooltip">
-      <label for="slow">{{localize "cleenmain.penalty.slow.label"}}</label>
-      <input type="number" id="slow" name="slow" min="0" max="1" value="0"/>
-      <span class="tooltiptext">{{localize "cleenmain.penalty.slow.description"}}</span>
-    </div>
-    <div class="bonus-line tooltip">
-      <label for="jeopardy">{{localize "cleenmain.penalty.jeopardy.label"}}</label>
-      <input type="number" id="jeopardy" name="jeopardy" min="0" max="10" value="0"/>
-      <span class="tooltiptext">{{localize "cleenmain.penalty.jeopardy.description"}}</span>
-    </div>
-  </div>
   {{/if}}
 </div>

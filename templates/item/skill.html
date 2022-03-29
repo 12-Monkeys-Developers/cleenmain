@@ -4,10 +4,13 @@
     </header>
     <div class="sheet-content">
         <div class="input-skillvalue">
-            <input title="{{localize "cleenmain.label.value"}}" id="skill" name="data.value" type="number" value="{{data.value}}"/>
+            <input title="{{localize 'CLEENMAIN.label.value'}}" id="skill" name="data.value" type="number" value="{{data.value}}"/>
         </div>
         <div class="skill-name-line">
-            <input class="checkbox" name="data.developed" type="checkbox" {{checked data.developed}}>
+            <input title="{{localize 'CLEENMAIN.skill.developed'}}" class="checkbox" name="data.developed" type="checkbox" data.developed}}>
+        </div>
+        <div class="skill-name-line">
+            <input title="{{localize 'CLEENMAIN.skill.physical'}}" class="checkbox" name="data.physical" type="checkbox" data.physical}}>
         </div>
     </div>
 </form>

@@ -1,14 +1,15 @@
 {
-    "cleenmain": {
+    "CLEENMAIN": {
         "label": {
             "activity": "Activity",
             "armors": "Armors",
-            "bio": "Character",
             "bond": "Lien",
+            "bonus": "Damage Bonus",
+            "bio": "Biography",    
+            "traits": "Personality traits",                    
             "boons": "Boons",
             "boon": "Boon",
-            "bonus": "Damage Bonus",
-            "melee": "Corps-à-corps",
+            "melee": "Hand-to-hand",
             "cap_off": "Attacks",
             "category": "Category",
             "character": "Character",
@@ -18,18 +19,18 @@
             "equipment": "Equipment",
             "elite": "Elite",
             "flaw": "Flaw",
-            "heroism": "Heroism",
             "goal": "Goal",
+            "health": "Health",
+            "heroism": "Heroism",
             "name": "Name",
             "origin": "Origin",
             "quote": "Quote",
             "protections": "Protections",
             "skills" : "Compétences",
             "tactics": "Tactics",
-            "trainings": "Trainings: ",
+            "trainings": "Trained in : ",
             "type": "Type",
             "unlock_sheet": "Unlock Sheet",
-            "health": "Health",
             "wealth": "Richesses",
             "weapons": "Weapons",
             "wounds": "Wounds"
@@ -39,7 +40,7 @@
                 "standard": "Standard",
                 "war": "War Armor",
                 "heavy": "Heavy armor",
-                "shield": "Shield"
+                "shield": "Shields"
             },
             "add": "New armor",
             "malus": "Malus",
@@ -66,14 +67,18 @@
             },
             "add": "New weapon",
             "delete": "Delete weapon",
+            "name": "Name",
             "attaque": "Attack",
             "targets": "targets",
             "damage": "Damage",
             "range": "Range",
-            "skillvalue": "Skill",
+            "skillName": "Skill",
+            "skillValue": "Value",
             "special": "Special",
-            "skillvaluenpc": "skill",
-            "skillvaluenpcelite": "skill (elite)"
+            "zone": "Zone",
+            "sixPlus": "6+",
+            "skillValueNpc": "skill",
+            "skillValueNpcElite": "skill (elite)"
         },
         "equipment":{
             "add": "New equipment"
@@ -87,7 +92,7 @@
             "delete": "Delete",
             "tab":{
                 "boons": "Boons",
-                "bio": "Bio",
+                "bio": "Biography",
                 "combat": "Combat",
                 "equipment": "Equipment",
                 "notes": "Notes"
@@ -125,9 +130,13 @@
                 "name": "Athletics",
                 "description": "Les activités physicals intenses comme la course, la nage ou le grimper à la corde."
             },
-            "command": {
+            "authority": {
                 "name": "Command",
                 "description": "Diriger un groupe, intimider un interlocuteur, donner des ordres, etc."
+            },
+            "combat": {
+                "name": "Combat",
+                "description": "Sert pour combattre, avec des armes ou à mains nues. Chaque famille d’armes maîtrisée est indiquée entre parenthèses derrière le nom de la compétence. Par exemple : Combat (épée)."
             },
             "meleecombat": {
                 "name": "Melee combat",
@@ -153,31 +162,31 @@
                 "name": "Research",
                 "description": "Effectuer des recherches documentaires, mais aussi lire et analyser un texte, écrire un document, etc."
             },
-            "eloquence": {
-                "name": "Eloquence",
-                "description": "Parler à un auditoire, influencer un interlocuteur, calmer des personnes hostiles, séduire, etc."
-            },
             "riding": {
                 "name": "Riding",
                 "description": "Dresser, chevaucher et s’occuper d’une monture."
+            },
+            "eloquence": {
+                "name": "Eloquence",
+                "description": "Parler à un auditoire, influencer un interlocuteur, calmer des personnes hostiles, séduire, etc."
             },
             "intellect": {
                 "name": "Intellect",
                 "description": "Résoudre un problème, calculer, trouver le meilleur coup à jouer, etc."
             },
-            "langage": {
+            "language": {
                 "name": "Langue",
                 "description": "Parler une langue. Chaque langue maîtrisée est indiquée entre parenthèses derrière le nom de la compétence. Par exemple : Langue (Français)."
             },
-            "strenght": {
-                "name": "Strenght",
+            "muscles": {
+                "name": "Muscles",
                 "description": "Les actions purement physiques sans technique spécifique comme défoncer une porte, tordre une barre de fer ou hisser un poids"
             },
             "perception": {
                 "name": "Perception",
                 "description": "Mobiliser ses cinq sens, de manière volontaire ou instinctive."
             },
-            "pilot": {
+            "drive": {
                 "name": "Pilot",
                 "description": "Conduire un véhicule. Chaque type de véhicule maîtrisé est indiqué entre parenthèses derrière le nom de la compétence. Par exemple : Pilotage (Automobiles)."
             },
@@ -210,7 +219,9 @@
                 "description": "Se concentrer, résister aux influences extérieures, se maîtriser."
             },
             "add": "New skill",
-            "delete": "Supprimer la compétence"
+            "delete": "Delete skill",
+            "developed": "Check if developed",
+            "physical": "Check if physical skill"
         },
         "options":{
             "numberofplayers":{
@@ -238,10 +249,14 @@
             "copper": "Copper"
         },
         "dialog":{
-            "introskill": "{actingCharName} uses the skill {itemName}.",
-            "introweapon": "{actingCharName} attacks with {itemName}.",
-            "introdamage": "{actingCharName} does damage with {itemName}.",
+            "rollmodifier": "Modifier for the roll: ",
             "heroism": "Spend an heroism point for +1d6.",
+            "introskill": "{actingCharName} uses the skill {itemName}.",
+            "titleskill": "Roll of {itemName}",
+            "introweapon": "{actingCharName} attacks with {itemName}.",
+            "titleweapon": "Attack of {itemName}",
+            "introdamage": "{actingCharName} does damage with {itemName}.",
+            "titledamage": "Damages of {itemName}",
             "button":{
                 "rollmodifier": "Modifier for the roll: ",
                 "cancel": "Cancel",
@@ -252,30 +267,31 @@
         },
         "chatmessage":{
             "custommodifier": "Custom modifier used : ({rollModifier}).",
-            "heroismmodifier": "One Heroism point used : +1d6 added to roll.",
+            "heroismmodifier": "One Heroism point used : +1d6",
             "rollformula": "Final dice rolled:",
-            "rollresult": "Result of the dice roll: "
+            "rollresult": "Result of the dice roll: ",
+            "damageresult": "Damages are: "
         },
         "bonus":{
-            "murderous":{
-                "label": "Murderous",
+            "lethalattack":{
+                "label": "lethalattack",
                 "description": "les dégâts de l’attaque augmentent de 1d6. Plusieurs Attaques meurtrières augmentent les dégâts d’autant de d6 que d’Attaques meurtrières.",
-                "chatmessage": "Bonus: Murderous (x{murderous})."
+                "chatmessage": "Bonus: Lethal Attack (x{lethalattack})."
             },
-            "manytargets":{
-                "label": "manytargets",
+            "mutlipleattacks":{
+                "label": "mutlipleattacks",
                 "description": "l’attaque vise deux cibles à la fois, à condition qu’elles soient accessibles au personnage – à son contact pour une attaque de corps à corps, groupées pour un tir. Un seul test est e{ectué et les dégâts, après tous les autres calculs, sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur.",
-                "chatmessage": "Bonus: manytargets."
+                "chatmessage": "Bonus: mutlipleattacks."
             },
-            "efficient":{
-                "label": "efficient",
+            "efficiency":{
+                "label": "efficiency",
                 "description":  "l’action en cours bénéficie d’un bonus de 2. Plusieurs Efficacités confèrent un bonus de 2 pour chaque Efficacité.",
-                "chatmessage": "Bonus: efficient (x{efficient})."
+                "chatmessage": "Bonus: efficiency (x{efficiency})."
             },
-            "cover":{
-                "label": "cover",
+            "caution":{
+                "label": "caution",
                 "description":  "le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage bénéficie d’un bonus de 2. Plusieurs Prudences augmentent le nombre de tests successifs bénéficiant de ce bonus.",
-                "chatmessage": "Bonus: cover (x{cover})."
+                "chatmessage": "Bonus: caution (x{caution})."
             },
             "quick":{
                 "label": "quick",
@@ -284,30 +300,30 @@
             }
         },
         "penalty":{
-            "lightwound":{
-                "label": "lightwound",
+            "minorinjury":{
+                "label": "minorinjury",
                 "description":  "les dégâts sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur",
-                "chatmessage": "Penalty: lightwound."
+                "chatmessage": "Penalty: minorinjury."
             },
-            "exposed":{
-                "label": "exposed",
+            "danger":{
+                "label": "danger",
                 "description":  "le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage subit un malus de 2. D’autres Dangers augmentent le nombre de tests successifs subissant ce malus.",
-                "chatmessage": "Penalty: exposed (x{exposed})."
+                "chatmessage": "Penalty: danger (x{danger})."
             },
             "difficulty":{
                 "label": "difficulty",
                 "description":  "l’action en cours subit un malus de 2. Plusieurs Difficultés imposent un malus de 2 pour chaque Difficulté.",
                 "chatmessage": "Penalty: difficulty (x{difficulty})."
             },
-            "slow": {
-                "label": "slow",
+            "risk": {
+                "label": "risk",
                 "description": "en combat, une action lente donne la main à l’adversaire, même s’il ne s’agissait pas d’une attaque. En dehors d’un combat, la durée d’une tâche augmente de moitié. Non cumulable.",
-                "chatmessage": "Penalty: slow."
+                "chatmessage": "Penalty: (x{risk})."
             },
-            "jeopardy":{
-                "label": "jeopardy",
+            "slowness":{
+                "label": "slowness",
                 "description":  "si l’action en cours échoue, un incident, déterminé par le MJ, survient. Par exemple l’arme est coincée ou détruite, le personnage glisse et tombe au sol, il lâche un objet, un de ses vêtements s’accroche quelque part et lui fait perdre une action, l’attaque touche un allié, etc. Plusieurs Risques différents exposent le personnage à des déboires multiples simultanés. Plusieurs risques identiques ne sont pas cumulables.",
-                "chatmessage": "Penalty: jeopardy (x{jeopardy})."
+                "chatmessage": "Penalty: slowness."
             }
         }
     }

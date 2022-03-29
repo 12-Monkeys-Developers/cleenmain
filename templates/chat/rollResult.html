@@ -1,19 +1,30 @@
 <div class="chatroll">
     <div class="intro">
-        <div class="introImg" style="background-image: url('{{skillData.actingCharImg}}')">
-            <div class="introText">{{skillData.introText}}</div>
+        <div class="introImg" style="background-image: url('{{actingCharImg}}')">
+            <div class="introText">{{introText}}</div>
         </div>
     </div>  
-        {{#each skillData.applyModifier as |mod id|}}    
-        <div class="modifierText">{{mod}}</div>
+        {{#each applyModifiers as |mod id|}}    
+            <div class="modifierText">{{mod}}</div>
         {{/each}}
         <div class="formulaText">
-            {{localize "cleenmain.chatmessage.rollformula"}}  {{skillData.skillRollFormula}}
-        </div>
+            {{localize "CLEENMAIN.chatmessage.rollformula"}}  {{formula}}
+        </div>        
         <div class="finalText">
             <div class="tooltip">
-                <p>{{localize "cleenmain.chatmessage.rollresult"}} {{skillData.skillRoll.total}}</p>
-                <span class="tooltiptext">{{skillData.tooltip}}</span>
+                <p>{{localize "CLEENMAIN.chatmessage.rollresult"}} {{result.total}}</p>
+                <span class="tooltiptext">{{{result.tooltip.string}}}</span>
             </div>
         </div>
+        {{#if attackRoll}}
+            <div class="finalText">
+                <div class="tooltip">
+                    <p>{{localize  "CLEENMAIN.chatmessage.damageresult"}} {{damage}}</p>
+                    {{log 'tooltip' this}}
+                        {{#if (isNotEmptyString otherRollTooltip)}}
+                            <span class="tooltiptext">{{{otherRollTooltip.string}}}</span>
+                        {{/if}}
+                </div>                        
+            </div>
+        {{/if}}
 </div>

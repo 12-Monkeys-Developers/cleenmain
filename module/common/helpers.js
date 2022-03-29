@@ -82,4 +82,40 @@ export const registerHandlebarsHelpers = function() {
             accum += block.fn(i);
         return accum;
     });  
+
+    Handlebars.registerHelper('and', function (val1, val2) {
+        return val1 && val2;
+    });
+    
+    Handlebars.registerHelper('getCategoryLabel', function(type, category) {
+        if (type === "armor") {
+            return game.i18n.localize("CLEENMAIN.armor.category."+category);
+        }
+        else if (type === "weapon") {
+            return game.i18n.localize("CLEENMAIN.weapon.category."+category);
+        }        
+    });
+
+    Handlebars.registerHelper('getCheckboxIcon', function (value) {
+        if (value) return "fas fa-square";
+        return "far fa-square";
+    });
+
+    Handlebars.registerHelper('getWeaponSkill', function (actor, item) {
+        const it = actor.items.get(item._id);
+        const weaponSkill = it.weaponSkill(actor);
+       return weaponSkill;
+    });
+
+    Handlebars.registerHelper('getWeaponDamage', function (actor, item) {
+        const it = actor.items.get(item._id);
+        const weaponDamage = it.weaponDamage(actor);
+       return weaponDamage;
+    });
+
+    Handlebars.registerHelper('isNotEmptyString', function (value) {
+        if (value === null ) return false;
+        if (value === "") return false;
+        return true;
+    });
 }

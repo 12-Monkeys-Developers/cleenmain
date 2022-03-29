@@ -5,65 +5,58 @@
     </header>
     <div class="sheet-content">
         <table>
-            <tr>
-                <th>{{localize "cleenmain.label.category"}}</th>
-                <th>{{localize "cleenmain.label.type"}}</th>
-                <th>{{localize "cleenmain.weapon.damage"}}</th>
-                <th>{{localize "cleenmain.weapon.range"}}</th>
-                <th>{{localize "cleenmain.weapon.targets"}}</th>
-                <th>{{localize "cleenmain.weapon.special"}}</th>
-                {{#if hasnpcowner}}
-                <th>{{localize "cleenmain.weapon.skillvaluenpc"}}</th>
-                <th>{{localize "cleenmain.weapon.skillvaluenpcelite"}}</th>
-                {{else}}
-                <th>{{localize "cleenmain.weapon.skillvalue"}}</th>
-                {{/if}}
-            </tr>
+            <thead>
+                <tr>
+                    <th>{{localize "CLEENMAIN.label.category"}}</th>
+                    <th>{{localize "CLEENMAIN.label.type"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.damage"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.range"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.targets"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.special"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.zone"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.sixPlus"}}</th>
+                    {{#if hasNpcOwner}}
+                        <th>{{localize "CLEENMAIN.weapon.skillValueNpc"}}</th>
+                        <th>{{localize "CLEENMAIN.weapon.skillValueNpcElite"}}</th>
+                    {{else}}
+                        <th>{{localize "CLEENMAIN.weapon.skillName"}}</th>
+                    {{/if}}
+                </tr>
+            </thead>     
+
             <td>
                 <select name="data.category">
                     {{#select data.category}}
-                    {{#each config.weapon.category as |name type|}}
-                    <option value="{{type}}">{{localize name}}</option>
-                    {{/each}}
+                        {{#each config.weapon.category as |name type|}}
+                            <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
                     {{/select}}
                 </select>
             </td>
             <td>
                 <select name="data.type">
                     {{#select data.type}}
-                    {{#each config.weapon.type as |name type|}}
-                    <option value="{{type}}">{{localize name}}</option>
-                    {{/each}}
+                        {{#each config.weapon.type as |name type|}}
+                            <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
                     {{/select}}
                 </select>
             </td>
-            <td>
-                <input name="data.damage" type="text" value="{{data.damage}}" />
-            </td>
-            <td>
-                <input name="data.range" type="text" value="{{data.range}}" data-dtype="Number" />
-            </td>
-            <td>
-                <input name="data.targets" type="text" value="{{data.targets}}" data-dtype="Number" />
-            </td>
-            <td>
-                <input name="data.special" type="text" value="{{data.special}}" />
-            </td>
-            {{#if hasnpcowner}}
-            <td>
-                <input name="data.skillvaluenpc" type="text" value="{{data.skillvaluenpc}}" />
-            </td>
-            <td>
-                <input name="data.skillvaluenpcelite" type="text" value="{{data.skillvaluenpcelite}}" />
-            </td>
-            {{else}}
-            <td>
-                <input name="data.skillvalue" type="text" value="{{data.skillvalue}}" />
-            </td>
+            <td><input name="data.damageBase" type="text" value="{{data.damageBase}}"/></td>
+            <td><input name="data.range" type="text" value="{{data.range}}" data-dtype="Number"/></td>
+            <td><input name="data.targets" type="text" value="{{data.targets}}" data-dtype="Number"/></td>
+            <td><input name="data.special" type="text" value="{{data.special}}"/></td>
+            <td><input name="data.zone" type="text" value="{{data.zone}}" /></td>
+            <td><input name="data.sixPlus" type="checkbox" {{checked data.sixPlus}}/></td>
+            {{#if hasNpcOwner}}
+                <td><input name="data.skillValueNpc" type="text" value="{{data.skillValueNpc}}"/></td>
+                <td><input name="data.skillValueNpcElite" type="text" value="{{data.skillValueNpcElite}}"/></td>
+                {{else}}
+                    <td><input name="data.skillName" type="text" value="{{data.skillName}}"/></td>
             {{/if}}
             </table>
             
-            <div class="description">{{localize "cleenmain.label.description"}}</div>
+            <div class="description">{{localize "CLEENMAIN.label.description"}}</div>
             {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
     </div>
 </form>

@@ -1,31 +1,35 @@
+import { CLEENMAIN } from "./module/common/config.js";
 
 import { preloadTemplates } from "./module/common/templates.js";
-import { cleenmain } from "./module/common/config.js";
 import { registerHandlebarsHelpers } from "./module/common/helpers.js"
-import registerHooks from './module/common/hooks.js';
 import registerSystemSettings from './module/common/settings.js';
+import registerHooks from './module/common/hooks.js';
 
-import CleenmainItem from "./module/item/item.js";
-import CleenmainActor from "./module/actor/actor.js";
+import CemBaseItem from "./module/item/base-item.js";
+import CemBaseActor from "./module/actor/base-actor.js";
 
-import CleenmainItemSheet from "./module/item/sheet/base.js";
-import CleenmainPlayerSheet from "./module/actor/sheet/player.js";
-import CleenmainNpcSheet from "./module/actor/sheet/npc.js";
+import CemBaseItemSheet from "./module/item/sheet/base-sheet.js";
+import { WeaponSheet } from "./module/item/sheet/weapon-sheet.js";
+
+import PlayerSheet from "./module/actor/sheet/player-sheet.js";
+import NpcSheet from "./module/actor/sheet/npc-sheet.js";
 
 Hooks.once("init", function(){
 
     console.log("Cleeenmain | Initializing Cles en mains System");
 
-    CONFIG.cleenmain = cleenmain;
-    CONFIG.Item.documentClass = CleenmainItem;
-    CONFIG.Actor.documentClass = CleenmainActor;
+    CONFIG.CLEENMAIN = CLEENMAIN;
+    CONFIG.Item.documentClass = CemBaseItem;
+    CONFIG.Actor.documentClass = CemBaseActor;
+
     
     Items.unregisterSheet('core', ItemSheet);
-    Items.registerSheet('cleenmain', CleenmainItemSheet, {makeDefault: true });
+    Items.registerSheet('cleenmain', CemBaseItemSheet, {makeDefault: true });
+    Items.registerSheet('cleenmain', WeaponSheet, {label: "WeaponSheet", makeDefault: true, types: ['weapon']});
 
     Actors.unregisterSheet('core', ActorSheet);
-    Actors.registerSheet('cleenmain', CleenmainPlayerSheet, {types: ['player'], makeDefault: true });
-    Actors.registerSheet('cleenmain', CleenmainNpcSheet, {types: ['npc'], makeDefault: true });
+    Actors.registerSheet('cleenmain', PlayerSheet, {types: ['player'], makeDefault: true });
+    Actors.registerSheet('cleenmain', NpcSheet, {types: ['npc'], makeDefault: true });
 
 	// Preload Handlebars Templates
 	preloadTemplates();

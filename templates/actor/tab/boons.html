@@ -1,43 +1,40 @@
 <div class="boons-tab">
     {{#if unlocked}}
-    <h1>
-        <a class="item-create" data-type="boon" title="{{localize "cleenmain.boon.add"}}">
-            <i class="fas fa-plus"></i>
-        </a>
-    </h1>
+        <h1>
+            <a class="item-create" data-type="boon" title='{{localize "CLEENMAIN.boon.add"}}'>
+                <i class="fas fa-plus"></i>
+            </a>
+        </h1>
     {{/if}}
     <div class="boon-group">
         {{#each boons as |item id|}}
-        <div class="boon-card" data-item-id="{{item.id}}">
-            <div class="boon-name-line">
-                {{#if ../isPlayer}}
-                {{#if item.data.data.developed}}
-                <i class="fas fa-square"></i>
-                {{else}}
-                <i class="far fa-square"></i>
-                {{/if}}
-                {{/if}}
-                <div class="boon-name">{{item.name}}</div>
-                {{#if ../unlocked}}
-                <div class="icon-group">
-                    <a class="item-open-sheet" data-type="boon" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.edit"}}">
-                        <i class="fas fa-pen"></i>
-                    </a>
-                    <a class="inline-delete" data-type="boon" data-id="{{item.id}}" title="{{localize "cleenmain.sheet.delete"}}">
-                        <i class="fas fa-trash"></i>
-                    </a>
+            <div class="boon-card item" data-item-id="{{item._id}}">
+                <div class="boon-name-line">
+                    {{#if ../isPlayer}}
+                        {{#if item.data.developed}}
+                            <i class="{{getCheckboxIcon  item.data.developed}}"></i>
+                        {{/if}}
+                        <div class="boon-name">{{item.name}}</div>
+                        {{#if ../unlocked}}
+                            <div class="icon-group">
+                                <a class="item-open-sheet" data-type="boon" data-id="{{item.id}}" title="{{localize 'CLEENMAIN.sheet.edit'}}">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <a class="inline-delete" data-type="boon" data-id="{{item.id}}" title="{{localize 'CLEENMAIN.sheet.delete'}}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        {{/if}}
+                    {{/if}}
                 </div>
+                <div class="boon-description">{{{item.data.description}}}</div>
+                {{#if item.data.limitedUse}}
+                    <div class="boon-used-line">
+                        <label for="item.data.used">{{localize "CLEENMAIN.boon.used"}}</label>
+                        <input class="checkbox inline-edit" data-field="data.used" id="{{item.id}}" name="item.data.used" type="checkbox" {{checked item.data.used}}>                        
+                    </div>
                 {{/if}}
             </div>
-            <div class="boon-description">{{{item.data.data.description}}}</div>
-            {{#if item.data.data.limitedUse}}
-            <div class="boon-used-line">
-                <label for="item.data.data.used">{{localize "cleenmain.boon.used"}}</label>
-                <input class="checkbox inline-edit" data-field="data.used" id="{{item.id}}" name="item.data.data.used" type="checkbox" {{checked item.data.data.used}}>
-                
-            </div>
-            {{/if}}
-        </div>
         {{/each}}
     </div>
 </div>
