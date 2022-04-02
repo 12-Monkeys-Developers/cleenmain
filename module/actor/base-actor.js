@@ -7,16 +7,48 @@ export default class CemBaseActor extends Actor {
         super.prepareBaseData();
 
         if (this.data.type === "player") this._prepareBaseDataPlayer();
+        if (this.data.type === "npc") this._prepareBaseDataNpc();
     }
 
+    /**
+     * @private
+     */
     _prepareBaseDataPlayer() {
 
         this.data.data.heroism.max = Utils.getMaxHeroism() + (this.data.data.heroism.developed ? 1 : 0);
     }
 
     /**
+     * @private
+     */
+    _prepareBaseDataNpc() {
+
+        // TODO Check if ELite is necessary
+        if (this.data.data.level === "boss") this.data.data.elite = true;
+        this._initializeNpcHealth();
+    }
+
+   /**
+   * @description  Evaluate the max health of the NPC depending of the number of players option 
+   * @private
+   */
+    _initializeNpcHealth(){
+        let numberOfPlayers = game.settings.get('cleenmain', 'numberOfPlayers');
+
+        if (this.data.data.level === "support") {
+            this.data.data.health.value = this.data.data.health.max = 1;
+        }
+        else {
+            this.data.data.health.max = this.data.data.healthByNumberPlayers[numberOfPlayers];
+            if (this.data.data.health.value > this.data.data.health.max || this.data.data.health.value < 0) {
+                this.data.data.health.value = this.data.data.health.max;
+            }
+        }
+    }
+
+    /**
      * @name check
-     * @description Rolls dices
+     * @description Rolls dices and display chat messages
      * @param {*} itemId Id of the Item used for roll
      * @param {*} rollType  skill, weapon attack, weapon damage
      * @returns 

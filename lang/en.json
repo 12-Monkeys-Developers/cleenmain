@@ -27,7 +27,7 @@
             "quote": "Quote",
             "protections": "Protections",
             "skills" : "Compétences",
-            "tactics": "Tactics",
+            "tactic": "Tactic",
             "trainings": "Trained in : ",
             "type": "Type",
             "unlock_sheet": "Unlock Sheet",
@@ -218,15 +218,35 @@
                 "name": "Willpower",
                 "description": "Se concentrer, résister aux influences extérieures, se maîtriser."
             },
+            "physical": {
+                "name": "Physique",
+                "description": ""
+            },
+            "dexterity": {
+                "name": "Habilité",
+                "description": ""
+            },
+            "social": {
+                "name": "Social",
+                "description": ""
+            },
+            "mental": {
+                "name": "Mental",
+                "description": ""
+            },
             "add": "New skill",
             "delete": "Delete skill",
-            "developed": "Check if developed",
-            "physical": "Check if physical skill"
+            "isDeveloped": "Check if developed",
+            "isPhysical": "Check if physical skill"
         },
         "options":{
             "numberofplayers":{
                 "name":"Nombre de Joueuses et joueurs",
-                "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs (valeur doit être entre 2 et 5)."
+                "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs (valeur doit être entre 2 et 5).",
+                "two": "Two players",
+                "three": "Three players",
+                "four": "Four players",
+                "five": "Five players"
             },
             "advancedrules":{
                 "name":"Advanced rules",

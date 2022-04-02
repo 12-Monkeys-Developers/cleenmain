@@ -1,28 +1,28 @@
 export const CLEENMAIN = {
         skills: [
-                {name: "acrobatics", physical: true},
-                {name: "art", physical: false},
-                {name: "athletics", physical: true},
-                {name: "authority", physical: false},
-                {name: "combat", physical: true},
-                {name: "knowledge", physical: false},
-                {name: "defence", physical: true},
-                {name: "stealth", physical: true},
-                {name: "research", physical: false},
-                {name: "riding", physical: true},
-                {name: "eloquence", physical: false},
-                {name: "intellect", physical: false},
-                {name: "language", physical: false},
-                {name: "muscles", physical: true},
-                {name: "perception", physical: false},
-                {name: "drive", physical: true},
-                {name: "psychology", physical: false},
-                {name: "reflexes", physical: true},
-                {name: "resistance", physical: true},
-                {name: "healing", physical: false},
-                {name: "survival", physical: true},
-                {name: "technical", physical: false},
-                {name: "willpower", physical: false}
+                { name: "acrobatics", physical: true },
+                { name: "art", physical: false },
+                { name: "athletics", physical: true },
+                { name: "authority", physical: false },
+                { name: "combat", physical: true },
+                { name: "knowledge", physical: false },
+                { name: "defence", physical: true },
+                { name: "stealth", physical: true },
+                { name: "research", physical: false },
+                { name: "riding", physical: true },
+                { name: "eloquence", physical: false },
+                { name: "intellect", physical: false },
+                { name: "language", physical: false },
+                { name: "muscles", physical: true },
+                { name: "perception", physical: false },
+                { name: "drive", physical: true },
+                { name: "psychology", physical: false },
+                { name: "reflexes", physical: true },
+                { name: "resistance", physical: true },
+                { name: "healing", physical: false },
+                { name: "survival", physical: true },
+                { name: "technical", physical: false },
+                { name: "willpower", physical: false }
         ],
         weapon: {
                 category: {
@@ -43,13 +43,13 @@ export const CLEENMAIN = {
                         shield: "CLEENMAIN.armor.category.shield"
                 }
         },
-        npcskills: {
-                physical: ["acrobatics", "athletics", "combat", "defence", "riding", "muscles", "resistance"],
-                dexterity: ["stealth", "drive", "reflexes", "healing", "technical"],
-                social: ["art", "command", "eloquence", "psychology"],
-                mental: ["knowledge", "research", "intellect", "langage", "perception", "survival", "willpower"]
-        },
-        npccategory: {
+        npcSkills: [
+                { name: "physical", physical: true, skills: ["acrobatics", "athletics", "combat", "defence", "riding", "muscles", "resistance"] },
+                { name: "dexterity", physical: true, skills: ["stealth", "drive", "reflexes", "healing", "technical"] },
+                { name: "social", physical: false, skills: ["art", "command", "eloquence", "psychology"] },
+                { name: "mental", physical: false, skills: ["knowledge", "research", "intellect", "langage", "perception", "survival", "willpower"] }
+        ],
+        npcCategory: {
                 support: "CLEENMAIN.npccategory.support",
                 secondfiddle: "CLEENMAIN.npccategory.secondfiddle",
                 boss: "CLEENMAIN.npccategory.boss"

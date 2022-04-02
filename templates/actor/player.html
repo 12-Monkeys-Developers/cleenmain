@@ -1,3 +1,4 @@
+
 <form class="{{cssClass}}" autocomplete="off">
     <div class="main">
         <div class="leftcolumn">
@@ -14,8 +15,8 @@
                         <div class="skill-line item" data-item-id="{{_id}}">
                             <input class="inline-edit skill-name" data-field="name" type="text" value="{{skill.name}}" data-dtype="Text"/>
                             <input class="inline-edit skill-value" data-field="data.base" type="number" name="skill.data.base" value="{{skill.data.base}}" data-dtype="Number" />
-                            <input title="{{localize 'CLEENMAIN.skill.developed'}}" class="inline-edit skill-dev checkbox" data-field="data.developed" name="skill.data.developed" type="checkbox" {{checked skill.data.developed}}>
-                            <input title="{{localize 'CLEENMAIN.skill.physical'}}" class="inline-edit skill-physical checkbox" data-field="data.physical" name="skill.data.physical" type="checkbox" {{checked skill.data.physical}}>
+                            <input title="{{localize 'CLEENMAIN.skill.isDeveloped'}}" class="inline-edit skill-dev checkbox" data-field="data.developed" name="skill.data.developed" type="checkbox" {{checked skill.data.developed}}>
+                            <input title="{{localize 'CLEENMAIN.skill.isPhysical'}}" class="inline-edit skill-physical checkbox" data-field="data.physical" name="skill.data.physical" type="checkbox" {{checked skill.data.physical}}>
                             <a class="inline-delete" data-type="skill" title="{{localize 'CLEENMAIN.skill.delete'}}"><i class="fas fa-trash"></i></a>
                         </div>
                     {{/each}}
@@ -25,10 +26,7 @@
                     {{#each skills as |skill type|}}
                         <div class="skill-line item" data-item-id="{{_id}}">
                             <div class="skill-name" title="{{skill.data.description}}" >{{skill.name}}</div>
-                            <div class="skill-value">{{skill.data.value}}</div>
-                            <a class="skill-roll">
-                                <i class="fas fa-dice"></i>
-                            </a></th>
+                            <div class="skill-value">{{skill.data.value}}</div><a class="skill-roll"><i class="fas fa-dice"></i></a>
                         </div>
                     {{/each}}
                 </div>

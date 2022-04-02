@@ -5,16 +5,15 @@ export default function registerSystemSettings() {
         hint: 'CLEENMAIN.options.numberofplayers.hint',
         scope: 'world',
         config: true,
-        type: Number,
+        default: "two",
+        type: String,
         choices: {
-            2 : "2",
-            3 : "3",
-            4 : "4",
-            5 : "5"
+            "two" : 'CLEENMAIN.options.numberofplayers.two',
+            "three" : 'CLEENMAIN.options.numberofplayers.three',
+            "four" : 'CLEENMAIN.options.numberofplayers.four',
+            "five" : 'CLEENMAIN.options.numberofplayers.five'
         },
-        default: "0",        
-        type: Number,
-        onChange: foundry.utils.debounce(() => window.location.reload(), 100)
+        onChange: value => {console.log('new numberOfPlayers',value);foundry.utils.debounce(() => window.location.reload(), 100)}
     });
     game.settings.register('cleenmain', 'advancedRules', {
         name: 'CLEENMAIN.options.advancedrules.name',

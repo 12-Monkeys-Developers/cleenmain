@@ -1,9 +1,9 @@
 <div class="boons-tab">
+    {{log 'boons' this}}
     {{#if unlocked}}
         <h1>
-            <a class="item-create" data-type="boon" title='{{localize "CLEENMAIN.boon.add"}}'>
-                <i class="fas fa-plus"></i>
-            </a>
+            <div class="line-label">{{localize "CLEENMAIN.boon.add"}} </div>
+            <a class="item-create" data-type="boon" title='{{localize "CLEENMAIN.boon.add"}}'><i class="fas fa-plus"></i></a>
         </h1>
     {{/if}}
     <div class="boon-group">
@@ -14,17 +14,17 @@
                         {{#if item.data.developed}}
                             <i class="{{getCheckboxIcon  item.data.developed}}"></i>
                         {{/if}}
-                        <div class="boon-name">{{item.name}}</div>
-                        {{#if ../unlocked}}
-                            <div class="icon-group">
-                                <a class="item-open-sheet" data-type="boon" data-id="{{item.id}}" title="{{localize 'CLEENMAIN.sheet.edit'}}">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <a class="inline-delete" data-type="boon" data-id="{{item.id}}" title="{{localize 'CLEENMAIN.sheet.delete'}}">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </div>
-                        {{/if}}
+                    {{/if}}                        
+                    <div class="boon-name">{{item.name}}</div>
+                    {{#if ../unlocked}}
+                        <div class="icon-group">
+                            <a class="item-open-sheet" data-type="boon" data-id="{{item.id}}" title="{{localize 'CLEENMAIN.sheet.edit'}}">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                            <a class="inline-delete" data-type="boon" data-id="{{item.id}}" title="{{localize 'CLEENMAIN.sheet.delete'}}">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
                     {{/if}}
                 </div>
                 <div class="boon-description">{{{item.data.description}}}</div>
