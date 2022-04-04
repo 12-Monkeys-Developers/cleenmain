@@ -1,5 +1,4 @@
 <div class="boons-tab">
-    {{log 'boons' this}}
     {{#if unlocked}}
         <h1>
             <div class="line-label">{{localize "CLEENMAIN.boon.add"}} </div>
@@ -18,12 +17,8 @@
                     <div class="boon-name">{{item.name}}</div>
                     {{#if ../unlocked}}
                         <div class="icon-group">
-                            <a class="item-open-sheet" data-type="boon" data-id="{{item.id}}" title="{{localize 'CLEENMAIN.sheet.edit'}}">
-                                <i class="fas fa-pen"></i>
-                            </a>
-                            <a class="inline-delete" data-type="boon" data-id="{{item.id}}" title="{{localize 'CLEENMAIN.sheet.delete'}}">
-                                <i class="fas fa-trash"></i>
-                            </a>
+                            <a class="item-open-sheet" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i class="fas fa-pen"></i></a>
+                            <a class="inline-delete" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i class="fas fa-trash"></i></a>
                         </div>
                     {{/if}}
                 </div>
@@ -31,7 +26,7 @@
                 {{#if item.data.limitedUse}}
                     <div class="boon-used-line">
                         <label for="item.data.used">{{localize "CLEENMAIN.boon.used"}}</label>
-                        <input class="checkbox inline-edit" data-field="data.used" id="{{item.id}}" name="item.data.used" type="checkbox" {{checked item.data.used}}>                        
+                        <input class="checkbox inline-edit" data-field="data.used" name="item.data.used" type="checkbox" {{checked item.data.used}}>                        
                     </div>
                 {{/if}}
             </div>
