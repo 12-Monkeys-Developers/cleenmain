@@ -27,6 +27,7 @@
                         <div class="skill-line item" data-item-id="{{_id}}">
                             <div class="skill-name" title="{{skill.data.description}}" >{{skill.name}}</div>
                             <div class="skill-value">{{skill.data.value}}</div><a class="skill-roll"><i class="fas fa-dice"></i></a>
+                            <div><i class="{{getCheckboxIcon  skill.data.developed}}"></i></div>
                         </div>
                     {{/each}}
                 </div>
@@ -60,25 +61,17 @@
                     <div class="central-line space-between">
                         <div class="health-block">
                             <div class="health-text">{{localize "CLEENMAIN.label.health"}} :</div>
-                                <input class="health-input" title="{{localize 'CLEENMAIN.health.current'}}" id="health" name="data.health.value" type="number" value="{{data.health.value}}"/>
-                                <div class="central-text">/</div>
-                                {{#if unlocked}}
-                                    <input class="health-input" title="{{localize "CLEENMAIN.health.max"}}" id="health" name="data.health.max" type="number" value="{{data.health.max}}"/>
-                                {{else}}
-                                    <div class="central-text">{{data.health.max}}</div>
-                                {{/if}}
+                            <input class="health-input" title="{{localize 'CLEENMAIN.health.current'}}" id="health" name="data.health.value" type="number" value="{{data.health.value}}"/>
+                            <div class="central-text">/</div>
+                            {{#if unlocked}}
+                                <input class="health-input" title="{{localize 'CLEENMAIN.health.max'}}" id="health" name="data.health.max" type="number" value="{{data.health.max}}"/>
+                            {{else}}
+                                <div class="central-text">{{data.health.max}}</div>
+                            {{/if}}
                         </div>
                             <div class="blessure-block">
-                                <div class="blessure-text">{{localize "CLEENMAIN.label.wounds"}} :</div>
-                                <select id="blessure" name="data.blessure">
-                                    {{#select data.blessure}}
-                                        <option value="0">0</option>
-                                        <option value="-5">-5</option>
-                                        <option value="-10">-10</option>
-                                        <option value="-15">-15</option>
-                                        <option value="-20">-20</option>
-                                    {{/select}}
-                                </select>
+                                <div class="health-text">{{localize "CLEENMAIN.label.wounds"}} :</div>
+                                <input class="wounds-input" title="{{localize 'CLEENMAIN.label.wounds'}}" id="wounds" name="data.wounds" type="number" value="{{data.wounds}}"/>                                
                             </div>
                     </div>
                     <div class="central-line">

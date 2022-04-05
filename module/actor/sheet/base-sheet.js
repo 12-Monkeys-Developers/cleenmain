@@ -125,11 +125,8 @@ export class CemBaseActorSheet extends ActorSheet {
 
     const element  = event.currentTarget;
     let field = element.dataset.field;
-    let newValue;
-    if(element.type === "checkbox"){
-      newValue = element.checked;
-    }
-    else newValue = element.value;
+    let newValue = element.type === "checkbox" ? element.checked : element.value;
+  
     return item.update({[field]: newValue});
   }
   

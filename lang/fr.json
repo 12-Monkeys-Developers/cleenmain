@@ -263,7 +263,13 @@
             "twopcs": "2 PJs",
             "threepcs": "3 PJs",
             "fourpcs": "4 PJs",
-            "fivepcs": "5 PJs"
+            "fivepcs": "5 PJs",
+            "status": {
+                "normal": "Normal",
+                "badshape": "Mal en point",
+                "unconscious": "Inconscient",
+                "riskofdeath": "Danger de mort"
+            }
         },
         "wealth": {
             "platinium": "Platine",

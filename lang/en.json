@@ -259,7 +259,13 @@
             "twopcs": "2 PCs",
             "threepcs": "3 PCs",
             "fourpcs": "4 PCs",
-            "fivepcs": "5 PCs"
+            "fivepcs": "5 PCs",
+            "status": {
+                "normal": "Normal",
+                "badshape": "Bad shapre",
+                "unconscious": "Unconscious",
+                "riskofdeath": "Risk of death"
+            }
         },
         "wealth": {
             "platinium": "Platinium",

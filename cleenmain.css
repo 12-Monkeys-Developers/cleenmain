@@ -170,11 +170,16 @@ input {
   justify-content: flex-start;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-block .health-input {
+  text-align: center;
   width: 2em;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .blessure-block {
   display: flex;
   flex-direction: row;
+}
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .blessure-block .wounds-input {
+  width: 2em;
+  text-align: center;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .blessure-block select {
   margin: 0 0.5em 0 0;

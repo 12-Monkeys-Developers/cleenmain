@@ -41,7 +41,8 @@
                 "value": 8,
                 "developed": false
             },
-            "blessure": "0",
+            "wounds": 0,
+            "healthStatus": "normal",
             "damageBonus": {
                 "melee": 4,
                 "ranged": 4
