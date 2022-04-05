@@ -1,4 +1,5 @@
 <form class="{{cssClass}}" autocomplete="off">
+    {{log 'npc' this}}
     <div class="npc-main">
         <div class="name-line">
             <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
@@ -17,15 +18,11 @@
                 <div class="level-line">
                     <select name="data.level">
                         {{#select data.level}}
-                            {{#each config.npccategory as |name type|}}
+                            {{#each config.npcCategory as |name type|}}
                                 <option value="{{type}}">{{localize name}}</option>
                             {{/each}}
                         {{/select}}
                     </select>
-                    <div class="elite-block">
-                        <label for="data.elite">{{localize "CLEENMAIN.label.elite"}} : </label>
-                        <input class="checkbox" data-field="data.elite" name="data.elite" type="checkbox" {{checked data.elite}}>
-                    </div>
                 </div>
                 <div class="weapons">
                     {{#if unlocked}}
@@ -37,11 +34,10 @@
                         </div>
                     {{/if}}
                     {{#each weapons as |item id|}}
-                    {{log 'weapons' this}}
                         <div class="weapon-line item" data-item-id="{{_id}}">
                             <div class="line-label">{{localize "CLEENMAIN.label.combat"}}</div>
                             <div class="weapon-el">({{name}})</div>
-                            <div class="weapon-el">{{item.data.skillValueNpc}} / {{item.data.skillValueNpcElite}}</div>
+                            <div class="weapon-el">{{item.data.skillValueNpc}}</div>
                             <a class="weapon-attack-roll">
                                 <i class="fas fa-dice"></i>
                             </a>
@@ -54,10 +50,6 @@
                                 <a class="inline-delete" data-type="weapon" data-id="{{item.id}}" title="{{localize 'CLEENMAIN.sheet.delete'}}">
                                     <i class="fas fa-trash"></i>
                                 </a>
-                            {{else}}
-                                <a class="item-roll" data-type="weapon" data-rolltype="damage">
-                                    <i class="fas fa-dice"></i>
-                                </a>
                             {{/if}}
                         </div>
                     {{/each}}
@@ -65,102 +57,85 @@
                         <div class="line-label">{{localize "CLEENMAIN.skill.defence.name"}} : </div>
                         {{#if unlocked}}
                             <input class="input-short" title="{{localize 'CLEENMAIN.skill.defence.name'}}" id="defence" name="data.defence.skillValueNpc" type="number" value="{{data.defence.skillValueNpc}}"/>
-                            <div class="central-text">/</div>
-                            <input class="input-short" title="{{localize 'CLEENMAIN.skill.defence.name'}}" id="defence" name="data.defence.skillValueNpcElite" type="number" value="{{data.defence.skillValueNpcElite}}"/>
-                            <div class="central-text">( </div>
+                            <div class="central-text"></div>
                             <input class="input-long" title="{{localize 'CLEENMAIN.armor.add'}}" id="defence" name="data.defence.name" type="text" value="{{data.defence.name}}"/>
-                            <div class="central-text"> </div>
+                            <div class="central-text">(</div>
                             <input class="input-short" title="{{localize 'CLEENMAIN.armor.protection'}}" id="defence" name="data.defence.protection" type="number" value="{{data.defence.protection}}"/>
                             <div class="central-text"> </div>
                             <input class="input-long" title="{{localize 'CLEENMAIN.armor.special'}}" id="defence" name="data.defence.special" type="text" value="{{data.defence.special}}"/>
-                            <div class="central-text"> )</div>
+                            <div class="central-text">)</div>
                         {{else}}
-                            <div class="central-text">{{data.defence.skillValueNpc}} / {{data.defence.skillValueNpcElite}} ( {{data.defence.name}}  {{data.defence.protection}} {{data.defence.special}} )</div>
+                            <div class="central-text">{{data.defence.skillValueNpc}} {{data.defence.name}}  ({{data.defence.protection}} {{data.defence.special}} )</div>
                             <a class="npcskill-roll" data-type="npcdefence" data-attribute="defence">
                                 <i class="fas fa-dice"></i>
                             </a>
                         {{/if}}
                     </div>
                 </div>
-                <div class="npcskills-line">
-                    {{log 'npcskills' this}}
-                    {{#each data.npcSkills as |attribute key|}}
-                    
-                    <div class="npcskills-block">
-                        <div class="npcskill-label">{{localize attribute.label}}:</div>
-                        <div class="npcskill-value">
-                            {{#if ../unlocked}}
-                                <input class="input-short" title="{{localize 'CLEENMAIN.skill.defence.name'}}" id="defence" name="attribute.normal" type="number" value="{{attribute.normal}}"/>
-                                <div class="central-text">/</div>
-                                <input class="input-short" title="{{localize 'CLEENMAIN.skill.defence.name'}}" id="defence" name="attribute.elite" type="number" value="{{attribute.elite}}"/>
-                            {{else}}
-                                {{#if ../data.elite}} {{attribute.elite}} {{else}} {{attribute.normal}} {{/if}}
-                                <a class="npcskill-roll" data-type="npcskill" data-attribute="{{key}}">
-                                    <i class="fas fa-dice"></i>
-                                </a>
-                            {{/if}}
-                        </div>
-                    </div>
-                    {{/each}}
-                </div>
+
                 <div class="skills">
-                    {{#if ../unlocked}}
-                    <div class="skill-line">
-                        <div class="line-label">{{localize "CLEENMAIN.skill.add"}}</div>
-                        <a class="item-create" data-type="skill" title="{{localize 'CLEENMAIN.skill.add'}}">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                    </div>
-                    {{/if}}
-                    <div class="skill-line">
-                        {{#each skills as |skill type|}}
-                        <div class="skill-block">
-                            {{#if ../unlocked}}
-                                <input class="inline-edit skill-name input-long" data-field="name" id="{{id}}" type="text" value="{{skill.name}}" data-dtype="Text" />
-                                <input class="inline-edit skill-value input-short" data-field="data.value" id="{{id}}" type="number" value="{{skill.data.data.value}}" data-dtype="Number" />
-                                <a class="inline-delete" data-type="skill" data-id="{{id}}" title="{{localize 'CLEENMAIN.skill.delete'}}">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            {{else}}
-                                <div class="skill-name" title="{{skill.data.data.description}}" >{{skill.name}} :</div>
-                                <div class="skill-value">{{skill.data.data.value}}</div>
-                                <a class="item-roll" data-type="skill" data-id="{{skill.id}}">
-                                    <i class="fas fa-dice"></i>
-                                </a>
-                            {{/if}}
+                    {{#if unlocked}}
+                        <div class="skill-line">
+                            <div class="line-label">{{localize "CLEENMAIN.skill.add"}} </div>
+                            <a class="item-create" data-type="skill" title="{{localize 'CLEENMAIN.skill.add'}}"><i class="fas fa-plus"></i></a>
                         </div>
-                        {{/each}}
-                    </div>
+                        <div class="skill-line item-list">
+                            {{#each skills as |skill type|}}
+                                <div class="skill-block item" data-item-id="{{_id}}">                                    
+                                    <input class="inline-edit skill-name input-long" data-field="name" type="text" value="{{skill.name}}" data-dtype="Text" />
+                                    <input class="inline-edit skill-value input-short" data-field="data.base" type="number" name="skill.data.base" value="{{skill.data.base}}" data-dtype="Number" />
+                                    <a class="inline-delete" data-type="skill" title="{{localize 'CLEENMAIN.skill.delete'}}"><i class="fas fa-trash"></i></a>
+                                </div>
+                            {{/each}}
+                        </div>            
+                    {{else}}
+                        <div class="skill-line item-list">
+                            {{#each skills as |skill type|}}
+                                <div class="skill-block item" data-item-id="{{_id}}">
+                                    <div class="skill-name" title="{{skill.data.data.description}}" >{{skill.name}} :</div>
+                                    <div class="skill-value">{{skill.data.value}}</div><a class="skill-roll"><i class="fas fa-dice"></i></a>
+                                </div>
+                            {{/each}}                         
+                        </div>
+                    {{/if}}                        
                 </div>
+
                 <div class="npchealth-line">
                     <div class="central-text">{{localize "CLEENMAIN.label.health"}} : </div>
                     <input class="input-short" title="{{localize 'CLEENMAIN.health.current'}}" id="health" name="data.health.value" type="number" value="{{data.health.value}}"/>
                     <div class="central-text">/</div>
+                    <div class="central-text">{{data.health.max}}</div>                    
                     {{#if unlocked}}
-                    <div class="health-block">
-                        <div class="central-text">{{localize "CLEENMAIN.health.twopcs"}} : </div>
-                        <input class="input-short" id="twopcs" name="data.healthsecondfiddle.twopcs" type="number" value="{{data.healthsecondfiddle.twopcs}}"/>
-                    </div>
-                    <div class="health-block">
-                        <div class="central-text">{{localize "CLEENMAIN.health.threepcs"}} : </div>
-                        <input class="input-short" id="threepcs" name="data.healthsecondfiddle.threepcs" type="number" value="{{data.healthsecondfiddle.threepcs}}"/>
-                    </div>
-                    <div class="health-block">
-                        <div class="central-text">{{localize "CLEENMAIN.health.fourpcs"}} : </div>
-                        <input class="input-short" id="fourpcs" name="data.healthsecondfiddle.fourpcs" type="number" value="{{data.healthsecondfiddle.fourpcs}}"/>
-                    </div>
-                    <div class="health-block">
-                        <div class="central-text">{{localize "CLEENMAIN.health.fivepcs"}} : </div>
-                        <input class="input-short" id="fivepcs" name="data.healthsecondfiddle.fivepcs" type="number" value="{{data.healthsecondfiddle.fivepcs}}"/>
-                    </div>
-                    {{else}}
-                    <div class="central-text">{{data.health.max}}</div>
+                        <div class="health-block">
+                            <div class="central-text">{{localize "CLEENMAIN.health.twopcs"}} : </div>
+                            <input class="input-short" id="twopcs" name="data.healthByNumberPlayers.two" type="number" value="{{data.healthByNumberPlayers.two}}"/>
+                        </div>
+                        <div class="health-block">
+                            <div class="central-text">{{localize "CLEENMAIN.health.threepcs"}} : </div>
+                            <input class="input-short" id="threepcs" name="data.healthByNumberPlayers.three" type="number" value="{{data.healthByNumberPlayers.three}}"/>
+                        </div>
+                        <div class="health-block">
+                            <div class="central-text">{{localize "CLEENMAIN.health.fourpcs"}} : </div>
+                            <input class="input-short" id="fourpcs" name="data.healthByNumberPlayers.four" type="number" value="{{data.healthByNumberPlayers.four}}"/>
+                        </div>
+                        <div class="health-block">
+                            <div class="central-text">{{localize "CLEENMAIN.health.fivepcs"}} : </div>
+                            <input class="input-short" id="fivepcs" name="data.healthByNumberPlayers.five" type="number" value="{{data.healthByNumberPlayers.five}}"/>
+                        </div>
                     {{/if}}
                 </div>
             </div>
+            {{#if unlocked}}
             <div class="npcstat-block-right">
                 <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="250" width="200"/>
             </div>
+            {{else}}              
+                {{#if (ne actor.img "icons/svg/mystery-man.svg")}}
+                    <div class="npcstat-block-right">
+                        <img src="{{actor.img}}" title="{{actor.name}}" height="250" width="200"/>
+                    </div>
+                {{/if}}
+            {{/if}}            
         </div>
         {{> systems/cleenmain/templates/actor/tab/boons.html}}
         {{> systems/cleenmain/templates/actor/tab/bio.html}}

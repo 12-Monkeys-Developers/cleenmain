@@ -2,7 +2,7 @@
   "name": "cleenmain",
   "title": "Clé en main",
   "description": "Le système clé en main pour FoundryVTT.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "minimumCoreVersion": "0.9.4",
   "compatibleCoreVersion": "9",
   "author": "Khaali",

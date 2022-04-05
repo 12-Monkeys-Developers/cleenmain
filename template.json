@@ -55,28 +55,6 @@
             ],
             "level": "secondfiddle",
             "elite": false,
-            "npcSkills":{
-                "physical": {
-                    "label": "CLEENMAIN.npcskill.physical.name",
-                    "normal": 4,
-                    "elite": 4
-                },
-                "dexterity": {
-                    "label": "CLEENMAIN.npcskill.dexterity.name",
-                    "normal": 4,
-                    "elite": 4
-                },
-                "social":{
-                    "label": "CLEENMAIN.npcskill.social.name",
-                    "normal": 4,
-                    "elite": 4
-                },
-                "mental":{
-                    "label": "CLEENMAIN.npcskill.mental.name",
-                    "normal": 4,
-                    "elite": 4
-                }
-            },
             "defence": {
                 "skillValue": 4,
                 "skillValueNpcElite": 4,
@@ -86,12 +64,14 @@
                 "special": "",
                 "relance":false
             },
-            "healthSecondFiddle":{
-                "twopcs": 6,
-                "threepcs": 9,
-                "fourpcs": 12,
-                "fivepcs": 15
-            }
+            "healthByNumberPlayers":{
+                "two": 6,
+                "three": 9,
+                "four": 12,
+                "five": 15
+            },
+            "equipment": "",
+            "tactic": ""
         }
     },
     "Item":{
@@ -145,11 +125,13 @@
         },
         "skill":{
             "templates": ["base"],
+            "physical": null,
             "reference": "",
             "base": 2,
             "bonus": 0,
             "value": 2,
-            "developed": false
+            "developed": false,
+            "skills": null
         },
         "ammunition":{
             "templates": ["base"],

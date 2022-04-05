@@ -27,7 +27,7 @@
             "quote": "Citation",
             "protections": "Protections",
             "skills" : "Compétences",
-            "tactics": "Tactique",
+            "tactic": "Tactique",
             "trainings": "Formé aux : ",
             "type": "Type",
             "unlock_sheet": "Verrouiller/Déverrouiller la feuille",
@@ -105,16 +105,20 @@
         },
         "npcskill":{
             "physical": {
-                "name": "Physique"
+                "name": "Physique",
+                "description": "TODO"
             },
             "dexterity": {
-                "name": "Habileté"
+                "name": "Habileté",
+                "description": "TODO"
             },
             "social": {
-                "name": "Social"
+                "name": "Social",
+                "description": "TODO"
             },
             "mental": {
-                "name": "Mental"
+                "name": "Mental",
+                "description": "TODO"
             }
         },
         "skill":{
@@ -218,15 +222,35 @@
                 "name": "Volonté",
                 "description": "Se concentrer, résister aux influences extérieures, se maîtriser."
             },
+            "physical": {
+                "name": "Physique",
+                "description": ""
+            },
+            "dexterity": {
+                "name": "Habilité",
+                "description": ""
+            },
+            "social": {
+                "name": "Social",
+                "description": ""
+            },
+            "mental": {
+                "name": "Mental",
+                "description": ""
+            },
             "add": "Nouvelle compétence",
             "delete": "Supprimer la compétence",
-            "developed": "Cocher si développée",
-            "physical": "Cocher si compétence physique"
+            "isDeveloped": "Cocher si développée",
+            "isPhysical": "Cocher si compétence physique"
         },
         "options":{
             "numberofplayers":{
                 "name":"Nombre de joueuses et joueurs",
-                "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs."
+                "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs.",
+                "two": "Deux joueurs",
+                "three": "Trois joueurs",
+                "four": "Quatre joueurs",
+                "five": "Cinq  joueurs"              
             },
             "advancedrules":{
                 "name":"Règles avancées",
