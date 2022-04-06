@@ -34,6 +34,10 @@ export class Rolls {
                     rollFormula = rollFormula.concat(' - ', armorMalus);
                 } 
             }   
+
+            if (actor.isPlayer() && actor.isInBadShape()) {
+                rollFormula = rollFormula.concat(' - 2');
+            }
         }
 
         // Attack roll
@@ -135,7 +139,7 @@ export class Rolls {
 
                             let mutlipleattacks = html.find("#mutlipleattacks")[0].value;
                             data.mutlipleattacks = parseInt(mutlipleattacks) ?? 0;
-                            if (data.mutlipleattacks > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.mutlipleattacks.chatmessage"));
+                            if (data.mutlipleattacks > 0) data.applyModifiers.push(game.i18n.localize("CLEENMAIN.bonus.mutlipleattacks.chatmessage"));
                     
                             let efficiency = html.find("#efficiency")[0].value;
                             data.efficiency = parseInt(efficiency) ?? 0;
@@ -176,9 +180,15 @@ export class Rolls {
                             if (game.settings.get('cleenmain', 'advancedRules')) {
                                 let slowness = html.find("#slowness")[0].value;
                                 data.slowness = parseInt(slowness) ?? 0;
-                                if (data.slowness > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.slowness.chatmessage"));
+                                if (data.slowness > 0) data.applyModifiers.push(game.i18n.localize("CLEENMAIN.penalty.slowness.chatmessage"));
                             }
 
+                        }
+
+                        // Status
+                        if (actor.isPlayer() && actor.isInBadShape()) {
+                            data.formula = data.formula.concat(' - 2 ');
+                            data.applyModifiers.push(game.i18n.localize("CLEENMAIN.health.status.badshape"));
                         }
 
                         // Calculate the final difficulty

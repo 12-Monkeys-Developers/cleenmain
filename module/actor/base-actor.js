@@ -6,8 +6,8 @@ export default class CemBaseActor extends Actor {
     prepareBaseData(){
         super.prepareBaseData();
 
-        if (this.data.type === "player") this._prepareBaseDataPlayer();
-        if (this.data.type === "npc") this._prepareBaseDataNpc();
+        if (this.isPlayer()) this._prepareBaseDataPlayer();
+        if (this.isNpc()) this._prepareBaseDataNpc();
     }
 
     /**
@@ -24,7 +24,7 @@ export default class CemBaseActor extends Actor {
     _prepareBaseDataNpc() {
 
         // TODO Check if ELite is necessary
-        if (this.data.data.level === "boss") this.data.data.elite = true;
+        if (this.isBoss()) this.data.data.elite = true;
         this._initializeNpcHealth();
     }
 
@@ -35,7 +35,7 @@ export default class CemBaseActor extends Actor {
     _initializeNpcHealth(){
         let numberOfPlayers = game.settings.get('cleenmain', 'numberOfPlayers');
 
-        if (this.data.data.level === "support") {
+        if (this.isSupport()) {
             this.data.data.health.value = this.data.data.health.max = 1;
         }
         else {
@@ -44,6 +44,22 @@ export default class CemBaseActor extends Actor {
                 this.data.data.health.value = this.data.data.health.max;
             }
         }
+    }
+
+    isPlayer() {
+        return this.data.type === "player";
+    }
+
+    isNpc() {
+        return this.data.type === "npc";
+    }
+
+    isBoss() {
+        return this.isNpc() ? this.data.data.level === "boss" : false;   
+    }
+
+    isSupport() {
+        return this.isNpc() ? this.data.data.level === "support" : false;
     }
 
     /**
@@ -111,5 +127,9 @@ export default class CemBaseActor extends Actor {
 
     isTrainedWithShield() {
         return this.data.data.trainings.armors.shield;
+    }
+
+    isInBadShape() {
+        return this.isPlayer() ? this.data.data.health.value <= 0 : false;
     }
 }
