@@ -66,10 +66,9 @@ export const registerHandlebarsHelpers = function() {
         return newOne;
     });
 
-    Handlebars.registerHelper('ifSetting', function (v1, options) {
-        if (game.settings.get('symbaroum',v1)) return options.fn(this);
-        else return options.inverse(this);
-    });  
+    Handlebars.registerHelper('isSettingEnabled', function(configKey) {
+		return game.settings.get('cleenmain', configKey);
+	});    
 
     Handlebars.registerHelper('toFixed', function (v1, v2) {
         return v1.toFixed(v2);  

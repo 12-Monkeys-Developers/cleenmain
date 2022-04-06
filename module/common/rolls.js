@@ -19,6 +19,7 @@ export class Rolls {
         let introText;
         let rollFormula;
 
+        // Skill Roll
         if (type === "skill") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleskill", {itemName: item.name});
             skillRoll = true;
@@ -34,6 +35,8 @@ export class Rolls {
                 } 
             }   
         }
+
+        // Attack roll
         if (type === "weapon-attack") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleweapon", {itemName: item.name});
             attackRoll = true;
@@ -59,6 +62,8 @@ export class Rolls {
                 }
             }
         }
+
+        // Damage roll
         if (type === "weapon-damage") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titledamage", {itemName: item.name});
             damageRoll = true;
@@ -143,12 +148,12 @@ export class Rolls {
                             data.caution = parseInt(caution) ?? 0;
                             if (data.caution > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.caution.chatmessage", data));
                     
-                            /* Règles avancées
-                            let quick = html.find("#quick")[0].value;
-                            data.quick = parseInt(quick) ?? 0;
-                            if (data.quick > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.quick.chatmessage"));
-                            */
-                    
+                            if (game.settings.get('cleenmain', 'advancedRules')) {
+                                let quick = html.find("#quick")[0].value;
+                                data.quick = parseInt(quick) ?? 0;
+                                if (data.quick > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.quick.chatmessage"));
+                            }
+  
                             let minorinjury = html.find("#minorinjury")[0].value;
                             data.minorinjury = parseInt(minorinjury) ?? 0;
                             if (data.minorinjury > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.minorinjury.chatmessage"));
@@ -168,11 +173,11 @@ export class Rolls {
                             data.risk = parseInt(risk) ?? 0;
                             if (data.risk > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.risk.chatmessage", data));
                     
-                            /* Règles avancées
-                            let slowness = html.find("#slowness")[0].value;
-                            data.slowness = parseInt(slowness) ?? 0;
-                            if (data.slowness > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.slowness.chatmessage"));
-                            */
+                            if (game.settings.get('cleenmain', 'advancedRules')) {
+                                let slowness = html.find("#slowness")[0].value;
+                                data.slowness = parseInt(slowness) ?? 0;
+                                if (data.slowness > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.slowness.chatmessage"));
+                            }
 
                         }
 
