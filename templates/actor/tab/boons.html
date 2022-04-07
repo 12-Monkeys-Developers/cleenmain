@@ -5,7 +5,7 @@
             <a class="item-create" data-type="boon" title='{{localize "CLEENMAIN.boon.add"}}'><i class="fas fa-plus"></i></a>
         </h1>
     {{/if}}
-    <div class="boon-group">
+    <div class="boon-group droppable">
         {{#each boons as |item id|}}
             <div class="boon-card item" data-item-id="{{item._id}}">
                 <div class="boon-name-line">

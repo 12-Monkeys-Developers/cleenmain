@@ -446,6 +446,7 @@ input {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  min-height: 400px;
 }
 .boons-tab .boon-group .boon-card {
   display: flex;
@@ -577,6 +578,7 @@ input {
 .equipment-tab .equipment-column {
   display: flex;
   flex-direction: column;
+  min-height: 400px;
 }
 .equipment-tab .equipment-column .equipment-line {
   display: flex;

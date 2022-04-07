@@ -5,7 +5,7 @@
             <a class="item-create right-icon" data-type="equipment" title="{{localize 'CLEENMAIN.equipment.add'}}"><i class="fas fa-plus"></i></a>
         {{/if}}
     </div>
-    <div class="equipment-column">
+    <div class="equipment-column droppable">
         {{#each equipments as |item id|}}
             <div class="equipment-line item" data-item-id="{{_id}}">
                 <div class="equipment-name">{{item.name}}</div>
