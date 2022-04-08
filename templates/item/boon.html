@@ -1,13 +1,23 @@
 <form class="{{cssClass}}" autocomplete="off">
+    {{log 'item' this}}
     <header class="sheet-header">
         <h1><input name="name" type="text" value="{{item.name}}"/></h1>
     </header>
     <div class="sheet-content">
         <div class="boon-line">
-            <div class="boon-block">
-                <div class="label-dev">{{localize "CLEENMAIN.boon.developedinfo"}}</div>
-                <input class="checkbox" name="data.developed" type="checkbox" {{checked data.developed}}>
-            </div>
+            {{#if item.actor}}           
+                {{#if (eq item.actor.type "player")}}
+                    <div class="boon-block">
+                        <div class="label-dev">{{localize "CLEENMAIN.boon.developedinfo"}}</div>
+                        <input class="checkbox" name="data.developed" type="checkbox" {{checked data.developed}}>
+                    </div>
+                {{/if}}  
+            {{else}}
+                <div class="boon-block">
+                    <div class="label-dev">{{localize "CLEENMAIN.boon.developedinfo"}}</div>
+                    <input class="checkbox" name="data.developed" type="checkbox" {{checked data.developed}}>
+                </div>
+            {{/if}}
             <div class="boon-block">
                 <div class="label-dev">{{localize "CLEENMAIN.boon.limiteduseinfo"}}</div>
                 <input class="checkbox" name="data.limitedUse" type="checkbox" {{checked data.limitedUse}}>
@@ -16,4 +26,3 @@
         {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
     </div>
 </form>
-
