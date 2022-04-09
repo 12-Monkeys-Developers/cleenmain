@@ -58,13 +58,6 @@ export const CLEENMAIN = {
         penalty: ["minorinjury", "danger", "difficulty", "risk", "slowness"]
 };
 
-export const MAX_HEROISM = {
-        "TWO_PLAYERS": 10,
-        "THREE_PLAYERS": 8,
-        "FOUR_PLAYERS": 6,
-        "FIVE_PLAYERS": 4        
-};
-
 export const HEALTH_STATUS = {
         "normal": "CLEENMAIN.health.status.normal",
         "badShape": "CLEENMAIN.health.status.badshape",

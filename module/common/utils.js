@@ -1,4 +1,4 @@
-import { MAX_HEROISM } from "./config.js";
+import { MAX_HEROISM } from "./constants.js";
 
 export class Utils {
 

@@ -1,4 +1,5 @@
 import { CLEENMAIN } from "./module/common/config.js";
+import { LOG_HEAD } from "./module/common/constants.js";
 
 import { preloadTemplates } from "./module/common/templates.js";
 import { registerHandlebarsHelpers } from "./module/common/helpers.js"
@@ -16,7 +17,7 @@ import NpcSheet from "./module/actor/sheet/npc-sheet.js";
 
 Hooks.once("init", function(){
 
-    console.log("Cleeenmain | Initializing Cles en mains System");
+    console.log(LOG_HEAD + "Initializing Cles en mains System");
 
     CONFIG.CLEENMAIN = CLEENMAIN;
     CONFIG.Item.documentClass = CemBaseItem;

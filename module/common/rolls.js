@@ -84,6 +84,7 @@ export class Rolls {
                 action: data,
                 introText: introText,
                 actingCharImg: data.actingCharacterImage,
+                isPlayer: actor.isPlayer(),
                 rollFormula: rollFormula,
                 skillRoll: skillRoll,
                 attackRoll: attackRoll,
