@@ -26,9 +26,8 @@ export default class NpcSheet extends CemBaseActorSheet {
     const context = super.getData(options);
 
     context.skills = context.items.filter(item => item.type == "skill");
-
-    context.isPlayer = false;
-    context.isNpc = true;
+    context.isBoss = this.actor.isBoss();
+    context.isSupport = this.actor.isSupport();
 
     return context;
   }

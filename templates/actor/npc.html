@@ -100,11 +100,20 @@
                 </div>
 
                 <div class="npchealth-line">
-                    <div class="central-text">{{localize "CLEENMAIN.label.health"}} : </div>
+                    {{#if isPlayer}}                    
+                        <div class="central-text">{{localize "CLEENMAIN.label.health"}} : </div>
+                    {{else}}
+                        {{#if isSupport}}
+                            <div class="central-text">{{localize "CLEENMAIN.label.supportNumber"}} : </div>
+                        {{else}}
+                            <div class="central-text">{{localize "CLEENMAIN.label.health"}} : </div>
+                        {{/if}}
+                    {{/if}}                    
                     <input class="input-short" title="{{localize 'CLEENMAIN.health.current'}}" id="health" name="data.health.value" type="number" value="{{data.health.value}}"/>
                     <div class="central-text">/</div>
                     <div class="central-text">{{data.health.max}}</div>                    
                     {{#if unlocked}}
+
                         <div class="health-block">
                             <div class="central-text">{{localize "CLEENMAIN.health.twopcs"}} : </div>
                             <input class="input-short" id="twopcs" name="data.healthByNumberPlayers.two" type="number" value="{{data.healthByNumberPlayers.two}}"/>

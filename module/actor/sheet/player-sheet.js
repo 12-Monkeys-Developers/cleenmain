@@ -28,9 +28,6 @@ export default class PlayerSheet extends CemBaseActorSheet {
   getData(options) {
     const context = super.getData(options);
 
-    context.isPlayer = true;
-    context.isNpc = false;
-
     return context;
   }
 

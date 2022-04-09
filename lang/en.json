@@ -21,6 +21,7 @@
             "flaw": "Flaw",
             "goal": "Goal",
             "health": "Health",
+            "supportNumber": "Support number",
             "heroism": "Heroism",
             "name": "Name",
             "origin": "Origin",

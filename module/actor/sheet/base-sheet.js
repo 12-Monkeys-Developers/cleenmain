@@ -31,6 +31,9 @@ export class CemBaseActorSheet extends ActorSheet {
 
       context.unlocked = this.actor.getFlag(game.system.id, "SheetUnlocked");
 
+      context.isPlayer = this.actor.isPlayer();
+      context.isNpc = this.actor.isNpc();
+
       return context;
     }
 
