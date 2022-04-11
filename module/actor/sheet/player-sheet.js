@@ -15,8 +15,8 @@ export default class PlayerSheet extends CemBaseActorSheet {
    */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      height: 840,
-      width: 950,
+      height: 750,
+      width: 750,
       template: "systems/cleenmain/templates/actor/player.html",
       classes: ["cleenmain", "sheet", "actor", "player"],
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "combat" }],

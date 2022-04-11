@@ -1,30 +1,24 @@
 @font-face {
-  font-family: "Morris Roman";
-  src: url("./assets/fonts/MorrisRomanBlack.otf");
+  font-family: "Signika";
+  src: url("../../../fonts/signika/signika-regular.woff2");
 }
 @font-face {
-  font-family: "Museo Slab";
-  src: url("./assets/fonts/Museo_Slab_300.otf");
+  font-family: "Modesto condensed";
+  src: url("../../../fonts/modesto-condensed/modesto-condensed.woff2");
 }
 @font-face {
-  font-family: "Museo Slab";
-  src: url("./assets/fonts/Museo_Slab_300italic.otf");
-  font-style: italic;
-}
-@font-face {
-  font-family: "Museo Slab";
-  src: url("./assets/fonts/Museo_Slab_700.otf");
-  font-weight: bold;
+  font-family: "Merriweather";
+  src: url("./assets/fonts/Merriweather-Regular.ttf");
 }
 h1 {
-  font-family: "Morris Roman";
+  font-family: "Signika";
   font-size: 1.2rem;
   color: #693d25;
   text-transform: uppercase;
   border: none;
 }
 h2 {
-  font-family: "Morris Roman";
+  font-family: "Signika";
   font-size: 1rem;
   color: #693d25;
 }
@@ -32,10 +26,11 @@ input {
   color: #456;
 }
 .cleenmain.sheet.player .window-content {
-  background: no-repeat url('./assets/image/fond.png');
-  background-size: 250px 100%;
+  background: no-repeat url('../../../ui/parchment.jpg');
   background-color: #fffdfc;
-  font-family: "Museo Slab";
+  font-family: "Modesto condensed";
+  font-size: 1.1rem;
+  background-size: 250px 100%;
 }
 .cleenmain.sheet.player textarea {
   resize: none;
@@ -73,7 +68,7 @@ input {
   display: flex;
   flex-direction: column;
   min-width: 200px;
-  margin-right: 20px;
+  margin-right: 50px;
 }
 .cleenmain.sheet.player .main .leftcolumn .title-line {
   display: flex;
@@ -132,13 +127,17 @@ input {
   justify-content: space-between;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line {
-  font-family: "Museo Slab";
-  font-size: 1rem;
+  font-family: "Modesto condensed";
+  font-size: 1em;
   font-weight: bold;
   display: flex;
   flex-flow: row nowrap;
   margin: 0.5em;
   white-space: nowrap;
+}
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .activity-text {
+  font-family: "Merriweather";
+  font-size: 0.7rem;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .input-heroism {
   display: flex;
@@ -156,7 +155,8 @@ input {
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .name-text,
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .blessure-text,
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .heroism-text,
-.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-text {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-text,
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .activity-text {
   margin: 0.3em 0.3em 0 0.3em;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .activity-text {
@@ -170,16 +170,11 @@ input {
   justify-content: flex-start;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-block .health-input {
-  text-align: center;
   width: 2em;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .blessure-block {
   display: flex;
   flex-direction: row;
-}
-.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .blessure-block .wounds-input {
-  width: 2em;
-  text-align: center;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .blessure-block select {
   margin: 0 0.5em 0 0;
@@ -207,7 +202,7 @@ input {
   background: #fffdfc;
 }
 .cleenmain.sheet.player .right-icon {
-  font-family: "Museo Slab";
+  font-family: "Modesto condensed";
   font-size: 1.2rem;
   color: #705a10;
 }
@@ -218,9 +213,9 @@ input {
   width: 12em;
 }
 .cleenmain.sheet.npc .window-content {
-  background: no-repeat url('./assets/image/paxelfica-fondfdp.webp');
+  background: repeat url('../../../ui/parchment-white.jpg');
   background-color: #fffdfc;
-  font-family: "Museo Slab";
+  font-family: "Modesto condensed";
 }
 .cleenmain.sheet.npc .editor {
   height: 100%;
@@ -374,10 +369,9 @@ input {
   height: 100%;
 }
 .cleenmain.sheet.item .window-content {
-  background: no-repeat url('./assets/image/itemhheet_background.webp');
+  background: repeat url('../../../ui/parchment-white.jpg');
   background-color: #fffdfc;
-  font-family: "Museo Slab";
-  background-size: 100% 100%;
+  font-family: "Modesto condensed";
 }
 .cleenmain.sheet.item .editor {
   height: 100%;
@@ -456,17 +450,19 @@ input {
   padding: 1em 0.5em 0 0.5em;
 }
 .boons-tab .boon-group .boon-card .boon-name-line {
-  font-size: 1rem;
   height: fit-content;
 }
 .boons-tab .boon-group .boon-card .boon-name-line .boon-name {
-  color: #51602f;
+  color: #693d25;
+  font-size: 1.2rem;
 }
 .boons-tab .boon-group .boon-card .boon-description {
-  background: url('./assets/image/booncard_background.webp');
+  background: url('../../../ui/parchment-white.jpg');
   padding: 0.5em;
   box-shadow: inset 0 0 3px black;
-  color: white;
+  color: black;
+  font-family: "Merriweather";
+  font-size: 0.7rem;
 }
 .boons-tab .boon-group .boon-card .icon-group {
   margin-left: auto;
@@ -487,6 +483,10 @@ input {
 }
 .tab-bio .title-line .item-create {
   margin-left: auto;
+}
+.tab-bio .description-block {
+  font-family: "Merriweather";
+  font-size: 0.7rem;
 }
 .tab-bio .editor {
   min-height: 5em;
@@ -551,6 +551,8 @@ input {
   display: flex;
   flex-direction: column;
   margin: 1em;
+  font-family: "Merriweather";
+  font-size: 0.7rem;
 }
 .notes-tab .editor {
   min-height: 5em;
@@ -587,6 +589,10 @@ input {
   margin: 0.3em 0.3em 0 0.3em;
   border-bottom: 1px solid #693d25;
 }
+.equipment-tab .equipment-column .equipment-line .equipment-name {
+  font-family: "Merriweather";
+  font-size: 0.7rem;
+}
 .equipment-tab .equipment-column .equipment-line .icon-group {
   margin-left: auto;
 }
@@ -601,7 +607,7 @@ input {
   background-color: #fffdfc;
   display: flex;
   flex-direction: column;
-  font-family: "Museo Slab";
+  font-family: "Modesto condensed";
 }
 .dialog .intro {
   display: flex;
@@ -678,11 +684,11 @@ input {
   padding: 0 0 5em 0;
 }
 .chatroll {
-  background: no-repeat url('./assets/image/chat_background.webp');
+  background: repeat url('../../../ui/parchment-white.jpg');
   background-color: #fffdfc;
   display: flex;
   flex-direction: column;
-  font-family: "Museo Slab";
+  font-family: "Modesto condensed";
   color: black;
 }
 .chatroll .intro .introImg {
@@ -702,12 +708,12 @@ input {
   padding-top: 1em;
 }
 .chatroll .modifierText {
-  margin: 3px 0 2px 0;
+  margin-bottom: 5px;
   color: #cee956;
   text-align: center;
 }
 .chatroll .formulaText {
-  background: top / 50% no-repeat url('./assets/image/Deco_feuilles.webp');
+  background: top / 50% repeat url('../../../ui/parchment-white.jpg');
   padding: 4em 0 1em 0;
   color: white;
   text-align: center;

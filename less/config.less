@@ -1,38 +1,37 @@
 @font-face{
-    font-family: "Morris Roman";
-    src: url("./assets/fonts/MorrisRomanBlack.otf");
+    font-family: "Signika";
+    src: url("../../../fonts/signika/signika-regular.woff2");
 }
 @font-face{
-    font-family: "Museo Slab";
-    src: url("./assets/fonts/Museo_Slab_300.otf");
+    font-family: "Modesto condensed";
+    src: url("../../../fonts/modesto-condensed/modesto-condensed.woff2");
 }
 @font-face{
-    font-family: "Museo Slab";
-    src: url("./assets/fonts/Museo_Slab_300italic.otf");
-    font-style: italic;
-}
-@font-face{
-    font-family: "Museo Slab";
-    src: url("./assets/fonts/Museo_Slab_700.otf");
-    font-weight: bold;
+    font-family: "Merriweather";
+    src: url("./assets/fonts/Merriweather-Regular.ttf");
 }
 
-.MuseoSlab(){
-    font-family: "Museo Slab";
+
+.Signika(){
+    font-family: "Signika";
 }
 
-@default-font: "Museo Slab";
-@title-font: "Morris Roman";
+@default-font: "Modesto condensed";
+@default-font-size: 1.1rem;
+@title-font: "Signika";
+@long-text-font: "Merriweather";
+@long-text-font-size: 0.7rem;
+@boon-name-size: 1.2rem;
 
 h1 {
-    font-family: "Morris Roman";
+    font-family: "Signika";
     font-size: 1.2rem;
     color: @title-color;
     text-transform: uppercase;
     border: none;
 }
 h2 {
-    font-family: "Morris Roman";
+    font-family: "Signika";
     font-size: 1rem;
     color: @title-color;
 }
@@ -45,27 +44,27 @@ input {
 @title-color: #693d25;
 @font-soft-color: #8e8d8d;
 @core-main-color: #456;
-@boon-color: #51602f;
+@boon-color: #693d25;
 @icon-color: rgb(112, 90, 16);
 @clear-background: #fffdfc;
 @edit-background: #f5fdfb;
 @editactive-background: #c3d4d0;
-@font-color-booncard: white;
+@font-color-booncard: black;
+@border-color-skill: rgb(146, 142, 142);
+@border-color-combat-bonus: rgb(146, 142, 142);
 
 @chat-introtext: black;
 @chat-formulatext: white;
 @chat-finaltext: white;
 @chat-modifiertext: rgb(206, 233, 86);
 
-
-
 //size
 @editor-height: 5em;
 
 //images
-@playersheet-background: no-repeat url('./assets/image/fond.png');
-@itemsheet-background: no-repeat url('./assets/image/itemhheet_background.webp');
-@npcsheet-background: no-repeat url('./assets/image/paxelfica-fondfdp.webp');
-@chat-background: no-repeat url('./assets/image/chat_background.webp');
-@chat-divider: top/50% no-repeat url('./assets/image/Deco_feuilles.webp');
-@booncard-background: url('./assets/image/booncard_background.webp');
+@playersheet-background: no-repeat url('../../../ui/parchment.jpg');
+@itemsheet-background: repeat url('../../../ui/parchment-white.jpg');
+@npcsheet-background: repeat url('../../../ui/parchment-white.jpg');
+@chat-background: repeat url('../../../ui/parchment-white.jpg');
+@chat-divider: top/50% repeat url('../../../ui/parchment-white.jpg');
+@booncard-background: url('../../../ui/parchment-white.jpg');
