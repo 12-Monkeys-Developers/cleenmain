@@ -36,14 +36,16 @@
     </div>
     <div class="items armors droppable">
         <table>
-            <tr>
-                <th>{{localize "CLEENMAIN.label.armors"}}</th>
-                <th>{{localize "CLEENMAIN.label.category"}}</th>
-                <th>{{localize "CLEENMAIN.armor.protection"}}</th>
-                <th>{{localize "CLEENMAIN.armor.malus"}}</th>
-                <th>{{localize "CLEENMAIN.armor.special"}}</th>
-                <th></th>
-            </tr> 
+            <thead>
+                    <tr>
+                        <th>{{localize "CLEENMAIN.label.armors"}}</th>
+                        <th>{{localize "CLEENMAIN.label.category"}}</th>
+                        <th>{{localize "CLEENMAIN.armor.protection"}}</th>
+                        <th>{{localize "CLEENMAIN.armor.malus"}}</th>
+                        <th>{{localize "CLEENMAIN.armor.special"}}</th>
+                        <th></th>
+                    </tr>
+            </thead>
             {{#each armors as |item id|}}  <tr class="item" data-item-id="{{_id}}"></tr>
                 <tr class="item" data-item-id="{{_id}}">
                     <th>{{name}}</th>

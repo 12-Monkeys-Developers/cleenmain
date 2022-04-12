@@ -524,7 +524,7 @@ input {
   flex-grow: 1;
 }
 .cleenmain.sheet.player .main .central .combat-tab .trainings-list .trainings-group .trainings-name {
-  margin: 0 1em 0 0;
+  margin: 0 1em 0 0.2em;
 }
 .cleenmain.sheet.player .main .central .combat-tab .bonus-list {
   display: flex;
@@ -542,6 +542,15 @@ input {
   border-radius: 5px;
   width: 10%;
   text-align: center;
+}
+.cleenmain.sheet.player .main .central .combat-tab .items thead {
+  font-family: "Modesto condensed";
+  font-size: 1rem;
+}
+.cleenmain.sheet.player .main .central .combat-tab .items .item {
+  font-family: "Signika";
+  font-size: 0.9rem;
+  font-weight: lighter;
 }
 .cleenmain.sheet.player .main .central .combat-tab .combat-group-label {
   font-style: italic;
@@ -607,7 +616,7 @@ input {
   background-color: #fffdfc;
   display: flex;
   flex-direction: column;
-  font-family: "Modesto condensed";
+  font: "Modesto condensed";
 }
 .dialog .intro {
   display: flex;
@@ -688,7 +697,7 @@ input {
   background-color: #fffdfc;
   display: flex;
   flex-direction: column;
-  font-family: "Modesto condensed";
+  font: "Modesto condensed";
   color: black;
 }
 .chatroll .intro .introImg {
