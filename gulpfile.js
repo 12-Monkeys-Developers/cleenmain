@@ -14,7 +14,7 @@ gulp.task('less', function(cb) {
 gulp.task(
   'default',
   gulp.series('less', function(cb) {
-    gulp.watch(['less/*.less', 'less/tab/*.less', 'less/chat/*.less'], gulp.series('less'));
+    gulp.watch(['../../systems/cleenmain/less/*.less', '../../systems/cleenmain/less/tab/*.less', '../../systems/cleenmain/less/chat/*.less'], gulp.series('less'));
     cb();
   })
 );
