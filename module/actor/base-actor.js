@@ -56,6 +56,16 @@ export default class CemBaseActor extends Actor {
     isSupport() {
         return this.isNpc() ? this.data.data.level === "support" : false;
     }
+    
+    defenceValue() {
+        if(this.isNpc()){
+            if (game.settings.get('cleenmain', 'advancedRules') && (this.data.data.level === "secondfiddle") && this.data.data.elite) return this.data.data.defence.skillValueNpcElite;
+            return this.data.data.defence.skillValueNpc;
+        }
+        const defenceSkill = this.items.filter(i=>i.type === "skill" && i.name==="defence");
+        if(defenceSkill.length) return defenceSkill[0].data.value;
+        return(0);
+    }
 
     /**
      * @name check

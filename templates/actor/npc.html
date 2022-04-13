@@ -66,6 +66,10 @@
                         <div class="line-label">{{localize "CLEENMAIN.skill.defence.name"}} : </div>
                         {{#if unlocked}}
                             <input class="input-short" title="{{localize 'CLEENMAIN.skill.defence.name'}}" id="defence" name="data.defence.skillValueNpc" type="number" value="{{data.defence.skillValueNpc}}"/>
+                            {{#if eliteRulesetModif}}
+                            <div class="central-text">/</div>
+                            <input class="input-short" title="{{localize "CLEENMAIN.skill.defence.name"}}" id="defence" name="data.defence.skillValueNpcElite" type="number" value="{{data.defence.skillValueNpcElite}}"/>
+                            {{/if}}
                             <div class="weapon-el"></div>
                             <input class="input-long" title="{{localize 'CLEENMAIN.armor.add'}}" id="defence" name="data.defence.name" type="text" value="{{data.defence.name}}"/>
                             <div class="weapon-el">(</div>
@@ -74,7 +78,7 @@
                             <input class="input-long" title="{{localize 'CLEENMAIN.armor.special'}}" id="defence" name="data.defence.special" type="text" value="{{data.defence.special}}"/>
                             <div class="weapon-el">)</div>
                         {{else}}
-                            <div class="weapon-el">{{data.defence.skillValueNpc}}</div>
+                            <div class="weapon-el">{{getDefenceValue @root.actor}}</div>
                             <a class="npcskill-roll" data-type="npcdefence" data-attribute="defence">
                                 <i class="fas fa-dice"></i>
                             </a>

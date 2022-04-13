@@ -129,6 +129,7 @@
             "physical": null,
             "reference": "",
             "base": 2,
+            "baseNpcElite": 2,
             "bonus": 0,
             "value": 2,
             "developed": false,

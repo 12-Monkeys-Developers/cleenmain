@@ -112,6 +112,11 @@ export const registerHandlebarsHelpers = function() {
        return weaponDamage;
     });
 
+    Handlebars.registerHelper('getDefenceValue', function (actor) {
+        const defValue = actor.defenceValue();
+       return defValue;
+    });
+
     Handlebars.registerHelper('isNotEmptyString', function (value) {
         if (value === null ) return false;
         if (value === "") return false;
