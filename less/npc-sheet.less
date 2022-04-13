@@ -9,6 +9,7 @@
         background: @npcsheet-background;
         background-color: @clear-background;
         font-family: @default-font;
+        font-size: @default-font-size;
     }
     .editor {
         height: 100%;
@@ -52,11 +53,9 @@
             .npcstat-block-left{
                 display: flex;
                 flex-direction: column;
-                flex-basis: 70%;
                 .level-line{
                     display: flex;
                     flex-direction: row;
-                    justify-content: flex-end;
                     select{
                         margin: 0.5em 0.5em;
                         width:12em;
@@ -67,55 +66,42 @@
                     .weapon-line{
                         display: flex;
                         flex-direction: row;
-                        justify-content: flex-end;
                         margin: 0.5em 0.5em;
-                        font-family: "Museo Slab";
-                        font-size: 1rem;
-                        font-weight: bold;
+                        font-family: @npc-combat-line-font;
+                        font-size: @npc-combat-line-font-size;
+                        color: @npc-combat-line-font-color;
                         .line-label{
-                            color: @title-color;
-                            margin-left: 0.5em;
+                            font-weight: bold;
                         }
                         .weapon-el{
-                            margin-left: 1em;
+                            margin: 0 0 0 1rem;
                         }
                         .item-create{
                             padding-left: .5em;
-                            color: @icon-color;}
-                    }
-                }
-                .npcskills-line{
-                    display: flex;
-                    flex-direction: row;
-                    margin-left: .5em;
-                    .npcskills-block{
-                        display: flex;
-                        flex-direction: row;
-                        flex-basis: 25%;
-                        margin: 0.5em 0.5em;
-                        font-size: 1rem;
-                        .npcskill-label{
-                            font-weight: bold;
-                        }
-                        .npcskill-value{
-                            display: flex;
-                            flex-direction: row;
-                            padding: 0 .5em 0 .5em;
+                            color: @icon-color;
                         }
                     }
                 }
                 .skills{
                     .skill-line{
+                        font-family: @npc-skill-font;
+                        font-size: @npc-skill-font-size;
+                        color: @npc-skill-font-color;
                         display: flex;
                         flex-direction: row;
-                        margin-left: .5em;
+                        flex-wrap: wrap;
                         .skill-block{
                             display: flex;
                             flex-direction: row;
-                            flex-basis: 25%;
-                            margin: 0.5em 0.5em;
+                            width: 25%;
+                            padding: 0.5em 0.5em;
+                            .skill-label{
+                                font-weight: bold;
+                            }
                             .skill-value{
-                                padding: 0 .5em 0 .5em;
+                                display: flex;
+                                flex-direction: row;
+                                padding: 0 .2em 0 .2em;
 
                             }
                         }
@@ -138,6 +124,7 @@
             .npcstat-block-right{
                 flex-basis: 30%;
                 text-align: center;
+                min-width: 200px;
             }
         }
         

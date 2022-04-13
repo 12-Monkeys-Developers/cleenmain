@@ -39,6 +39,11 @@ export default class CemBaseItem extends Item {
         }
 
         if (actor.type === "npc") {
+            if (game.settings.get('cleenmain', 'advancedRules')) {
+                if(actor.data.level === "secondfiddle"){
+                    if(actor.data.elite) return this.data.data.skillValueNpcElite;
+                }
+            }
             return this.data.data.skillValueNpc;
         }        
     }

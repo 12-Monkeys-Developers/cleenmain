@@ -22,6 +22,12 @@
                             {{/each}}
                         {{/select}}
                     </select>
+                    {{#if eliteRuleset}}
+                    <div class="elite-block">
+                        <label for="data.elite">{{localize "CLEENMAIN.label.elite"}} : </label>
+                        <input class="checkbox" data-field="data.elite" name="data.elite" type="checkbox" {{checked data.elite}}>
+                    </div>
+                    {{/if}}
                 </div>
                 <div class="weapons">
                     {{#if unlocked}}
@@ -36,7 +42,11 @@
                         <div class="weapon-line item" data-item-id="{{_id}}">
                             <div class="line-label">{{localize "CLEENMAIN.label.combat"}}</div>
                             <div class="weapon-el">({{name}})</div>
-                            <div class="weapon-el">{{item.data.skillValueNpc}}</div>
+                            {{#if ../eliteRuleset}}
+                            <div class="weapon-el">{{item.data.skillValueNpc}} / {{item.data.skillValueNpcElite}}</div>
+                            {{else}}
+                            <div class="weapon-el">{{getWeaponSkill @root.actor item}}</div>
+                            {{/if}}
                             <a class="weapon-attack-roll">
                                 <i class="fas fa-dice"></i>
                             </a>
@@ -56,18 +66,20 @@
                         <div class="line-label">{{localize "CLEENMAIN.skill.defence.name"}} : </div>
                         {{#if unlocked}}
                             <input class="input-short" title="{{localize 'CLEENMAIN.skill.defence.name'}}" id="defence" name="data.defence.skillValueNpc" type="number" value="{{data.defence.skillValueNpc}}"/>
-                            <div class="central-text"></div>
+                            <div class="weapon-el"></div>
                             <input class="input-long" title="{{localize 'CLEENMAIN.armor.add'}}" id="defence" name="data.defence.name" type="text" value="{{data.defence.name}}"/>
-                            <div class="central-text">(</div>
+                            <div class="weapon-el">(</div>
                             <input class="input-short" title="{{localize 'CLEENMAIN.armor.protection'}}" id="defence" name="data.defence.protection" type="number" value="{{data.defence.protection}}"/>
-                            <div class="central-text"> </div>
+                            <div class="weapon-el"> </div>
                             <input class="input-long" title="{{localize 'CLEENMAIN.armor.special'}}" id="defence" name="data.defence.special" type="text" value="{{data.defence.special}}"/>
-                            <div class="central-text">)</div>
+                            <div class="weapon-el">)</div>
                         {{else}}
-                            <div class="central-text">{{data.defence.skillValueNpc}} {{data.defence.name}}  ({{data.defence.protection}} {{data.defence.special}} )</div>
+                            <div class="weapon-el">{{data.defence.skillValueNpc}}</div>
                             <a class="npcskill-roll" data-type="npcdefence" data-attribute="defence">
                                 <i class="fas fa-dice"></i>
                             </a>
+                            <div class="weapon-el">{{data.defence.name}}</div>
+                            <div class="weapon-el">( {{data.defence.protection}} {{data.defence.special}} )</div>
                         {{/if}}
                     </div>
                 </div>
@@ -137,7 +149,7 @@
             <div class="npcstat-block-right">
                 <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="250" width="200"/>
             </div>
-            {{else}}              
+            {{else}}
                 {{#if (ne actor.img "icons/svg/mystery-man.svg")}}
                     <div class="npcstat-block-right">
                         <img src="{{actor.img}}" title="{{actor.name}}" height="250" width="200"/>

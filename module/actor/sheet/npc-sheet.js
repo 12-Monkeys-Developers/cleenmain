@@ -15,8 +15,8 @@ export default class NpcSheet extends CemBaseActorSheet {
     return mergeObject(super.defaultOptions, {
       template: "systems/cleenmain/templates/actor/npc.html",
       classes: ["cleenmain", "sheet", "actor", "npc"],
-      width: 900,
-      height: 900,
+      width: 600,
+      height: 700,
       tabs: [],
     });
   }
@@ -28,6 +28,7 @@ export default class NpcSheet extends CemBaseActorSheet {
     context.skills = context.items.filter(item => item.type == "skill");
     context.isBoss = this.actor.isBoss();
     context.isSupport = this.actor.isSupport();
+    context.eliteRuleset = (this.actor.data.data.level === "secondfiddle") && game.settings.get('cleenmain', 'advancedRules');
 
     return context;
   }

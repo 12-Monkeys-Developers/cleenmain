@@ -216,6 +216,7 @@ input {
   background: repeat url('../../../ui/parchment-white.jpg');
   background-color: #fffdfc;
   font-family: "Modesto condensed";
+  font-size: 1.1rem;
 }
 .cleenmain.sheet.npc .editor {
   height: 100%;
@@ -261,12 +262,10 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left {
   display: flex;
   flex-direction: column;
-  flex-basis: 70%;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .level-line {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .level-line select {
   margin: 0.5em 0.5em;
@@ -276,56 +275,42 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
   margin: 0.5em 0.5em;
-  font-family: "Museo Slab";
-  font-size: 1rem;
-  font-weight: bold;
+  font-family: "Signika";
+  font-size: 1.2rem;
+  color: black;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line .line-label {
-  color: #693d25;
-  margin-left: 0.5em;
+  font-weight: bold;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line .weapon-el {
-  margin-left: 1em;
+  margin: 0 0 0 1rem;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line .item-create {
   padding-left: 0.5em;
   color: #705a10;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npcskills-line {
-  display: flex;
-  flex-direction: row;
-  margin-left: 0.5em;
-}
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npcskills-line .npcskills-block {
-  display: flex;
-  flex-direction: row;
-  flex-basis: 25%;
-  margin: 0.5em 0.5em;
-  font-size: 1rem;
-}
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npcskills-line .npcskills-block .npcskill-label {
-  font-weight: bold;
-}
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npcskills-line .npcskills-block .npcskill-value {
-  display: flex;
-  flex-direction: row;
-  padding: 0 0.5em 0 0.5em;
-}
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line {
+  font-family: "Modesto condensed";
+  font-size: 1.2rem;
+  color: black;
   display: flex;
   flex-direction: row;
-  margin-left: 0.5em;
+  flex-wrap: wrap;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block {
   display: flex;
   flex-direction: row;
-  flex-basis: 25%;
-  margin: 0.5em 0.5em;
+  width: 25%;
+  padding: 0.5em 0.5em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-label {
+  font-weight: bold;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-value {
-  padding: 0 0.5em 0 0.5em;
+  display: flex;
+  flex-direction: row;
+  padding: 0 0.2em 0 0.2em;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npchealth-line {
   display: flex;
@@ -343,6 +328,7 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-right {
   flex-basis: 30%;
   text-align: center;
+  min-width: 200px;
 }
 .boon-card {
   display: flex;
@@ -440,7 +426,6 @@ input {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  min-height: 400px;
 }
 .boons-tab .boon-group .boon-card {
   display: flex;
