@@ -42,7 +42,7 @@
                         <div class="weapon-line item" data-item-id="{{_id}}">
                             <div class="line-label">{{localize "CLEENMAIN.label.combat"}}</div>
                             <div class="weapon-el">({{name}})</div>
-                            {{#if ../eliteRuleset}}
+                            {{#if ../eliteRulesetModif}}
                             <div class="weapon-el">{{item.data.skillValueNpc}} / {{item.data.skillValueNpcElite}}</div>
                             {{else}}
                             <div class="weapon-el">{{getWeaponSkill @root.actor item}}</div>

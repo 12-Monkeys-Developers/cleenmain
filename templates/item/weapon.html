@@ -49,8 +49,10 @@
             <td><input name="data.zone" type="text" value="{{data.zone}}" /></td>
             <td><input name="data.sixPlus" type="checkbox" {{checked data.sixPlus}}/></td>
             {{#if hasNpcOwner}}
-                <td><input name="data.skillValueNpc" type="text" value="{{data.skillValueNpc}}"/></td>
-                <td><input name="data.skillValueNpcElite" type="text" value="{{data.skillValueNpcElite}}"/></td>
+                <td><input name="data.skillValueNpc" type="number" value="{{data.skillValueNpc}}"/></td>
+                {{#if (isSettingEnabled "advancedRules")}}
+                <td><input name="data.skillValueNpcElite" type="number" value="{{data.skillValueNpcElite}}"/></td>
+                {{/if}}
                 {{else}}
                     <td><input name="data.skillName" type="text" value="{{data.skillName}}"/></td>
             {{/if}}

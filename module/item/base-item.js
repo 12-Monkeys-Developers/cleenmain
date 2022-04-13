@@ -32,16 +32,15 @@ export default class CemBaseItem extends Item {
         if (actor.type === "player") {            
             const skillId = this.data.data.skillId;
             if (!skillId) return;
-            const skill = actor.items.get(skillId);            
+            const skill = actor.items.get(skillId);
             if (skill.type !== "skill") return;
             const skillValue = skill.data.data.value;
             return skillValue;
         }
-
         if (actor.type === "npc") {
             if (game.settings.get('cleenmain', 'advancedRules')) {
-                if(actor.data.level === "secondfiddle"){
-                    if(actor.data.elite) return this.data.data.skillValueNpcElite;
+                if(actor.data.data.level === "secondfiddle"){
+                    if(actor.data.data.elite) return this.data.data.skillValueNpcElite;
                 }
             }
             return this.data.data.skillValueNpc;
