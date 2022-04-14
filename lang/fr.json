@@ -81,6 +81,9 @@
             "skillValueNpc": "Comp.",
             "skillValueNpcElite": "Comp. (élite)"
         },
+        "elite":{
+            "description":"Utilise les valeurs avancées de compétence et double les PVs."
+        },
         "equipment":{
             "add": "Nouvel équipement"
         },

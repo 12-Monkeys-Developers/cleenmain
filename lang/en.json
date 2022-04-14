@@ -81,6 +81,9 @@
             "skillValueNpc": "skill",
             "skillValueNpcElite": "skill (elite)"
         },
+        "elite":{
+            "description":"Uses advanced skill values and doubles health points."
+        },
         "equipment":{
             "add": "New equipment"
         },

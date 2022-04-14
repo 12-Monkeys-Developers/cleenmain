@@ -24,7 +24,7 @@
                     </select>
                     {{#if eliteRuleset}}
                     <div class="elite-block">
-                        <label for="data.elite">{{localize "CLEENMAIN.label.elite"}} : </label>
+                        <label for="data.elite" title="{{localize "CLEENMAIN.elite.description"}}">{{localize "CLEENMAIN.label.elite"}} : </label>
                         <input class="checkbox" data-field="data.elite" name="data.elite" type="checkbox" {{checked data.elite}}>
                     </div>
                     {{/if}}
@@ -87,7 +87,6 @@
                         {{/if}}
                     </div>
                 </div>
-
                 <div class="skills">
                     {{#if unlocked}}
                         <div class="skill-line">

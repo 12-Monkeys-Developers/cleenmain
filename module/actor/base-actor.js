@@ -35,8 +35,11 @@ export default class CemBaseActor extends Actor {
     _initializeNpcHealth(){
         let numberOfPlayers = game.settings.get('cleenmain', 'numberOfPlayers');
 
-        this.data.data.health.max = this.data.data.healthByNumberPlayers[numberOfPlayers];
-        if (this.data.data.health.value > this.data.data.health.max || this.data.data.health.value < 0) {
+        if(game.settings.get('cleenmain', 'advancedRules') && (this.data.data.level === "secondfiddle") && this.data.data.elite){
+            this.data.data.health.max = this.data.data.healthByNumberPlayers[numberOfPlayers]*2;
+        }
+        else this.data.data.health.max =  this.data.data.healthByNumberPlayers[numberOfPlayers];
+        if (this.data.data.health.value > this.data.data.health.max) {
             this.data.data.health.value = this.data.data.health.max;
         }
     }
