@@ -69,6 +69,18 @@ export default class CemBaseActor extends Actor {
         if(defenceSkill.length) return defenceSkill[0].data.value;
         return(0);
     }
+    
+    getSkillValue(skill){
+        let newValue = 0;
+        if(this.isNpc()){
+            if(game.settings.get('cleenmain', 'advancedRules') && (this.data.data.level === "secondfiddle") && this.data.data.elite){
+                newValue = skill.data.baseNpcElite + skill.data.bonus;
+            }
+            else newValue = skill.data.base + skill.data.bonus;
+        }
+        else newValue = skill.data.base + skill.data.bonus + (skill.data.developed ? 2 : 0);
+        return newValue;
+    }
 
     /**
      * @name check

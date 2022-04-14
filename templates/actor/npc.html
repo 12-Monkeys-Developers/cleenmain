@@ -98,6 +98,10 @@
                                 <div class="skill-block item" data-item-id="{{_id}}">                                    
                                     <input class="inline-edit skill-name input-long" data-field="name" type="text" value="{{skill.name}}" data-dtype="Text" />
                                     <input class="inline-edit skill-value input-short" data-field="data.base" type="number" name="skill.data.base" value="{{skill.data.base}}" data-dtype="Number" />
+                                    {{#if ../eliteRulesetModif}}
+                                    <div class="central-text">/</div>
+                                    <input class="inline-edit skill-value input-short" data-field="data.baseNpcElite" type="number" name="skill.data.baseNpcElite" value="{{skill.data.baseNpcElite}}" data-dtype="Number" />
+                                    {{/if}}
                                     <a class="inline-delete" data-type="skill" title="{{localize 'CLEENMAIN.skill.delete'}}"><i class="fas fa-trash"></i></a>
                                 </div>
                             {{/each}}
@@ -107,7 +111,7 @@
                             {{#each skills as |skill type|}}
                                 <div class="skill-block item" data-item-id="{{_id}}">
                                     <div class="skill-name" title="{{skill.data.data.description}}" >{{skill.name}} :</div>
-                                    <div class="skill-value">{{skill.data.value}}</div><a class="skill-roll"><i class="fas fa-dice"></i></a>
+                                    <div class="skill-value">{{getSkillValue @root.actor skill}}</div><a class="skill-roll"><i class="fas fa-dice"></i></a>
                                 </div>
                             {{/each}}                         
                         </div>

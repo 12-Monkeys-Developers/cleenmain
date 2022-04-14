@@ -117,6 +117,11 @@ export const registerHandlebarsHelpers = function() {
        return defValue;
     });
 
+    Handlebars.registerHelper('getSkillValue', function (actor, item) {
+        const skillValue = actor.getSkillValue(item);
+       return skillValue;
+    });
+
     Handlebars.registerHelper('isNotEmptyString', function (value) {
         if (value === null ) return false;
         if (value === "") return false;
