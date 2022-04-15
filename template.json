@@ -57,8 +57,6 @@
             "level": "secondfiddle",
             "elite": false,
             "defence": {
-                "skillValue": 4,
-                "skillValueNpcElite": 4,
                 "protection":0,
                 "name":"No armor",
                 "special": "",

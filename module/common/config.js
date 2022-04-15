@@ -47,7 +47,8 @@ export const CLEENMAIN = {
                 { name: "physical", physical: true, skills: ["acrobatics", "athletics", "combat", "defence", "riding", "muscles", "resistance"] },
                 { name: "dexterity", physical: true, skills: ["stealth", "drive", "reflexes", "healing", "technical"] },
                 { name: "social", physical: false, skills: ["art", "command", "eloquence", "psychology"] },
-                { name: "mental", physical: false, skills: ["knowledge", "research", "intellect", "langage", "perception", "survival", "willpower"] }
+                { name: "mental", physical: false, skills: ["knowledge", "research", "intellect", "langage", "perception", "survival", "willpower"] },
+                { name: "defence", physical: true, skills: ["defence"] }
         ],
         npcCategory: {
                 support: "CLEENMAIN.npccategory.support",

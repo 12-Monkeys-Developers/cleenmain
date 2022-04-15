@@ -61,12 +61,9 @@ export default class CemBaseActor extends Actor {
     }
     
     defenceValue() {
-        if(this.isNpc()){
-            if (game.settings.get('cleenmain', 'advancedRules') && (this.data.data.level === "secondfiddle") && this.data.data.elite) return this.data.data.defence.skillValueNpcElite;
-            return this.data.data.defence.skillValue;
-        }
-        const defenceSkill = this.items.filter(i=>i.type === "skill" && i.name==="defence");
-        if(defenceSkill.length) return defenceSkill[0].data.value;
+        const defenceSkill = this.items.filter(i=>(i.type === "skill" && i.data.data.reference==="defence"));
+        console.log(defenceSkill[0]);
+        if(defenceSkill.length) return this.getSkillValue(defenceSkill[0].data);
         return(0);
     }
     

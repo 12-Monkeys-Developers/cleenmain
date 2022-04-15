@@ -65,10 +65,10 @@
                     <div class="weapon-line">
                         <div class="line-label">{{localize "CLEENMAIN.skill.defence.name"}} : </div>
                         {{#if unlocked}}
-                            <input class="input-short" title="{{localize 'CLEENMAIN.skill.defence.name'}}" id="defence" name="data.defence.skillValue" type="number" value="{{data.defence.skillValue}}"/>
+                            <input class="npcdefence-edit skill-value input-short" data-field="data.base" type="number" name="defenceSkill.data.base" value="{{defenceSkill.data.base}}" data-dtype="Number" />
                             {{#if eliteRulesetModif}}
                             <div class="central-text">/</div>
-                            <input class="input-short" title="{{localize "CLEENMAIN.elite.skill"}}" id="defence" name="data.defence.skillValueNpcElite" type="number" value="{{data.defence.skillValueNpcElite}}"/>
+                            <input class="npcdefence-edit skill-value input-short" title="{{localize "CLEENMAIN.elite.skill"}}" data-field="data.baseNpcElite" type="number" name="defenceSkill.data.baseNpcElite" value="{{defenceSkill.data.baseNpcElite}}" data-dtype="Number" />
                             {{/if}}
                             <div class="weapon-el"></div>
                             <input class="input-long" title="{{localize 'CLEENMAIN.armor.add'}}" id="defence" name="data.defence.name" type="text" value="{{data.defence.name}}"/>
