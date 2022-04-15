@@ -90,9 +90,30 @@ export default class CemBaseActor extends Actor {
      * @returns 
      */
     async check(itemId, rollType) {
-        const item = this.items.get(itemId);
-        if (!item) return;
-
+        let item;
+        if(rollType === "npcdefence"){
+            item = {
+                name: game.i18n.localize("CLEENMAIN.skill.defence.name"),
+                type: 'skill',
+                data:{
+                    data: {
+                        description: game.i18n.localize("CLEENMAIN.skill.defence.description"),
+                        reference: "defence",
+                        physical: true,
+                        "base": this.data.data.defence.skillValue,
+                        "baseNpcElite": this.data.data.defence.skillValueNpcElite,
+                        "bonus": 0,
+                        "developed": false,
+                        "skills": null
+                    }
+                }
+            }
+            rollType = "skill";
+        }
+        else{
+            item = this.items.get(itemId);
+            if (!item) return;
+        }
         // Get the active token
         let tokenList = this.getActiveTokens();
         let actingToken = tokenList[0];

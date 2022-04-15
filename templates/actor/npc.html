@@ -79,7 +79,7 @@
                             <div class="weapon-el">)</div>
                         {{else}}
                             <div class="weapon-el">{{getDefenceValue @root.actor}}</div>
-                            <a class="npcskill-roll" data-type="npcdefence" data-attribute="defence">
+                            <a class="npcdefence-roll" data-type="npcdefence" data-attribute="defence">
                                 <i class="fas fa-dice"></i>
                             </a>
                             <div class="weapon-el">{{data.defence.name}}</div>
@@ -100,7 +100,7 @@
                                     <input class="inline-edit skill-value input-short" data-field="data.base" type="number" name="skill.data.base" value="{{skill.data.base}}" data-dtype="Number" />
                                     {{#if ../eliteRulesetModif}}
                                     <div class="central-text">/</div>
-                                    <input class="inline-edit skill-value input-short" title="{{localize "CLEENMAIN.elite.defence"}}" data-field="data.baseNpcElite" type="number" name="skill.data.baseNpcElite" value="{{skill.data.baseNpcElite}}" data-dtype="Number" />
+                                    <input class="inline-edit skill-value input-short" title="{{localize "CLEENMAIN.elite.skill"}}" data-field="data.baseNpcElite" type="number" name="skill.data.baseNpcElite" value="{{skill.data.baseNpcElite}}" data-dtype="Number" />
                                     {{/if}}
                                     <a class="inline-delete" data-type="skill" title="{{localize 'CLEENMAIN.skill.delete'}}"><i class="fas fa-trash"></i></a>
                                 </div>
@@ -111,7 +111,8 @@
                             {{#each skills as |skill type|}}
                                 <div class="skill-block item" data-item-id="{{_id}}">
                                     <div class="skill-name" title="{{skill.data.data.description}}" >{{skill.name}} :</div>
-                                    <div class="skill-value">{{getSkillValue @root.actor skill}}</div><a class="skill-roll"><i class="fas fa-dice"></i></a>
+                                    <div class="skill-value">{{getSkillValue @root.actor skill}}</div>
+                                    <a class="skill-roll"><i class="fas fa-dice"></i></a>
                                 </div>
                             {{/each}}                         
                         </div>

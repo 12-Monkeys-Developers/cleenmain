@@ -38,20 +38,11 @@ export default class NpcSheet extends CemBaseActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
-    //html.find(".npcskill-roll").click(this._onNpcSkillRoll.bind(this));
+    html.find(".npcdefence-roll").click(this._onNpcDefenceRoll.bind(this));
   }
 
-  _onNpcSkillRoll(event) {
-    event.preventDefault();
-
-    const itemId = $(event.currentTarget).parents(".item").data('itemId');  
-   
-    return this.actor.check(itemId, "weapon-attack"); 
-    /*
-    let element = event.currentTarget;
-    let attribute = element.dataset.attribute;
-    let itemType = element.dataset.type;
-    this.actor.roll({ type: itemType, attribute: attribute });
-    */
+  _onNpcDefenceRoll(event) {
+    event.preventDefault();  
+    return this.actor.check(null, "npcdefence");
   }
 }
