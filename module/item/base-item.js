@@ -34,7 +34,7 @@ export default class CemBaseItem extends Item {
             if (!skillId) return;
             const skill = actor.items.get(skillId);
             if (skill.type !== "skill") return;
-            const skillValue = skill.data.data.value;
+            const skillValue = actor.getSkillValue(skill.data);
             return skillValue;
         }
         if (actor.type === "npc") {
