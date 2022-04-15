@@ -92,11 +92,9 @@ export default class PlayerSheet extends CemBaseActorSheet {
     const id = event.target.parentElement.dataset["itemId"];
     const target = this.actor.items.get(id);
     if (!target || target.type !== "weapon") return;
-console.log("itemdata: ", itemData);
     let targetData = duplicate(target.data);
     targetData.data.skillName = itemData.name;
     targetData.data.skillValue = this.actor.getSkillValue(itemData);
-    console.log("targetData: ", targetData);
 
     targetData.data.skillId = itemData._id;    
     targetData.data.damage = target.weaponDamage(this.actor);

@@ -62,7 +62,6 @@ export default class CemBaseActor extends Actor {
     
     defenceValue() {
         const defenceSkill = this.items.filter(i=>(i.type === "skill" && i.data.data.reference==="defence"));
-        console.log(defenceSkill[0]);
         if(defenceSkill.length) return this.getSkillValue(defenceSkill[0].data);
         return(0);
     }
@@ -89,7 +88,7 @@ export default class CemBaseActor extends Actor {
     async check(itemId, rollType) {
         let item = this.items.get(itemId);
         if (!item) return;
-        
+
         // Get the active token
         let tokenList = this.getActiveTokens();
         let actingToken = tokenList[0];

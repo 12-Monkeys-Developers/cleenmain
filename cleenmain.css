@@ -689,8 +689,13 @@ input {
   background-color: #fffdfc;
   display: flex;
   flex-direction: column;
-  font: "Modesto condensed";
-  color: black;
+  font-family: "Signika";
+  font-size: 1rem;
+  color: white;
+}
+.chatroll .intro {
+  background: repeat url('../../../ui/denim.png');
+  border-radius: 20px;
 }
 .chatroll .intro .introImg {
   display: flex;
@@ -707,21 +712,24 @@ input {
 }
 .chatroll .intro .introText {
   padding-top: 1em;
+  font-family: "Signika";
+  font-size: 1.2rem;
 }
 .chatroll .modifierText {
   margin-bottom: 5px;
-  color: #cee956;
+  color: #470e0e;
+  font-style: italic;
+  font-size: 0.9rem;
   text-align: center;
 }
 .chatroll .formulaText {
   background: top / 50% repeat url('../../../ui/parchment-white.jpg');
-  padding: 4em 0 1em 0;
-  color: white;
+  padding: 2em 0 0 0;
+  color: black;
   text-align: center;
 }
 .chatroll .finalText {
-  margin: 1em 0 1em 0;
-  color: white;
+  color: black;
   text-align: center;
   /* Tooltip text */
 }
