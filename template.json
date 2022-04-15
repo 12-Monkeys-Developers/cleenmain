@@ -59,7 +59,6 @@
             "defence": {
                 "skillValue": 4,
                 "skillValueNpcElite": 4,
-                "skillValueNpc": 4,
                 "protection":0,
                 "name":"No armor",
                 "special": "",
@@ -101,7 +100,6 @@
             "skillName": "",
             "skillValue": 4,
             "skillValueNpcElite": 4,
-            "skillValueNpc": 4,
             "special": "",
             "zone": "",
             "sixPlus": false,

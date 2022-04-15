@@ -43,7 +43,7 @@
                             <div class="line-label">{{localize "CLEENMAIN.label.combat"}}</div>
                             <div class="weapon-el">({{name}})</div>
                             {{#if ../eliteRulesetModif}}
-                            <div class="weapon-el">{{item.data.skillValueNpc}} / {{item.data.skillValueNpcElite}}</div>
+                            <div class="weapon-el">{{item.data.skillValue}} / {{item.data.skillValueNpcElite}}</div>
                             {{else}}
                             <div class="weapon-el">{{getWeaponSkill @root.actor item}}</div>
                             {{/if}}
@@ -65,10 +65,10 @@
                     <div class="weapon-line">
                         <div class="line-label">{{localize "CLEENMAIN.skill.defence.name"}} : </div>
                         {{#if unlocked}}
-                            <input class="input-short" title="{{localize 'CLEENMAIN.skill.defence.name'}}" id="defence" name="data.defence.skillValueNpc" type="number" value="{{data.defence.skillValueNpc}}"/>
+                            <input class="input-short" title="{{localize 'CLEENMAIN.skill.defence.name'}}" id="defence" name="data.defence.skillValue" type="number" value="{{data.defence.skillValue}}"/>
                             {{#if eliteRulesetModif}}
                             <div class="central-text">/</div>
-                            <input class="input-short" title="{{localize "CLEENMAIN.skill.defence.name"}}" id="defence" name="data.defence.skillValueNpcElite" type="number" value="{{data.defence.skillValueNpcElite}}"/>
+                            <input class="input-short" title="{{localize "CLEENMAIN.elite.skill"}}" id="defence" name="data.defence.skillValueNpcElite" type="number" value="{{data.defence.skillValueNpcElite}}"/>
                             {{/if}}
                             <div class="weapon-el"></div>
                             <input class="input-long" title="{{localize 'CLEENMAIN.armor.add'}}" id="defence" name="data.defence.name" type="text" value="{{data.defence.name}}"/>
@@ -100,7 +100,7 @@
                                     <input class="inline-edit skill-value input-short" data-field="data.base" type="number" name="skill.data.base" value="{{skill.data.base}}" data-dtype="Number" />
                                     {{#if ../eliteRulesetModif}}
                                     <div class="central-text">/</div>
-                                    <input class="inline-edit skill-value input-short" data-field="data.baseNpcElite" type="number" name="skill.data.baseNpcElite" value="{{skill.data.baseNpcElite}}" data-dtype="Number" />
+                                    <input class="inline-edit skill-value input-short" title="{{localize "CLEENMAIN.elite.defence"}}" data-field="data.baseNpcElite" type="number" name="skill.data.baseNpcElite" value="{{skill.data.baseNpcElite}}" data-dtype="Number" />
                                     {{/if}}
                                     <a class="inline-delete" data-type="skill" title="{{localize 'CLEENMAIN.skill.delete'}}"><i class="fas fa-trash"></i></a>
                                 </div>

@@ -18,12 +18,15 @@ export class Rolls {
         let titleDialog = "";
         let introText;
         let rollFormula;
+        let formulaTooltip = "";
 
         // Skill Roll
         if (type === "skill") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleskill", {itemName: item.name});
             skillRoll = true;
-            rollFormula = "3d6 + " + item.data.data.value.toString();
+            let value= actor.getSkillValue(item.data).toString();
+            rollFormula = "3d6 + " + value;
+            formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + value;
 
             introText = game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: data.actingCharacterName, itemName: item.name});
 
@@ -32,11 +35,13 @@ export class Rolls {
                 const armorMalus = actor.getArmorMalus();
                 if (armorMalus > 0) {
                     rollFormula = rollFormula.concat(' - ', armorMalus);
+                    formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.armormalus") + "-"+armorMalus;
                 } 
             }   
 
             if (actor.isPlayer() && actor.isInBadShape()) {
                 rollFormula = rollFormula.concat(' - 2');
+                formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.badshape") + "-2";
             }
         }
 
@@ -86,6 +91,7 @@ export class Rolls {
                 actingCharImg: data.actingCharacterImage,
                 isPlayer: actor.isPlayer(),
                 rollFormula: rollFormula,
+                formulaTooltip: formulaTooltip,
                 skillRoll: skillRoll,
                 attackRoll: attackRoll,
                 damageRoll: damageRoll

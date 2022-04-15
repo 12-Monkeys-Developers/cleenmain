@@ -16,7 +16,7 @@
                     <th>{{localize "CLEENMAIN.weapon.zone"}}</th>
                     <th>{{localize "CLEENMAIN.weapon.sixPlus"}}</th>
                     {{#if hasNpcOwner}}
-                        <th>{{localize "CLEENMAIN.weapon.skillValueNpc"}}</th>
+                        <th>{{localize "CLEENMAIN.weapon.skillValue"}}</th>
                         <th>{{localize "CLEENMAIN.weapon.skillValueNpcElite"}}</th>
                     {{else}}
                         <th>{{localize "CLEENMAIN.weapon.skillName"}}</th>
@@ -49,7 +49,7 @@
             <td><input name="data.zone" type="text" value="{{data.zone}}" /></td>
             <td><input name="data.sixPlus" type="checkbox" {{checked data.sixPlus}}/></td>
             {{#if hasNpcOwner}}
-                <td><input name="data.skillValueNpc" type="number" value="{{data.skillValueNpc}}"/></td>
+                <td><input name="data.skillValue" type="number" value="{{data.skillValue}}"/></td>
                 {{#if (isSettingEnabled "advancedRules")}}
                 <td><input name="data.skillValueNpcElite" type="number" value="{{data.skillValueNpcElite}}"/></td>
                 {{/if}}

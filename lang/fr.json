@@ -49,6 +49,33 @@
             "quality": "Qualité",
             "special": "Spécial"
         },
+        "bonus":{
+            "lethalattack":{
+                "label": "Attaque meurtrière",
+                "description": "Les dégâts de l’attaque augmentent de 1d6. Plusieurs Attaques meurtrières augmentent les dégâts d’autant de d6 que d’Attaques meurtrières.",
+                "chatmessage": "Prime: Attaque meurtrière (x{lethalattack})."
+            },
+            "mutlipleattacks":{
+                "label": "Attaques multiples",
+                "description": "L’attaque vise deux cibles à la fois, à condition qu’elles soient accessibles au personnage – à son contact pour une attaque de corps à corps, groupées pour un tir. Un seul test est e{ectué et les dégâts, après tous les autres calculs, sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur.",
+                "chatmessage": "Prime: Attaques multiples."
+            },
+            "efficiency":{
+                "label": "Efficacité",
+                "description":  "L’action en cours bénéficie d’un bonus de 2. Plusieurs Efficacités confèrent un bonus de 2 pour chaque Efficacité.",
+                "chatmessage": "Prime: Efficacité (x{efficiency})."
+            },
+            "caution":{
+                "label": "Prudence",
+                "description":  "Le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage bénéficie d’un bonus de 2. Plusieurs Prudences augmentent le nombre de tests successifs bénéficiant de ce bonus.",
+                "chatmessage": "Prime: Prudence (x{caution})."
+            },
+            "quick":{
+                "label": "Rapidité",
+                "description":  "En combat, une attaque rapide ne donne pas la main à l’adversaire. En dehors d’un combat, la durée d’exécution d’une tâche est divisée par deux. Non cumulable.",
+                "chatmessage": "Prime: Rapidité."
+            }
+        },
         "boon":{
             "add": "Nouvel atout",
             "delete": "Supprimer l'atout",
@@ -78,29 +105,57 @@
             "special": "Spécial",
             "zone": "Zone",
             "sixPlus": "6+",
-            "skillValueNpc": "Comp.",
+            "skillValueNpc": "Comp. (normale)",
             "skillValueNpcElite": "Comp. (élite)"
         },
+        "chatmessage":{
+            "custommodifier": "Modificateur libre ajouté : ({rollModifier}).",
+            "heroismmodifier": "Point d'Héroïsme utilisé : +1d6",
+            "rollformula": "Dés lancés :",
+            "rollresult": "Résultat du jet : ",
+            "damageresult": "Les dommages sont : "
+        },
+        "dialog":{
+            "rollmodifier": "Modificateur pour le jet: ",
+            "heroism": "Utiliser un point d'héroïsme pour +1d6.",
+            "introskill": "{actingCharName} utilise la compétence {itemName}.",
+            "titleskill": "Jet de {itemName}",
+            "introweapon": "{actingCharName} attaque avec {itemName}.",
+            "titleweapon": "Attaque de {itemName}",
+            "introdamage": "{actingCharName} blesse son adversaire avec {itemName}.",
+            "titledamage": "Dommages de {itemName}",
+            "button":{
+                "cancel": "Annuler",
+                "roll": "Lancer"
+            },
+            "bonus": "Ajouter une Prime?",
+            "penalty": "Ajouter une pénalité?"
+        },
         "elite":{
-            "description":"Utilise les valeurs avancées de compétence et double les PVs."
+            "defense": "Defense (élite)",
+            "description":"Utilise les valeurs avancées de compétence et double les PVs.",
+            "skill": "Compétence (élite)"
         },
         "equipment":{
             "add": "Nouvel équipement"
         },
+        "health": {
+            "current": "Valeur actuelle",
+            "max": "Maximum",
+            "twopcs": "2 PJs",
+            "threepcs": "3 PJs",
+            "fourpcs": "4 PJs",
+            "fivepcs": "5 PJs",
+            "status": {
+                "normal": "Normal",
+                "badshape": "Mal en point",
+                "unconscious": "Inconscient",
+                "riskofdeath": "Danger de mort"
+            }
+        },
         "heroism": {
             "current": "Valeur actuelle",
             "max": "Maximum"
-        },
-        "sheet":{
-            "edit": "Modifier",
-            "delete": "Supprimer",
-            "tab":{
-                "boons": "Atouts",
-                "bio": "Biographie",
-                "combat": "Combat",
-                "equipment": "Équipement",
-                "notes": "Notes"
-            }
         },
         "npccategory": {
                     "support": "Figurant",
@@ -123,6 +178,58 @@
             "mental": {
                 "name": "Mental",
                 "description": "TODO"
+            }
+        },
+        "penalty":{
+            "minorinjury":{
+                "label": "Blessure légère",
+                "description":  "Les dégâts sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur",
+                "chatmessage": "Pénalité: Blessure légère."
+            },
+            "danger":{
+                "label": "Danger",
+                "description":  "Le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage subit un malus de 2. D’autres Dangers augmentent le nombre de tests successifs subissant ce malus.",
+                "chatmessage": "Pénalité: Danger (x{danger})."
+            },
+            "difficulty":{
+                "label": "Difficulté",
+                "description":  "L’action en cours subit un malus de 2. Plusieurs Difficultés imposent un malus de 2 pour chaque Difficulté.",
+                "chatmessage": "Pénalité: Difficulté (x{difficulty})."
+            },
+            "risk":{
+                "label": "Risque",
+                "description":  "Si l’action en cours échoue, un incident, déterminé par le MJ, survient. Par exemple l’arme est coincée ou détruite, le personnage glisse et tombe au sol, il lâche un objet, un de ses vêtements s’accroche quelque part et lui fait perdre une action, l’attaque touche un allié, etc. Plusieurs Risques différents exposent le personnage à des déboires multiples simultanés. Plusieurs risques identiques ne sont pas cumulables.",
+                "chatmessage": "Pénalité: Risque (x{risk})."
+            },
+            "slowness": {
+                "label": "Lenteur",
+                "description": "En combat, une action lente donne la main à l’adversaire, même s’il ne s’agissait pas d’une attaque. En dehors d’un combat, la durée d’une tâche augmente de moitié. Non cumulable.",
+                "chatmessage": "Pénalité: Lenteur."
+            }
+        },
+        "options":{
+            "numberofplayers":{
+                "name":"Nombre de joueuses et joueurs",
+                "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs.",
+                "two": "Deux joueurs",
+                "three": "Trois joueurs",
+                "four": "Quatre joueurs",
+                "five": "Cinq  joueurs"              
+            },
+            "advancedrules":{
+                "name":"Règles avancées",
+                "hint": "Utilisation des règles Clé en main avancées."
+            }
+        },
+        "sheet":{
+            "edit": "Modifier",
+            "delete": "Supprimer",
+            "tab":{
+                "boons": "Atouts",
+                "bio": "Biographie",
+                "combat": "Combat",
+                "equipment": "Équipement",
+                "notes": "Notes"
             }
         },
         "skill":{
@@ -247,33 +354,10 @@
             "isDeveloped": "Cocher si développée",
             "isPhysical": "Cocher si compétence physique"
         },
-        "options":{
-            "numberofplayers":{
-                "name":"Nombre de joueuses et joueurs",
-                "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs.",
-                "two": "Deux joueurs",
-                "three": "Trois joueurs",
-                "four": "Quatre joueurs",
-                "five": "Cinq  joueurs"              
-            },
-            "advancedrules":{
-                "name":"Règles avancées",
-                "hint": "Utilisation des règles Clé en main avancées."
-            }
-        },
-        "health": {
-            "current": "Valeur actuelle",
-            "max": "Maximum",
-            "twopcs": "2 PJs",
-            "threepcs": "3 PJs",
-            "fourpcs": "4 PJs",
-            "fivepcs": "5 PJs",
-            "status": {
-                "normal": "Normal",
-                "badshape": "Mal en point",
-                "unconscious": "Inconscient",
-                "riskofdeath": "Danger de mort"
-            }
+        "tooltip":{
+            "armormalus": "Malus d'armure: ",
+            "badshape": "Mal en point: ",
+            "skill" : "Compétence: "
         },
         "wealth": {
             "platinium": "Platine",
@@ -281,83 +365,6 @@
             "electrum": "Électrum",
             "silver": "Argent",
             "copper": "Cuivre"
-        },
-        "dialog":{
-            "rollmodifier": "Modificateur pour le jet: ",
-            "heroism": "Utiliser un point d'héroïsme pour +1d6.",
-            "introskill": "{actingCharName} utilise la compétence {itemName}.",
-            "titleskill": "Jet de {itemName}",
-            "introweapon": "{actingCharName} attaque avec {itemName}.",
-            "titleweapon": "Attaque de {itemName}",
-            "introdamage": "{actingCharName} blesse son adversaire avec {itemName}.",
-            "titledamage": "Dommages de {itemName}",
-            "button":{
-                "cancel": "Annuler",
-                "roll": "Lancer"
-            },
-            "bonus": "Ajouter une Prime?",
-            "penalty": "Ajouter une pénalité?"
-        },
-        "chatmessage":{
-            "custommodifier": "Modificateur libre ajouté : ({rollModifier}).",
-            "heroismmodifier": "Point d'Héroïsme utilisé : +1d6",
-            "rollformula": "Dés lancés :",
-            "rollresult": "Résultat du jet : ",
-            "damageresult": "Les dommages sont : "
-        },
-        "bonus":{
-            "lethalattack":{
-                "label": "Attaque meurtrière",
-                "description": "Les dégâts de l’attaque augmentent de 1d6. Plusieurs Attaques meurtrières augmentent les dégâts d’autant de d6 que d’Attaques meurtrières.",
-                "chatmessage": "Prime: Attaque meurtrière (x{lethalattack})."
-            },
-            "mutlipleattacks":{
-                "label": "Attaques multiples",
-                "description": "L’attaque vise deux cibles à la fois, à condition qu’elles soient accessibles au personnage – à son contact pour une attaque de corps à corps, groupées pour un tir. Un seul test est e{ectué et les dégâts, après tous les autres calculs, sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur.",
-                "chatmessage": "Prime: Attaques multiples."
-            },
-            "efficiency":{
-                "label": "Efficacité",
-                "description":  "L’action en cours bénéficie d’un bonus de 2. Plusieurs Efficacités confèrent un bonus de 2 pour chaque Efficacité.",
-                "chatmessage": "Prime: Efficacité (x{efficiency})."
-            },
-            "caution":{
-                "label": "Prudence",
-                "description":  "Le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage bénéficie d’un bonus de 2. Plusieurs Prudences augmentent le nombre de tests successifs bénéficiant de ce bonus.",
-                "chatmessage": "Prime: Prudence (x{caution})."
-            },
-            "quick":{
-                "label": "Rapidité",
-                "description":  "En combat, une attaque rapide ne donne pas la main à l’adversaire. En dehors d’un combat, la durée d’exécution d’une tâche est divisée par deux. Non cumulable.",
-                "chatmessage": "Prime: Rapidité."
-            }
-        },
-        "penalty":{
-            "minorinjury":{
-                "label": "Blessure légère",
-                "description":  "Les dégâts sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur",
-                "chatmessage": "Pénalité: Blessure légère."
-            },
-            "danger":{
-                "label": "Danger",
-                "description":  "Le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage subit un malus de 2. D’autres Dangers augmentent le nombre de tests successifs subissant ce malus.",
-                "chatmessage": "Pénalité: Danger (x{danger})."
-            },
-            "difficulty":{
-                "label": "Difficulté",
-                "description":  "L’action en cours subit un malus de 2. Plusieurs Difficultés imposent un malus de 2 pour chaque Difficulté.",
-                "chatmessage": "Pénalité: Difficulté (x{difficulty})."
-            },
-            "risk":{
-                "label": "Risque",
-                "description":  "Si l’action en cours échoue, un incident, déterminé par le MJ, survient. Par exemple l’arme est coincée ou détruite, le personnage glisse et tombe au sol, il lâche un objet, un de ses vêtements s’accroche quelque part et lui fait perdre une action, l’attaque touche un allié, etc. Plusieurs Risques différents exposent le personnage à des déboires multiples simultanés. Plusieurs risques identiques ne sont pas cumulables.",
-                "chatmessage": "Pénalité: Risque (x{risk})."
-            },
-            "slowness": {
-                "label": "Lenteur",
-                "description": "En combat, une action lente donne la main à l’adversaire, même s’il ne s’agissait pas d’une attaque. En dehors d’un combat, la durée d’une tâche augmente de moitié. Non cumulable.",
-                "chatmessage": "Pénalité: Lenteur."
-            }
         }
     }
 }

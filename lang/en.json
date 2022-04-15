@@ -3,7 +3,7 @@
         "label": {
             "activity": "Activity",
             "armors": "Armors",
-            "bond": "Lien",
+            "bond": "Bond",
             "bonus": "Damage Bonus",
             "bio": "Biography",    
             "traits": "Personality traits",                    
@@ -27,12 +27,12 @@
             "origin": "Origin",
             "quote": "Quote",
             "protections": "Protections",
-            "skills" : "Compétences",
+            "skills" : "Skills",
             "tactic": "Tactic",
             "trainings": "Trained in : ",
             "type": "Type",
             "unlock_sheet": "Unlock Sheet",
-            "wealth": "Richesses",
+            "wealth": "Wealth",
             "weapons": "Weapons",
             "wounds": "Wounds"
         },
@@ -49,6 +49,33 @@
             "protection": "Protection",
             "special": "Special"
         },
+        "bonus":{
+            "lethalattack":{
+                "label": "lethalattack",
+                "description": "les dégâts de l’attaque augmentent de 1d6. Plusieurs Attaques meurtrières augmentent les dégâts d’autant de d6 que d’Attaques meurtrières.",
+                "chatmessage": "Bonus: Lethal Attack (x{lethalattack})."
+            },
+            "mutlipleattacks":{
+                "label": "mutlipleattacks",
+                "description": "l’attaque vise deux cibles à la fois, à condition qu’elles soient accessibles au personnage – à son contact pour une attaque de corps à corps, groupées pour un tir. Un seul test est e{ectué et les dégâts, après tous les autres calculs, sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur.",
+                "chatmessage": "Bonus: mutlipleattacks."
+            },
+            "efficiency":{
+                "label": "efficiency",
+                "description":  "l’action en cours bénéficie d’un bonus de 2. Plusieurs Efficacités confèrent un bonus de 2 pour chaque Efficacité.",
+                "chatmessage": "Bonus: efficiency (x{efficiency})."
+            },
+            "caution":{
+                "label": "caution",
+                "description":  "le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage bénéficie d’un bonus de 2. Plusieurs Prudences augmentent le nombre de tests successifs bénéficiant de ce bonus.",
+                "chatmessage": "Bonus: caution (x{caution})."
+            },
+            "quick":{
+                "label": "quick",
+                "description":  "en combat, une attaque rapide ne donne pas la main à l’adversaire. En dehors d’un combat, la durée d’exécution d’une tâche est divisée par deux. Non cumulable.",
+                "chatmessage": "Bonus: quick."
+            }
+        },
         "boon":{
             "add": "New boon",
             "delete": "Delete boon",
@@ -56,39 +83,54 @@
             "limiteduseinfo": "Check for limited Use boon",
             "used": "Used"
         },
-        "weapon": {
-            "category": {
-                "standard": "Standard",
-                "war": "War weapon",
-                "heavy": "Heavy weapone"
+        "chatmessage":{
+            "custommodifier": "Custom modifier used : ({rollModifier}).",
+            "heroismmodifier": "One Heroism point used : +1d6",
+            "rollformula": "Final dice rolled:",
+            "rollresult": "Result of the dice roll: ",
+            "damageresult": "Damages are: "
+        },
+        "dialog":{
+            "rollmodifier": "Modifier for the roll: ",
+            "heroism": "Spend an heroism point for +1d6.",
+            "introskill": "{actingCharName} uses the skill {itemName}.",
+            "titleskill": "Roll of {itemName}",
+            "introweapon": "{actingCharName} attacks with {itemName}.",
+            "titleweapon": "Attack of {itemName}",
+            "introdamage": "{actingCharName} does damage with {itemName}.",
+            "titledamage": "Damages of {itemName}",
+            "button":{
+                "rollmodifier": "Modifier for the roll: ",
+                "cancel": "Cancel",
+                "roll": "Roll"
             },
-            "type": {
-                "melee": "Melee",
-                "ranged": "Ranged"
-            },
-            "add": "New weapon",
-            "delete": "Delete weapon",
-            "name": "Name",
-            "attaque": "Attack",
-            "targets": "targets",
-            "damage": "Damage",
-            "range": "Range",
-            "skillName": "Skill",
-            "skillValue": "Value",
-            "special": "Special",
-            "zone": "Zone",
-            "sixPlus": "6+",
-            "skillValueNpc": "skill",
-            "skillValueNpcElite": "skill (elite)"
+            "bonus": "Add a bonus?",
+            "penalty": "Add a penalty?"
         },
         "elite":{
-            "description":"Uses advanced skill values and doubles health points."
+            "defence": "Defence (elite)",
+            "description":"Uses advanced skill values and doubles health points.",
+            "skill": "Skill (elite)"
         },
         "equipment":{
             "add": "New equipment"
         },
-        "heroism": {
+        "health": {
             "current": "Valeur actuelle",
+            "max": "Maximum",
+            "twopcs": "2 PCs",
+            "threepcs": "3 PCs",
+            "fourpcs": "4 PCs",
+            "fivepcs": "5 PCs",
+            "status": {
+                "normal": "Normal",
+                "badshape": "Bad shapre",
+                "unconscious": "Unconscious",
+                "riskofdeath": "Risk of death"
+            }
+        },
+        "heroism": {
+            "current": "Current",
             "max": "Maximum"
         },
         "sheet":{
@@ -119,6 +161,47 @@
             },
             "mental": {
                 "name": "Mental"
+            }
+        },
+        "penalty":{
+            "minorinjury":{
+                "label": "minorinjury",
+                "description":  "les dégâts sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur",
+                "chatmessage": "Penalty: minorinjury."
+            },
+            "danger":{
+                "label": "danger",
+                "description":  "le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage subit un malus de 2. D’autres Dangers augmentent le nombre de tests successifs subissant ce malus.",
+                "chatmessage": "Penalty: danger (x{danger})."
+            },
+            "difficulty":{
+                "label": "difficulty",
+                "description":  "l’action en cours subit un malus de 2. Plusieurs Difficultés imposent un malus de 2 pour chaque Difficulté.",
+                "chatmessage": "Penalty: difficulty (x{difficulty})."
+            },
+            "risk": {
+                "label": "risk",
+                "description": "en combat, une action lente donne la main à l’adversaire, même s’il ne s’agissait pas d’une attaque. En dehors d’un combat, la durée d’une tâche augmente de moitié. Non cumulable.",
+                "chatmessage": "Penalty: (x{risk})."
+            },
+            "slowness":{
+                "label": "slowness",
+                "description":  "si l’action en cours échoue, un incident, déterminé par le MJ, survient. Par exemple l’arme est coincée ou détruite, le personnage glisse et tombe au sol, il lâche un objet, un de ses vêtements s’accroche quelque part et lui fait perdre une action, l’attaque touche un allié, etc. Plusieurs Risques différents exposent le personnage à des déboires multiples simultanés. Plusieurs risques identiques ne sont pas cumulables.",
+                "chatmessage": "Penalty: slowness."
+            }
+        },
+        "options":{
+            "numberofplayers":{
+                "name":"Nombre de Joueuses et joueurs",
+                "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs (valeur doit être entre 2 et 5).",
+                "two": "Two players",
+                "three": "Three players",
+                "four": "Four players",
+                "five": "Five players"
+            },
+            "advancedrules":{
+                "name":"Advanced rules",
+                "hint": "Use the system advanced rules."
             }
         },
         "skill":{
@@ -243,33 +326,35 @@
             "isDeveloped": "Check if developed",
             "isPhysical": "Check if physical skill"
         },
-        "options":{
-            "numberofplayers":{
-                "name":"Nombre de Joueuses et joueurs",
-                "hint": "Le nombre de joueuses et joueurs modifiera la vitalité des PNJs (valeur doit être entre 2 et 5).",
-                "two": "Two players",
-                "three": "Three players",
-                "four": "Four players",
-                "five": "Five players"
-            },
-            "advancedrules":{
-                "name":"Advanced rules",
-                "hint": "Use the system advanced rules."
-            }
+        "tooltip":{
+            "armormalus": "Armor malus: ",
+            "badshape": "In bad shape : ",
+            "skill" : "Skill: "
         },
-        "health": {
-            "current": "Valeur actuelle",
-            "max": "Maximum",
-            "twopcs": "2 PCs",
-            "threepcs": "3 PCs",
-            "fourpcs": "4 PCs",
-            "fivepcs": "5 PCs",
-            "status": {
-                "normal": "Normal",
-                "badshape": "Bad shapre",
-                "unconscious": "Unconscious",
-                "riskofdeath": "Risk of death"
-            }
+        "weapon": {
+            "category": {
+                "standard": "Standard",
+                "war": "War weapon",
+                "heavy": "Heavy weapone"
+            },
+            "type": {
+                "melee": "Melee",
+                "ranged": "Ranged"
+            },
+            "add": "New weapon",
+            "delete": "Delete weapon",
+            "name": "Name",
+            "attaque": "Attack",
+            "targets": "targets",
+            "damage": "Damage",
+            "range": "Range",
+            "skillName": "Skill",
+            "skillValue": "Value",
+            "special": "Special",
+            "zone": "Zone",
+            "sixPlus": "6+",
+            "skillValueNpc": "skill",
+            "skillValueNpcElite": "skill (elite)"
         },
         "wealth": {
             "platinium": "Platinium",
@@ -277,84 +362,6 @@
             "electrum": "Electrum",
             "silver": "Silver",
             "copper": "Copper"
-        },
-        "dialog":{
-            "rollmodifier": "Modifier for the roll: ",
-            "heroism": "Spend an heroism point for +1d6.",
-            "introskill": "{actingCharName} uses the skill {itemName}.",
-            "titleskill": "Roll of {itemName}",
-            "introweapon": "{actingCharName} attacks with {itemName}.",
-            "titleweapon": "Attack of {itemName}",
-            "introdamage": "{actingCharName} does damage with {itemName}.",
-            "titledamage": "Damages of {itemName}",
-            "button":{
-                "rollmodifier": "Modifier for the roll: ",
-                "cancel": "Cancel",
-                "roll": "Roll"
-            },
-            "bonus": "Add a bonus?",
-            "penalty": "Add a penalty?"
-        },
-        "chatmessage":{
-            "custommodifier": "Custom modifier used : ({rollModifier}).",
-            "heroismmodifier": "One Heroism point used : +1d6",
-            "rollformula": "Final dice rolled:",
-            "rollresult": "Result of the dice roll: ",
-            "damageresult": "Damages are: "
-        },
-        "bonus":{
-            "lethalattack":{
-                "label": "lethalattack",
-                "description": "les dégâts de l’attaque augmentent de 1d6. Plusieurs Attaques meurtrières augmentent les dégâts d’autant de d6 que d’Attaques meurtrières.",
-                "chatmessage": "Bonus: Lethal Attack (x{lethalattack})."
-            },
-            "mutlipleattacks":{
-                "label": "mutlipleattacks",
-                "description": "l’attaque vise deux cibles à la fois, à condition qu’elles soient accessibles au personnage – à son contact pour une attaque de corps à corps, groupées pour un tir. Un seul test est e{ectué et les dégâts, après tous les autres calculs, sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur.",
-                "chatmessage": "Bonus: mutlipleattacks."
-            },
-            "efficiency":{
-                "label": "efficiency",
-                "description":  "l’action en cours bénéficie d’un bonus de 2. Plusieurs Efficacités confèrent un bonus de 2 pour chaque Efficacité.",
-                "chatmessage": "Bonus: efficiency (x{efficiency})."
-            },
-            "caution":{
-                "label": "caution",
-                "description":  "le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage bénéficie d’un bonus de 2. Plusieurs Prudences augmentent le nombre de tests successifs bénéficiant de ce bonus.",
-                "chatmessage": "Bonus: caution (x{caution})."
-            },
-            "quick":{
-                "label": "quick",
-                "description":  "en combat, une attaque rapide ne donne pas la main à l’adversaire. En dehors d’un combat, la durée d’exécution d’une tâche est divisée par deux. Non cumulable.",
-                "chatmessage": "Bonus: quick."
-            }
-        },
-        "penalty":{
-            "minorinjury":{
-                "label": "minorinjury",
-                "description":  "les dégâts sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur",
-                "chatmessage": "Penalty: minorinjury."
-            },
-            "danger":{
-                "label": "danger",
-                "description":  "le prochain test de Défense, Réflexes, Résistance ou Volonté du personnage subit un malus de 2. D’autres Dangers augmentent le nombre de tests successifs subissant ce malus.",
-                "chatmessage": "Penalty: danger (x{danger})."
-            },
-            "difficulty":{
-                "label": "difficulty",
-                "description":  "l’action en cours subit un malus de 2. Plusieurs Difficultés imposent un malus de 2 pour chaque Difficulté.",
-                "chatmessage": "Penalty: difficulty (x{difficulty})."
-            },
-            "risk": {
-                "label": "risk",
-                "description": "en combat, une action lente donne la main à l’adversaire, même s’il ne s’agissait pas d’une attaque. En dehors d’un combat, la durée d’une tâche augmente de moitié. Non cumulable.",
-                "chatmessage": "Penalty: (x{risk})."
-            },
-            "slowness":{
-                "label": "slowness",
-                "description":  "si l’action en cours échoue, un incident, déterminé par le MJ, survient. Par exemple l’arme est coincée ou détruite, le personnage glisse et tombe au sol, il lâche un objet, un de ses vêtements s’accroche quelque part et lui fait perdre une action, l’attaque touche un allié, etc. Plusieurs Risques différents exposent le personnage à des déboires multiples simultanés. Plusieurs risques identiques ne sont pas cumulables.",
-                "chatmessage": "Penalty: slowness."
-            }
         }
     }
 }

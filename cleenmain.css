@@ -601,7 +601,28 @@ input {
   background-color: #fffdfc;
   display: flex;
   flex-direction: column;
-  font: "Modesto condensed";
+  font-family: "Modesto condensed";
+  /* Tooltip text */
+}
+.dialog .tooltip {
+  position: relative;
+  display: inline-block;
+}
+.dialog .tooltip .tooltiptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 1;
+}
+.dialog .tooltip:hover .tooltiptext {
+  visibility: visible;
 }
 .dialog .intro {
   display: flex;
@@ -641,7 +662,6 @@ input {
 .dialog .bonus-block {
   display: flex;
   flex-flow: row wrap;
-  /* Tooltip text */
 }
 .dialog .bonus-block .bonus-line {
   margin: 1em 0 1em 0;
@@ -653,26 +673,6 @@ input {
 .dialog .bonus-block input {
   width: 3em;
   -webkit-appearance: auto;
-}
-.dialog .bonus-block .tooltip {
-  position: relative;
-  display: inline-block;
-}
-.dialog .bonus-block .tooltip .tooltiptext {
-  visibility: hidden;
-  width: 160px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  z-index: 1;
-}
-.dialog .bonus-block .tooltip:hover .tooltiptext {
-  visibility: visible;
 }
 .dialog .paddingend {
   padding: 0 0 5em 0;
