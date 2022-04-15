@@ -13,14 +13,14 @@
 h1 {
   font-family: "Signika";
   font-size: 1.2rem;
-  color: #693d25;
+  color: black;
   text-transform: uppercase;
   border: none;
 }
 h2 {
   font-family: "Signika";
   font-size: 1rem;
-  color: #693d25;
+  color: black;
 }
 input {
   color: #456;
@@ -210,7 +210,7 @@ input {
   width: 2em;
 }
 .cleenmain.sheet.npc .input-long {
-  width: 12em;
+  width: 10em;
 }
 .cleenmain.sheet.npc .window-content {
   background: repeat url('../../../ui/parchment-white.jpg');
@@ -301,7 +301,6 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block {
   display: flex;
   flex-direction: row;
-  width: 25%;
   padding: 0.5em 0.5em;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-label {
@@ -311,6 +310,12 @@ input {
   display: flex;
   flex-direction: row;
   padding: 0 0.2em 0 0.2em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-nonedit {
+  width: 25%;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-edit {
+  width: 50%;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npchealth-line {
   display: flex;
@@ -438,7 +443,7 @@ input {
   height: fit-content;
 }
 .boons-tab .boon-group .boon-card .boon-name-line .boon-name {
-  color: #693d25;
+  color: black;
   font-size: 1.2rem;
 }
 .boons-tab .boon-group .boon-card .boon-description {
@@ -458,7 +463,7 @@ input {
   padding: 0 0 2em 0;
 }
 .tab-bio .line-label {
-  color: #693d25;
+  color: black;
 }
 .tab-bio .title-line {
   display: flex;
@@ -581,7 +586,7 @@ input {
   flex-direction: row;
   justify-content: left;
   margin: 0.3em 0.3em 0 0.3em;
-  border-bottom: 1px solid #693d25;
+  border-bottom: 1px solid black;
 }
 .equipment-tab .equipment-column .equipment-line .equipment-name {
   font-family: "Merriweather";
@@ -647,7 +652,7 @@ input {
 .dialog .formula {
   text-align: center;
   margin: 0.5em;
-  color: #693d25;
+  color: black;
   font-weight: bold;
 }
 .dialog .rollmodifier {
