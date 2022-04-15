@@ -2,7 +2,8 @@
     background-color: @clear-background;
     display: flex;
     flex-direction: column;
-    font-family: @default-font;
+    font-family: @dialog-font;
+    font-size: @dialog-font-size;
     .tooltip {
     position: relative;
     display: inline-block;
@@ -41,16 +42,17 @@
             min-height: 80px;
         }
         .introtext{
+            font-size: @dialog-intro-font-size;
+            font-weight: @dialog-intro-font-weight;
             padding-top: 1.5em;
             text-align: center;
-            font-weight: bold;
         }
     }
     .formula{
         text-align: center;
         margin: 0.5em;
-        color: @title-color;
-        font-weight: bold;
+        font-size: @dialog-intro-font-size;
+        font-weight: @dialog-intro-font-weight;
     }
     .rollmodifier{
         display: flex;

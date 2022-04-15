@@ -357,7 +357,8 @@
         "tooltip":{
             "armormalus": "Malus d'armure: ",
             "badshape": "Mal en point: ",
-            "skill" : "Compétence: "
+            "skill" : "Compétence: ",
+            "untrained": "Pénalité non-entrainé"
         },
         "wealth": {
             "platinium": "Platine",

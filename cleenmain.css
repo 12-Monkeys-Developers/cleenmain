@@ -606,7 +606,8 @@ input {
   background-color: #fffdfc;
   display: flex;
   flex-direction: column;
-  font-family: "Modesto condensed";
+  font-family: "Signika";
+  font-size: 1rem;
   /* Tooltip text */
 }
 .dialog .tooltip {
@@ -645,14 +646,15 @@ input {
   min-height: 80px;
 }
 .dialog .intro .introtext {
+  font-size: 1.2rem;
+  font-weight: bold;
   padding-top: 1.5em;
   text-align: center;
-  font-weight: bold;
 }
 .dialog .formula {
   text-align: center;
   margin: 0.5em;
-  color: black;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 .dialog .rollmodifier {

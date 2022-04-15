@@ -50,6 +50,7 @@ export class Rolls {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleweapon", {itemName: item.name});
             attackRoll = true;
             rollFormula = "3d6 + " + item.weaponSkill(actor);
+            formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + item.weaponSkill(actor);
 
             introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingCharacterName, itemName: item.name});
 
@@ -58,16 +59,19 @@ export class Rolls {
                 if (!actor.data.data.trainings.weapons.war && !actor.data.data.trainings.weapons.heavy) {
                     data.difficulty = 1;
                     data.risk = 1;
+                    formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
                 }
             }
             if (item.data.data.category === "heavy") {
                 if (!actor.data.data.trainings.weapons.war && !actor.data.data.trainings.weapons.heavy) {
                     data.difficulty = 2;
                     data.risk = 1;
+                    formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
                 }
                 if (actor.data.data.trainings.weapons.war) {
                     data.difficulty = 1;
                     data.risk = 1;
+                    formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
                 }
             }
         }

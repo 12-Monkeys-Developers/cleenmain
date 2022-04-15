@@ -329,7 +329,8 @@
         "tooltip":{
             "armormalus": "Armor malus: ",
             "badshape": "In bad shape : ",
-            "skill" : "Skill: "
+            "skill" : "Skill: ",
+            "untrained": "Untrained penalty"
         },
         "weapon": {
             "category": {
