@@ -408,6 +408,25 @@ input {
   flex-direction: row;
   flex-basis: 50%;
 }
+.cleenmain.sheet.item {
+  background-color: #fffdfc;
+}
+.cleenmain.sheet.item form {
+  display: flex;
+  flex-direction: column;
+}
+.cleenmain.sheet.item .sheet-content {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.item .sheet-content .skill-block {
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.item .sheet-content .skill-block input {
+  width: 2em;
+}
 .cleenmain.sheet.item form {
   display: flex;
   flex-direction: column;

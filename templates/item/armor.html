@@ -5,13 +5,15 @@
     </header>
     <div class="sheet-content">
         <table>
-            <tr>
-                <th>{{localize "CLEENMAIN.label.category"}}</th>
-                <th>{{localize "CLEENMAIN.armor.protection"}}</th>
-                <th>{{localize "CLEENMAIN.armor.malus"}}</th>
-                <th>{{localize "CLEENMAIN.armor.special"}}</th>
-                <th>{{localize "CLEENMAIN.armor.quality"}}</th>
-            </tr>
+            <thead> 
+                <tr>
+                    <th>{{localize "CLEENMAIN.label.category"}}</th>
+                    <th>{{localize "CLEENMAIN.armor.protection"}}</th>
+                    <th>{{localize "CLEENMAIN.armor.malus"}}</th>
+                    <th>{{localize "CLEENMAIN.armor.special"}}</th>
+                    <th>{{localize "CLEENMAIN.armor.quality"}}</th>
+                </tr>
+            </thead> 
             <td>
                 <select name="data.category">
                     {{#select data.category}}

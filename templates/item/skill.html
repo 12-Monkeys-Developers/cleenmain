@@ -3,14 +3,13 @@
         <h1><input name="name" type="text" value="{{item.name}}"/></h1>
     </header>
     <div class="sheet-content">
-        <div class="input-skillvalue">
-            <input title="{{localize 'CLEENMAIN.label.value'}}" id="skill" name="data.value" type="number" value="{{data.value}}"/>
+        <div class="skill-block">
+            <label for="data.base">{{localize "CLEENMAIN.tooltip.skill"}} : </label>
+            <input title="{{localize 'CLEENMAIN.label.value'}}" id="skill" name="data.base" type="number" value="{{data.base}}"/>
         </div>
-        <div class="skill-name-line">
-            <input title="{{localize 'CLEENMAIN.skill.developed'}}" class="checkbox" name="data.developed" type="checkbox" data.developed}}>
-        </div>
-        <div class="skill-name-line">
-            <input title="{{localize 'CLEENMAIN.skill.physical'}}" class="checkbox" name="data.physical" type="checkbox" data.physical}}>
+        <div class="skill-block">
+            <label for="data.physical">{{localize "CLEENMAIN.skill.isPhysical"}} : </label>
+            <input title="{{localize 'CLEENMAIN.skill.isPhysical'}}" class="checkbox" name="data.physical" type="checkbox" {{checked data.physical}}>
         </div>
     </div>
 </form>
