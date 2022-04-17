@@ -46,7 +46,7 @@ export const CLEENMAIN = {
         npcSkills: [
                 { name: "physical", physical: true, skills: ["acrobatics", "athletics", "combat", "defence", "riding", "muscles", "resistance"] },
                 { name: "dexterity", physical: true, skills: ["stealth", "drive", "reflexes", "healing", "technical"] },
-                { name: "social", physical: false, skills: ["art", "command", "eloquence", "psychology"] },
+                { name: "social", physical: false, skills: ["art", "authority", "eloquence", "psychology"] },
                 { name: "mental", physical: false, skills: ["knowledge", "research", "intellect", "langage", "perception", "survival", "willpower"] },
                 { name: "defence", physical: true, skills: ["defence"] }
         ],

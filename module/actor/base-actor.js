@@ -148,4 +148,8 @@ export default class CemBaseActor extends Actor {
     isInBadShape() {
         return this.isPlayer() ? this.data.data.health.value <= 0 : false;
     }
+
+    healChar(){
+        this.update({'data.health.value': this.data.data.health.max});
+    }
 }

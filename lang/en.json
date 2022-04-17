@@ -218,7 +218,7 @@
                 "description": "Les activités physicals intenses comme la course, la nage ou le grimper à la corde."
             },
             "authority": {
-                "name": "Command",
+                "name": "Authority",
                 "description": "Diriger un groupe, intimider un interlocuteur, donner des ordres, etc."
             },
             "combat": {
