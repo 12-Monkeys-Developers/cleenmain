@@ -116,6 +116,10 @@ input {
   flex-direction: row;
   margin: 0 0 1em 0;
 }
+.cleenmain.sheet.player .main .central .intro-block .intro-block-left {
+  align-self: center;
+  min-width: 100px;
+}
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right {
   display: flex;
   flex-flow: column nowrap;
