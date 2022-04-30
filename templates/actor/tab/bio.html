@@ -22,23 +22,31 @@
       </div>
     {{/if}}
   {{else}}
+    {{#if (isNotEmptyString data.description)}}
     <div class="description-block">
       <h2 class="column-title">{{localize "CLEENMAIN.label.description"}}</h2>
       {{{data.description}}}
     </div>
+    {{/if}}
     {{#if isNpc}}
+      {{#if (isNotEmptyString data.equipment)}}
       <div class="description-block">
         <h2 class="column-title">{{localize "CLEENMAIN.label.equipment"}}</h2>
         {{{data.equipment}}}
       </div>
+      {{/if}}
+      {{#if (isNotEmptyString data.tactic)}}
       <div class="description-block">
         <h2 class="column-title">{{localize "CLEENMAIN.label.tactic"}}</h2>
         {{{data.tactic}}}
-      </div>        
+      </div>  
+      {{/if}}
+      {{#if (isNotEmptyString data.traits)}}
       <div class="traits-block">
         <h2 class="column-title">{{localize "CLEENMAIN.label.traits"}}</h2>
         {{{data.traits}}}
       </div>
+      {{/if}}
     {{/if}}
   {{/if}}
 </div>

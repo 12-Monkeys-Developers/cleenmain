@@ -501,6 +501,10 @@ input {
   font-family: "Merriweather";
   font-size: 0.7rem;
 }
+.tab-bio .traits-block {
+  font-family: "Merriweather";
+  font-size: 0.7rem;
+}
 .tab-bio .editor {
   min-height: 5em;
 }
