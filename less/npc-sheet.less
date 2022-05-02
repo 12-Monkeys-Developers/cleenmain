@@ -2,6 +2,9 @@
     .input-short{
         width: 2em;
     }
+    .input-verylong{
+        width: 20em;
+    }
     .input-long{
         width: 10em;
     }
@@ -32,27 +35,38 @@
     .npc-main {
         display: flex;
         flex-direction: column;
-        .name-line{
-            margin: .5em;
-            font-size: 2rem;
-            display: flex;
-            flex-direction: row;
-            input{
-                height: 1.5em;
-                text-align: center;
-            }
-            .sheet-unlock{
-                margin-left: auto;
-                padding-left: .5em;
-                color: @icon-color;
-            }
-        }
         .npcstat-block{
             display: flex;
             flex-direction: row;
             .npcstat-block-left{
                 display: flex;
                 flex-direction: column;
+                .name-line{
+                    margin: .5em;
+                    display: flex;
+                    flex-direction: row;
+                    .name-text{
+                        font-family: @npc-name-font;
+                        color: @npc-name-color;
+                        font-size:  @npc-name-font-size;
+                    }
+                    input{
+                        height: 2em;
+                    }
+                    .sheet-unlock{
+                        margin-left: auto;
+                        padding-left: 1em;
+                        color: @icon-color;
+                    }
+                }
+                .activity-line{
+                    margin: 0 0.5em 1em 1em;
+                    .activity-text{
+                        font-family: @npc-name-font;
+                        color: @npc-name-color;
+                        font-size:  @npc-activity-font-size;
+                    }
+                }
                 .level-line{
                     display: flex;
                     flex-direction: row;

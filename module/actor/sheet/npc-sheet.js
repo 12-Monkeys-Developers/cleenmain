@@ -15,7 +15,7 @@ export default class NpcSheet extends CemBaseActorSheet {
     return mergeObject(super.defaultOptions, {
       template: "systems/cleenmain/templates/actor/npc.html",
       classes: ["cleenmain", "sheet", "actor", "npc"],
-      width: 600,
+      width: 800,
       height: 700,
       tabs: [],
     });

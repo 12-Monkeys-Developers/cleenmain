@@ -1,7 +1,9 @@
 <div class="tab-bio">
-  <div class="title-line">
-    <h1 class="column-title">{{localize "CLEENMAIN.label.bio"}}</h1>
-  </div>
+  {{#ifn isNpc}}
+    <div class="title-line">
+      <h1 class="column-title">{{localize "CLEENMAIN.label.bio"}}</h1>
+    </div>
+    {{/ifn}}
   {{#if unlocked}}
     <div class="description-block">
       <h2 class="column-title">{{localize "CLEENMAIN.label.description"}}</h2>

@@ -57,7 +57,9 @@
                         {{#if unlocked}}
                             <input id="activity" name="data.activity" type="text" value="{{data.activity}}" />
                         {{else}}
+                            {{#if (isNotEmptyString data.activity)}}
                             <div class="activity-text">{{data.activity}}</div>
+                            {{/if}}
                         {{/if}}
                     </div>
                     <div class="central-line space-between">

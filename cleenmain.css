@@ -213,6 +213,9 @@ input {
 .cleenmain.sheet.npc .input-short {
   width: 2em;
 }
+.cleenmain.sheet.npc .input-verylong {
+  width: 20em;
+}
 .cleenmain.sheet.npc .input-long {
   width: 10em;
 }
@@ -244,21 +247,6 @@ input {
   display: flex;
   flex-direction: column;
 }
-.cleenmain.sheet.npc .npc-main .name-line {
-  margin: 0.5em;
-  font-size: 2rem;
-  display: flex;
-  flex-direction: row;
-}
-.cleenmain.sheet.npc .npc-main .name-line input {
-  height: 1.5em;
-  text-align: center;
-}
-.cleenmain.sheet.npc .npc-main .name-line .sheet-unlock {
-  margin-left: auto;
-  padding-left: 0.5em;
-  color: #705a10;
-}
 .cleenmain.sheet.npc .npc-main .npcstat-block {
   display: flex;
   flex-direction: row;
@@ -266,6 +254,32 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left {
   display: flex;
   flex-direction: column;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line {
+  margin: 0.5em;
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line .name-text {
+  font-family: "Signika";
+  color: black;
+  font-size: 2em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line input {
+  height: 2em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line .sheet-unlock {
+  margin-left: auto;
+  padding-left: 1em;
+  color: #705a10;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .activity-line {
+  margin: 0 0.5em 1em 1em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .activity-line .activity-text {
+  font-family: "Signika";
+  color: black;
+  font-size: 1.1em;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .level-line {
   display: flex;
