@@ -24,7 +24,10 @@ export default function registerHooks() {
                             physical: skill.physical
                         }
                     };
-                    await document.createEmbeddedDocuments("Item", [skillData]);
+                    let alreadySkill = document.items.filter(item => item.type === "skill" && item.data.data.reference===skill.name);
+                    if(alreadySkill.lenght==0){
+                        await document.createEmbeddedDocuments("Item", [skillData]);
+                    }
                 }
             }
 
@@ -42,7 +45,10 @@ export default function registerHooks() {
                             skills: skill.skills
                         }
                     };
-                    await document.createEmbeddedDocuments("Item", [skillData]);
+                    let alreadySkill = document.items.filter(item => item.type === "skill" && item.data.data.reference===skill.name);
+                    if(alreadySkill.lenght==0){
+                        await document.createEmbeddedDocuments("Item", [skillData]);
+                    }
                 }
             }
 
