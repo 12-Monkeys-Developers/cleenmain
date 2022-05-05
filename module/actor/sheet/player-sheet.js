@@ -96,8 +96,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
     targetData.data.skillName = itemData.name;
     targetData.data.skillValue = this.actor.getSkillValue(itemData);
 
-    targetData.data.skillId = itemData._id;    
-    targetData.data.damage = target.weaponDamage(this.actor);
+    targetData.data.skillId = itemData._id;
 
     this.actor.updateEmbeddedDocuments("Item", [targetData]);
   }
