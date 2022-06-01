@@ -101,11 +101,10 @@
             "damage": "Dégâts",
             "range": "Portée",
             "skillName": "Compétence",
-            "skillValue": "Valeur",
             "special": "Spécial",
             "zone": "Zone",
             "sixPlus": "6+",
-            "skillValueNpc": "Comp. (normale)",
+            "skillValueNpc": "Compétence",
             "skillValueNpcElite": "Comp. (élite)"
         },
         "chatmessage":{

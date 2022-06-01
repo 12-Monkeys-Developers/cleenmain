@@ -16,8 +16,10 @@
                     <th>{{localize "CLEENMAIN.weapon.zone"}}</th>
                     <th>{{localize "CLEENMAIN.weapon.sixPlus"}}</th>
                     {{#if hasNpcOwner}}
-                        <th>{{localize "CLEENMAIN.weapon.skillValue"}}</th>
+                        <th>{{localize "CLEENMAIN.weapon.skillValueNpc"}}</th>
+                        {{#if (isSettingEnabled "advancedRules")}}
                         <th>{{localize "CLEENMAIN.weapon.skillValueNpcElite"}}</th>
+                        {{/if}}
                     {{else}}
                         <th>{{localize "CLEENMAIN.weapon.skillName"}}</th>
                     {{/if}}
