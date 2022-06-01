@@ -7,7 +7,6 @@ export default function registerHooks() {
             mergeObject(createChanges, {
                 'token.disposition': CONST.TOKEN_DISPOSITIONS.NEUTRAL,
             });
-            
             // Player 
             if (document.data.type === 'player') {
                 createChanges.token.vision = true;
@@ -25,7 +24,7 @@ export default function registerHooks() {
                         }
                     };
                     let alreadySkill = document.items.filter(item => item.type === "skill" && item.data.data.reference===skill.name);
-                    if(alreadySkill.lenght==0){
+                    if(alreadySkill.length==0){
                         await document.createEmbeddedDocuments("Item", [skillData]);
                     }
                 }
@@ -46,7 +45,7 @@ export default function registerHooks() {
                         }
                     };
                     let alreadySkill = document.items.filter(item => item.type === "skill" && item.data.data.reference===skill.name);
-                    if(alreadySkill.lenght==0){
+                    if(alreadySkill.length==0){
                         await document.createEmbeddedDocuments("Item", [skillData]);
                     }
                 }
