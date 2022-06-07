@@ -24,7 +24,7 @@ export class Rolls {
         if (type === "skill") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleskill", {itemName: item.name});
             skillRoll = true;
-            let value= actor.getSkillValue(item.data).toString();
+            let value = actor.getSkillValue(item.data).toString();
             rollFormula = "3d6 + " + value;
             formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + value;
 
@@ -243,12 +243,7 @@ export class Rolls {
         let attackDamage = null;
 
         if (item.type === "weapon") {
-            if (actor.type === "player") {
-                attackDamage = item.calculateWeaponDamageForPlayer(actor, result.dices, data.useHeroism, data.lethalattack);                
-            }
-            if (actor.type === "npc") {
-                attackDamage = item.calculateWeaponDamageForNpc(actor);
-            }     
+            attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack);            
             if (attackDamage.otherRoll !== null) {
                 otherRollTooltip = new Handlebars.SafeString(await attackDamage.otherRoll.getTooltip());
             }     

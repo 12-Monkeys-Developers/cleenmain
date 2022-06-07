@@ -63,22 +63,24 @@ export default class CemBaseItem extends Item {
     /**
      * @name calculateWeaponDamage
      * @description For weapon Item, calculates the value of the damage depending of the damageBase and the results of the dices
-     *  damage = damageBase + melee/range bonus
+     *  For a player : damage = damageBase + melee/range bonus
+     *  For a npc : damage = damageBase
      * @param {*} actor 
      * @param {*} dices The dices results of a roll
      * @param {*} useHeroism 
      * @param {*} lethalattack 
     * @returns 
      */
-     calculateWeaponDamageForPlayer(actor, dices, useHeroism, lethalattack) {
+     calculateWeaponDamage(actor, dices, useHeroism, lethalattack) {
         if (this.data.type !== "weapon") return;
-        if (actor.data.type !== "player") return;
 
         let nbDices = parseInt(this.data.data.damageBase.substring(0,1));
         let damageFormula = null;
         let damage = 0;
         let totalAttackDices;
         let otherRoll = null;
+
+        // Damage ToolTip
         let damageToolTipInfos = [];
         let damageToolTipInfosWeapon = {};
         damageToolTipInfosWeapon.source = game.i18n.format("CLEENMAIN.chatmessage.weapon", {nbDices: nbDices});
@@ -109,24 +111,45 @@ export default class CemBaseItem extends Item {
             default:
                 break;
         }
-        damageFormula = nbDices + "d6";
         damageToolTipInfos.push(damageToolTipInfosWeapon);
 
-        if (this.data.data.range > 0) {
-            damageFormula += " + " + parseInt(actor.data.data.damageBonus.ranged);
-            damage += parseInt(actor.data.data.damageBonus.ranged);
-        }
-        else {
-            damageFormula += " + " + parseInt(actor.data.data.damageBonus.melee);
-            damage += parseInt(actor.data.data.damageBonus.melee);
+        // Damage formula for npc
+        if (actor.data.type === "npc") {
+            damageFormula = this.data.data.damageBase;
+
+            // xd6 + value
+            if (damageFormula.includes("+")) {
+                const bonus = damageFormula.substring(damageFormula.indexOf("+")).trim();
+                damage += parseInt(bonus);
+            }
+
+            // single value
+            if (!damageFormula.includes("d") && !damageFormula.includes("D")) {
+                damage += parseInt(damageFormula);
+            };
+        } 
+
+        // Damage formula and bonus for player
+        if (actor.data.type === "player") {
+            damageFormula = nbDices + "d6";
+            if (this.data.data.range > 0) {
+                damageFormula += " + " + parseInt(actor.data.data.damageBonus.ranged);
+                damage += parseInt(actor.data.data.damageBonus.ranged);
+            }
+            else {
+                damageFormula += " + " + parseInt(actor.data.data.damageBonus.melee);
+                damage += parseInt(actor.data.data.damageBonus.melee);
+            }
+
+            if (useHeroism) {
+                damageFormula += " + 1d6";
+                damage += dices[3].result;
+                //damageToolTip.heroism = + dices[3].result;
+                damageToolTipInfos.push({"source": game.i18n.localize("CLEENMAIN.chatmessage.heroism"), "total": "", "dices": [dices[3].result]});
+            }
         }
 
-        if (useHeroism) {
-            damageFormula += " + 1d6";
-            damage += dices[3].result;
-            //damageToolTip.heroism = + dices[3].result;
-            damageToolTipInfos.push({"source": game.i18n.localize("CLEENMAIN.chatmessage.heroism"), "total": "", "dices": [dices[3].result]});
-        }
+        // Lethal attack boon
         if (lethalattack > 0) {
             const lethalFormula = lethalattack + "d6";
             const lethalRoll = new Roll(lethalFormula, {}).roll({ async: false });
@@ -141,31 +164,5 @@ export default class CemBaseItem extends Item {
             damageToolTipInfos: damageToolTipInfos,
             otherRoll: otherRoll
         }
-    }
-
-    /**
-     * @name calculateWeaponDamage
-     * @description For weapon Item, calculates the value of the damage
-     * @param {*} actor 
-    * @returns 
-     */
-     calculateWeaponDamageForNpc(actor) {
-        if (this.data.type !== "weapon") return;
-        if (actor.data.type !== "npc") return;
-
-        const damage = this.data.data.damageBase;
-
-        if (!damage.includes("d") && !damage.includes("D")){
-            return {
-                damage: parseInt(damage),
-                otherRoll: null
-            }
-        }
-
-        const damageRoll = new Roll(damage, {}).roll({ async: false });
-        return {
-            damage: damageRoll._total,
-            otherRoll: damageRoll
-        }
-    }    
+    }   
 }
