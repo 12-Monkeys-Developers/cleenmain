@@ -24,7 +24,9 @@
         "systems/cleenmain/templates/partials/boon-card.html",
                 
         "systems/cleenmain/templates/chat/rollDialog.html",
-        "systems/cleenmain/templates/chat/rollResult.html"
+        "systems/cleenmain/templates/chat/rollResult.html",
+        
+        "systems/cleenmain/templates/dice/damageTooltip.html"
     ]);
 
 };

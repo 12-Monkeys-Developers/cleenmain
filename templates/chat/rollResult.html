@@ -17,11 +17,16 @@
             </div>
         </div>
         {{#if attackRoll}}
+            <div class="formulaText">
+                {{localize "CLEENMAIN.chatmessage.rollDamageFormula"}}  {{damageFormula}}
+            </div>
             <div class="finalText">
                 <div class="tooltip">
                     <p>{{localize  "CLEENMAIN.chatmessage.damageresult"}} {{damage}}</p>
                         {{#if (isNotEmptyString otherRollTooltip)}}
                             <span class="tooltiptext">{{{otherRollTooltip.string}}}</span>
+                        {{else}}
+                            <span class="tooltiptext">{{{damageToolTip}}}</span>
                         {{/if}}
                 </div>                        
             </div>

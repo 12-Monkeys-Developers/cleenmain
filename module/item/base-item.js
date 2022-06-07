@@ -75,24 +75,57 @@ export default class CemBaseItem extends Item {
         if (actor.data.type !== "player") return;
 
         let nbDices = parseInt(this.data.data.damageBase.substring(0,1));
+        let damageFormula = null;
         let damage = 0;
+        let totalAttackDices;
         let otherRoll = null;
+        let damageToolTipInfos = [];
+        let damageToolTipInfosWeapon = {};
+        damageToolTipInfosWeapon.source = game.i18n.format("CLEENMAIN.chatmessage.weapon", {nbDices: nbDices});
+        damageToolTipInfosWeapon.dices = [];
 
         switch (nbDices) {
-            case 1:
+            case 1:                
+            totalAttackDices = dices[0].result;
+                damageToolTipInfosWeapon.total = totalAttackDices;
                 damage += dices[0].result;
+                damageToolTipInfosWeapon.dices[0] = dices[0].result;
                 break;
             case 2:
-                damage += dices[0].result + dices[1].result;
+                totalAttackDices = dices[0].result + dices[1].result;
+                damageToolTipInfosWeapon.total = totalAttackDices;
+                damage += total;
+                damageToolTipInfosWeapon.dices[0] = dices[0].result;
+                damageToolTipInfosWeapon.dices[1] = dices[1].result;
                 break;
             case 3:
+                totalAttackDices = dices[0].result + dices[1].result + dices[2].result;
+                damageToolTipInfosWeapon.total = totalAttackDices
                 damage += dices[0].result + dices[1].result + dices[2].result;
+                damageToolTipInfosWeapon.dices[0] = dices[0].result;
+                damageToolTipInfosWeapon.dices[1] = dices[1].result;
+                damageToolTipInfosWeapon.dices[2] = dices[2].result;
                 break;
             default:
                 break;
         }
+        damageFormula = nbDices + "d6";
+        damageToolTipInfos.push(damageToolTipInfosWeapon);
+
+        if (this.data.data.range > 0) {
+            damageFormula += " + " + parseInt(actor.data.data.damageBonus.ranged);
+            damage += parseInt(actor.data.data.damageBonus.ranged);
+        }
+        else {
+            damageFormula += " + " + parseInt(actor.data.data.damageBonus.melee);
+            damage += parseInt(actor.data.data.damageBonus.melee);
+        }
+
         if (useHeroism) {
+            damageFormula += " + 1d6";
             damage += dices[3].result;
+            //damageToolTip.heroism = + dices[3].result;
+            damageToolTipInfos.push({"source": game.i18n.localize("CLEENMAIN.chatmessage.heroism"), "total": "", "dices": [dices[3].result]});
         }
         if (lethalattack > 0) {
             const lethalFormula = lethalattack + "d6";
@@ -101,12 +134,11 @@ export default class CemBaseItem extends Item {
             otherRoll = lethalRoll;
             damage += lethalRoll._total;
         }
-        if (this.data.data.range > 0) {
-            damage += parseInt(actor.data.data.damageBonus.ranged);
-        }
-        else damage += parseInt(actor.data.data.damageBonus.melee);
+        
         return {
             damage: damage,
+            damageFormula: damageFormula,
+            damageToolTipInfos: damageToolTipInfos,
             otherRoll: otherRoll
         }
     }

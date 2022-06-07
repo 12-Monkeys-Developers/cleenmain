@@ -244,8 +244,7 @@ export class Rolls {
 
         if (item.type === "weapon") {
             if (actor.type === "player") {
-                attackDamage = item.calculateWeaponDamageForPlayer(actor, result.dices, data.useHeroism, data.lethalattack);
-                
+                attackDamage = item.calculateWeaponDamageForPlayer(actor, result.dices, data.useHeroism, data.lethalattack);                
             }
             if (actor.type === "npc") {
                 attackDamage = item.calculateWeaponDamageForNpc(actor);
@@ -268,6 +267,8 @@ export class Rolls {
                 applyModifiers: data.applyModifiers,
                 result: result,
                 damage: attackDamage?.damage,
+                damageFormula: attackDamage.damageFormula,
+                damageToolTip: await Rolls.getDamageTooltip(attackDamage?.damageToolTipInfos),
                 otherRollTooltip: otherRollTooltip,
                 skillRoll: data.skillRoll,
                 attackRoll: data.attackRoll,
@@ -333,4 +334,21 @@ export class Rolls {
         return false;
     }
 
+  /**
+   * Render the tooltip HTML for a Roll instance
+   * @return {Promise<string>}      The rendered HTML tooltip as a string
+   */
+   static async getDamageTooltip(damageToolTipInfos) {
+    const parts = damageToolTipInfos.map(d => 
+        {
+            return {
+                source: d.source,
+                total: d.total,
+                dices: d.dices
+            }
+        });
+    return renderTemplate(Rolls.TOOLTIP_DAMAGE_TEMPLATE, { parts });
+   }
+  
+   static TOOLTIP_DAMAGE_TEMPLATE = "systems/cleenmain/templates/dice/damageTooltip.html";
 }

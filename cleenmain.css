@@ -765,7 +765,7 @@ input {
 }
 .chatroll .formulaText {
   background: top / 50% repeat url('../../../ui/parchment-white.jpg');
-  padding: 2em 0 0 0;
+  padding: 1em 0 0 0;
   color: black;
   text-align: center;
 }

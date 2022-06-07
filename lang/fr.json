@@ -112,7 +112,10 @@
             "heroismmodifier": "Point d'Héroïsme utilisé : +1d6",
             "rollformula": "Dés lancés :",
             "rollresult": "Résultat du jet : ",
-            "damageresult": "Les dommages sont : "
+            "rollDamageFormula": "Jet de dégâts :",
+            "damageresult": "Résultat du jet : ",
+            "weapon": "Arme ({nbDices}d6)",
+            "heroism": "Héroisme"
         },
         "dialog":{
             "rollmodifier": "Modificateur pour le jet: ",
@@ -122,7 +125,7 @@
             "introweapon": "{actingCharName} attaque avec {itemName}.",
             "titleweapon": "Attaque de {itemName}",
             "introdamage": "{actingCharName} blesse son adversaire avec {itemName}.",
-            "titledamage": "Dommages de {itemName}",
+            "titledamage": "Dégâts de {itemName}",
             "button":{
                 "cancel": "Annuler",
                 "roll": "Lancer"

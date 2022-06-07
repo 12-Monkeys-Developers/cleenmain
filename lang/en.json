@@ -88,7 +88,9 @@
             "heroismmodifier": "One Heroism point used : +1d6",
             "rollformula": "Final dice rolled:",
             "rollresult": "Result of the dice roll: ",
-            "damageresult": "Damages are: "
+            "damageresult": "Damages are: ",
+            "weapon": "Weapon ({nbDices}d6)",
+            "heroism": "Heroism"
         },
         "dialog":{
             "rollmodifier": "Modifier for the roll: ",
