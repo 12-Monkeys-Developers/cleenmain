@@ -119,7 +119,8 @@ export default class CemBaseItem extends Item {
 
             // xd6 + value
             if (damageFormula.includes("+")) {
-                const bonus = damageFormula.substring(damageFormula.indexOf("+")).trim();
+                let damageFormulaWithoutSpace = damageFormula.replace(/\s+/g, '');
+                let bonus = damageFormulaWithoutSpace.substring(damageFormulaWithoutSpace.indexOf("+"));
                 damage += parseInt(bonus);
             }
 
