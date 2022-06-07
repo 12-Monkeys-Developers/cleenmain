@@ -86,7 +86,7 @@ export default class CemBaseItem extends Item {
 
         switch (nbDices) {
             case 1:                
-            totalAttackDices = dices[0].result;
+                totalAttackDices = dices[0].result;
                 damageToolTipInfosWeapon.total = totalAttackDices;
                 damage += dices[0].result;
                 damageToolTipInfosWeapon.dices[0] = dices[0].result;
@@ -94,7 +94,7 @@ export default class CemBaseItem extends Item {
             case 2:
                 totalAttackDices = dices[0].result + dices[1].result;
                 damageToolTipInfosWeapon.total = totalAttackDices;
-                damage += total;
+                damage += dices[0].result + dices[1].result;
                 damageToolTipInfosWeapon.dices[0] = dices[0].result;
                 damageToolTipInfosWeapon.dices[1] = dices[1].result;
                 break;
