@@ -26,8 +26,9 @@
                     {{#each skills as |skill type|}}
                         <div class="skill-line item" data-item-id="{{_id}}">
                             <div class="skill-name" title="{{skill.data.description}}" >{{skill.name}}</div>
-                            <div class="skill-value">{{getSkillValue @root.actor skill}}</div><a class="skill-roll"><i class="fas fa-dice"></i></a>
+                            <div class="skill-value">{{getSkillValue @root.actor skill}}</div>
                             <div><i class="{{getCheckboxIcon  skill.data.developed}}"></i></div>
+                            <a class="skill-roll"><i class="fas fa-dice"></i></a>                            
                         </div>
                     {{/each}}
                 </div>

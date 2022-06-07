@@ -95,6 +95,7 @@ input {
   border-radius: 5px;
   width: 10%;
   text-align: center;
+  margin-right: 5px;
 }
 .cleenmain.sheet.player .main .leftcolumn .skills .skill-line .skill-dev {
   width: 10%;
