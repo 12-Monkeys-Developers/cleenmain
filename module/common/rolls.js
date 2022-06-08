@@ -143,9 +143,9 @@ export class Rolls {
                             data.applyModifiers.push(game.i18n.format("CLEENMAIN.chatmessage.heroismmodifier"));
                             actor.useHeroism(1);
                         }
-
-                        // Boons
+                        
                         if (attackRoll) {
+                            // Boons
                             let lethalattack = html.find("#lethalattack")[0].value;
                             data.lethalattack = parseInt(lethalattack) ?? 0;
                             if (data.lethalattack > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.lethalattack.chatmessage", data));
@@ -171,6 +171,7 @@ export class Rolls {
                                 if (data.quick > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.quick.chatmessage"));
                             }
   
+                            // Penalties
                             let minorinjury = html.find("#minorinjury")[0].value;
                             data.minorinjury = parseInt(minorinjury) ?? 0;
                             if (data.minorinjury > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.minorinjury.chatmessage"));
@@ -245,7 +246,7 @@ export class Rolls {
         let attackDamage = null;
 
         if (item.type === "weapon") {
-            attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack);
+            attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack, data.minorinjury);
         }  
           
         // Display the roll action
