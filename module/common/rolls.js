@@ -96,6 +96,7 @@ export class Rolls {
                 introText: introText,
                 actingCharImg: data.actingCharacterImage,
                 isPlayer: actor.isPlayer(),
+                hasHeroism: actor.hasHeroismPoints(),
                 rollFormula: rollFormula,
                 formulaTooltip: formulaTooltip,
                 skillRoll: skillRoll,

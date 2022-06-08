@@ -66,6 +66,10 @@ export default class CemBaseActor extends Actor {
         if(defenceSkill.length) return this.getSkillValue(defenceSkill[0].data);
         return(0);
     }
+
+    hasHeroismPoints() {
+        return this.isPlayer && this.data.data.heroism.value > 0;
+    }
     
     getSkillValue(skill){
         let newValue = 0;
