@@ -1,5 +1,6 @@
 import { Skills } from "../common/skills.js";
 import { NPC_LEVEL } from "../common/constants.js";
+import { Rolls } from "../common/rolls.js";
 export default class CemBaseItem extends Item {
 
     /** @override */
@@ -78,41 +79,24 @@ export default class CemBaseItem extends Item {
         let nbDices = parseInt(this.data.data.damageBase.substring(0,1));
         let damageFormula = null;
         let damage = 0;
-        let totalAttackDices;
         let otherRoll = null;
 
         // Damage ToolTip
-        let damageToolTipInfos = [];
-        let damageToolTipInfosWeapon = {};
-        damageToolTipInfosWeapon.source = game.i18n.format("CLEENMAIN.chatmessage.weapon", {nbDices: nbDices});
-        damageToolTipInfosWeapon.dices = [];
+        let damageToolTipInfos = Rolls.createDamageToolTip("weapon", nbDices, dices);
 
         switch (nbDices) {
             case 1:                
-                totalAttackDices = dices[0].result;
-                damageToolTipInfosWeapon.total = totalAttackDices;
                 damage += dices[0].result;
-                damageToolTipInfosWeapon.dices[0] = dices[0].result;
                 break;
             case 2:
-                totalAttackDices = dices[0].result + dices[1].result;
-                damageToolTipInfosWeapon.total = totalAttackDices;
                 damage += dices[0].result + dices[1].result;
-                damageToolTipInfosWeapon.dices[0] = dices[0].result;
-                damageToolTipInfosWeapon.dices[1] = dices[1].result;
                 break;
             case 3:
-                totalAttackDices = dices[0].result + dices[1].result + dices[2].result;
-                damageToolTipInfosWeapon.total = totalAttackDices
                 damage += dices[0].result + dices[1].result + dices[2].result;
-                damageToolTipInfosWeapon.dices[0] = dices[0].result;
-                damageToolTipInfosWeapon.dices[1] = dices[1].result;
-                damageToolTipInfosWeapon.dices[2] = dices[2].result;
                 break;
             default:
                 break;
         }
-        damageToolTipInfos.push(damageToolTipInfosWeapon);
 
         // Damage formula for npc
         if (actor.data.type === "npc") {
@@ -146,25 +130,29 @@ export default class CemBaseItem extends Item {
             if (useHeroism) {
                 damageFormula += " + 1d6";
                 damage += dices[3].result;
-                //damageToolTip.heroism = + dices[3].result;
-                damageToolTipInfos.push({"source": game.i18n.localize("CLEENMAIN.chatmessage.heroism"), "total": "", "dices": [dices[3].result]});
+                damageToolTipInfos.push(...Rolls.createDamageToolTip("heroism", 1, dices.slice(3)));
             }
         }
 
         // Lethal attack boon
         if (lethalattack > 0) {
+            damageFormula += " + " + lethalattack + "d6";
             const lethalFormula = lethalattack + "d6";
-            const lethalRoll = new Roll(lethalFormula, {}).roll({ async: false });
+            const lethalRoll = new Roll(lethalFormula, {}).roll({ async: false })
             console.log("lethalRoll = ", lethalRoll);
-            otherRoll = lethalRoll;
+            let lethalDices = [];
+            for (let index = 0; index < lethalRoll.dice.length; index++) {
+                const dice = lethalRoll.dice[index];
+                lethalDices.push(...dice.results);
+            }
+            damageToolTipInfos.push(...Rolls.createDamageToolTip("lethalattack", lethalattack, lethalDices));
             damage += lethalRoll._total;
         }
         
         return {
             damage: damage,
             damageFormula: damageFormula,
-            damageToolTipInfos: damageToolTipInfos,
-            otherRoll: otherRoll
+            damageToolTipInfos: damageToolTipInfos
         }
     }   
 }

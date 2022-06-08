@@ -4,8 +4,8 @@
             <div class="dice">
                 <header class="part-header flexrow">
                     <span class="part-formula">{{this.source}}</span>
-                    {{#if (isNotEmptyString total)}}
-                        <span class="part-total">{{total}}</span>
+                    {{#if (isNotEmptyString this.total)}}
+                        <span class="part-total">{{this.total}}</span>
                     {{/if}}
                 </header>
                 <ol class="dice-rolls">

@@ -90,7 +90,8 @@
             "rollresult": "Result of the dice roll: ",
             "damageresult": "Damages are: ",
             "weapon": "Weapon ({nbDices}d6)",
-            "heroism": "Heroism"
+            "heroism": "Heroism",
+            "lethalattack": "Methal attack"
         },
         "dialog":{
             "rollmodifier": "Modifier for the roll: ",

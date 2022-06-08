@@ -2,14 +2,16 @@ import { CemChat } from "./chat.js";
 
 export class Rolls {
 
+    static TOOLTIP_DAMAGE_TEMPLATE = "systems/cleenmain/templates/dice/damageTooltip.html";
+
     /**
      * Rolls dices 
      * @param actor The actor which performs the action
      * @param item  The purpose of the action, that is the item, the attribute
-     * @param type  The type of roll 
+     * @param rollType  The type of roll 
      * @param data  The action data
      */
-       static async check(actor, item, type, data) {       
+       static async check(actor, item, rollType, data) {       
                 
         let skillRoll = false;
         let attackRoll = false;
@@ -21,7 +23,7 @@ export class Rolls {
         let formulaTooltip = "";
 
         // Skill Roll
-        if (type === "skill") {
+        if (rollType === "skill") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleskill", {itemName: item.name});
             skillRoll = true;
             let value = actor.getSkillValue(item.data).toString();
@@ -46,7 +48,7 @@ export class Rolls {
         }
 
         // Attack roll
-        if (type === "weapon-attack") {
+        if (rollType === "weapon-attack") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleweapon", {itemName: item.name});
             attackRoll = true;
             rollFormula = "3d6 + " + item.weaponSkill(actor);
@@ -77,7 +79,7 @@ export class Rolls {
         }
 
         // Damage roll
-        if (type === "weapon-damage") {
+        if (rollType === "weapon-damage") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titledamage", {itemName: item.name});
             damageRoll = true;
             rollFormula = item.weaponDamage(actor);
@@ -89,7 +91,7 @@ export class Rolls {
         const html = await renderTemplate('systems/cleenmain/templates/chat/rollDialog.html', {
                 actor: actor,
                 item: item,
-                type: type,
+                type: rollType,
                 action: data,
                 introText: introText,
                 actingCharImg: data.actingCharacterImage,
@@ -243,10 +245,7 @@ export class Rolls {
         let attackDamage = null;
 
         if (item.type === "weapon") {
-            attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack);            
-            if (attackDamage.otherRoll !== null) {
-                otherRollTooltip = new Handlebars.SafeString(await attackDamage.otherRoll.getTooltip());
-            }     
+            attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack);
         }  
           
         // Display the roll action
@@ -264,7 +263,6 @@ export class Rolls {
                 damage: attackDamage?.damage,
                 damageFormula: attackDamage?.damageFormula,
                 damageToolTip: attackDamage !== null ? await Rolls.getDamageTooltip(attackDamage.damageToolTipInfos) : null,
-                otherRollTooltip: otherRollTooltip,
                 skillRoll: data.skillRoll,
                 attackRoll: data.attackRoll,
                 damageRoll: data.damageRoll
@@ -345,5 +343,45 @@ export class Rolls {
     return renderTemplate(Rolls.TOOLTIP_DAMAGE_TEMPLATE, { parts });
    }
   
-   static TOOLTIP_DAMAGE_TEMPLATE = "systems/cleenmain/templates/dice/damageTooltip.html";
+   /**
+    * 
+    * @param {*} source 
+    * @param {*} nbDices 
+    * @param {*} dices 
+    * @returns 
+    */
+   static createDamageToolTip(source, nbDices, dices) {
+        let damageToolTipInfos = [];
+        let damageToolTipInfosDetails = {};
+        damageToolTipInfosDetails.source = game.i18n.format("CLEENMAIN.chatmessage." + source, {nbDices: nbDices});
+        damageToolTipInfosDetails.dices = [];
+                
+        let totalAttack = "";
+
+        switch (nbDices) {
+            case 1: 
+                damageToolTipInfosDetails.dices[0] = dices[0].result;
+                break;
+            case 2:
+                damageToolTipInfosDetails.dices[0] = dices[0].result;
+                damageToolTipInfosDetails.dices[1] = dices[1].result;
+                totalAttack = dices[0].result + dices[1].result;
+                break;
+            case 3:
+                damageToolTipInfosDetails.dices[0] = dices[0].result;
+                damageToolTipInfosDetails.dices[1] = dices[1].result;
+                damageToolTipInfosDetails.dices[2] = dices[2].result;
+                totalAttack = dices[0].result + dices[1].result + dices[2].result;
+                break;
+            default:
+                break;
+        }        
+        
+        damageToolTipInfosDetails.total = totalAttack;
+        damageToolTipInfos.push(damageToolTipInfosDetails);
+
+        return damageToolTipInfos;
+
+    }
+
 }

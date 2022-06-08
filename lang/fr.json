@@ -115,7 +115,8 @@
             "rollDamageFormula": "Jet de dégâts :",
             "damageresult": "Résultat du jet : ",
             "weapon": "Arme ({nbDices}d6)",
-            "heroism": "Héroisme"
+            "heroism": "Héroisme",
+            "lethalattack": "Meurtrière"
         },
         "dialog":{
             "rollmodifier": "Modificateur pour le jet: ",
