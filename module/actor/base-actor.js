@@ -131,8 +131,12 @@ export default class CemBaseActor extends Actor {
                 if (!this.isTrainedWithWarArmor() && !this.isTrainedWithHeavyArmor()) malus+= 2;
             }
             else if (armor.data.data.category === "heavy") {
-                if (!this.isTrainedWithWarArmor() && !this.isTrainedWithHeavyArmor()) malus+= 4;
-                else if (this.isTrainedWithWarArmor()) malus += 2;
+                if (!this.isTrainedWithHeavyArmor()) {
+                    if (this.isTrainedWithWarArmor()) {
+                        malus += 2;
+                    }
+                    else malus +=4;
+                }
             }
         });
         return malus;
