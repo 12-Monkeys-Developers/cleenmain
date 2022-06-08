@@ -1,5 +1,6 @@
 import { Rolls } from "../common/rolls.js";
 import { Utils } from "../common/utils.js";
+import { NPC_LEVEL } from "../common/constants.js";
 export default class CemBaseActor extends Actor {
 
     /** @override */
@@ -35,7 +36,7 @@ export default class CemBaseActor extends Actor {
     _initializeNpcHealth(){
         let numberOfPlayers = game.settings.get('cleenmain', 'numberOfPlayers');
 
-        if(game.settings.get('cleenmain', 'advancedRules') && (this.data.data.level === "secondfiddle") && this.data.data.elite){
+        if(game.settings.get('cleenmain', 'advancedRules') && (this.data.data.level === NPC_LEVEL.secondfiddle) && this.data.data.elite){
             this.data.data.health.max = this.data.data.healthByNumberPlayers[numberOfPlayers]*2;
         }
         else this.data.data.health.max =  this.data.data.healthByNumberPlayers[numberOfPlayers];
@@ -53,11 +54,11 @@ export default class CemBaseActor extends Actor {
     }
 
     isBoss() {
-        return this.isNpc() ? this.data.data.level === "boss" : false;   
+        return this.isNpc() ? this.data.data.level === NPC_LEVEL.boss : false;   
     }
 
     isSupport() {
-        return this.isNpc() ? this.data.data.level === "support" : false;
+        return this.isNpc() ? this.data.data.level === NPC_LEVEL.support : false;
     }
     
     defenceValue() {
@@ -69,7 +70,7 @@ export default class CemBaseActor extends Actor {
     getSkillValue(skill){
         let newValue = 0;
         if(this.isNpc()){
-            if(game.settings.get('cleenmain', 'advancedRules') && (this.data.data.level === "secondfiddle") && this.data.data.elite){
+            if(game.settings.get('cleenmain', 'advancedRules') && (this.data.data.level === NPC_LEVEL.secondfiddle) && this.data.data.elite){
                 newValue = skill.data.baseNpcElite + skill.data.bonus;
             }
             else newValue = skill.data.base + skill.data.bonus;
@@ -149,7 +150,7 @@ export default class CemBaseActor extends Actor {
         return this.isPlayer() ? this.data.data.health.value <= 0 : false;
     }
 
-    healChar(){
+    setHealthToMax(){
         this.update({'data.health.value': this.data.data.health.max});
     }
 }

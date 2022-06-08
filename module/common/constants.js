@@ -8,3 +8,12 @@ export const MAX_HEROISM = {
     "FOUR_PLAYERS": 6,
     "FIVE_PLAYERS": 4        
 };
+
+export const NPC_LEVEL = {
+    "support": "support",
+    "secondfiddle": "secondfiddle",
+    "boss": "boss"
+}
+
+
+

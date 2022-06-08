@@ -1,4 +1,5 @@
 import { Skills } from "../common/skills.js";
+import { NPC_LEVEL } from "../common/constants.js";
 export default class CemBaseItem extends Item {
 
     /** @override */
@@ -38,7 +39,7 @@ export default class CemBaseItem extends Item {
             return skillValue;
         }
         if (actor.type === "npc") {
-            if (game.settings.get('cleenmain', 'advancedRules') && (actor.data.data.level === "secondfiddle") && actor.data.data.elite) return this.data.data.skillValueNpcElite;
+            if (game.settings.get('cleenmain', 'advancedRules') && (actor.data.data.level === NPC_LEVEL.secondfiddle) && actor.data.data.elite) return this.data.data.skillValueNpcElite;
             return this.data.data.skillValue;
         }        
     }
