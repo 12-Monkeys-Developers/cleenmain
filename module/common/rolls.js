@@ -48,16 +48,16 @@ export class Rolls {
             }
 
             // Defence check : bonus or malus from boon or penality
-            if (CLEENMAIN.skillsModifiedBehaviour.includes(item.data.data.reference.name)) {
+            if (CLEENMAIN.skillsModifiedBehaviour.includes(item.data.data.reference)) {
                 const mod = actor.getBehaviourValue();
                 if (mod) {
                     if (mod > 0) {
                         rollFormula = rollFormula.concat(' + ').concat(mod);
-                        formulaTooltip += ", " + game.i18n.format("CLEENMAIN.bonus.cautious.label") + "-" + mod;
+                        formulaTooltip += ", " + game.i18n.format("CLEENMAIN.bonus.caution.label") + ": " + mod;
                     }
                     else if (mod < 0) {
                         rollFormula = rollFormula.concat(' - ').concat(Math.abs(mod));
-                        formulaTooltip += ", " + game.i18n.format("CLEENMAIN.penalty.danger.label")  + "-" + mod;
+                        formulaTooltip += ", " + game.i18n.format("CLEENMAIN.penalty.danger.label")  + ": " + mod;
                     }                    
                 }
             }
@@ -230,7 +230,7 @@ export class Rolls {
 
                         // Remove one bonus or malus for a defence roll
                         if (skillRoll) {
-                            if (item.data.data.reference.name === "defence") {
+                            if (item.data.data.reference === "defence") {
                                 actor.useBehaviourModifier();
                             }
                         }
