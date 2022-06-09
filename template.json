@@ -47,7 +47,8 @@
                 "melee": 4,
                 "ranged": 4
             },
-            "notebook":""
+            "notebook": "",
+            "modifiers": []
         },
         "npc": {
             "templates": [
@@ -69,7 +70,8 @@
                 "five": 15
             },
             "equipment": "",
-            "tactic": ""
+            "tactic": "",
+            "modifiers": []
         }
     },
     "Item":{

@@ -1,4 +1,5 @@
 import { CemChat } from "./chat.js";
+import { CLEENMAIN } from "./config.js";
 
 export class Rolls {
 
@@ -37,13 +38,28 @@ export class Rolls {
                 const armorMalus = actor.getArmorMalus();
                 if (armorMalus > 0) {
                     rollFormula = rollFormula.concat(' - ', armorMalus);
-                    formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.armormalus") + "-"+armorMalus;
+                    formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.armormalus") + "-" + armorMalus;
                 } 
             }   
 
             if (actor.isPlayer() && actor.isInBadShape()) {
                 rollFormula = rollFormula.concat(' - 2');
                 formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.badshape") + "-2";
+            }
+
+            // Defence check : bonus or malus from boon or penality
+            if (CLEENMAIN.skillsModifiedBehaviour.includes(item.data.data.reference.name)) {
+                const mod = actor.getBehaviourValue();
+                if (mod) {
+                    if (mod > 0) {
+                        rollFormula = rollFormula.concat(' + ').concat(mod);
+                        formulaTooltip += ", " + game.i18n.format("CLEENMAIN.bonus.cautious.label") + "-" + mod;
+                    }
+                    else if (mod < 0) {
+                        rollFormula = rollFormula.concat(' - ').concat(Math.abs(mod));
+                        formulaTooltip += ", " + game.i18n.format("CLEENMAIN.penalty.danger.label")  + "-" + mod;
+                    }                    
+                }
             }
         }
 
@@ -146,14 +162,16 @@ export class Rolls {
                         }
                         
                         if (attackRoll) {
+                            let behaviourModifier = 0;
+
                             // Boons
                             let lethalattack = html.find("#lethalattack")[0].value;
                             data.lethalattack = parseInt(lethalattack) ?? 0;
                             if (data.lethalattack > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.lethalattack.chatmessage", data));
 
-                            let mutlipleattacks = html.find("#mutlipleattacks")[0].value;
-                            data.mutlipleattacks = parseInt(mutlipleattacks) ?? 0;
-                            if (data.mutlipleattacks > 0) data.applyModifiers.push(game.i18n.localize("CLEENMAIN.bonus.mutlipleattacks.chatmessage"));
+                            let multipleattacks = html.find("#multipleattacks")[0].value;
+                            data.multipleattacks = parseInt(multipleattacks) ?? 0;
+                            if (data.multipleattacks > 0) data.applyModifiers.push(game.i18n.localize("CLEENMAIN.bonus.multipleattacks.chatmessage"));
                     
                             let efficiency = html.find("#efficiency")[0].value;
                             data.efficiency = parseInt(efficiency) ?? 0;
@@ -164,7 +182,10 @@ export class Rolls {
                     
                             let caution = html.find("#caution")[0].value;
                             data.caution = parseInt(caution) ?? 0;
-                            if (data.caution > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.caution.chatmessage", data));
+                            if (data.caution > 0) {
+                                data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.caution.chatmessage", data));                              
+                                behaviourModifier += data.caution;
+                            }
                     
                             if (game.settings.get('cleenmain', 'advancedRules')) {
                                 let quick = html.find("#quick")[0].value;
@@ -179,7 +200,10 @@ export class Rolls {
                     
                             let danger = html.find("#danger")[0].value;
                             data.danger = parseInt(danger) ?? 0;
-                            if (data.danger > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.danger.chatmessage", data));
+                            if (data.danger > 0) {
+                                data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.danger.chatmessage", data));
+                                behaviourModifier -= data.danger;
+                            }
                     
                             let difficulty = html.find("#difficulty")[0].value;
                             data.difficulty = parseInt(difficulty) ?? 0;
@@ -198,6 +222,17 @@ export class Rolls {
                                 if (data.slowness > 0) data.applyModifiers.push(game.i18n.localize("CLEENMAIN.penalty.slowness.chatmessage"));
                             }
 
+                            if (behaviourModifier != 0) {
+                                actor.addBehaviourModifier(behaviourModifier);
+                            }
+
+                        }
+
+                        // Remove one bonus or malus for a defence roll
+                        if (skillRoll) {
+                            if (item.data.data.reference.name === "defence") {
+                                actor.useBehaviourModifier();
+                            }
                         }
 
                         // Status

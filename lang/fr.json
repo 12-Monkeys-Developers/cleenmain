@@ -55,7 +55,7 @@
                 "description": "Les dégâts de l’attaque augmentent de 1d6. Plusieurs Attaques meurtrières augmentent les dégâts d’autant de d6 que d’Attaques meurtrières.",
                 "chatmessage": "Prime: Attaque meurtrière (x{lethalattack})."
             },
-            "mutlipleattacks":{
+            "multipleattacks":{
                 "label": "Attaques multiples",
                 "description": "L’attaque vise deux cibles à la fois, à condition qu’elles soient accessibles au personnage – à son contact pour une attaque de corps à corps, groupées pour un tir. Un seul test est e{ectué et les dégâts, après tous les autres calculs, sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur.",
                 "chatmessage": "Prime: Attaques multiples."
