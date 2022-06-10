@@ -55,8 +55,9 @@ export const CLEENMAIN = {
                 secondfiddle: "CLEENMAIN.npccategory.secondfiddle",
                 boss: "CLEENMAIN.npccategory.boss"
         },
-        bonus: ["lethalattack", "mutlipleattacks", "efficiency", "caution", "quick"],
-        penalty: ["minorinjury", "danger", "difficulty", "risk", "slowness"]
+        bonus: ["lethalattack", "multipleattacks", "efficiency", "caution", "quick"],
+        penalty: ["minorinjury", "danger", "difficulty", "risk", "slowness"],
+        skillsModifiedBehaviour: ["defence"]
 };
 
 export const HEALTH_STATUS = {

@@ -31,6 +31,7 @@ export default class CemBaseActor extends Actor {
 
    /**
    * @description  Evaluate the max health of the NPC depending of the number of players option 
+   * @returns The max health
    * @private
    */
     _initializeNpcHealth(){
@@ -61,14 +62,14 @@ export default class CemBaseActor extends Actor {
         return this.isNpc() ? this.data.data.level === NPC_LEVEL.support : false;
     }
     
-    defenceValue() {
+    getDefenceValue() {
         const defenceSkill = this.items.filter(i=>(i.type === "skill" && i.data.data.reference==="defence"));
         if(defenceSkill.length) return this.getSkillValue(defenceSkill[0].data);
         return(0);
     }
 
     hasHeroismPoints() {
-        return this.isPlayer && this.data.data.heroism.value > 0;
+        return this.isPlayer() && this.data.data.heroism.value > 0;
     }
     
     getSkillValue(skill){
@@ -81,6 +82,71 @@ export default class CemBaseActor extends Actor {
         }
         else newValue = skill.data.base + skill.data.bonus + (skill.data.developed ? 2 : 0);
         return newValue;
+    }
+
+    /**
+     * @description Modifiers is a table of modifiers like
+     *   {"type" : type,
+     *    "value" value}
+     * 
+     * @returns 
+     */
+    getModifiers() {
+        return this.data.data.modifiers;
+    }
+
+    /**
+     * @name useBehaviourModifier
+     * @description Get a specific modifier
+     * @param {*} type 
+     * @returns a specific modifier {type, value}
+     */
+     getModifier(type) {
+        return this.getModifiers().find(mod => mod.type === type);
+    }
+
+    /**
+     * @description Get the behaviour modifier which is used for Boon Caution and Penalty Risk
+     * @returns 
+     */
+    getBehaviourValue() {
+        return this.getModifier("behaviour") ? this.getModifier("behaviour").value : null;
+    }
+
+    /**
+     * @name addBehaviourModifier
+     * @description Add a value (positive or negative) to the Behaviour Modifier
+     * @param {int} value to add to the behaviour modifier
+     */
+     addBehaviourModifier(value) {
+        const actualModifier = this.getModifier("behaviour");
+        const actualValue =  actualModifier ? actualModifier.value : 0;
+        let newValue = actualValue + value;
+        let modifiers = [];
+        if (!actualModifier) {
+            modifiers.push({"type": "behaviour", "value": newValue});           
+        }
+        else {
+            modifiers = foundry.utils.deepClone(this.getModifiers());
+            modifiers.find(mod => mod.type === "behaviour").value = newValue;
+        }        
+        this.update({'data.modifiers': modifiers});
+    }
+
+    /**
+     * @name useBehaviourModifier
+     * @description Add or remove 1 to the behaviour modifier
+     * @returns 
+     */
+    useBehaviourModifier() {
+        const actualModifier = this.getModifier("behaviour");
+        if (actualModifier.value == 0) return;
+        if (actualModifier.value < 0) {
+            return this.addBehaviourModifier(1);
+        }
+        if (actualModifier.value > 0) {
+            return this.addBehaviourModifier(-1);
+        }
     }
 
     /**
@@ -141,6 +207,22 @@ export default class CemBaseActor extends Actor {
             }
         });
         return malus;
+    }
+
+    getArmorProtection() {
+        let protection = 0;
+        const armors = this.items.filter(i=>i.type === "armor");
+        armors.forEach(armor => {
+            if (armor.data.data.category !== "shield") protection += parseInt(armor.data.data.protection);
+            if (armor.data.data.category === "shield")  {
+                if (this.isTrainedWithShield()) protection += parseInt(armor.data.data.protection);
+                else {
+                    if (armors.length == 1) protection += parseInt(armor.data.data.protection);
+                }
+            }
+            
+        });
+        return protection;
     }
 
     isTrainedWithWarArmor() {
