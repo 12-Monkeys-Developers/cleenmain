@@ -57,7 +57,7 @@
             },
             "multipleattacks":{
                 "label": "multipleattacks",
-                "description": "l’attaque vise deux cibles à la fois, à condition qu’elles soient accessibles au personnage – à son contact pour une attaque de corps à corps, groupées pour un tir. Un seul test est e{ectué et les dégâts, après tous les autres calculs, sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur.",
+                "description": "l’attaque vise deux cibles à la fois, à condition qu’elles soient accessibles au personnage – à son contact pour une attaque de corps à corps, groupées pour un tir. Un seul test est effectué et les dégâts, après tous les autres calculs, sont divisés par 2 et, si nécessaire, arrondis au nombre entier supérieur.",
                 "chatmessage": "Bonus: multipleattacks."
             },
             "efficiency":{

@@ -73,7 +73,7 @@ export default class CemBaseItem extends Item {
      * @param {*} lethalattack 
     * @returns 
      */
-     calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury) {
+     calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury, multipleattacks) {
         if (this.data.type !== "weapon") return;
 
         let nbDices = parseInt(this.data.data.damageBase.substring(0,1));
@@ -151,6 +151,11 @@ export default class CemBaseItem extends Item {
         
         // Minor injury penalty
         if (minorinjury > 0) {
+            damage = Math.ceil(damage / 2);
+        }
+
+        // Multiple attacks
+        if (multipleattacks > 0) {
             damage = Math.ceil(damage / 2);
         }
 

@@ -278,11 +278,10 @@ export class Rolls {
         }, data.formula, data.difficulty);
 
         // Calculate damages
-        let otherRollTooltip = "";
         let attackDamage = null;
 
         if (item.type === "weapon") {
-            attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack, data.minorinjury);
+            attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack, data.minorinjury, data.multipleattacks);
         }  
           
         // Display the roll action
