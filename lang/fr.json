@@ -116,7 +116,8 @@
             "damageresult": "Résultat du jet : ",
             "weapon": "Arme ({nbDices}d6)",
             "heroism": "Héroisme",
-            "lethalattack": "Meurtrière"
+            "lethalattack": "Meurtrière",
+            "explosive": "Explosive"
         },
         "dialog":{
             "rollmodifier": "Modificateur pour le jet: ",

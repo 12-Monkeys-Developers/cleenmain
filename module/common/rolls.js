@@ -380,21 +380,22 @@ export class Rolls {
    }
   
    /**
-    * 
+    * @name createDamageToolTip
+    * @description Create a new entry for a Tool Type
     * @param {*} source 
-    * @param {*} nbDices 
-    * @param {*} dices 
+    * @param {*} nbDamageDices Number of dices used for damage, must be equal or less than the total of dices
+    * @param {*} dices Array of dice result {result: x, active: true, explosive: true}
     * @returns 
     */
-   static createDamageToolTip(source, nbDices, dices) {
+   static createDamageToolTip(source, nbDamageDices, dices) {
         let damageToolTipInfos = [];
         let damageToolTipInfosDetails = {};
-        damageToolTipInfosDetails.source = game.i18n.format("CLEENMAIN.chatmessage." + source, {nbDices: nbDices});
+        damageToolTipInfosDetails.source = game.i18n.format("CLEENMAIN.chatmessage." + source, {nbDices: nbDamageDices});
         damageToolTipInfosDetails.dices = [];
                 
         let totalAttack = "";
 
-        switch (nbDices) {
+        switch (nbDamageDices) {
             case 1: 
                 damageToolTipInfosDetails.dices[0] = dices[0].result;
                 break;

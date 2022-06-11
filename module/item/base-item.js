@@ -21,7 +21,11 @@ export default class CemBaseItem extends Item {
           data.value = Skills.getSkillValue(data.base, data.bonus, data.developed);
         }*/  
     }
-
+    
+    getSystemData(field) {
+        return eval(`this.data.data.${field}`);
+    }
+    
     /**
      * @name weaponSkill
      * @description For weapon Item, calculates the walue of the skill by using the linked skill
@@ -32,7 +36,7 @@ export default class CemBaseItem extends Item {
         if (this.data.type !== "weapon") return;
         
         if (actor.type === "player") {            
-            const skillId = this.data.data.skillId;
+            const skillId = this.getSystemData('skillId');
             if (!skillId) return;
             const skill = actor.items.get(skillId);
             if (skill.type !== "skill") return;
@@ -40,8 +44,8 @@ export default class CemBaseItem extends Item {
             return skillValue;
         }
         if (actor.type === "npc") {
-            if (game.settings.get('cleenmain', 'advancedRules') && (actor.data.data.level === NPC_LEVEL.secondfiddle) && actor.data.data.elite) return this.data.data.skillValueNpcElite;
-            return this.data.data.skillValue;
+            if (game.settings.get('cleenmain', 'advancedRules') && (actor.data.data.level === NPC_LEVEL.secondfiddle) && actor.data.data.elite) return this.getSystemData('skillValueNpcElite');
+            return this.getSystemData('skillValue');
         }        
     }
 
@@ -54,8 +58,8 @@ export default class CemBaseItem extends Item {
     weaponDamage(actor) {
         if (this.data.type !== "weapon") return;
 
-        let damage = this.data.data.damageBase;
-        if (this.data.data.range > 0) {
+        let damage = this.getSystemData('damageBase');
+        if (this.getSystemData('range') > 0) {
             damage += " + " + actor.data.data.damageBonus.ranged;
         }
         else damage += " + " + actor.data.data.damageBonus.melee;
@@ -76,15 +80,15 @@ export default class CemBaseItem extends Item {
      calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury, multipleattacks) {
         if (this.data.type !== "weapon") return;
 
-        let nbDices = parseInt(this.data.data.damageBase.substring(0,1));
+        let nbDamageDices = parseInt(this.getSystemData('damageBase').substring(0,1));
         let damageFormula = null;
         let damage = 0;
         let otherRoll = null;
 
         // Damage ToolTip
-        let damageToolTipInfos = Rolls.createDamageToolTip("weapon", nbDices, dices);
+        let damageToolTipInfos = Rolls.createDamageToolTip("weapon", nbDamageDices, dices);
 
-        switch (nbDices) {
+        switch (nbDamageDices) {
             case 1:                
                 damage += dices[0].result;
                 break;
@@ -100,7 +104,7 @@ export default class CemBaseItem extends Item {
 
         // Damage formula for npc
         if (actor.data.type === "npc") {
-            damageFormula = this.data.data.damageBase;
+            damageFormula = this.getSystemData('damageBase');
 
             // xd6 + value
             if (damageFormula.includes("+")) {
@@ -117,8 +121,8 @@ export default class CemBaseItem extends Item {
 
         // Damage formula and bonus for player
         if (actor.data.type === "player") {
-            damageFormula = nbDices + "d6";
-            if (this.data.data.range > 0) {
+            damageFormula = nbDamageDices + "d6";
+            if (this.getSystemData('range') > 0) {
                 damageFormula += " + " + parseInt(actor.data.data.damageBonus.ranged);
                 damage += parseInt(actor.data.data.damageBonus.ranged);
             }
@@ -131,13 +135,42 @@ export default class CemBaseItem extends Item {
                 damageFormula += " + 1d6";
                 damage += dices[3].result;
                 damageToolTipInfos.push(...Rolls.createDamageToolTip("heroism", 1, dices.slice(3)));
+            }            
+        }
+
+        // Explosive weapon (6+)
+        if (this.getSystemData('sixPlus')) {
+            // Count the 6
+            let nbSix = 0;
+            dices.forEach(element => {
+                if (element.result == 6) {
+                    nbSix++;
+                }
+            });
+
+            if (nbSix > 0) {
+                const explosiveFormula = nbSix + 'd6x';
+                const explosiveRoll = new Roll(explosiveFormula, {}).roll({ async: false })
+                console.log("explosiveRoll = ", explosiveRoll);
+                let explosiveDices = [];
+                for (let index = 0; index < explosiveRoll.dice.length; index++) {
+                    const dice = explosiveRoll.dice[index];
+                    explosiveDices.push(...dice.results);
+                }
+                damageToolTipInfos.push(...Rolls.createDamageToolTip("explosive", explosiveRoll.dice[0].results.length, explosiveDices));
+                damage += explosiveRoll._total;
             }
         }
 
         // Lethal attack boon
         if (lethalattack > 0) {
-            damageFormula += " + " + lethalattack + "d6";
-            const lethalFormula = lethalattack + "d6";
+            let lethalFormula = lethalattack + "d6";
+            if (this.getSystemData('sixPlus')) {
+                damageFormula += " + " + lethalattack + "d6x";
+                lethalFormula = lethalattack + "d6x";
+            } else {
+                damageFormula += " + " + lethalattack + "d6";
+            }
             const lethalRoll = new Roll(lethalFormula, {}).roll({ async: false })
             console.log("lethalRoll = ", lethalRoll);
             let lethalDices = [];
@@ -145,7 +178,7 @@ export default class CemBaseItem extends Item {
                 const dice = lethalRoll.dice[index];
                 lethalDices.push(...dice.results);
             }
-            damageToolTipInfos.push(...Rolls.createDamageToolTip("lethalattack", lethalattack, lethalDices));
+            damageToolTipInfos.push(...Rolls.createDamageToolTip("lethalattack", lethalRoll.dice[0].results.length, lethalDices));
             damage += lethalRoll._total;
         }
         
