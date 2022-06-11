@@ -74,8 +74,10 @@ export default class CemBaseItem extends Item {
      * @param {*} actor 
      * @param {*} dices The dices results of a roll
      * @param {*} useHeroism 
-     * @param {*} lethalattack 
-    * @returns 
+     * @param {*} lethalattack Number of Letah Attack boon
+     * @param {*} minorinjury  Number of Minor Injury penalty
+     * @param {*} multipleattacks Number of Multiple Attacks boon
+     * @returns 
      */
      calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury, multipleattacks) {
         if (this.data.type !== "weapon") return;
@@ -83,20 +85,26 @@ export default class CemBaseItem extends Item {
         let nbDamageDices = parseInt(this.getSystemData('damageBase').substring(0,1));
         let damageFormula = null;
         let damage = 0;
-        let otherRoll = null;
-
+        let nbSix = 0;
+        
         // Damage ToolTip
         let damageToolTipInfos = Rolls.createDamageToolTip("weapon", nbDamageDices, dices);
 
         switch (nbDamageDices) {
             case 1:                
                 damage += dices[0].result;
+                if (dices[0].result == 6) nbSix++;
                 break;
             case 2:
                 damage += dices[0].result + dices[1].result;
+                if (dices[0].result == 6) nbSix++;
+                if (dices[1].result == 6) nbSix++;
                 break;
             case 3:
                 damage += dices[0].result + dices[1].result + dices[2].result;
+                if (dices[0].result == 6) nbSix++;
+                if (dices[1].result == 6) nbSix++;
+                if (dices[2].result == 6) nbSix++;
                 break;
             default:
                 break;
@@ -140,14 +148,6 @@ export default class CemBaseItem extends Item {
 
         // Explosive weapon (6+)
         if (this.getSystemData('sixPlus')) {
-            // Count the 6
-            let nbSix = 0;
-            dices.forEach(element => {
-                if (element.result == 6) {
-                    nbSix++;
-                }
-            });
-
             if (nbSix > 0) {
                 const explosiveFormula = nbSix + 'd6x';
                 const explosiveRoll = new Roll(explosiveFormula, {}).roll({ async: false })
