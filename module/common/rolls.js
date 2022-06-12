@@ -315,9 +315,6 @@ export class Rolls {
      */
      static async getRollResult(speaker, formula, difficulty) {
         const roll = new Roll(formula, {}).roll({ async: false });
-        // const tp = await roll.getTooltip();
-        // await roll.toMessage({ speaker: speaker }, { async: true });
-        // await new Promise(r => setTimeout(r, 2000));
         return Rolls.getResult(roll, difficulty);
     }
 
@@ -353,10 +350,10 @@ export class Rolls {
     }
 
     /**
-     * 
+     * @description Same value for the 3 first dices of the roll
      * @param {*} roll 
      * @param {*} value 
-     * @returns 
+     * @returns true if the 3 dices have the same value
      */
     static _isTriple(roll, value) {
         if (roll.dice[0].results[0] == value && roll.dice[0].results[1] == value && roll.dice[0].results[2] == value) return true;
@@ -393,32 +390,17 @@ export class Rolls {
         damageToolTipInfosDetails.source = game.i18n.format("CLEENMAIN.chatmessage." + source, {nbDices: nbDamageDices});
         damageToolTipInfosDetails.dices = [];
                 
-        let totalAttack = "";
+        let totalAttack;
 
-        switch (nbDamageDices) {
-            case 1: 
-                damageToolTipInfosDetails.dices[0] = dices[0].result;
-                break;
-            case 2:
-                damageToolTipInfosDetails.dices[0] = dices[0].result;
-                damageToolTipInfosDetails.dices[1] = dices[1].result;
-                totalAttack = dices[0].result + dices[1].result;
-                break;
-            case 3:
-                damageToolTipInfosDetails.dices[0] = dices[0].result;
-                damageToolTipInfosDetails.dices[1] = dices[1].result;
-                damageToolTipInfosDetails.dices[2] = dices[2].result;
-                totalAttack = dices[0].result + dices[1].result + dices[2].result;
-                break;
-            default:
-                break;
-        }        
+        for (let index = 0; index < nbDamageDices; index++) {
+            damageToolTipInfosDetails.dices[index] = dices[index].result;
+            totalAttack = dices[index].result;            
+        }       
         
-        damageToolTipInfosDetails.total = totalAttack;
+        damageToolTipInfosDetails.total = totalAttack.toString();
         damageToolTipInfos.push(damageToolTipInfosDetails);
 
         return damageToolTipInfos;
-
     }
 
 }

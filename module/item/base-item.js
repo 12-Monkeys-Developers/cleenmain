@@ -87,44 +87,30 @@ export default class CemBaseItem extends Item {
         let damage = 0;
         let nbSix = 0;
         
-        // Damage ToolTip
+        // Damage ToolTip creation
         let damageToolTipInfos = Rolls.createDamageToolTip("weapon", nbDamageDices, dices);
 
-        switch (nbDamageDices) {
-            case 1:                
-                damage += dices[0].result;
-                if (dices[0].result == 6) nbSix++;
-                break;
-            case 2:
-                damage += dices[0].result + dices[1].result;
-                if (dices[0].result == 6) nbSix++;
-                if (dices[1].result == 6) nbSix++;
-                break;
-            case 3:
-                damage += dices[0].result + dices[1].result + dices[2].result;
-                if (dices[0].result == 6) nbSix++;
-                if (dices[1].result == 6) nbSix++;
-                if (dices[2].result == 6) nbSix++;
-                break;
-            default:
-                break;
+        for (let index = 0; index < nbDamageDices; index++) {
+            damage += dices[index].result;
+            if (dices[index].result == 6) nbSix++;
+            
         }
 
         // Damage formula for npc
         if (actor.data.type === "npc") {
             damageFormula = this.getSystemData('damageBase');
 
-            // xd6 + value
+            // xd6 + value : 2d6 + 2
             if (damageFormula.includes("+")) {
                 let damageFormulaWithoutSpace = damageFormula.replace(/\s+/g, '');
                 let bonus = damageFormulaWithoutSpace.substring(damageFormulaWithoutSpace.indexOf("+"));
                 damage += parseInt(bonus);
             }
 
-            // single value
+            // single value : +2
             if (!damageFormula.includes("d") && !damageFormula.includes("D")) {
                 damage += parseInt(damageFormula);
-            };
+            }
         } 
 
         // Damage formula and bonus for player
@@ -151,7 +137,6 @@ export default class CemBaseItem extends Item {
             if (nbSix > 0) {
                 const explosiveFormula = nbSix + 'd6x';
                 const explosiveRoll = new Roll(explosiveFormula, {}).roll({ async: false })
-                console.log("explosiveRoll = ", explosiveRoll);
                 let explosiveDices = [];
                 for (let index = 0; index < explosiveRoll.dice.length; index++) {
                     const dice = explosiveRoll.dice[index];
@@ -172,7 +157,6 @@ export default class CemBaseItem extends Item {
                 damageFormula += " + " + lethalattack + "d6";
             }
             const lethalRoll = new Roll(lethalFormula, {}).roll({ async: false })
-            console.log("lethalRoll = ", lethalRoll);
             let lethalDices = [];
             for (let index = 0; index < lethalRoll.dice.length; index++) {
                 const dice = lethalRoll.dice[index];
