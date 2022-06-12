@@ -390,11 +390,11 @@ export class Rolls {
         damageToolTipInfosDetails.source = game.i18n.format("CLEENMAIN.chatmessage." + source, {nbDices: nbDamageDices});
         damageToolTipInfosDetails.dices = [];
                 
-        let totalAttack;
+        let totalAttack = 0;
 
         for (let index = 0; index < nbDamageDices; index++) {
             damageToolTipInfosDetails.dices[index] = dices[index].result;
-            totalAttack = dices[index].result;            
+            totalAttack += dices[index].result;            
         }       
         
         damageToolTipInfosDetails.total = totalAttack.toString();
