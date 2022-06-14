@@ -721,7 +721,11 @@ input {
 }
 .dialog .bonus-block input {
   width: 3em;
+}
+.dialog .bonus-block input[type=number]::-webkit-inner-spin-button,
+.dialog .bonus-block input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: auto;
+  margin: 0;
 }
 .dialog .paddingend {
   padding: 0 0 5em 0;
