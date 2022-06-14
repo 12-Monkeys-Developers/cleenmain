@@ -16,7 +16,7 @@ export default class CemBaseActor extends Actor {
      */
     _prepareBaseDataPlayer() {
 
-        this.data.data.heroism.max = Utils.getMaxHeroism() + (this.data.data.heroism.developed ? 1 : 0);
+        this.system.heroism.max = Utils.getMaxHeroism() + (this.system.heroism.developed ? 1 : 0);
     }
 
     /**
@@ -25,7 +25,7 @@ export default class CemBaseActor extends Actor {
     _prepareBaseDataNpc() {
 
         // TODO Check if ELite is necessary
-        if (this.isBoss()) this.data.data.elite = true;
+        if (this.isBoss()) this.system.elite = true;
         this._initializeNpcHealth();
     }
 
@@ -37,29 +37,29 @@ export default class CemBaseActor extends Actor {
     _initializeNpcHealth(){
         let numberOfPlayers = game.settings.get('cleenmain', 'numberOfPlayers');
 
-        if(game.settings.get('cleenmain', 'advancedRules') && (this.data.data.level === NPC_LEVEL.secondfiddle) && this.data.data.elite){
-            this.data.data.health.max = this.data.data.healthByNumberPlayers[numberOfPlayers]*2;
+        if(game.settings.get('cleenmain', 'advancedRules') && (this.system.level === NPC_LEVEL.secondfiddle) && this.system.elite){
+            this.system.health.max = this.system.healthByNumberPlayers[numberOfPlayers]*2;
         }
-        else this.data.data.health.max =  this.data.data.healthByNumberPlayers[numberOfPlayers];
-        if (this.data.data.health.value > this.data.data.health.max) {
-            this.data.data.health.value = this.data.data.health.max;
+        else this.system.health.max =  this.system.healthByNumberPlayers[numberOfPlayers];
+        if (this.system.health.value > this.system.health.max) {
+            this.system.health.value = this.system.health.max;
         }
     }
 
     isPlayer() {
-        return this.data.type === "player";
+        return this.type === "player";
     }
 
     isNpc() {
-        return this.data.type === "npc";
+        return this.type === "npc";
     }
 
     isBoss() {
-        return this.isNpc() ? this.data.data.level === NPC_LEVEL.boss : false;   
+        return this.isNpc() ? this.system.level === NPC_LEVEL.boss : false;   
     }
 
     isSupport() {
-        return this.isNpc() ? this.data.data.level === NPC_LEVEL.support : false;
+        return this.isNpc() ? this.system.level === NPC_LEVEL.support : false;
     }
     
     /**
@@ -67,13 +67,13 @@ export default class CemBaseActor extends Actor {
      * @returns the value of Defense
      */
     get defence() {
-        const defenceSkill = this.items.filter(i=>(i.type === "skill" && i.data.data.reference==="defence"));
+        const defenceSkill = this.items.filter(i=>(i.type === "skill" && i.system.reference==="defence"));
         if(defenceSkill.length) return this.getSkillValue(defenceSkill[0].data);
         return(0);
     }
 
     hasHeroismPoints() {
-        return this.isPlayer() && this.data.data.heroism.value > 0;
+        return this.isPlayer() && this.system.heroism.value > 0;
     }
     
     /**
@@ -87,12 +87,12 @@ export default class CemBaseActor extends Actor {
     getSkillValue(skill){
         let newValue = 0;
         if(this.isNpc()){
-            if(game.settings.get('cleenmain', 'advancedRules') && (this.data.data.level === NPC_LEVEL.secondfiddle) && this.data.data.elite){
-                newValue = skill.data.baseNpcElite + skill.data.bonus;
+            if(game.settings.get('cleenmain', 'advancedRules') && (this.system.level === NPC_LEVEL.secondfiddle) && this.system.elite){
+                newValue = skill.system.baseNpcElite + skill.system.bonus;
             }
-            else newValue = skill.data.base + skill.data.bonus;
+            else newValue = skill.system.base + skill.system.bonus;
         }
-        else newValue = skill.data.base + skill.data.bonus + (skill.data.developed ? 2 : 0);
+        else newValue = skill.system.base + skill.system.bonus + (skill.system.developed ? 2 : 0);
         return newValue;
     }
 
@@ -104,7 +104,7 @@ export default class CemBaseActor extends Actor {
      * @returns 
      */
     getModifiers() {
-        return this.data.data.modifiers;
+        return this.system.modifiers;
     }
 
     /**
@@ -142,7 +142,7 @@ export default class CemBaseActor extends Actor {
             modifiers = foundry.utils.deepClone(this.getModifiers());
             modifiers.find(mod => mod.type === "behaviour").value = newValue;
         }        
-        this.update({'data.modifiers': modifiers});
+        this.update({'modifiers': modifiers});
     }
 
     /**
@@ -200,9 +200,12 @@ export default class CemBaseActor extends Actor {
      * @param {*} nbPoints 
      */
     async useHeroism(nbPoints) {
-        if (this.data.data.heroism.value == 0) return ui.notifications.warn("CLEENMAIN.notification.heroismNoMorePoints", {localize: true});
-        if (nbPoints > this.data.data.heroism.value) return ui.notifications.warn("CLEENMAIN.notification.heroismNotEnoughPoints", {localize: true});
+        if (nbPoints > this.system.heroism.value) return;
         let newValue = this.data.data.heroism.value - nbPoints;
+        await this.update({'data.heroism.value': newValue});
+        if (this.system.heroism.value == 0) return ui.notifications.warn("CLEENMAIN.notification.heroismNoMorePoints", {localize: true});
+        if (nbPoints > this.system.heroism.value) return ui.notifications.warn("CLEENMAIN.notification.heroismNotEnoughPoints", {localize: true});
+        let newValue = this.system.heroism.value - nbPoints;
         await this.update({'data.heroism.value': newValue});
     }
 
@@ -214,10 +217,10 @@ export default class CemBaseActor extends Actor {
         let malus = 0;
         const armors = this.items.filter(i=>i.type === "armor");
         armors.forEach(armor => {
-            if (armor.data.data.category === "war") {
+            if (armor.system.category === "war") {
                 if (!this.isTrainedWithWarArmor() && !this.isTrainedWithHeavyArmor()) malus+= 2;
             }
-            else if (armor.data.data.category === "heavy") {
+            else if (armor.system.category === "heavy") {
                 if (!this.isTrainedWithHeavyArmor()) {
                     if (this.isTrainedWithWarArmor()) {
                         malus += 2;
@@ -238,11 +241,11 @@ export default class CemBaseActor extends Actor {
         let protection = 0;
         const armors = this.items.filter(i=>i.type === "armor");
         armors.forEach(armor => {
-            if (armor.data.data.category !== "shield") protection += parseInt(armor.data.data.protection);
-            if (armor.data.data.category === "shield")  {
-                if (this.isTrainedWithShield()) protection += parseInt(armor.data.data.protection);
+            if (armor.system.category !== "shield") protection += parseInt(armor.system.protection);
+            if (armor.system.category === "shield")  {
+                if (this.isTrainedWithShield()) protection += parseInt(armor.system.protection);
                 else {
-                    if (armors.length == 1) protection += parseInt(armor.data.data.protection);
+                    if (armors.length == 1) protection += parseInt(armor.system.protection);
                 }
             }
             
@@ -251,22 +254,22 @@ export default class CemBaseActor extends Actor {
     }
 
     isTrainedWithWarArmor() {
-        return this.data.data.trainings.armors.war;
+        return this.system.trainings.armors.war;
     }
 
     isTrainedWithHeavyArmor() {
-        return this.data.data.trainings.armors.heavy;
+        return this.system.trainings.armors.heavy;
     }
 
     isTrainedWithShield() {
-        return this.data.data.trainings.armors.shield;
+        return this.system.trainings.armors.shield;
     }
 
     isInBadShape() {
-        return this.isPlayer() ? this.data.data.health.value <= 0 : false;
+        return this.isPlayer() ? this.system.health.value <= 0 : false;
     }
 
     setHealthToMax(){
-        this.update({'data.health.value': this.data.data.health.max});
+        this.update({'health.value': this.system.health.max});
     }
 }

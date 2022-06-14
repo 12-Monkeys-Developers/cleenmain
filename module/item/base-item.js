@@ -23,7 +23,7 @@ export default class CemBaseItem extends Item {
     }
     
     getSystemData(field) {
-        return eval(`this.data.data.${field}`);
+        return eval(`this.system.${field}`);
     }
     
     /**
@@ -44,7 +44,7 @@ export default class CemBaseItem extends Item {
             return skillValue;
         }
         if (actor.type === "npc") {
-            if (game.settings.get('cleenmain', 'advancedRules') && (actor.data.data.level === NPC_LEVEL.secondfiddle) && actor.data.data.elite) return this.getSystemData('skillValueNpcElite');
+            if (game.settings.get('cleenmain', 'advancedRules') && (actor.system.level === NPC_LEVEL.secondfiddle) && actor.system.elite) return this.getSystemData('skillValueNpcElite');
             return this.getSystemData('skillValue');
         }        
     }
@@ -61,10 +61,10 @@ export default class CemBaseItem extends Item {
         let damage = this.getSystemData('damageBase');
 
         if (this.getSystemData('type') === 'ranged') {
-            damage += " + " + actor.data.data.damageBonus.ranged;
+            damage += " + " + actor.system.damageBonus.ranged;
         }
         else if (this.getSystemData('type') === 'melee') {
-            damage += " + " + actor.data.data.damageBonus.melee;
+            damage += " + " + actor.system.damageBonus.melee;
         }
         return damage;
     }
@@ -121,12 +121,12 @@ export default class CemBaseItem extends Item {
         if (actor.data.type === "player") {
             damageFormula = nbDamageDices + "d6";
             if (this.getSystemData('range') > 0) {
-                damageFormula += " + " + parseInt(actor.data.data.damageBonus.ranged);
-                damage += parseInt(actor.data.data.damageBonus.ranged);
+                damageFormula += " + " + parseInt(actor.system.damageBonus.ranged);
+                damage += parseInt(actor.system.damageBonus.ranged);
             }
             else {
-                damageFormula += " + " + parseInt(actor.data.data.damageBonus.melee);
-                damage += parseInt(actor.data.data.damageBonus.melee);
+                damageFormula += " + " + parseInt(actor.system.damageBonus.melee);
+                damage += parseInt(actor.system.damageBonus.melee);
             }
 
             if (useHeroism) {

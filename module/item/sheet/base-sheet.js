@@ -40,7 +40,7 @@ export default class CemBaseItemSheet extends ItemSheet {
       owner: this.object.isOwner,
       editable : this.isEditable,
       item: context.item,
-      data: context.item.data.data,
+      data: context.item.system,
       config: CONFIG.CLEENMAIN,
       hasNpcOwner: this.item.parent?.data.type === "npc"
     }

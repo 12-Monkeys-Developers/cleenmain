@@ -37,7 +37,7 @@ export class Rolls {
             introText = game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: data.actingChar.name, itemName: item.name});
 
             // Check armors training
-            if (item.data.data.physical) {
+            if (item.system.physical) {
                 const armorMalus = actor.getArmorMalus();
                 if (armorMalus > 0) {
                     rollFormulaDisplay = rollFormulaDisplay.concat(' - ', armorMalus);
@@ -59,7 +59,7 @@ export class Rolls {
             }
 
             // Defence check : bonus or malus from boon or penality
-            if (CLEENMAIN.skillsModifiedBehaviour.includes(item.data.data.reference)) {
+            if (CLEENMAIN.skillsModifiedBehaviour.includes(item.system.reference)) {
                 const mod = actor.getBehaviourValue();
                 if (mod) {
                     if (mod > 0) {
@@ -87,20 +87,20 @@ export class Rolls {
             introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingChar.name, itemName: item.name});
 
             // Check weapons trainings
-            if (item.data.data.category === "war") {
-                if (!actor.data.data.trainings.weapons.war && !actor.data.data.trainings.weapons.heavy) {
+            if (item.system.category === "war") {
+                if (!actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
                     data.difficulty = 1;
                     data.risk = 1;
                     formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
                 }
             }
-            if (item.data.data.category === "heavy") {
-                if (!actor.data.data.trainings.weapons.war && !actor.data.data.trainings.weapons.heavy) {
+            if (item.system.category === "heavy") {
+                if (!actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
                     data.difficulty = 2;
                     data.risk = 1;
                     formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
                 }
-                if (actor.data.data.trainings.weapons.war) {
+                if (actor.system.trainings.weapons.war) {
                     data.difficulty = 1;
                     data.risk = 1;
                     formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
@@ -252,7 +252,7 @@ export class Rolls {
 
                         // Remove one bonus or malus for a defence roll
                         if (skillRoll) {
-                            if (item.data.data.reference === "defence") {
+                            if (item.system.reference === "defence") {
                                 actor.useBehaviourModifier();
                             }
                         }

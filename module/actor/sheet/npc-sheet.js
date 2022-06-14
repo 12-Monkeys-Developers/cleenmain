@@ -27,11 +27,11 @@ export default class NpcSheet extends CemBaseActorSheet {
   getData(options) {
     const context = super.getData(options);
 
-    context.skills = context.items.filter(item => item.type === "skill" && item.data.reference !== "defence");
-    context.defenceSkill = context.items.filter(item => item.type === "skill" && item.data.reference === "defence")[0];
+    context.skills = context.items.filter(item => item.type === "skill" && item.system.reference !== "defence");
+    context.defenceSkill = context.items.filter(item => item.type === "skill" && item.system.reference === "defence")[0];
     context.isBoss = this.actor.isBoss();
     context.isSupport = this.actor.isSupport();
-    context.eliteRuleset = (this.actor.data.data.level === NPC_LEVEL.secondfiddle) && game.settings.get('cleenmain', 'advancedRules');
+    context.eliteRuleset = (this.actor.system.level === NPC_LEVEL.secondfiddle) && game.settings.get('cleenmain', 'advancedRules');
     context.eliteRulesetModif = context.eliteRuleset && context.unlocked;
 
     return context;
@@ -47,13 +47,13 @@ export default class NpcSheet extends CemBaseActorSheet {
 
   _onNpcDefenceRoll(event) {
     event.preventDefault();
-    let defenceSkill = this.actor.items.filter(item => item.type === "skill" && item.data.data.reference === "defence")[0];
+    let defenceSkill = this.actor.items.filter(item => item.type === "skill" && item.system.reference === "defence")[0];
     return this.actor.check(defenceSkill.data._id, "skill");
   }
 
   _onNpcDefenceEdit(event){
     event.preventDefault();
-    let defenceSkill = this.actor.items.filter(item => item.type === "skill" && item.data.data.reference === "defence")[0];
+    let defenceSkill = this.actor.items.filter(item => item.type === "skill" && item.system.reference === "defence")[0];
     if(defenceSkill === undefined) return;
     const element  = event.currentTarget;
     let field = element.dataset.field;

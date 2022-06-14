@@ -123,7 +123,7 @@
                         <div class="skill-line item-list">
                             {{#each skills as |skill type|}}
                                 <div class="skill-block item" data-item-id="{{_id}}">
-                                    <div class="skill-name" title="{{skill.data.data.description}}" >{{skill.name}} :</div>
+                                    <div class="skill-name" title="{{skill.system.description}}" >{{skill.name}} :</div>
                                     <div class="skill-value">{{getSkillValue @root.actor skill}}</div>
                                     <a class="skill-roll"><i class="fas fa-dice"></i></a>
                                 </div>
