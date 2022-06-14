@@ -8,7 +8,7 @@ export default function registerHooks() {
                 'token.disposition': CONST.TOKEN_DISPOSITIONS.NEUTRAL,
             });
             // Player 
-            if (document.data.type === 'player') {
+            if (document.type === 'player') {
                 createChanges.token.vision = true;
                 createChanges.token.actorLink = true;
     
@@ -17,7 +17,7 @@ export default function registerHooks() {
                     let skillData = {
                         name: game.i18n.localize("CLEENMAIN.skill." + skill.name + ".name"),
                         type: 'skill',
-                        data: {
+                        system: {
                             description: game.i18n.localize("CLEENMAIN.skill." + skill.name + ".description"),
                             reference: skill.name,
                             physical: skill.physical
@@ -31,13 +31,13 @@ export default function registerHooks() {
             }
 
             // NPC
-            if (document.data.type === 'npc' && !options.fromImport) {
+            if (document.type === 'npc' && !options.fromImport) {
                 // Add all the base skills to the new npc actor
                 for (const skill of CONFIG.CLEENMAIN.npcSkills) {
                     let skillData = {
                         name: game.i18n.localize("CLEENMAIN.skill." + skill.name + ".name"),
                         type: 'skill',
-                        data: {
+                        system: {
                             description: game.i18n.localize("CLEENMAIN.skill." + skill.name + ".description"),
                             reference: skill.name,
                             physical: skill.physical,
@@ -51,7 +51,7 @@ export default function registerHooks() {
                 }
             }
 
-            document.data.update(createChanges);
+            document.update(createChanges);
         }
     
     });

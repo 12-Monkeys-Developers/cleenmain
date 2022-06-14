@@ -20,16 +20,16 @@
                 </div>
                 <div class="activity-line">
                     {{#if unlocked}}
-                        <input class="input-verylong" title="{{localize 'CLEENMAIN.label.activity'}}" id="activity" name="data.activity" type="text" value="{{data.activity}}"/>
+                        <input class="input-verylong" title="{{localize 'CLEENMAIN.label.activity'}}" id="activity" name="system.activity" type="text" value="{{actorSystem.activity}}"/>
                         {{else}}
-                        {{#if (isNotEmptyString data.activity)}}
-                            <div class="activity-text">{{data.activity}}</div>
+                        {{#if (isNotEmptyString actorSystem.activity)}}
+                            <div class="activity-text">{{actorSystem.activity}}</div>
                         {{/if}}
                     {{/if}}
                 </div>
                 <div class="level-line">
-                    <select name="data.level">
-                        {{#select data.level}}
+                    <select name="system.level">
+                        {{#select actorSystem.level}}
                             {{#each config.npcCategory as |name type|}}
                                 <option value="{{type}}">{{localize name}}</option>
                             {{/each}}
@@ -37,8 +37,8 @@
                     </select>
                     {{#if eliteRuleset}}
                     <div class="elite-block">
-                        <label for="data.elite" title="{{localize "CLEENMAIN.elite.description"}}">{{localize "CLEENMAIN.label.elite"}} : </label>
-                        <input class="checkbox" data-field="data.elite" name="data.elite" type="checkbox" {{checked data.elite}}>
+                        <label for="system.elite" title="{{localize "CLEENMAIN.elite.description"}}">{{localize "CLEENMAIN.label.elite"}} : </label>
+                        <input class="checkbox" data-field="system.elite" name="system.elite" type="checkbox" {{checked actorSystem.elite}}>
                     </div>
                     {{/if}}
                 </div>
@@ -56,14 +56,14 @@
                             <div class="line-label">{{localize "CLEENMAIN.label.combat"}}</div>
                             <div class="weapon-el">({{name}})</div>
                             {{#if ../eliteRulesetModif}}
-                            <div class="weapon-el">{{item.data.skillValue}} / {{item.data.skillValueNpcElite}}</div>
+                            <div class="weapon-el">{{item.system.skillValue}} / {{item.system.skillValueNpcElite}}</div>
                             {{else}}
                             <div class="weapon-el">{{getWeaponSkill @root.actor item}}</div>
                             {{/if}}
                             <a class="weapon-attack-roll">
                                 <i class="fas fa-dice"></i>
                             </a>
-                            <div class="weapon-el">( {{item.data.damageBase}} {{item.data.special}})</div>
+                            <div class="weapon-el">( {{item.system.damageBase}} {{item.system.special}})</div>
                             <div class="right-icon"></div>
                             {{#if ../unlocked}}
                                 <a class="item-open-sheet" data-type="weapon" title="{{localize 'CLEENMAIN.sheet.edit'}}">
@@ -78,25 +78,25 @@
                     <div class="weapon-line">
                         <div class="line-label">{{localize "CLEENMAIN.skill.defence.name"}} : </div>
                         {{#if unlocked}}
-                            <input class="npcdefence-edit skill-value input-short" data-field="data.base" type="number" name="defenceSkill.data.base" value="{{defenceSkill.data.base}}" data-dtype="Number" />
+                            <input class="npcdefence-edit skill-value input-short" data-field="system.base" type="number" name="defenceSkill.system.base" value="{{defenceSkill.system.base}}" data-dtype="Number" />
                             {{#if eliteRulesetModif}}
                             <div class="central-text">/</div>
-                            <input class="npcdefence-edit skill-value input-short" title="{{localize "CLEENMAIN.elite.skill"}}" data-field="data.baseNpcElite" type="number" name="defenceSkill.data.baseNpcElite" value="{{defenceSkill.data.baseNpcElite}}" data-dtype="Number" />
+                            <input class="npcdefence-edit skill-value input-short" title="{{localize "CLEENMAIN.elite.skill"}}" data-field="system.baseNpcElite" type="number" name="defenceSkill.system.baseNpcElite" value="{{defenceSkill.system.baseNpcElite}}" data-dtype="Number" />
                             {{/if}}
                             <div class="weapon-el"></div>
-                            <input class="input-long" title="{{localize 'CLEENMAIN.armor.add'}}" id="defence" name="data.defence.name" type="text" value="{{data.defence.name}}"/>
+                            <input class="input-long" title="{{localize 'CLEENMAIN.armor.add'}}" id="defence" name="system.defence.name" type="text" value="{{actorSystem.defence.name}}"/>
                             <div class="weapon-el">(</div>
-                            <input class="input-short" title="{{localize 'CLEENMAIN.armor.protection'}}" id="defence" name="data.defence.protection" type="number" value="{{data.defence.protection}}"/>
+                            <input class="input-short" title="{{localize 'CLEENMAIN.armor.protection'}}" id="defence" name="system.defence.protection" type="number" value="{{actorSystem.defence.protection}}"/>
                             <div class="weapon-el"> </div>
-                            <input class="input-long" title="{{localize 'CLEENMAIN.armor.special'}}" id="defence" name="data.defence.special" type="text" value="{{data.defence.special}}"/>
+                            <input class="input-long" title="{{localize 'CLEENMAIN.armor.special'}}" id="defence" name="system.defence.special" type="text" value="{{actorSystem.defence.special}}"/>
                             <div class="weapon-el">)</div>
                         {{else}}
                             <div class="weapon-el">{{getDefenceValue @root.actor}}</div>
                             <a class="npcdefence-roll" data-type="npcdefence" data-attribute="defence">
                                 <i class="fas fa-dice"></i>
                             </a>
-                            <div class="weapon-el">{{data.defence.name}}</div>
-                            <div class="weapon-el">( {{data.defence.protection}} {{data.defence.special}} )</div>
+                            <div class="weapon-el">{{actorSystem.defence.name}}</div>
+                            <div class="weapon-el">( {{actorSystem.defence.protection}} {{actorSystem.defence.special}} )</div>
                         {{/if}}
                     </div>
                 </div>
@@ -110,10 +110,10 @@
                             {{#each skills as |skill type|}}
                                 <div class="skill-block item {{#if ../unlocked}}skill-edit {{else}}skill-nonedit{{/if}}" data-item-id="{{_id}}">                                    
                                     <input class="inline-edit skill-name input-long" data-field="name" type="text" value="{{skill.name}}" data-dtype="Text" />
-                                    <input class="inline-edit skill-value input-short" data-field="data.base" type="number" name="skill.data.base" value="{{skill.data.base}}" data-dtype="Number" />
+                                    <input class="inline-edit skill-value input-short" data-field="system.base" type="number" name="skill.system.base" value="{{skill.system.base}}" data-dtype="Number" />
                                     {{#if ../eliteRulesetModif}}
                                     <div class="central-text">/</div>
-                                    <input class="inline-edit skill-value input-short" title="{{localize "CLEENMAIN.elite.skill"}}" data-field="data.baseNpcElite" type="number" name="skill.data.baseNpcElite" value="{{skill.data.baseNpcElite}}" data-dtype="Number" />
+                                    <input class="inline-edit skill-value input-short" title="{{localize "CLEENMAIN.elite.skill"}}" data-field="system.baseNpcElite" type="number" name="skill.system.baseNpcElite" value="{{skill.system.baseNpcElite}}" data-dtype="Number" />
                                     {{/if}}
                                     <a class="inline-delete" data-type="skill" title="{{localize 'CLEENMAIN.skill.delete'}}"><i class="fas fa-trash"></i></a>
                                 </div>
@@ -141,27 +141,27 @@
                         {{else}}
                             <div class="central-text">{{localize "CLEENMAIN.label.health"}} : </div>
                         {{/if}}
-                    {{/if}}
-                    <input class="input-short" title="{{localize 'CLEENMAIN.health.current'}}" id="health" name="data.health.value" type="number" value="{{data.health.value}}"/>
+                    {{/if}}                    
+                    <input class="input-short" title="{{localize 'CLEENMAIN.health.current'}}" id="health" name="system.health.value" type="number" value="{{actorSystem.health.value}}"/>
                     <div class="central-text">/</div>
-                    <div class="central-text">{{data.health.max}}</div>                    
+                    <div class="central-text">{{actorSystem.health.max}}</div>                    
                     {{#if unlocked}}
 
                         <div class="health-block">
                             <div class="central-text">{{localize "CLEENMAIN.health.twopcs"}} : </div>
-                            <input class="input-short" id="twopcs" name="data.healthByNumberPlayers.two" type="number" value="{{data.healthByNumberPlayers.two}}"/>
+                            <input class="input-short" id="twopcs" name="system.healthByNumberPlayers.two" type="number" value="{{actorSystem.healthByNumberPlayers.two}}"/>
                         </div>
                         <div class="health-block">
                             <div class="central-text">{{localize "CLEENMAIN.health.threepcs"}} : </div>
-                            <input class="input-short" id="threepcs" name="data.healthByNumberPlayers.three" type="number" value="{{data.healthByNumberPlayers.three}}"/>
+                            <input class="input-short" id="threepcs" name="system.healthByNumberPlayers.three" type="number" value="{{actorSystem.healthByNumberPlayers.three}}"/>
                         </div>
                         <div class="health-block">
                             <div class="central-text">{{localize "CLEENMAIN.health.fourpcs"}} : </div>
-                            <input class="input-short" id="fourpcs" name="data.healthByNumberPlayers.four" type="number" value="{{data.healthByNumberPlayers.four}}"/>
+                            <input class="input-short" id="fourpcs" name="system.healthByNumberPlayers.four" type="number" value="{{actorSystem.healthByNumberPlayers.four}}"/>
                         </div>
                         <div class="health-block">
                             <div class="central-text">{{localize "CLEENMAIN.health.fivepcs"}} : </div>
-                            <input class="input-short" id="fivepcs" name="data.healthByNumberPlayers.five" type="number" value="{{data.healthByNumberPlayers.five}}"/>
+                            <input class="input-short" id="fivepcs" name="system.healthByNumberPlayers.five" type="number" value="{{actorSystem.healthByNumberPlayers.five}}"/>
                         </div>
                     {{/if}}
                 </div>

@@ -13,9 +13,8 @@ export class CemBaseActorSheet extends ActorSheet {
     /** @override */
     getData(options) {
       const context = super.getData(options);
-      context.actorData = context.data;      
-      context.data = context.actorData.data;
-      context.flags = context.actorData.flags;
+      context.actorSystem = context.actor.system;      
+      context.flags = context.actor.flags;
       context.id = context.actor.id;
       context.config = CONFIG.CLEENMAIN;
       context.editable = this.isEditable;

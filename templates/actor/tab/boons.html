@@ -10,8 +10,8 @@
             <div class="boon-card item" data-item-id="{{item._id}}">
                 <div class="boon-name-line">
                     {{#if ../isPlayer}}
-                        {{#if item.data.developed}}
-                            <i class="boxicon {{getCheckboxIcon  item.data.developed}}"></i>
+                        {{#if item.system.developed}}
+                            <i class="{{getCheckboxIcon  item.system.developed}}"></i>
                         {{/if}}
                     {{/if}}                        
                     <div class="boon-name">{{item.name}}</div>
@@ -22,11 +22,11 @@
                         </div>
                     {{/if}}
                 </div>
-                <div class="boon-description">{{{item.data.description}}}</div>
-                {{#if item.data.limitedUse}}
+                <div class="boon-description">{{{item.system.description}}}</div>
+                {{#if item.system.limitedUse}}
                     <div class="boon-used-line">
-                        <label for="item.data.used">{{localize "CLEENMAIN.boon.used"}}</label>
-                        <input class="checkbox inline-edit" data-field="data.used" name="item.data.used" type="checkbox" {{checked item.data.used}}>                        
+                        <label for="item.system.used">{{localize "CLEENMAIN.boon.used"}}</label>
+                        <input class="checkbox inline-edit" data-field="system.used" name="item.system.used" type="checkbox" {{checked item.system.used}}>                        
                     </div>
                 {{/if}}
             </div>

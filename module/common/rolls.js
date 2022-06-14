@@ -29,7 +29,7 @@ export class Rolls {
         if (rollType === "skill") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleskill", {itemName: item.name});
             skillRoll = true;
-            let value = actor.getSkillValue(item.data).toString();
+            let value = actor.getSkillValue(item).toString();
             rollFormulaDisplay = "3d6 + " + value;
             rollFormula = "1d6[red] + 2d6[white] + " + value;
             formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + value;

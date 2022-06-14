@@ -5,17 +5,27 @@
         </div>
         <div class="introText">{{introText}}</div>
     </div>  
-        {{#each applyModifiers as |mod id|}}    
-            <div class="modifierText">{{mod}}</div>
-        {{/each}}
+    {{#each applyModifiers as |mod id|}}    
+        <div class="modifierText">{{mod}}</div>
+    {{/each}}
+    <div class="formulaText">
+        {{localize "CLEENMAIN.chatmessage.rollformula"}}  {{formula}}
+    </div>        
+    <div class="finalText">
+        <div class="tooltip">
+            <p>{{localize "CLEENMAIN.chatmessage.rollresult"}} {{result.total}}</p>
+            <span class="tooltiptext">{{{result.tooltip.string}}}</span>
+        </div>
+    </div>
+    {{#if attackRoll}}
         <div class="formulaText">
-            {{localize "CLEENMAIN.chatmessage.rollformula"}}  {{formula}}
-        </div>        
+            {{localize "CLEENMAIN.chatmessage.rollDamageFormula"}}  {{damageFormula}}
+        </div>
         <div class="finalText">
             <div class="tooltip">
-                <p>{{localize "CLEENMAIN.chatmessage.rollresult"}} {{result.total}}</p>
-                <span class="tooltiptext">{{{result.tooltip.string}}}</span>
-            </div>
+                <p>{{localize  "CLEENMAIN.chatmessage.damageresult"}} {{damage}}</p>
+                <span class="tooltiptext">{{{damageToolTip}}}</span>
+            </div>                        
         </div>
         {{#if attackRoll}}
             <div class="formulaText">

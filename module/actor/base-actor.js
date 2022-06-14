@@ -188,8 +188,7 @@ export default class CemBaseActor extends Actor {
         if (!item) return;
         let actingChar = await this.getActingChar();
         return Rolls.check(this, item, rollType, {
-            ...item.data,
-            actingChar: actingChar,
+            ...item.system,
             owner: this.id,
             options: options
         });

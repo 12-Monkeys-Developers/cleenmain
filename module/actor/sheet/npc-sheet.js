@@ -48,7 +48,7 @@ export default class NpcSheet extends CemBaseActorSheet {
   _onNpcDefenceRoll(event) {
     event.preventDefault();
     let defenceSkill = this.actor.items.filter(item => item.type === "skill" && item.system.reference === "defence")[0];
-    return this.actor.check(defenceSkill.data._id, "skill");
+    return this.actor.check(defenceSkill._id, "skill");
   }
 
   _onNpcDefenceEdit(event){

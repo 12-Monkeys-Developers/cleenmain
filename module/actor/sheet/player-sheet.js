@@ -75,7 +75,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
    */
   _onDropItem(event, data) {
     Item.fromDropData(data).then((item) => {
-      const itemData = duplicate(item.data);
+      const itemData = duplicate(item);
       switch (itemData.type) {
         case "skill":
           return this._onDropSkillItem(event, itemData);
@@ -99,11 +99,11 @@ export default class PlayerSheet extends CemBaseActorSheet {
     const id = event.target.parentElement.dataset["itemId"];
     const target = this.actor.items.get(id);
     if (!target || target.type !== "weapon") return;
-    let targetData = duplicate(target.data);
-    targetData.data.skillName = itemData.name;
-    targetData.data.skillValue = this.actor.getSkillValue(itemData);
+    let targetData = duplicate(target);
+    targetData.system.skillName = itemData.name;
+    targetData.system.skillValue = this.actor.getSkillValue(itemData);
 
-    targetData.data.skillId = itemData._id;
+    targetData.system.skillId = itemData._id;
 
     this.actor.updateEmbeddedDocuments("Item", [targetData]);
   }
