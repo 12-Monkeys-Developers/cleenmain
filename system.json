@@ -5,7 +5,14 @@
   "version": "1.0.0",
   "minimumCoreVersion": "0.9.4",
   "compatibleCoreVersion": "9",
-  "author": "Khaali, Kristov",
+  "authors": [
+    {
+      "name": "Khaali"
+    },
+    {
+      "name": "Kristov"
+    }
+  ],
   "esmodules": ["cleenmain.js"],
   "scripts": [],
   "styles": ["cleenmain.css"],
