@@ -1,4 +1,17 @@
 {
+    "ACTOR": {
+        "TypePlayer": "Joueur",
+        "TypeNpc": "PNJ"
+    },
+
+    "ITEM": {
+        "TypeWeapon": "Arme",
+        "TypeArmor": "Armure",
+        "TypeEquipment": "Objet",
+        "TypeBoon": "Atout",
+        "TypeSkill": "Compétence"
+    },
+
     "CLEENMAIN": {
         "label": {
             "activity": "Occupation",
