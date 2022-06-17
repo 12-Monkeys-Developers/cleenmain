@@ -158,7 +158,7 @@ input {
   margin: 0.3em 0.2em 0 0.1em;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .name-text,
-.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .blessure-text,
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .wounds-text,
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .heroism-text,
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-text,
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .activity-text {
@@ -175,14 +175,17 @@ input {
   justify-content: flex-start;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-block .health-input {
-  width: 2em;
+  width: 1em;
 }
-.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .blessure-block {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .wounds-block {
   display: flex;
   flex-direction: row;
 }
-.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .blessure-block select {
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .wounds-block select {
   margin: 0 0.5em 0 0;
+}
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .wounds-block .wounds-input {
+  width: 1em;
 }
 .cleenmain.sheet.player .main .central .sheet-tabs {
   display: flex;
