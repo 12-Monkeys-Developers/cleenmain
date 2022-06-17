@@ -62,6 +62,10 @@ export default class CemBaseActor extends Actor {
         return this.isNpc() ? this.data.data.level === NPC_LEVEL.support : false;
     }
     
+    /**
+     * @description Used for NPC, if the Defence skill is defined, return this value elsewhere return 0
+     * @returns the value of Defense
+     */
     getDefenceValue() {
         const defenceSkill = this.items.filter(i=>(i.type === "skill" && i.data.data.reference==="defence"));
         if(defenceSkill.length) return this.getSkillValue(defenceSkill[0].data);
@@ -72,6 +76,14 @@ export default class CemBaseActor extends Actor {
         return this.isPlayer() && this.data.data.heroism.value > 0;
     }
     
+    /**
+     * @name getSkillValue
+     * @description Return the value of a specific skill
+     * PC : Base + Bonus + 2 if developed
+     * NPC : Base + Bonus, if the advanced rules are used, the base changes if it's an elite
+     * @param {*} skill 
+     * @returns 
+     */
     getSkillValue(skill){
         let newValue = 0;
         if(this.isNpc()){
@@ -209,6 +221,11 @@ export default class CemBaseActor extends Actor {
         return malus;
     }
 
+    /**
+     * @name getArmorProtection
+     * @description Calculate the total of protection depending of armors and shield
+     * @returns The total of protection
+     */
     getArmorProtection() {
         let protection = 0;
         const armors = this.items.filter(i=>i.type === "armor");

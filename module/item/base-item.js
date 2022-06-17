@@ -59,10 +59,13 @@ export default class CemBaseItem extends Item {
         if (this.data.type !== "weapon") return;
 
         let damage = this.getSystemData('damageBase');
-        if (this.getSystemData('range') > 0) {
+
+        if (this.getSystemData('type') === 'ranged') {
             damage += " + " + actor.data.data.damageBonus.ranged;
         }
-        else damage += " + " + actor.data.data.damageBonus.melee;
+        else if (this.getSystemData('type') === 'melee') {
+            damage += " + " + actor.data.data.damageBonus.melee;
+        }
         return damage;
     }
 

@@ -29,7 +29,7 @@
             "protections": "Protections",
             "skills" : "Compétences",
             "tactic": "Tactique",
-            "trainings": "Formé aux : ",
+            "trainings": "Formé(e) aux : ",
             "type": "Type",
             "unlock_sheet": "Verrouiller/Déverrouiller la feuille",
             "wealth": "Richesses",

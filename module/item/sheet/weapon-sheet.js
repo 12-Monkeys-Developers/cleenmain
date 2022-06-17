@@ -50,17 +50,17 @@ export class WeaponSheet extends CemBaseItemSheet {
      * @return {Object}             OwnedItem data to create
      * @private
      */
-         _onDropItem(event, data) {
-            Item.fromDropData(data).then(item => {
-                const itemData = duplicate(item.data);
-                switch (itemData.type) {
-                    case "skill":
-                        return this._onDropSkillItem(event, itemData);
-                    default:
-                        return false;
-                }
-            });
-        }
+    _onDropItem(event, data) {
+        Item.fromDropData(data).then(item => {
+            const itemData = duplicate(item.data);
+            switch (itemData.type) {
+                case "skill":
+                    return this._onDropSkillItem(event, itemData);
+                default:
+                    return false;
+            }
+        });
+    }
 
     /**
      * 
