@@ -80,8 +80,7 @@
             "armor",
             "equipment",
             "boon",
-            "skill",
-            "ammunition"
+            "skill"
         ],
         "templates": {
             "base": {
@@ -102,7 +101,8 @@
             "special": "",
             "zone": "",
             "sixPlus": false,
-            "quality": ""
+            "quality": "",
+            "quantity": 0
         },
         "armor":{
             "templates": ["base"],
@@ -119,7 +119,8 @@
             "used" : false
         },
         "equipment":{
-            "templates": ["base"]
+            "templates": ["base"],
+            "quantity": 0
         },
         "skill":{
             "templates": ["base"],
@@ -131,10 +132,6 @@
             "value": 2,
             "developed": false,
             "skills": null
-        },
-        "ammunition":{
-            "templates": ["base"],
-            "number": 0
         }
     }
 }

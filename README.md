@@ -1,10 +1,10 @@
-# cleenmain System for FoundryVTT
+# cleenmain System for Foundry Virtual Tabletop
 
 <p style="margin-left: 10%;"> <img src="/asset/image/logo_cem.webp" alt="" width="700" height="405" /></p>
 
-This is a community created game system to run games based upon the "clé en main" RPG system on the virtual tabletop platform FoundryVTT.
+This is a community created game system to run games based upon the "clé en main" RPG system on the game platform Foundry Virtual Tabletop.
 
-Ceci est un programme qui permet de jouer à des jeux de rôle basés sur le système "clé en main" sur la plateforme de jeu FoundryVTT.
+Ceci est un programme qui permet de jouer à des jeux de rôle basés sur le système **Clé en main** sur la plateforme de jeu Foundry Virtual Tabletop.
 
 
 # Disclaimer
@@ -23,10 +23,11 @@ Ce système est développé par Kristov et Khaali, et publié avec l'accord des 
 
 # Community
 
-Rejoignez-nous sur le serveur [Discord francophone dédié à FoundryVTT](https://discord.com/invite/pPSDNJk)
-Nous serons ravis d'y avoir vos retours sur le système, des signalements de bug, des idées d'amélioration, ou simplement des encouragements!
+Rejoignez-nous sur le serveur [Discord francophone dédié à Foundry Virtual Tabletop](https://discord.com/invite/pPSDNJk)
+Nous serons ravis d'y avoir vos retours sur le système, des signalements de bug, des idées d'amélioration, ou simplement des encouragements !
 
-You can reach us on [FoundryVTT discussions Discord server](https://discord.com/invite/5Fj2E42X)image.png and give us feedback, ideas...
+You can reach us on [Foundry Virtual Tabletop discussions Discord server](https://discord.com/invite/5Fj2E42X)
+We'd love to hear your feedback on the system, bug reports, ideas for improvement, or just encouragement !
 
 
 # Licences
@@ -35,7 +36,7 @@ You can reach us on [FoundryVTT discussions Discord server](https://discord.com/
 
 - All HTML, CSS and Javascript in this project is licensed under [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
 
-- Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://foundryvtt.com/article/license/).
+- Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://Foundry Virtual Tabletop.com/article/license/).
 
 ## Patch Notes
 
