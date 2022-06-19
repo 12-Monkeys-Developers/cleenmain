@@ -24,10 +24,10 @@
 
 <h2>Community</h2>
 
-<p>Rejoignez-nous sur le serveur [Discord francophone dédié à Foundry Virtual Tabletop](https://discord.com/invite/pPSDNJk)<br />
+<p>Rejoignez-nous sur le serveur <a href="https://discord.com/invite/pPSDNJk">Discord francophone dédié à Foundry Virtual Tabletop</a><br />
 Nous serons ravis d'y avoir vos retours sur le système, des signalements de bug, des idées d'amélioration, ou simplement des encouragements !</p>
 
-<p>You can reach us on [Foundry Virtual Tabletop discussions Discord server](https://discord.com/invite/5Fj2E42X)<br />
+<p>You can reach us on <a href="https://discord.com/invite/5Fj2E42X">Foundry Virtual Tabletop discussions Discord server</a><br />
 We'd love to hear your feedback on the system, bug reports, ideas for improvement, or just encouragement !</p>
 
 
