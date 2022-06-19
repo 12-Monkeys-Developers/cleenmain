@@ -6,6 +6,7 @@ This is a community created game system to run games based upon the "**Clé en m
 
 Ceci est un programme qui permet de jouer à des jeux de rôle basés sur le système "**Clé en main**" sur la plateforme de jeu Foundry Virtual Tabletop.
 
+<p style="margin-left: 10%;"> <img src="/assets/image/cem-system-exemple.webp" alt="" width="700" height="511" /></p>
 
 # Disclaimer
 Le système Clé en Main est un système de jeu de rôle générique édité par Les XII Singes. Les auteurs du système sont Franck Plasse, Jérôme V, Claude Guéant et Frédric Toutain. Le système Clé en Main est le moteur de jeu de la gamme Clé en Main, des campagnes indépendantes.
