@@ -1,10 +1,10 @@
 # cleenmain System for Foundry Virtual Tabletop
 
-<p style="margin-left: 10%;"> <img src="/asset/image/logo_cem.webp" alt="" width="700" height="405" /></p>
+<p style="margin-left: 10%;"> <img src="/assets/image/logo_cem.webp" alt="" width="700" height="405" /></p>
 
-This is a community created game system to run games based upon the "clé en main" RPG system on the game platform Foundry Virtual Tabletop.
+This is a community created game system to run games based upon the "**Clé en main**" RPG system on the game platform Foundry Virtual Tabletop.
 
-Ceci est un programme qui permet de jouer à des jeux de rôle basés sur le système **Clé en main** sur la plateforme de jeu Foundry Virtual Tabletop.
+Ceci est un programme qui permet de jouer à des jeux de rôle basés sur le système "**Clé en main**" sur la plateforme de jeu Foundry Virtual Tabletop.
 
 
 # Disclaimer
