@@ -2,6 +2,14 @@
 
 <p style="margin-left: 10%;"> <img src="/assets/image/logo_cem.webp" alt="" width="700" height="405" /></p>
 
+<div align="center">
+
+![Supported Foundry VTT versions](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dflat%26url%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2FKhaali-dev%2Fcleenmain%2Fmaster%2Fsystem.json)
+
+![Latest Release](https://img.shields.io/github/v/release/Khaali-dev/cleenmain?label=Latest%20release)
+
+</div>
+
 <p>This is a community created game system to run games based upon the "<em>Clé en main</em>" RPG system on the game platform Foundry Virtual Tabletop.</p>
 
 <p>Ceci est un programme qui permet de jouer à des jeux de rôle basés sur le système "<em>Clé en main</em>" sur la plateforme de jeu Foundry Virtual Tabletop.</p>
