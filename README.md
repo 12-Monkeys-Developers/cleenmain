@@ -37,7 +37,7 @@ We'd love to hear your feedback on the system, bug reports, ideas for improvemen
 
 - All HTML, CSS and Javascript in this project is licensed under [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
 
-- Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://Foundry Virtual Tabletop.com/article/license/).
+- Foundry VTT support is covered by the following license: [Limited License Agreement for module development 17/02/2021](https://foundryvtt.com/article/license/).
 
 ## Patch Notes
 
