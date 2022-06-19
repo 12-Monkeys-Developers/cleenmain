@@ -1,5 +1,7 @@
 # cleenmain System for FoundryVTT
 
+<p style="margin-left: 10%;"> <img src="/asset/image/logo_cem.webp" alt="" width="700" height="405" /></p>
+
 This is a community created game system to run games based upon the "clé en main" RPG system on the virtual tabletop platform FoundryVTT.
 
 Ceci est un programme qui permet de jouer à des jeux de rôle basés sur le système "clé en main" sur la plateforme de jeu FoundryVTT.
