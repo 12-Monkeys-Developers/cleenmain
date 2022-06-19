@@ -33,9 +33,9 @@ We'd love to hear your feedback on the system, bug reports, ideas for improvemen
 
 </h2>Licences</h2>
 <p><ul>
-<li>Le code HTML, CSS et Javascript de ce projet est placé sous [licence GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)</li>
+<li>Le code HTML, CSS et Javascript de ce projet est placé sous <a href="https://choosealicense.com/licenses/gpl-3.0/">licence GNU General Public License v3.0</a></li>
 
-<li>All HTML, CSS and Javascript in this project is licensed under [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)</li>
+<li>All HTML, CSS and Javascript in this project is licensed under <a href="https://choosealicense.com/licenses/gpl-3.0/">GNU General Public License v3.0</a></li>
 
-<li>Foundry VTT support is covered by the following license: [Limited License Agreement for module development 17/02/2021](https://foundryvtt.com/article/license/).</li>
+<li>Foundry VTT support is covered by the following license: <a href="https://foundryvtt.com/article/license/">Limited License Agreement for module development 17/02/2021</a>.</li>
 </ul></p>
