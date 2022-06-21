@@ -726,7 +726,7 @@ input {
   width: 25%;
 }
 .dialog td input {
-  width: 3em;
+  width: 2em;
 }
 .dialog td input[type=number]::-webkit-inner-spin-button,
 .dialog td input[type=number]::-webkit-outer-spin-button {
