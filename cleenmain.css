@@ -668,7 +668,7 @@ input {
   padding: 5px 0;
   border-radius: 6px;
   position: absolute;
-  right: 20px;
+  left: 20px;
   top: 20px;
   z-index: 1;
 }
@@ -711,27 +711,26 @@ input {
   width: 6em;
   margin: 0 0 1em  1em;
 }
-.dialog .bonus-block {
-  display: flex;
-  flex-flow: row wrap;
-}
-.dialog .bonus-block .bonus-line {
-  margin: 1em 0 1em 0;
-  display: flex;
-  flex-direction: row;
-  flex-basis: 50%;
-  text-align: end;
-}
-.dialog .bonus-block input {
-  width: 3em;
-}
-.dialog .bonus-block input[type=number]::-webkit-inner-spin-button,
-.dialog .bonus-block input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: auto;
-  margin: 0;
-}
 .dialog .paddingend {
   padding: 0 0 5em 0;
+}
+.dialog .bonus h2 {
+  font-weight: bold;
+}
+.dialog table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+.dialog td {
+  width: 25%;
+}
+.dialog td input {
+  width: 3em;
+}
+.dialog td input[type=number]::-webkit-inner-spin-button,
+.dialog td input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: auto;
 }
 .chatroll {
   background: repeat url('../../../ui/parchment-white.jpg');
