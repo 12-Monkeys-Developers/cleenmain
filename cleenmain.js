@@ -8,6 +8,9 @@ import registerHooks from './module/common/hooks.js';
 
 import CemBaseItem from "./module/item/base-item.js";
 import CemBaseActor from "./module/actor/base-actor.js";
+import CemCombat from "./module/combat/combat.js";
+import CemCombatTracker from "./module/combat/combat-tracker.js";
+import CemCombatant from "./module/combat/combatant.js";
 
 import CemBaseItemSheet from "./module/item/sheet/base-sheet.js";
 import { WeaponSheet } from "./module/item/sheet/weapon-sheet.js";
@@ -22,7 +25,9 @@ Hooks.once("init", function(){
     CONFIG.CLEENMAIN = CLEENMAIN;
     CONFIG.Item.documentClass = CemBaseItem;
     CONFIG.Actor.documentClass = CemBaseActor;
-
+    CONFIG.Combat.documentClass = CemCombat;
+    CONFIG.Combatant.documentClass = CemCombatant;
+    CONFIG.ui.combat = CemCombatTracker;
     
     Items.unregisterSheet('core', ItemSheet);
     Items.registerSheet('cleenmain', CemBaseItemSheet, {makeDefault: true });
