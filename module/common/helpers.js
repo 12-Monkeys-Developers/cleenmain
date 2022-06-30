@@ -127,4 +127,15 @@ export const registerHandlebarsHelpers = function() {
         if (value === "") return false;
         return true;
     });
+
+    Handlebars.registerHelper('getActedStatus', function (combatant) {
+        if (combatant.hasActed) return "<a><i class='fas fa-hand-paper'></i></a>"; 
+        return "<a class='act'><i class='far fa-hand-paper'></i></a>";
+    });
+
+    Handlebars.registerHelper('getCombatTrackerColor', function (isPlayer, isNpc) {
+        if (isPlayer) return "player";
+        if (isNpc) return "npc";
+    });
+    
 }
