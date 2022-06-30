@@ -38,6 +38,9 @@ export default class PlayerSheet extends CemBaseActorSheet {
   /** @override */
   activateListeners(html){
     super.activateListeners(html);
+
+    html.find(".spend-heroism").click(this._onSpendHeroismOnePoint.bind(this));
+    html.find(".spend-heroism").contextmenu(this._onSpendHeroismTwoPoints.bind(this));
   }
 
   /** @override */
@@ -104,4 +107,23 @@ export default class PlayerSheet extends CemBaseActorSheet {
 
     this.actor.updateEmbeddedDocuments("Item", [targetData]);
   }
+
+  /**
+   * 
+   * @param {*} event 
+   */
+   _onSpendHeroismOnePoint(event) {
+    event.preventDefault();
+    this.actor.useHeroism(1);
+  }
+
+  /**
+   * 
+   * @param {*} event 
+   */
+   _onSpendHeroismTwoPoints(event) {
+    event.preventDefault();
+    this.actor.useHeroism(2);
+  }
+
 }

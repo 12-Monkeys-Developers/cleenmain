@@ -96,10 +96,34 @@
             "limiteduseinfo": "Check for limited Use boon",
             "used": "Used"
         },
+        "weapon": {
+            "category": {
+                "standard": "Standard",
+                "war": "War weapon",
+                "heavy": "Heavy weapone"
+            },
+            "type": {
+                "melee": "Melee",
+                "ranged": "Ranged"
+            },
+            "add": "New weapon",
+            "delete": "Delete weapon",
+            "name": "Name",
+            "attaque": "Attack",
+            "targets": "targets",
+            "damage": "Damage",
+            "range": "Range",
+            "skillName": "Skill",
+            "special": "Special",
+            "zone": "Zone",
+            "sixPlus": "6+",
+            "skillValueNpc": "skill",
+            "skillValueNpcElite": "skill (elite)"
+        },
         "chatmessage":{
             "custommodifier": "Custom modifier used : ({rollModifier}).",
             "heroismmodifier": "One Heroism point used : +1d6",
-            "rollformula": "Final dice rolled:",
+            "rollformula": "Dices rolled: ",
             "rollresult": "Result of the dice roll: ",
             "rollDamageFormula": "Damage roll:",
             "damageresult": "Damage result: ",
@@ -119,12 +143,15 @@
             "titledamage": "Damages of {itemName}",
             "introBadShape": "{actingCharName} is in bad shape and uses the skill {itemName}.",
             "button":{
-                "rollmodifier": "Modifier for the roll: ",
                 "cancel": "Cancel",
                 "roll": "Roll"
             },
             "bonus": "Add a bonus?",
             "penalty": "Add a penalty?"
+        },
+        "notification":{
+            "heroismNoMorePoints": "You have no more heroism points !", 
+            "heroismNotEnoughPoints": "You haven't enough heroisme points !"
         },
         "elite":{
             "defence": "Defence (elite)",
@@ -150,18 +177,8 @@
         },
         "heroism": {
             "current": "Current",
-            "max": "Maximum"
-        },
-        "sheet":{
-            "edit": "Modify",
-            "delete": "Delete",
-            "tab":{
-                "boons": "Boons",
-                "bio": "Biography",
-                "combat": "Combat",
-                "equipment": "Equipment",
-                "notes": "Notes"
-            }
+            "max": "Maximum",
+            "spend": "Spend 1 point (left click) or 2 points (right click)"
         },
         "npccategory": {
                     "support": "Support",
@@ -170,16 +187,20 @@
         },
         "npcskill":{
             "physical": {
-                "name": "Physical"
+                "name": "Physical",
+                "description": "TODO"
             },
             "dexterity": {
-                "name": "Dexterity"
+                "name": "Dexterity",
+                "description": "TODO"
             },
             "social": {
-                "name": "Social"
+                "name": "Social",
+                "description": "TODO"
             },
             "mental": {
-                "name": "Mental"
+                "name": "Mental",
+                "description": "TODO"
             }
         },
         "penalty":{
@@ -223,6 +244,17 @@
                 "hint": "Use the system advanced rules."
             }
         },
+        "sheet":{
+            "edit": "Modify",
+            "delete": "Delete",
+            "tab":{
+                "boons": "Boons",
+                "bio": "Biography",
+                "combat": "Combat",
+                "equipment": "Equipment",
+                "notes": "Notes"
+            }
+        },        
         "skill":{
             "acrobatics":{
                 "name": "Acrobatics",
@@ -350,30 +382,6 @@
             "badshape": "In bad shape : ",
             "skill" : "Skill: ",
             "untrained": "Untrained penalty"
-        },
-        "weapon": {
-            "category": {
-                "standard": "Standard",
-                "war": "War weapon",
-                "heavy": "Heavy weapone"
-            },
-            "type": {
-                "melee": "Melee",
-                "ranged": "Ranged"
-            },
-            "add": "New weapon",
-            "delete": "Delete weapon",
-            "name": "Name",
-            "attaque": "Attack",
-            "targets": "targets",
-            "damage": "Damage",
-            "range": "Range",
-            "skillName": "Skill",
-            "special": "Special",
-            "zone": "Zone",
-            "sixPlus": "6+",
-            "skillValueNpc": "skill",
-            "skillValueNpcElite": "skill (elite)"
         },
         "wealth": {
             "platinium": "Platinium",
