@@ -60,10 +60,10 @@
 
     <ol id="combat-tracker" class="directory-list">
         {{#each turns}}
-        <li class="combatant actor directory-item flexrow {{this.css}}" data-combatant-id="{{this.id}}" style="border-color: {{getBorderColor this.isPlayer this.isNpc}}; margin: 2px 0 1px 0;">
+        <li class="combatant actor directory-item flexrow" data-combatant-id="{{this.id}}">
             <img class="token-image" data-src="{{this.img}}" title="{{this.name}}"/>
             <div class="token-name flexcol">
-                <h4>{{this.name}}</h4>
+                <h4 class="{{getCombatTrackerColor this.isPlayer this.isNpc}}">{{this.name}}</h4>
                 <div class="combatant-controls flexrow">
                     {{#if ../user.isGM}}
                     <a class="combatant-control {{#if this.hidden}}active{{/if}}" title="{{localize 'COMBAT.ToggleVis'}}" data-control="toggleHidden">

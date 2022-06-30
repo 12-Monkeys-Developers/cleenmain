@@ -1,0 +1,6 @@
+#combat-tracker .combatant .token-name .player {
+  background-color: #1d351d;
+}
+#combat-tracker .combatant .token-name .npc {
+  background-color: #5c5353;
+}

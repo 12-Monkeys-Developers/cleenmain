@@ -133,10 +133,9 @@ export const registerHandlebarsHelpers = function() {
         return "<a class='act'><i class='far fa-hand-paper'></i></a>";
     });
 
-    Handlebars.registerHelper('getBorderColor', function (isPlayer, isNpc) {
-        if (isPlayer) return "green";
-        if (isNpc) return "red";
-        return "gray";
+    Handlebars.registerHelper('getCombatTrackerColor', function (isPlayer, isNpc) {
+        if (isPlayer) return "player";
+        if (isNpc) return "npc";
     });
     
 }
