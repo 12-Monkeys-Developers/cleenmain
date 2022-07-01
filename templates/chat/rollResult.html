@@ -1,8 +1,9 @@
 <div class="chatroll">
     <div class="intro">
-        <div class="introImg" style="background-image: url('{{actingCharImg}}')">
-            <div class="introText">{{introText}}</div>
+        <div class="introImg">
+            <img src="{{actingCharImg}}" title="{{actingCharName}}" />
         </div>
+        <div class="introText">{{introText}}</div>
     </div>  
         {{#each applyModifiers as |mod id|}}    
             <div class="modifierText">{{mod}}</div>

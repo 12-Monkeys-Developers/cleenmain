@@ -9,23 +9,20 @@
     .intro{
         background: @chat-title-background;
         border-radius: @chat-title-border-radius;
+        display: flex;
+        flex-direction: row;
         .introImg {
-            display: flex;
-            flex-direction: row;
             border: none;
-            vertical-align: left;
-            text-align: center;
-            padding: 0px 5px 0px 55px;
-            background-size: 70px 70px;
-            background-position: 5px;
-            background-repeat: no-repeat;
+            padding: 5px;
+            width: 80px;
             height: 80px;
-            min-height: 80px;
+            object-fit: contain;
         }
         .introText{
             padding-top: 1em;
             font-family: @chat-intro-font;
             font-size: @chat-intro-font-size;
+            text-align: center;
         }
     }
     .modifierText{

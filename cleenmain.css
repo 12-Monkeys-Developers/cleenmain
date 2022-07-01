@@ -119,7 +119,9 @@ input {
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-left {
   align-self: center;
-  min-width: 100px;
+  width: 100px;
+  height: 129px;
+  object-fit: contain;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right {
   display: flex;
@@ -175,7 +177,10 @@ input {
   justify-content: flex-start;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-block .health-input {
-  width: 1em;
+  width: 2em;
+}
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-block .badshape-text {
+  color: #912828;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .wounds-block {
   display: flex;
@@ -355,7 +360,9 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-right {
   flex-basis: 30%;
   text-align: center;
-  min-width: 200px;
+  width: 200px;
+  height: 250px;
+  object-fit: contain;
 }
 .boon-card {
   display: flex;
@@ -477,7 +484,7 @@ input {
   display: flex;
   flex-direction: column;
   height: fit-content;
-  width: 50%;
+  min-width: 250px;
   padding: 1em 0.5em 0 0.5em;
 }
 .boons-tab .boon-group .boon-card .boon-name-line {
@@ -681,14 +688,10 @@ input {
 }
 .dialog .intro .introImg {
   border: none;
-  vertical-align: left;
-  text-align: center;
-  padding: 0px 5px 0px 55px;
-  background-size: 50px 70px;
-  background-position: 5px;
-  background-repeat: no-repeat;
-  height: 80px;
-  min-height: 80px;
+  padding: 5px;
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
 }
 .dialog .intro .introtext {
   font-size: 1.2rem;
@@ -744,24 +747,21 @@ input {
 .chatroll .intro {
   background: repeat url('../../../ui/denim.png');
   border-radius: 20px;
-}
-.chatroll .intro .introImg {
   display: flex;
   flex-direction: row;
+}
+.chatroll .intro .introImg {
   border: none;
-  vertical-align: left;
-  text-align: center;
-  padding: 0px 5px 0px 55px;
-  background-size: 70px 70px;
-  background-position: 5px;
-  background-repeat: no-repeat;
+  padding: 5px;
+  width: 80px;
   height: 80px;
-  min-height: 80px;
+  object-fit: contain;
 }
 .chatroll .intro .introText {
   padding-top: 1em;
   font-family: "Signika";
   font-size: 1rem;
+  text-align: center;
 }
 .chatroll .modifierText {
   margin-bottom: 5px;

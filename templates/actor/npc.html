@@ -168,12 +168,12 @@
             </div>
             {{#if unlocked}}
             <div class="npcstat-block-right">
-                <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="250" width="200"/>
+                <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
             </div>
             {{else}}
                 {{#if (ne actor.img "icons/svg/mystery-man.svg")}}
                     <div class="npcstat-block-right">
-                        <img src="{{actor.img}}" title="{{actor.name}}" height="250" width="200"/>
+                        <img src="{{actor.img}}" title="{{actor.name}}" />
                     </div>
                 {{/if}}
             {{/if}}            
