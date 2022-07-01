@@ -28,7 +28,7 @@
                             <div class="skill-name" title="{{skill.data.description}}" >{{skill.name}}</div>
                             <div class="skill-value">{{getSkillValue @root.actor skill}}</div>
                             <div><i class="{{getCheckboxIcon  skill.data.developed}}"></i></div>
-                            <a class="skill-roll"><i class="fas fa-dice"></i></a>                            
+                            <a class="skill-roll"><i class="fas fa-dice"></i></a>
                         </div>
                     {{/each}}
                 </div>
@@ -73,6 +73,10 @@
                             {{else}}
                                 <div class="central-text">{{data.health.max}}</div>
                             {{/if}}
+                            {{#if badShape}}
+                            <div class="central-text badshape-text">{{localize "CLEENMAIN.health.status.badshape"}} <a class="badshape-roll" data-field="willpower"><i class="fas fa-dizzy"></i></a> <a class="badshape-roll" data-field="resistance"><i class="fas fa-skull"></i></a></div>
+                            {{/if}}
+
                         </div>
                             <div class="wounds-block">
                                 <div class="wounds-text">{{localize "CLEENMAIN.label.wounds"}} :</div>

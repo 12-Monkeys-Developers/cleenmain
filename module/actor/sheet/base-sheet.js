@@ -34,6 +34,8 @@ export class CemBaseActorSheet extends ActorSheet {
       context.isPlayer = this.actor.isPlayer();
       context.isNpc = this.actor.isNpc();
 
+      context.badShape = this.actor.isInBadShape();
+
       return context;
     }
 
@@ -54,7 +56,7 @@ export class CemBaseActorSheet extends ActorSheet {
         html.find(".skill-roll").click(this._onSkillRoll.bind(this));
         html.find(".weapon-attack-roll").click(this._onWeaponAttackRoll.bind(this));
         html.find(".weapon-damage-roll").click(this._onWeaponDamageRoll.bind(this));
-
+        html.find(".badshape-roll").click(this._onBadShapeRoll.bind(this));
     }
 
 
@@ -155,7 +157,7 @@ export class CemBaseActorSheet extends ActorSheet {
     event.preventDefault();
     const itemId = $(event.currentTarget).parents(".item").data('itemId');  
    
-    return this.actor.check(itemId, "skill");    
+    return this.actor.check(itemId, "skill");
   }
 
   /**
@@ -171,14 +173,29 @@ export class CemBaseActorSheet extends ActorSheet {
   }
 
   /**
-   * 
-   * @param {*} event 
-   * @returns 
-   */
-   async _onWeaponDamageRoll(event){
+ * 
+ * @param {*} event 
+ * @returns 
+ */
+  async _onWeaponDamageRoll(event){
     event.preventDefault();
     const itemId = $(event.currentTarget).parents(".item").data('itemId');  
    
     return this.actor.check(itemId, "weapon-damage");    
+  }
+
+  async _onBadShapeRoll(event){
+    event.preventDefault();
+    const element  = event.currentTarget;
+    let skillName = element.dataset.field;
+    const itemId = $(event.currentTarget).parents(".item").data('itemId');
+
+      const rollSkill = this.actor.items.filter(i=>(i.type === "skill" && i.data.data.reference===skillName))[0];
+      let malusValue = this.actor.data.data.wounds*5;
+      let options = {
+        badShapeRoll: true,
+        bonuses: [{value : ' - ' + malusValue.toString(), tooltip: game.i18n.format("CLEENMAIN.label.wounds") + ": -" + malusValue.toString()}]
+      };
+      return this.actor.check(rollSkill.id, "skill", options);
   }
 }

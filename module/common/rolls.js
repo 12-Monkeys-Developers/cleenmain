@@ -31,7 +31,7 @@ export class Rolls {
             rollFormula = "3d6 + " + value;
             formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + value;
 
-            introText = game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: data.actingCharacterName, itemName: item.name});
+            introText = game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: data.actingChar.name, itemName: item.name});
 
             // Check armors training
             if (item.data.data.physical) {
@@ -41,8 +41,14 @@ export class Rolls {
                     formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.armormalus") + "-" + armorMalus;
                 } 
             }   
-
-            if (actor.isPlayer() && actor.isInBadShape()) {
+            if(data.options?.bonuses){
+                for(let bonus of data.options.bonuses){
+                    console.log(bonus);
+                    rollFormula = rollFormula += bonus.value;
+                    formulaTooltip += ", " + bonus.tooltip;
+                }
+            }
+            if (actor.isPlayer() && actor.isInBadShape() && !data.options?.badShapeRoll) {
                 rollFormula = rollFormula.concat(' - 2');
                 formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.badshape") + "-2";
             }
@@ -70,7 +76,7 @@ export class Rolls {
             rollFormula = "3d6 + " + item.weaponSkill(actor);
             formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + item.weaponSkill(actor);
 
-            introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingCharacterName, itemName: item.name});
+            introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingChar.name, itemName: item.name});
 
             // Check weapons trainings
             if (item.data.data.category === "war") {
@@ -100,7 +106,7 @@ export class Rolls {
             damageRoll = true;
             rollFormula = item.weaponDamage(actor);
             
-            introText = game.i18n.format("CLEENMAIN.dialog.introdamage", {actingCharName: data.actingCharacterName, itemName: item.name});
+            introText = game.i18n.format("CLEENMAIN.dialog.introdamage", {actingCharName: data.actingChar.name, itemName: item.name});
         }
 
         // Create the dialog panel to display.
@@ -110,7 +116,7 @@ export class Rolls {
                 type: rollType,
                 action: data,
                 introText: introText,
-                actingCharImg: data.actingCharacterImage,
+                actingCharImg: data.actingChar.img,
                 isPlayer: actor.isPlayer(),
                 hasHeroism: actor.hasHeroismPoints(),
                 rollFormula: rollFormula,
@@ -237,12 +243,11 @@ export class Rolls {
 
                         // Status
                         if (actor.isPlayer() && actor.isInBadShape()) {
-                            data.formula = data.formula.concat(' - 2 ');
                             data.applyModifiers.push(game.i18n.localize("CLEENMAIN.health.status.badshape"));
                         }
 
                         // Calculate the final difficulty
-                        // data.difficulty = parseInt(data.difficulty) + (isNaN(modifier) ? 0 : modifier) + (skipWoundModifier ? 0 : woundModifier) + additionalKa + approche;
+                        // data.targetDifficulty = parseInt(data.difficulty) + (isNaN(modifier) ? 0 : modifier) + (skipWoundModifier ? 0 : woundModifier) + additionalKa + approche;
 
                         // Process to the roll
                         await Rolls.displayRoll(actor, item, data);
@@ -275,7 +280,7 @@ export class Rolls {
             alias: actor.name,
             scene: null,
             token: null,
-        }, data.formula, data.difficulty);
+        }, data.formula, data.targetDifficulty);
 
         // Calculate damages
         let attackDamage = null;
@@ -290,9 +295,9 @@ export class Rolls {
             .withData({
                 actor: actor,
                 item: item,
-                difficulty: data.difficulty,
+                difficulty: data.targetDifficulty,
                 introText: data.introText,
-                actingCharImg: data.actingCharacterImage,
+                actingCharImg: data.actingChar.img,
                 formula: data.formula,
                 applyModifiers: data.applyModifiers,
                 result: result,
@@ -313,17 +318,17 @@ export class Rolls {
      * @param {*} difficulty 
      * @returns the roll result. 
      */
-     static async getRollResult(speaker, formula, difficulty) {
+     static async getRollResult(speaker, formula, targetDifficulty) {
         const roll = new Roll(formula, {}).roll({ async: false });
-        return Rolls.getResult(roll, difficulty);
+        return Rolls.getResult(roll, targetDifficulty);
     }
 
     /**
      * @param {*} roll  The roll value is several d6
-     * @param {*} difficulty The difficulty to succeed
+     * @param {*} targetDifficulty The difficulty to succeed
      * @return the roll result
      */
-     static async getResult(roll, difficulty) {
+     static async getResult(roll, targetDifficulty) {
         /*
         const fail = roll === 100 || (roll > (level * 10) && roll !== 1);
         const fumble = Rolls.isDouble(roll) && fail;
@@ -338,7 +343,6 @@ export class Rolls {
             const dice = roll.dice[index];
             dices.push(...dice.results);
         }
-
         return {
             /*success: !fail,*/
             fumble: fumble,

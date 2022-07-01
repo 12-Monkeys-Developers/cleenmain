@@ -161,17 +161,7 @@ export default class CemBaseActor extends Actor {
         }
     }
 
-    /**
-     * @name check
-     * @description Rolls dices and display chat messages
-     * @param {*} itemId Id of the Item used for roll
-     * @param {*} rollType  skill, weapon attack, weapon damage
-     * @returns 
-     */
-    async check(itemId, rollType) {
-        let item = this.items.get(itemId);
-        if (!item) return;
-
+    async getActingChar(){
         // Get the active token
         let tokenList = this.getActiveTokens();
         let actingToken = tokenList[0];
@@ -179,12 +169,29 @@ export default class CemBaseActor extends Actor {
         // If there is a token active for this actor, we use its name and image instead of the actor's
         const actingCharacterName = actingToken?.data?.name ?? this.name;
         const actingCharacterImage = actingToken?.data?.img ?? this.img; 
+        return({
+            name: actingCharacterName,
+            img: actingCharacterImage
+        })
+    }
 
+    /**
+     * @name check
+     * @description Rolls dices and display chat messages
+     * @param {*} itemId Id of the Item used for roll
+     * @param {*} rollType  skill, weapon attack, weapon damage
+     * @param options { bonuses }
+     * @returns 
+     */
+    async check(itemId, rollType, options) {
+        let item = this.items.get(itemId);
+        if (!item) return;
+        let actingChar = await this.getActingChar();
         return Rolls.check(this, item, rollType, {
             ...item.data,
+            actingChar: actingChar,
             owner: this.id,
-            actingCharacterName: actingCharacterName,
-            actingCharacterImage: actingCharacterImage
+            options: options
         });
     }
 
