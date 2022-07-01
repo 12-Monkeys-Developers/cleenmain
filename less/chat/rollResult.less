@@ -14,12 +14,16 @@
         .introImg {
             border: none;
             padding: 5px;
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             object-fit: contain;
+            object-position: center;
+            align-self:center;
         }
         .introText{
-            padding-top: 1em;
+            width: 210px;
+            min-height: 60px;
+            padding-top: 0.5em;
             font-family: @chat-intro-font;
             font-size: @chat-intro-font-size;
             text-align: center;
@@ -33,7 +37,6 @@
         text-align: center;
     }
     .formulaText{
-        background: @chat-divider-background;
         padding: 1em 0 0 0;
         color: @chat-formulatext;
         text-align: center;
@@ -63,5 +66,9 @@
         .tooltip:hover .tooltiptext {
             visibility: visible;
         }
+    }
+    .endimg{
+        background: @chat-end-background;
+        height: @chat-end-height;
     }
 }

@@ -30,18 +30,22 @@
     .intro{
         display: flex;
         flex-direction: row;
+        align-content: center;
         .introImg {
             border: none;
             padding: 5px;
-            width: 70px;
-            height: 70px;
+            width: 120px;
+            height: 120px;
             object-fit: contain;
+            object-position: center;
+            align-self:center;
         }
         .introtext{
             font-size: @dialog-intro-font-size;
             font-weight: @dialog-intro-font-weight;
             padding-top: 1.5em;
             text-align: center;
+            width: 300px;
         }
     }
     .formula{

@@ -501,6 +501,7 @@ input {
   color: black;
   font-family: "Merriweather";
   font-size: 0.7rem;
+  max-width: 400px;
 }
 .boons-tab .boon-group .boon-card .icon-group {
   margin-left: auto;
@@ -685,19 +686,23 @@ input {
 .dialog .intro {
   display: flex;
   flex-direction: row;
+  align-content: center;
 }
 .dialog .intro .introImg {
   border: none;
   padding: 5px;
-  width: 70px;
-  height: 70px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
+  object-position: center;
+  align-self: center;
 }
 .dialog .intro .introtext {
   font-size: 1.2rem;
   font-weight: bold;
   padding-top: 1.5em;
   text-align: center;
+  width: 300px;
 }
 .dialog .formula {
   text-align: center;
@@ -753,12 +758,16 @@ input {
 .chatroll .intro .introImg {
   border: none;
   padding: 5px;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
+  object-position: center;
+  align-self: center;
 }
 .chatroll .intro .introText {
-  padding-top: 1em;
+  width: 210px;
+  min-height: 60px;
+  padding-top: 0.5em;
   font-family: "Signika";
   font-size: 1rem;
   text-align: center;
@@ -771,7 +780,6 @@ input {
   text-align: center;
 }
 .chatroll .formulaText {
-  background: top / 50% repeat url('../../../ui/parchment-white.jpg');
   padding: 1em 0 0 0;
   color: black;
   text-align: center;
@@ -798,6 +806,10 @@ input {
 }
 .chatroll .finalText .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+.chatroll .endimg {
+  background: top / 50% repeat url('../../../ui/parchment-white.jpg');
+  height: 0px;
 }
 #combat-tracker .combatant .token-name .player {
   background-color: #1d351d;
