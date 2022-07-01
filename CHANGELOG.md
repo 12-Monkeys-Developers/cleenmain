@@ -1,3 +1,10 @@
+##
+ouvelles fonctionnalités:
+- jets de mort et d'inconscience (lorsqu'un PJ tombe à 0 PV)
+- adaptation du combat tracker au système CEM
+- correction de bugs d'affichage des images
+
+
 ## Version 1.0.0
 Release du système
 
