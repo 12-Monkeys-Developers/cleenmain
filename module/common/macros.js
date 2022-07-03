@@ -18,8 +18,25 @@ export default async function onHotbarDrop(bar, data, slot) {
         if (item !== undefined) {
             let command = null;
             if (['weapon'].includes(item.type)) {
+                
                 if (!tokenId) {
-                    if (actor) { command = `game.actors.get("${actor.id}").items.get("${item.id}").sheet.render(true)`; }
+                    if (actor) { 
+                        command = `
+                        let action = "weapon-attack";
+                        if (event) {
+                            if (event.shiftKey) { 
+                                action = "weapon-damage"; 
+                            }
+                            else if (event.ctrlKey) { action = "sheet"; }
+                        }
+                        if (action == "sheet") {
+                            game.actors.get("${actor.id}").items.get("${item.id}").sheet.render(true); 
+                        }
+                        else {
+                            game.actors.get("${actor.id}").check("${item.id}", action); 
+                        }                      
+                        `; 
+                    }
                 }
                 else { command = `game.actors.tokens["${tokenId}"].items.get("${item.id}").sheet.render(true)`; }
             }        
