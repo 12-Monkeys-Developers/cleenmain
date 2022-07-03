@@ -19,6 +19,7 @@ export default class NpcSheet extends CemBaseActorSheet {
       width: 800,
       height: 700,
       tabs: [],
+      dragDrop: [{ dragSelector: ".draggable", dropSelector: ".droppable" }]
     });
   }
 

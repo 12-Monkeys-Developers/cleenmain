@@ -5,6 +5,7 @@ import { preloadTemplates } from "./module/common/templates.js";
 import { registerHandlebarsHelpers } from "./module/common/helpers.js"
 import registerSystemSettings from './module/common/settings.js';
 import registerHooks from './module/common/hooks.js';
+import onHotbarDrop from "./module/common/macros.js";
 
 import CemBaseItem from "./module/item/base-item.js";
 import CemBaseActor from "./module/actor/base-actor.js";
@@ -49,4 +50,6 @@ Hooks.once("init", function(){
 	// Register Hooks
 	registerHooks();
 
+    // The hook to create a macro by draggind and dropping an item of the character sheet in the hot bar.
+    Hooks.on("hotbarDrop", async (bar, data, slot) => onHotbarDrop(bar, data, slot));
 });

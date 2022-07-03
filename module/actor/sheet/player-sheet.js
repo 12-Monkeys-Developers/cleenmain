@@ -20,7 +20,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
       template: "systems/cleenmain/templates/actor/player.html",
       classes: ["cleenmain", "sheet", "actor", "player"],
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "boons" }],
-      dragDrop: [{ dragSelector: ".item-list .skill-name", dropSelector: ".droppable" }],
+      dragDrop: [{ dragSelector: ".draggable", dropSelector: ".droppable" }],
     });
   }
 
