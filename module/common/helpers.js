@@ -113,8 +113,7 @@ export const registerHandlebarsHelpers = function() {
     });
 
     Handlebars.registerHelper('getDefenceValue', function (actor) {
-        const defValue = actor.getDefenceValue();
-       return defValue;
+       return actor.defence;
     });
 
     Handlebars.registerHelper('getSkillValue', function (actor, item) {

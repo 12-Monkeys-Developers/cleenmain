@@ -66,7 +66,7 @@ export default class CemBaseActor extends Actor {
      * @description Used for NPC, if the Defence skill is defined, return this value elsewhere return 0
      * @returns the value of Defense
      */
-    getDefenceValue() {
+    get defence() {
         const defenceSkill = this.items.filter(i=>(i.type === "skill" && i.data.data.reference==="defence"));
         if(defenceSkill.length) return this.getSkillValue(defenceSkill[0].data);
         return(0);
