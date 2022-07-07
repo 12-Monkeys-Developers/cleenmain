@@ -102,6 +102,7 @@ export class Rolls {
 
         // Damage roll
         if (rollType === "weapon-damage") {
+            if (actor.type == "npc") return;
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titledamage", {itemName: item.name});
             damageRoll = true;
             rollFormula = item.weaponDamage(actor);

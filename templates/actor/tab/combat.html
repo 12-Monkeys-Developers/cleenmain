@@ -123,7 +123,7 @@
                 </tr>
             </thead>
             {{#each weapons as |item id|}}
-                <tr class="item" data-item-id="{{_id}}">
+                <tr class="item draggable" data-item-id="{{_id}}">
                     <th>{{name}}</th>
                     <th>{{getCategoryLabel "weapon" item.data.category}}</th>
                     <th>{{item.data.skillName}}</th>

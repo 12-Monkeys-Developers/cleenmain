@@ -13,7 +13,7 @@
                 <div class="skills item-list">
                     {{#each skills as |skill type|}}
                         <div class="skill-line item" data-item-id="{{_id}}">
-                            <input class="inline-edit skill-name" data-field="name" type="text" value="{{skill.name}}" data-dtype="Text" data-item-id="{{_id}}"/>
+                            <input class="inline-edit skill-name draggable" data-field="name" type="text" value="{{skill.name}}" data-dtype="Text" data-item-id="{{_id}}"/>
                             <input class="inline-edit skill-value" data-field="data.base" type="number" name="skill.data.base" value="{{skill.data.base}}" data-dtype="Number" />
                             <input title="{{localize 'CLEENMAIN.skill.isDeveloped'}}" class="inline-edit skill-dev checkbox" data-field="data.developed" name="skill.data.developed" type="checkbox" {{checked skill.data.developed}}>
                             <input title="{{localize 'CLEENMAIN.skill.isPhysical'}}" class="inline-edit skill-physical checkbox" data-field="data.physical" name="skill.data.physical" type="checkbox" {{checked skill.data.physical}}>
@@ -25,7 +25,7 @@
                 <div class="skills">
                     {{#each skills as |skill type|}}
                         <div class="skill-line item" data-item-id="{{_id}}">
-                            <div class="skill-name" title="{{skill.data.description}}" >{{skill.name}}</div>
+                            <div class="skill-name draggable" title="{{skill.data.description}}" >{{skill.name}}</div>
                             <div class="skill-value">{{getSkillValue @root.actor skill}}</div>
                             <div><i class="{{getCheckboxIcon  skill.data.developed}}"></i></div>
                             <a class="skill-roll"><i class="fas fa-dice"></i></a>
