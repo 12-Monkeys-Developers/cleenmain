@@ -1,14 +1,16 @@
-##
-Nouvelles fonctionnalités:
-- jets de mort et d'inconscience (lorsqu'un PJ tombe à 0 PV)
-- adaptation du combat tracker au système CEM
-- correction de bugs d'affichage des images
+# Version 1.1.0
+## Fonctionnalités
+- Jets de mort et d'inconscience (lorsqu'un PJ tombe à 0 PV)
+- Adaptation du combat tracker au système CEM
+- Création de macros dans la hotbar pour les acteurs, les articles et les armes
 
-
-## Version 1.0.0
+## Corrections
+- Bugs d'affichage des images
+- Chemin d'accès au template rollDialog.html
+# Version 1.0.0
 Release du système
 
-# Fonctionnalités
+## Fonctionnalités
 
 - Fiche de personnage
   - Mode Protégé ou Editable : en mode protégé, seuls la vitalité, l'héroïsme et les blessures sont modifiables
