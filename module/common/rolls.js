@@ -111,7 +111,7 @@ export class Rolls {
         }
 
         // Create the dialog panel to display.
-        const html = await renderTemplate('systems/cleenmain/templates/chat/rollDialog.html', {
+        const html = await renderTemplate('systems/cleenmain/templates/chat/roll-dialog.html', {
                 actor: actor,
                 item: item,
                 type: rollType,
@@ -292,7 +292,7 @@ export class Rolls {
           
         // Display the roll action
         await new CemChat(actor)
-            .withTemplate("systems/cleenmain/templates/chat/rollResult.html")
+            .withTemplate("systems/cleenmain/templates/chat/roll-result.html")
             .withData({
                 actor: actor,
                 item: item,
