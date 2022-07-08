@@ -3,7 +3,7 @@ import { CLEENMAIN } from "./config.js";
 
 export class Rolls {
 
-    static TOOLTIP_DAMAGE_TEMPLATE = "systems/cleenmain/templates/dice/damageTooltip.html";
+    static TOOLTIP_DAMAGE_TEMPLATE = "systems/cleenmain/templates/dice/damage-tooltip.html";
 
     /**
      * Rolls dices 
