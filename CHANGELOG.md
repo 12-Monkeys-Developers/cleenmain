@@ -1,3 +1,6 @@
+# Version 1.1.2
+- Bug sur la prise en compte des bonus / malus aux jets de défense
+
 # Version 1.1.1
 - Bug de chemin d'accès
 
