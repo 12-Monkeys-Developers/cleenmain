@@ -152,7 +152,7 @@ export default class CemBaseActor extends Actor {
      */
     useBehaviourModifier() {
         const actualModifier = this.getModifier("behaviour");
-        if (actualModifier.value == 0) return;
+        if (typeof(actualModifier) === 'undefined' || actualModifier.value == 0) return;
         if (actualModifier.value < 0) {
             return this.addBehaviourModifier(1);
         }
