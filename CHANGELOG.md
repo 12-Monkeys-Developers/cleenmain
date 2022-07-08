@@ -1,3 +1,6 @@
+# Version 1.1.1
+- Bug de chemin d'accès
+
 # Version 1.1.0
 ## Fonctionnalités
 - Jets de mort et d'inconscience (lorsqu'un PJ tombe à 0 PV)
