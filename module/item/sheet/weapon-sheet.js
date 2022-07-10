@@ -5,7 +5,7 @@ export class WeaponSheet extends CemBaseItemSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
           width: 740,
-          height: 240
+          height: 340
         });
       }
     
