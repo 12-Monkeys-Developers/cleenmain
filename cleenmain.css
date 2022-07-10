@@ -364,30 +364,6 @@ input {
   height: 250px;
   object-fit: contain;
 }
-.boon-card {
-  display: flex;
-  flex-flow: column;
-  height: 150px;
-  font-size: 12px;
-}
-.boon-card .boon-header {
-  height: 20px;
-}
-.boon-card .boon-name-line {
-  display: flex;
-  flex-flow: row wrap;
-  height: 20px;
-}
-.boon-card .boon-name-line .input {
-  flex-basis: 10%;
-}
-.boon-card .boon-name-line .boon-name {
-  flex-basis: 90%;
-}
-.boon-card .editor {
-  flex-grow: 100%;
-  height: 100%;
-}
 .cleenmain.sheet.item .window-content {
   background: repeat url('../../../ui/parchment-white.jpg');
   background-color: #fffdfc;
@@ -398,6 +374,8 @@ input {
   width: 100%;
   background: #f5fdfb;
   box-shadow: inset 0 0 6px black;
+  font-family: "Merriweather";
+  font-size: 0.7rem;
 }
 .cleenmain.sheet.item input {
   background-color: #f5fdfb;
@@ -431,11 +409,16 @@ input {
 .cleenmain.sheet.item .sheet-content .boon-line {
   display: flex;
   flex-direction: row;
+  font-family: "Merriweather";
+  font-size: 0.7rem;
 }
 .cleenmain.sheet.item .sheet-content .boon-line .boon-block {
   display: flex;
   flex-direction: row;
   flex-basis: 50%;
+}
+.cleenmain.sheet.item .sheet-content .boon-line .boon-block .label-dev {
+  padding-top: 0.4em;
 }
 .cleenmain.sheet.item {
   background-color: #fffdfc;
@@ -488,7 +471,12 @@ input {
   padding: 1em 0.5em 0 0.5em;
 }
 .boons-tab .boon-group .boon-card .boon-name-line {
-  height: fit-content;
+  display: flex;
+  flex-flow: row wrap;
+}
+.boons-tab .boon-group .boon-card .boon-name-line .boxicon {
+  padding: 0.3em 0.5em 0 0;
+  font-size: 0.8em;
 }
 .boons-tab .boon-group .boon-card .boon-name-line .boon-name {
   color: black;

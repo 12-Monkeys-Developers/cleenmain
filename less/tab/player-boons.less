@@ -13,7 +13,12 @@
             width: 50%;
             padding: 1em 0.5em 0 0.5em;
             .boon-name-line{
-                height: fit-content;
+                display: flex;
+                flex-flow: row wrap;
+                .boxicon{
+                    padding: 0.3em 0.5em 0 0 ;
+                    font-size: .8em;
+                }
                 .boon-name{
                     color: @boon-color;
                     font-size: @boon-name-size;

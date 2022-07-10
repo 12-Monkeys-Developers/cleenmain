@@ -19,8 +19,6 @@
         "systems/cleenmain/templates/item/equipment.html",
         "systems/cleenmain/templates/item/skill.html",
         "systems/cleenmain/templates/item/weapon.html",
-
-        "systems/cleenmain/templates/partials/boon-card.html",
                 
         "systems/cleenmain/templates/chat/roll-dialog.html",
         "systems/cleenmain/templates/chat/roll-result.html",
