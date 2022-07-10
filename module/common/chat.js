@@ -95,8 +95,10 @@ export class CemChat {
         // Set the roll parameter if necessary
         if (this.roll) {
             d.roll = this.roll;
+            d.rollMode = game.settings.get("core", "rollMode");
+            d.type = CONST.CHAT_MESSAGE_TYPES.ROLL;
         }
-
+        
         // Set the flags parameter if necessary
         if (this.flags) {
             d.flags = this.flags;
@@ -115,7 +117,9 @@ export class CemChat {
                 d.whisper = [game.user.id];
                 break;
         }
-
+        const pool = PoolTerm.fromRolls(this.data.rolls);
+        d.roll = Roll.fromTerms([pool]);
+       
         // Create the chat
         this.chat = await ChatMessage.create(d);
         return this;

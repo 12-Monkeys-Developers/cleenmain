@@ -4,6 +4,7 @@ import { CLEENMAIN } from "./config.js";
 export class Rolls {
 
     static TOOLTIP_DAMAGE_TEMPLATE = "systems/cleenmain/templates/dice/damage-tooltip.html";
+   
 
     /**
      * Rolls dices 
@@ -21,6 +22,7 @@ export class Rolls {
         let titleDialog = "";
         let introText;
         let rollFormula;
+        let rollFormulaColor;
         let formulaTooltip = "";
 
         // Skill Roll
@@ -29,6 +31,7 @@ export class Rolls {
             skillRoll = true;
             let value = actor.getSkillValue(item.data).toString();
             rollFormula = "3d6 + " + value;
+            rollFormulaColor = "1d6[red] + 2d6[white] + " + value;
             formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + value;
 
             introText = game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: data.actingChar.name, itemName: item.name});
@@ -38,18 +41,20 @@ export class Rolls {
                 const armorMalus = actor.getArmorMalus();
                 if (armorMalus > 0) {
                     rollFormula = rollFormula.concat(' - ', armorMalus);
+                    rollFormulaColor += ' - ' + armorMalus;
                     formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.armormalus") + "-" + armorMalus;
                 } 
             }   
             if(data.options?.bonuses){
                 for(let bonus of data.options.bonuses){
-                    console.log(bonus);
                     rollFormula = rollFormula += bonus.value;
+                    rollFormulaColor += bonus.value;
                     formulaTooltip += ", " + bonus.tooltip;
                 }
             }
             if (actor.isPlayer() && actor.isInBadShape() && !data.options?.badShapeRoll) {
                 rollFormula = rollFormula.concat(' - 2');
+                rollFormulaColor += ' - 2';
                 formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.badshape") + "-2";
             }
 
@@ -59,10 +64,12 @@ export class Rolls {
                 if (mod) {
                     if (mod > 0) {
                         rollFormula = rollFormula.concat(' + ').concat(mod);
+                        rollFormulaColor += ' + ' + mod.toString();
                         formulaTooltip += ", " + game.i18n.format("CLEENMAIN.bonus.caution.label") + ": " + mod;
                     }
                     else if (mod < 0) {
                         rollFormula = rollFormula.concat(' - ').concat(Math.abs(mod));
+                        rollFormulaColor += ' - ' + Math.abs(mod).toString();
                         formulaTooltip += ", " + game.i18n.format("CLEENMAIN.penalty.danger.label")  + ": " + mod;
                     }                    
                 }
@@ -74,6 +81,7 @@ export class Rolls {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleweapon", {itemName: item.name});
             attackRoll = true;
             rollFormula = "3d6 + " + item.weaponSkill(actor);
+            rollFormulaColor = "1d6[red] + 2d6[white] + " +  item.weaponSkill(actor);
             formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + item.weaponSkill(actor);
 
             introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingChar.name, itemName: item.name});
@@ -121,6 +129,7 @@ export class Rolls {
                 isPlayer: actor.isPlayer(),
                 hasHeroism: actor.hasHeroismPoints(),
                 rollFormula: rollFormula,
+                rollFormulaColor: rollFormulaColor,
                 formulaTooltip: formulaTooltip,
                 skillRoll: skillRoll,
                 attackRoll: attackRoll,
@@ -152,9 +161,11 @@ export class Rolls {
                         }
 
                         data.formula = rollFormula;
+                        data.formulaColor = rollFormulaColor;
 
                         if (data.modifier) {
                             data.formula = data.formula.concat(' + ', data.modifier.toString());
+                            data.formulaColor = data.formulaColor.concat(' + ', data.modifier.toString());
                             data.applyModifiers.push(game.i18n.format("CLEENMAIN.chatmessage.custommodifier", {rollModifier: data.modifier}));
                         }
 
@@ -163,7 +174,8 @@ export class Rolls {
 
                         if (html.find("#heroism")[0]?.checked) {
                             data.useHeroism = true;
-                            data.formula = data.formula.concat(' + 1d6');
+                            data.formula += ' + 1d6';
+                            data.formulaColor += ' + 1d6[bronze]';
                             data.applyModifiers.push(game.i18n.format("CLEENMAIN.chatmessage.heroismmodifier"));
                             actor.useHeroism(1);
                         }
@@ -184,6 +196,7 @@ export class Rolls {
                             data.efficiency = parseInt(efficiency) ?? 0;
                             if (data.efficiency > 0) {
                                 data.formula = data.formula.concat(' + ').concat((data.efficiency*2).toString());
+                                data.formulaColor = data.formulaColor.concat(' + ').concat((data.efficiency*2).toString());
                                 data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.efficiency.chatmessage", data));
                             }
                     
@@ -216,6 +229,7 @@ export class Rolls {
                             data.difficulty = parseInt(difficulty) ?? 0;
                             if (data.difficulty > 0)  {
                                 data.formula = data.formula.concat(' - ').concat((data.difficulty*2).toString());
+                                data.formulaColor = data.formulaColor.concat(' - ').concat((data.difficulty*2).toString());
                                 data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.difficulty.chatmessage", data));
                             }                                
                     
@@ -274,22 +288,24 @@ export class Rolls {
      * @param {*} data 
      */
      static async displayRoll(actor, item, data) {
-
+        
         // Roll the dice
         const result = await Rolls.getRollResult({
             actor: actor.id,
             alias: actor.name,
             scene: null,
             token: null,
-        }, data.formula, data.targetDifficulty);
+        }, data.formulaColor, data.targetDifficulty);
 
+        let rolls =[result.roll];
         // Calculate damages
         let attackDamage = null;
 
         if (item.type === "weapon") {
             attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack, data.minorinjury, data.multipleattacks);
-        }  
-          
+            attackDamage.rolls.forEach(r => {rolls.push(r)});
+        }
+        
         // Display the roll action
         await new CemChat(actor)
             .withTemplate("systems/cleenmain/templates/chat/roll-result.html")
@@ -307,7 +323,8 @@ export class Rolls {
                 damageToolTip: attackDamage !== null ? await Rolls.getDamageTooltip(attackDamage.damageToolTipInfos) : null,
                 skillRoll: data.skillRoll,
                 attackRoll: data.attackRoll,
-                damageRoll: data.damageRoll
+                damageRoll: data.damageRoll,
+                rolls: rolls
             })
             .withRoll(true)
             .create();        
@@ -350,7 +367,8 @@ export class Rolls {
             critical: critical,
             total: roll._total,
             tooltip: toolTip,
-            dices: dices
+            dices: dices,
+            roll: roll
         }
     }
 
@@ -396,10 +414,11 @@ export class Rolls {
         damageToolTipInfosDetails.dices = [];
                 
         let totalAttack = 0;
-
+console.log("dices",dices)
         for (let index = 0; index < nbDamageDices; index++) {
-            damageToolTipInfosDetails.dices[index] = dices[index].result;
-            totalAttack += dices[index].result;            
+            let indexMod = (nbDamageDices == 2 && dices.length == 3) ? index+1 : index;
+            damageToolTipInfosDetails.dices[index] = dices[indexMod].result;
+            totalAttack += dices[indexMod].result;            
         }       
         
         damageToolTipInfosDetails.total = totalAttack.toString();

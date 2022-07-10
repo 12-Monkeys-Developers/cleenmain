@@ -1,3 +1,6 @@
+
+- Support du module DiceSoNice
+
 # Version 1.1.2
 - Bug sur la prise en compte des bonus / malus aux jets de défense
 

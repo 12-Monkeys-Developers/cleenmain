@@ -89,14 +89,15 @@ export default class CemBaseItem extends Item {
         let damageFormula = null;
         let damage = 0;
         let nbSix = 0;
-        
+        let rolls=[];
+
         // Damage ToolTip creation
         let damageToolTipInfos = Rolls.createDamageToolTip("weapon", nbDamageDices, dices);
 
         for (let index = 0; index < nbDamageDices; index++) {
-            damage += dices[index].result;
-            if (dices[index].result == 6) nbSix++;
-            
+            let indexMod = nbDamageDices == 2 ? index+1 : index;
+            damage += dices[indexMod].result;
+            if (dices[indexMod].result == 6) nbSix++;  
         }
 
         // Damage formula for npc
@@ -138,7 +139,7 @@ export default class CemBaseItem extends Item {
         // Explosive weapon (6+)
         if (this.getSystemData('sixPlus')) {
             if (nbSix > 0) {
-                const explosiveFormula = nbSix + 'd6x';
+                const explosiveFormula = nbSix + 'd6x[inspired]';
                 const explosiveRoll = new Roll(explosiveFormula, {}).roll({ async: false })
                 let explosiveDices = [];
                 for (let index = 0; index < explosiveRoll.dice.length; index++) {
@@ -147,15 +148,16 @@ export default class CemBaseItem extends Item {
                 }
                 damageToolTipInfos.push(...Rolls.createDamageToolTip("explosive", explosiveRoll.dice[0].results.length, explosiveDices));
                 damage += explosiveRoll._total;
+                rolls.push(explosiveRoll);
             }
         }
 
         // Lethal attack boon
         if (lethalattack > 0) {
-            let lethalFormula = lethalattack + "d6";
+            let lethalFormula = lethalattack + "d6[black]";
             if (this.getSystemData('sixPlus')) {
                 damageFormula += " + " + lethalattack + "d6x";
-                lethalFormula = lethalattack + "d6x";
+                lethalFormula = lethalattack + "d6x[black]";
             } else {
                 damageFormula += " + " + lethalattack + "d6";
             }
@@ -167,6 +169,7 @@ export default class CemBaseItem extends Item {
             }
             damageToolTipInfos.push(...Rolls.createDamageToolTip("lethalattack", lethalRoll.dice[0].results.length, lethalDices));
             damage += lethalRoll._total;
+            rolls.push(lethalRoll);
         }
         
         // Minor injury penalty
@@ -182,7 +185,8 @@ export default class CemBaseItem extends Item {
         return {
             damage: damage,
             damageFormula: damageFormula,
-            damageToolTipInfos: damageToolTipInfos
+            damageToolTipInfos: damageToolTipInfos,
+            rolls: rolls
         }
     }   
 }
