@@ -8,6 +8,9 @@
     <div class="equipment-column droppable">
         {{#each equipments as |item id|}}
             <div class="equipment-line item" data-item-id="{{_id}}">
+                <div class="image-container">
+                    <img src="{{item.img}}" title="{{item.name}}" />
+                </div>
                 <div class="equipment-name">{{item.name}}</div>
                 {{#if ../unlocked}}
                     <div class="icon-group">
