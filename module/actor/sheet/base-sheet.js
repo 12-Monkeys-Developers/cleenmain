@@ -24,7 +24,7 @@ export class CemBaseActorSheet extends ActorSheet {
       context.boons = context.items.filter(item => item.type == "boon");
       context.weapons = context.items.filter(item => item.type == "weapon");	
       context.armors = context.items.filter(item => item.type == "armor");
-      context.equipments = context.items.filter(item => item.type == "equipment");
+      context.equipments = context.items.filter(item => ["equipment", "armor", "weapon"].includes(item.type));
 
       // Alphabetic order for skills
       context.skills = context.items.filter(item => item.type == "skill").sort(function (a, b) {return a.name.localeCompare(b.name);});
