@@ -33,7 +33,9 @@ export const CLEENMAIN = {
                 type: {
                         "melee": "CLEENMAIN.weapon.type.melee",
                         "ranged": "CLEENMAIN.weapon.type.ranged"
-                }
+                },
+                toHitModifier: {"-3": -3, "-2": -2, "-1": -1, "0": 0, "1": 1, "2": 2, "3": 3}
+                
         },
         armor: {
                 category : {

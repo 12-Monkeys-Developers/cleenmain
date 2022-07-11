@@ -80,9 +80,10 @@ export class Rolls {
         if (rollType === "weapon-attack") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleweapon", {itemName: item.name});
             attackRoll = true;
-            rollFormula = "3d6 + " + item.weaponSkill(actor);
-            rollFormulaColor = "1d6[red] + 2d6[white] + " +  item.weaponSkill(actor);
-            formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + item.weaponSkill(actor);
+            let toHitMod = item.toHitModifier();
+            rollFormula = "3d6 + " + item.weaponSkill(actor) + toHitMod.formula;
+            rollFormulaColor = "1d6[red] + 2d6[white] + " +  item.weaponSkill(actor) + toHitMod.formula;
+            formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + item.weaponSkill(actor) + toHitMod.tooltip;
 
             introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingChar.name, itemName: item.name});
 

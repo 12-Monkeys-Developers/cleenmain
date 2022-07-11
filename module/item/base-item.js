@@ -188,5 +188,28 @@ export default class CemBaseItem extends Item {
             damageToolTipInfos: damageToolTipInfos,
             rolls: rolls
         }
-    }   
+    }
+
+    /**
+     * @name calculateWeaponDamage
+     * @description For a weapon Item, get the modifier for the skill roll
+     * @returns 
+     */
+    toHitModifier(){
+        let formula = "";
+        let tooltip = "";
+        const parsed = parseInt(this.data.data.toHitModifier, 10);
+        console.log("parsed", parsed);
+        console.log("modifier", this.data.data.toHitModifier);
+        console.log("style", typeof( this.data.data.toHitModifier));
+        if(parsed > 0){
+            formula = " + " + parsed;
+            tooltip = ", " + game.i18n.format("CLEENMAIN.tooltip.toHitModifier") + "+" + parsed;
+        }
+        else{
+            formula = " - " + Math.abs(parsed);
+            tooltip = ", " + game.i18n.format("CLEENMAIN.tooltip.toHitModifier") + "-" + Math.abs(parsed);
+        }
+        return({formula:formula, tooltip:tooltip});
+    }
 }

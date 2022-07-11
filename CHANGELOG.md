@@ -1,4 +1,7 @@
 
+- Les armes et armures apparaissent automatiquement dans l'onglet équipement en plus de l'onglet combat
+- Icones visibles dans l'équipement
+- Bouton pour dépenser des points d'héroisme
 - Support du module DiceSoNice
 
 # Version 1.1.2

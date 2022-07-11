@@ -110,7 +110,6 @@
             "delete": "Delete weapon",
             "name": "Name",
             "attaque": "Attack",
-            "targets": "targets",
             "damage": "Damage",
             "range": "Range",
             "skillName": "Skill",
@@ -118,7 +117,9 @@
             "zone": "Zone",
             "sixPlus": "6+",
             "skillValueNpc": "skill",
-            "skillValueNpcElite": "skill (elite)"
+            "skillValueNpcElite": "skill (elite)",
+            "targets": "targets",
+            "toHitModifier": "Skill Mod."
         },
         "chatmessage":{
             "custommodifier": "Custom modifier used : ({rollModifier}).",
@@ -381,6 +382,7 @@
             "armormalus": "Armor malus: ",
             "badshape": "In bad shape : ",
             "skill" : "Skill: ",
+            "toHitModifier": "Skill modifier: ",
             "untrained": "Untrained penalty"
         },
         "wealth": {

@@ -10,11 +10,6 @@
                     <th>{{localize "CLEENMAIN.label.category"}}</th>
                     <th>{{localize "CLEENMAIN.label.type"}}</th>
                     <th>{{localize "CLEENMAIN.weapon.damage"}}</th>
-                    <th>{{localize "CLEENMAIN.weapon.range"}}</th>
-                    <th>{{localize "CLEENMAIN.weapon.targets"}}</th>
-                    <th>{{localize "CLEENMAIN.weapon.special"}}</th>
-                    <th>{{localize "CLEENMAIN.weapon.zone"}}</th>
-                    <th>{{localize "CLEENMAIN.weapon.sixPlus"}}</th>
                     {{#if hasNpcOwner}}
                         <th>{{localize "CLEENMAIN.weapon.skillValueNpc"}}</th>
                         {{#if (isSettingEnabled "advancedRules")}}
@@ -25,6 +20,7 @@
                     {{/if}}
                 </tr>
             </thead>
+            <tr>
             <td>
                 <select name="data.category">
                     {{#select data.category}}
@@ -44,11 +40,6 @@
                 </select>
             </td>
             <td><input name="data.damageBase" type="text" value="{{data.damageBase}}"/></td>
-            <td><input name="data.range" type="text" value="{{data.range}}" data-dtype="Number"/></td>
-            <td><input name="data.targets" type="text" value="{{data.targets}}" data-dtype="Number"/></td>
-            <td><input name="data.special" type="text" value="{{data.special}}"/></td>
-            <td><input name="data.zone" type="text" value="{{data.zone}}" /></td>
-            <td><input name="data.sixPlus" type="checkbox" {{checked data.sixPlus}}/></td>
             {{#if hasNpcOwner}}
                 <td><input name="data.skillValue" type="number" value="{{data.skillValue}}"/></td>
                 {{#if (isSettingEnabled "advancedRules")}}
@@ -57,10 +48,44 @@
                 {{else}}
                     <td>{{data.skillName}}</td>
             {{/if}}
-            </table>
-            
-            <div class="description">{{localize "CLEENMAIN.label.description"}}</div>
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            </tr>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>{{localize "CLEENMAIN.weapon.range"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.targets"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.zone"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.toHitModifier"}}</th>
+                    <th>{{localize "CLEENMAIN.weapon.sixPlus"}}</th>
+                </tr>
+            </thead>
+            <tr>
+                <td><input name="data.range" type="text" value="{{data.range}}" data-dtype="Number"/></td>
+                <td><input name="data.targets" type="text" value="{{data.targets}}" data-dtype="Number"/></td>
+                <td><input name="data.zone" type="text" value="{{data.zone}}" /></td>
+                <td>
+                    <select name="data.toHitModifier">
+                        {{#select data.toHitModifier}}
+                            {{#each config.weapon.toHitModifier as |name type|}}
+                                <option value="{{name}}">{{name}}</option>
+                            {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+                <td><input name="data.sixPlus" type="checkbox" {{checked data.sixPlus}}/></td>
+            </tr>
+        </table>
+        <table>
+            <thead>
+                <th>{{localize "CLEENMAIN.weapon.special"}}</th>
+            </thead>
+            <tr>
+                <td><input name="data.special" type="text" value="{{data.special}}"/></td>
+            </tr>
+        </table>
+        <div class="description">{{localize "CLEENMAIN.label.description"}}</div>
+        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
     </div>
 </form>
 

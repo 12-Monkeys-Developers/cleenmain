@@ -110,7 +110,6 @@
             "delete": "Supprimer l'arme",
             "name": "Nom",
             "attack": "Attaque",
-            "targets": "Cibles",
             "damage": "Dégâts",
             "range": "Portée",
             "skillName": "Compétence",
@@ -118,7 +117,9 @@
             "zone": "Zone",
             "sixPlus": "6+",
             "skillValueNpc": "Compétence",
-            "skillValueNpcElite": "Comp. (élite)"
+            "skillValueNpcElite": "Comp. (élite)",
+            "targets": "Cibles",
+            "toHitModifier": "Mod. compétence"
         },
         "chatmessage":{
             "custommodifier": "Modificateur libre ajouté : ({rollModifier})",
@@ -381,6 +382,7 @@
             "armormalus": "Malus d'armure: ",
             "badshape": "Mal en point: ",
             "skill" : "Compétence: ",
+            "toHitModifier": "Mod. à la compétence: ",
             "untrained": "Pénalité non-entrainé"
         },
         "wealth": {

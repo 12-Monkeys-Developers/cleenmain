@@ -364,6 +364,10 @@ input {
   height: 250px;
   object-fit: contain;
 }
+.cleenmain.sheet.item form {
+  display: flex;
+  flex-direction: column;
+}
 .cleenmain.sheet.item .window-content {
   background: repeat url('../../../ui/parchment-white.jpg');
   background-color: #fffdfc;
@@ -386,6 +390,7 @@ input {
   background-color: #f5fdfb;
   box-shadow: inset 0 0 3px black;
   height: 1.5em;
+  margin: 0 0.5em 0 0;
 }
 .cleenmain.sheet.item input:focus {
   background-color: #c3d4d0;
@@ -393,18 +398,6 @@ input {
 .cleenmain.sheet.item .sheet-header input {
   font-size: 2rem;
   text-align: center;
-}
-.cleenmain.sheet.item {
-  background-color: #fffdfc;
-}
-.cleenmain.sheet.item form {
-  display: flex;
-  flex-direction: column;
-}
-.cleenmain.sheet.item .sheet-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 .cleenmain.sheet.item .sheet-content .boon-line {
   display: flex;
@@ -439,21 +432,13 @@ input {
 .cleenmain.sheet.item .sheet-content .skill-block input {
   width: 2em;
 }
-.cleenmain.sheet.item form {
-  display: flex;
-  flex-direction: column;
+.cleenmain.sheet.item .weapon-table1 {
+  text-align: center;
 }
 .cleenmain.sheet.item .sheet-content {
   height: 100%;
   display: flex;
   flex-direction: column;
-}
-.cleenmain.sheet.item .sheet-content select {
-  margin: 0 0.5em 0 0;
-}
-.cleenmain.sheet.item .sheet-content .boon-line {
-  display: flex;
-  flex-direction: row;
 }
 .boons-tab .item-create {
   margin-left: auto;
