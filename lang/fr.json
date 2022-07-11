@@ -146,8 +146,12 @@
                 "cancel": "Annuler",
                 "roll": "Lancer"
             },
-            "bonus": "Ajouter une Prime?",
-            "penalty": "Ajouter une pénalité?"
+            "bonus": "Ajouter une prime ?",
+            "penalty": "Ajouter une pénalité ?"
+        },
+        "notification":{
+            "heroismNoMorePoints": "Vous n'avez plus de points d'héroïsme !", 
+            "heroismNotEnoughPoints": "Vous n'avez pas assez de points d'héroïsme !"
         },
         "elite":{
             "defense": "Defense (élite)",
@@ -173,7 +177,8 @@
         },
         "heroism": {
             "current": "Valeur actuelle",
-            "max": "Maximum"
+            "max": "Maximum",
+            "spend": "Dépenser 1 point (clic gauche) ou 2 points (clic droit)"
         },
         "npccategory": {
                     "support": "Figurant",

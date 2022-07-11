@@ -200,7 +200,8 @@ export default class CemBaseActor extends Actor {
      * @param {*} nbPoints 
      */
     async useHeroism(nbPoints) {
-        if (nbPoints > this.data.data.heroism.value) return;
+        if (this.data.data.heroism.value == 0) return ui.notifications.warn("CLEENMAIN.notification.heroismNoMorePoints", {localize: true});
+        if (nbPoints > this.data.data.heroism.value) return ui.notifications.warn("CLEENMAIN.notification.heroismNotEnoughPoints", {localize: true});
         let newValue = this.data.data.heroism.value - nbPoints;
         await this.update({'data.heroism.value': newValue});
     }
