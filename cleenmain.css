@@ -432,7 +432,7 @@ input {
 .cleenmain.sheet.item .sheet-content .skill-block input {
   width: 2em;
 }
-.cleenmain.sheet.item .weapon-table1 {
+.cleenmain.sheet.item table {
   text-align: center;
 }
 .cleenmain.sheet.item .sheet-content {

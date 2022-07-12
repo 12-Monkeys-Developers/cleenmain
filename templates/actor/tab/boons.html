@@ -13,7 +13,7 @@
                         {{#if item.data.developed}}
                             <i class="boxicon {{getCheckboxIcon  item.data.developed}}"></i>
                         {{/if}}
-                    {{/if}}                        
+                    {{/if}}          
                     <div class="boon-name">{{item.name}}</div>
                     {{#if ../unlocked}}
                         <div class="icon-group">
@@ -23,6 +23,22 @@
                     {{/if}}
                 </div>
                 <div class="boon-description">{{{item.data.description}}}</div>
+                {{#if ../unlocked}}
+                    <div class="line-label">{{localize "CLEENMAIN.boon.addSkillMod"}}
+                        <a class="add-skill-mod" data-type="boonskillmod" data-field="{{item._id}}" title='{{localize "CLEENMAIN.boon.addSkillMod"}}'><i class="fas fa-plus"></i></a></div>
+                {{/if}}
+                {{#each item.data.skillModifiers as |skillm id|}}
+                    <div class="skillmod-line">
+                        {{skillm.skillName}}
+                        <select class="inline-edit" data-field="id" name="skillmod">
+                            {{#select skillm.value}}
+                                {{#each config.skillModifier as |mod type|}}
+                                    <option value="{{mod}}">{{mod}}</option>
+                                {{/each}}
+                            {{/select}}
+                        </select>
+                    </div>
+                {{/each}}
                 {{#if item.data.limitedUse}}
                     <div class="boon-used-line">
                         <label for="item.data.used">{{localize "CLEENMAIN.boon.used"}}</label>

@@ -85,42 +85,44 @@
         "templates": {
             "base": {
                 "description": ""
+            },
+            "skillModifiers": {
+                "skillModifiers": []
             }
         },
         "weapon":{
-            "templates": ["base"],
+            "templates": ["base", "skillModifiers"],
             "category": "standard",
             "type": "",
             "damageBase": "1d6",
             "range": 0,
             "targets": 1,
             "skillId": null,
-            "skillName": "",
+            "skillName": "Drag&Drop here",
             "skillValue": 4,
             "skillValueNpcElite": 4,
             "special": "",
             "zone": "",
             "sixPlus": false,
             "quality": "",
-            "quantity": 0,
-            "toHitModifier": 0
+            "quantity": 0
         },
         "armor":{
-            "templates": ["base"],
+            "templates": ["base", "skillModifiers"],
             "category": "standard",
             "malus": 0,
             "protection":0,
-            "special": "",
-            "quality": ""
+            "quality": "",
+            "special": ""
         },
         "boon":{
-            "templates": ["base"],
+            "templates": ["base", "skillModifiers"],
             "developed": false,
             "limitedUse" : false,
             "used" : false
         },
         "equipment":{
-            "templates": ["base"],
+            "templates": ["base", "skillModifiers"],
             "quantity": 0
         },
         "skill":{

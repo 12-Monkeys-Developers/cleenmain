@@ -25,6 +25,7 @@ export class CemBaseActorSheet extends ActorSheet {
       context.weapons = context.items.filter(item => item.type == "weapon");	
       context.armors = context.items.filter(item => item.type == "armor");
       context.equipments = context.items.filter(item => ["equipment", "armor", "weapon"].includes(item.type));
+      console.log("boons",context.boons);
 
       // Alphabetic order for skills
       context.skills = context.items.filter(item => item.type == "skill").sort(function (a, b) {return a.name.localeCompare(b.name);});
@@ -53,6 +54,8 @@ export class CemBaseActorSheet extends ActorSheet {
         html.find(".inline-edit").change(this._onEmbeddedItemEdit.bind(this));        
         html.find(".inline-delete").click(this._onEmbeddedItemDelete.bind(this));               
         
+        html.find(".add-skill-mod").click(this._onSkillModAdd.bind(this));
+
         html.find(".skill-roll").click(this._onSkillRoll.bind(this));
         html.find(".weapon-attack-roll").click(this._onWeaponAttackRoll.bind(this));
         html.find(".weapon-damage-roll").click(this._onWeaponDamageRoll.bind(this));
@@ -197,5 +200,16 @@ export class CemBaseActorSheet extends ActorSheet {
         bonuses: [{value : ' - ' + malusValue.toString(), tooltip: game.i18n.format("CLEENMAIN.label.wounds") + ": -" + malusValue.toString()}]
       };
       return this.actor.check(rollSkill.id, "skill", options);
+  }
+  async _onSkillModAdd(event){
+    event.preventDefault();
+    const element  = event.currentTarget;
+    const boon = this.actor.items.get(element.dataset.field);
+    if(boon){
+      let skillModifiers =[{skillName:"Drag&Drop here", type: "SkillRollMod", value:"0"}]
+      boon.data.data.skillModifiers.forEach(sk => {skillModifiers.push(sk)});
+      return boon.update({["data.skillModifiers"]: skillModifiers});
+    }
+
   }
 }

@@ -4,7 +4,7 @@
         <h1><input name="name" type="text" value="{{item.name}}"/></h1>
     </header>
     <div class="sheet-content">
-        <table>
+        <table class="weapon-table1">
             <thead>
                 <tr>
                     <th>{{localize "CLEENMAIN.label.category"}}</th>
@@ -56,7 +56,6 @@
                     <th>{{localize "CLEENMAIN.weapon.range"}}</th>
                     <th>{{localize "CLEENMAIN.weapon.targets"}}</th>
                     <th>{{localize "CLEENMAIN.weapon.zone"}}</th>
-                    <th>{{localize "CLEENMAIN.weapon.toHitModifier"}}</th>
                     <th>{{localize "CLEENMAIN.weapon.sixPlus"}}</th>
                 </tr>
             </thead>
@@ -64,15 +63,6 @@
                 <td><input name="data.range" type="text" value="{{data.range}}" data-dtype="Number"/></td>
                 <td><input name="data.targets" type="text" value="{{data.targets}}" data-dtype="Number"/></td>
                 <td><input name="data.zone" type="text" value="{{data.zone}}" /></td>
-                <td>
-                    <select name="data.toHitModifier">
-                        {{#select data.toHitModifier}}
-                            {{#each config.weapon.toHitModifier as |name type|}}
-                                <option value="{{name}}">{{name}}</option>
-                            {{/each}}
-                        {{/select}}
-                    </select>
-                </td>
                 <td><input name="data.sixPlus" type="checkbox" {{checked data.sixPlus}}/></td>
             </tr>
         </table>
