@@ -415,7 +415,7 @@ export class Rolls {
         damageToolTipInfosDetails.dices = [];
                 
         let totalAttack = 0;
-console.log("dices",dices)
+
         for (let index = 0; index < nbDamageDices; index++) {
             let indexMod = (nbDamageDices == 2 && dices.length == 3) ? index+1 : index;
             damageToolTipInfosDetails.dices[index] = dices[indexMod].result;
