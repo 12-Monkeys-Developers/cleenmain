@@ -44,7 +44,7 @@
                         <div class="name-text">{{localize "CLEENMAIN.label.character"}} :</div>
                         <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
                         <div class="right-icon">
-                            <a class="sheet-unlock" title="{{localize 'CLEENMAIN.label.unlock_sheet'}}">
+                            <a class="sheet-change-lock" title="{{localize 'CLEENMAIN.label.unlock_sheet'}}">
                                 {{#if unlocked}}
                                     <i class="fas fa-lock-open"></i>
                                 {{else}}
@@ -92,7 +92,8 @@
                                     <input title="{{localize 'CLEENMAIN.heroism.max'}}" id="heroismmax" name="system.heroism.max" type="number" value="{{actorSystem.heroism.max}}" readonly/>
                                     <input class="checkbox" data-field="system.heroism.developed" name="system.heroism.developed" type="checkbox" {{checked actorSystem.heroism.developed}}>
                                 {{else}}
-                                    <div class="central-text">{{actorSystem.heroism.max}}</div><i class="{{getCheckboxIcon  actorSystem.heroism.developed}} central-text"></i>
+                                    <div class="central-text">{{actorSystem.heroism.max}}</div><i class="{{getCheckboxIcon actorSystem.heroism.developed}} central-text"></i>
+                                    <i class="fas fa-arrow-down spend-heroism central-text" title="{{localize 'CLEENMAIN.heroism.spend'}}" ></i>
                                 {{/if}}
                         </div>
                     </div>

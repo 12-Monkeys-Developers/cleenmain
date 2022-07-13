@@ -277,7 +277,7 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line input {
   height: 2em;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line .sheet-unlock {
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line .sheet-change-lock {
   margin-left: auto;
   padding-left: 1em;
   color: #705a10;
