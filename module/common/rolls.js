@@ -21,8 +21,8 @@ export class Rolls {
 
         let titleDialog = "";
         let introText;
+        let rollFormulaDisplay;
         let rollFormula;
-        let rollFormulaColor;
         let formulaTooltip = "";
 
         // Skill Roll
@@ -30,8 +30,8 @@ export class Rolls {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleskill", {itemName: item.name});
             skillRoll = true;
             let value = actor.getSkillValue(item.data).toString();
-            rollFormula = "3d6 + " + value;
-            rollFormulaColor = "1d6[red] + 2d6[white] + " + value;
+            rollFormulaDisplay = "3d6 + " + value;
+            rollFormula = "1d6[red] + 2d6[white] + " + value;
             formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + value;
 
             introText = game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: data.actingChar.name, itemName: item.name});
@@ -40,21 +40,21 @@ export class Rolls {
             if (item.data.data.physical) {
                 const armorMalus = actor.getArmorMalus();
                 if (armorMalus > 0) {
-                    rollFormula = rollFormula.concat(' - ', armorMalus);
-                    rollFormulaColor += ' - ' + armorMalus;
+                    rollFormulaDisplay = rollFormulaDisplay.concat(' - ', armorMalus);
+                    rollFormula += ' - ' + armorMalus;
                     formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.armormalus") + "-" + armorMalus;
                 } 
             }   
             if(data.options?.bonuses){
                 for(let bonus of data.options.bonuses){
-                    rollFormula = rollFormula += bonus.value;
-                    rollFormulaColor += bonus.value;
+                    rollFormulaDisplay = rollFormulaDisplay += bonus.value;
+                    rollFormula += bonus.value;
                     formulaTooltip += ", " + bonus.tooltip;
                 }
             }
             if (actor.isPlayer() && actor.isInBadShape() && !data.options?.badShapeRoll) {
-                rollFormula = rollFormula.concat(' - 2');
-                rollFormulaColor += ' - 2';
+                rollFormulaDisplay = rollFormulaDisplay.concat(' - 2');
+                rollFormula += ' - 2';
                 formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.badshape") + "-2";
             }
 
@@ -63,13 +63,13 @@ export class Rolls {
                 const mod = actor.getBehaviourValue();
                 if (mod) {
                     if (mod > 0) {
-                        rollFormula = rollFormula.concat(' + ').concat(mod);
-                        rollFormulaColor += ' + ' + mod.toString();
+                        rollFormulaDisplay = rollFormulaDisplay.concat(' + ').concat(mod);
+                        rollFormula += ' + ' + mod.toString();
                         formulaTooltip += ", " + game.i18n.format("CLEENMAIN.bonus.caution.label") + ": " + mod;
                     }
                     else if (mod < 0) {
-                        rollFormula = rollFormula.concat(' - ').concat(Math.abs(mod));
-                        rollFormulaColor += ' - ' + Math.abs(mod).toString();
+                        rollFormulaDisplay = rollFormulaDisplay.concat(' - ').concat(Math.abs(mod));
+                        rollFormula += ' - ' + Math.abs(mod).toString();
                         formulaTooltip += ", " + game.i18n.format("CLEENMAIN.penalty.danger.label")  + ": " + mod;
                     }                    
                 }
@@ -80,8 +80,8 @@ export class Rolls {
         if (rollType === "weapon-attack") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleweapon", {itemName: item.name});
             attackRoll = true;
-            rollFormula = "3d6 + " + item.weaponSkill(actor);
-            rollFormulaColor = "1d6[red] + 2d6[white] + " +  item.weaponSkill(actor);
+            rollFormula = "1d6[red] + 2d6[white] + " +  item.weaponSkill(actor);
+            rollFormulaDisplay = "3d6 + " + item.weaponSkill(actor);            
             formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + item.weaponSkill(actor);
 
             introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingChar.name, itemName: item.name});
@@ -114,6 +114,7 @@ export class Rolls {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titledamage", {itemName: item.name});
             damageRoll = true;
             rollFormula = item.weaponDamage(actor);
+            rollFormulaDisplay = rollFormula;
             
             introText = game.i18n.format("CLEENMAIN.dialog.introdamage", {actingCharName: data.actingChar.name, itemName: item.name});
         }
@@ -128,8 +129,8 @@ export class Rolls {
                 actingCharImg: data.actingChar.img,
                 isPlayer: actor.isPlayer(),
                 hasHeroism: actor.hasHeroismPoints(),
-                rollFormula: rollFormula,
-                rollFormulaColor: rollFormulaColor,
+                rollFormula: rollFormulaDisplay,
+                rollFormulaColor: rollFormula,
                 formulaTooltip: formulaTooltip,
                 skillRoll: skillRoll,
                 attackRoll: attackRoll,
@@ -160,8 +161,8 @@ export class Rolls {
                             data.modifier = parseInt(Math.floor(parseInt(modifierInput)));
                         }
 
-                        data.formula = rollFormula;
-                        data.formulaColor = rollFormulaColor;
+                        data.formula = rollFormulaDisplay;
+                        data.formulaColor = rollFormula;
 
                         if (data.modifier) {
                             data.formula = data.formula.concat(' + ', data.modifier.toString());
@@ -295,7 +296,7 @@ export class Rolls {
             alias: actor.name,
             scene: null,
             token: null,
-        }, data.formulaColor, data.targetDifficulty);
+        }, typeof(data.formulaColor) !== 'undefined' ? data.formulaColor : data.formula, data.targetDifficulty);
 
         let rolls =[result.roll];
         // Calculate damages
