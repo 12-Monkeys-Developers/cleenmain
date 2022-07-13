@@ -62,7 +62,6 @@ export default class CemBaseItem extends Item {
         if (this.getSystemData('type') === 'ranged') {
             damage += " + " + actor.system.damageBonus.ranged;
         }
-        else damage += " + " + actor.system.damageBonus.melee;
         else if (this.getSystemData('type') === 'melee') {
             damage += " + " + actor.system.damageBonus.melee;
         }
@@ -75,7 +74,7 @@ export default class CemBaseItem extends Item {
      *  For a player : damage = damageBase + melee/range bonus
      *  For a npc : damage = damageBase
      * @param {*} actor 
-     * @param {*} dices The dices results of a roll
+     * @param {*} dices The dices results of a roll, if there are 3 dices it's an attack
      * @param {*} useHeroism 
      * @param {*} lethalattack Number of Letah Attack boon
      * @param {*} minorinjury  Number of Minor Injury penalty
@@ -85,7 +84,7 @@ export default class CemBaseItem extends Item {
      calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury, multipleattacks) {
         if (this.type !== "weapon") return;
 
-        let nbDamageDices = parseInt(this.getSystemData('damageBase').substring(0,1));
+        const nbDamageDices = parseInt(this.getSystemData('damageBase').substring(0,1));
         let damageFormula = null;
         let damage = 0;
         let nbSix = 0;
@@ -94,11 +93,20 @@ export default class CemBaseItem extends Item {
         // Damage ToolTip creation
         let damageToolTipInfos = Rolls.createDamageToolTip("weapon", nbDamageDices, dices);
 
-        for (let index = 0; index < nbDamageDices; index++) {
-            let indexMod = nbDamageDices == 2 ? index+1 : index;
-            damage += dices[indexMod].result;
-            if (dices[indexMod].result == 6) nbSix++;  
+        // If it's a damage roll, there are as many nbDamageDices than dices
+        if (dices.length == nbDamageDices) {
+            for (let index = 0; index < nbDamageDices; index++) {
+                damage += dices[index].result;
+                if (dices[index].result == 6) nbSix++;  
+            }
         }
+        else {
+            for (let index = 0; index < nbDamageDices; index++) {
+                let indexMod = nbDamageDices == 2 ? index + 1 : index;
+                damage += dices[indexMod].result;
+                if (dices[indexMod].result == 6) nbSix++;  
+            }
+        }    
 
         // Damage formula for npc
         if (actor.type === "npc") {
