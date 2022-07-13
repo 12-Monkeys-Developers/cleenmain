@@ -9,7 +9,7 @@ export class CemBaseActorSheet extends ActorSheet {
         super(...args);
         this.options.submitOnClose = true;
     }
-//test
+
     /** @override */
     getData(options) {
       const context = super.getData(options);
@@ -43,7 +43,7 @@ export class CemBaseActorSheet extends ActorSheet {
     activateListeners(html){
         super.activateListeners(html);
         
-        html.find(".sheet-unlock").click(this._onSheetUnlock.bind(this));
+        html.find(".sheet-change-lock").click(this._onSheetChangelock.bind(this));
 
         html.find(".item-create").click(this._onItemCreate.bind(this));
         html.find(".item-edit").click(this._onItemEdit.bind(this));
@@ -60,10 +60,10 @@ export class CemBaseActorSheet extends ActorSheet {
 
 
   /**
-   * 
+   * @description Manage the lock/unlock button on the sheet
    * @param {*} event 
    */
-  async _onSheetUnlock(event){
+  async _onSheetChangelock(event){
     event.preventDefault();
 
     let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
@@ -183,18 +183,24 @@ export class CemBaseActorSheet extends ActorSheet {
     return this.actor.check(itemId, "weapon-damage");    
   }
 
+  /**
+   * @description Handle the two rolls in case of bad shape
+   * resistance roll or willpower roll
+   * @param {*} event 
+   * @returns a roll
+   */
   async _onBadShapeRoll(event){
     event.preventDefault();
     const element  = event.currentTarget;
     let skillName = element.dataset.field;
     const itemId = $(event.currentTarget).parents(".item").data('itemId');
 
-      const rollSkill = this.actor.items.filter(i=>(i.type === "skill" && i.data.data.reference===skillName))[0];
-      let malusValue = this.actor.data.data.wounds*5;
-      let options = {
-        badShapeRoll: true,
-        bonuses: [{value : ' - ' + malusValue.toString(), tooltip: game.i18n.format("CLEENMAIN.label.wounds") + ": -" + malusValue.toString()}]
-      };
-      return this.actor.check(rollSkill.id, "skill", options);
+    const rollSkill = this.actor.items.filter(i => (i.type === "skill" && i.system.reference === skillName))[0];
+    let malusValue = this.actor.system.wounds*5;
+    let options = {
+      badShapeRoll: true,
+      bonuses: [{value : ' - ' + malusValue.toString(), tooltip: game.i18n.format("CLEENMAIN.label.wounds") + ": -" + malusValue.toString()}]
+    };
+    return this.actor.check(rollSkill.id, "skill", options);
   }
 }

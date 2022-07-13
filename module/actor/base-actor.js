@@ -161,14 +161,15 @@ export default class CemBaseActor extends Actor {
         }
     }
 
-    async getActingChar(){
+    get actingChar(){
         // Get the active token
         let tokenList = this.getActiveTokens();
         let actingToken = tokenList[0];
 
         // If there is a token active for this actor, we use its name and image instead of the actor's
-        const actingCharacterName = actingToken?.data?.name ?? this.name;
-        const actingCharacterImage = actingToken?.data?.img ?? this.img; 
+        const actingCharacterName = actingToken?.document?.name ?? this.name;
+        const actingCharacterImage = actingToken?.document?.img ?? this.img; 
+
         return({
             name: actingCharacterName,
             img: actingCharacterImage
@@ -186,9 +187,10 @@ export default class CemBaseActor extends Actor {
     async check(itemId, rollType, options) {
         let item = this.items.get(itemId);
         if (!item) return;
-        let actingChar = await this.getActingChar();
+        let actingChar = this.actingChar;
         return Rolls.check(this, item, rollType, {
             ...item.system,
+            actingChar: actingChar,
             owner: this.id,
             options: options
         });
@@ -199,9 +201,6 @@ export default class CemBaseActor extends Actor {
      * @param {*} nbPoints 
      */
     async useHeroism(nbPoints) {
-        if (nbPoints > this.system.heroism.value) return;
-        let newValue = this.data.data.heroism.value - nbPoints;
-        await this.update({'data.heroism.value': newValue});
         if (this.system.heroism.value == 0) return ui.notifications.warn("CLEENMAIN.notification.heroismNoMorePoints", {localize: true});
         if (nbPoints > this.system.heroism.value) return ui.notifications.warn("CLEENMAIN.notification.heroismNotEnoughPoints", {localize: true});
         let newValue = this.system.heroism.value - nbPoints;
