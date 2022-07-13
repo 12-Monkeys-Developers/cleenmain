@@ -67,8 +67,8 @@ export default class CemBaseActor extends Actor {
      * @returns the value of Defense
      */
     get defence() {
-        const defenceSkill = this.items.filter(i=>(i.type === "skill" && i.system.reference==="defence"));
-        if(defenceSkill.length) return this.getSkillValue(defenceSkill[0].data);
+        const defenceSkill = this.items.filter(i => (i.type === "skill" && i.system.reference === "defence"));
+        if (defenceSkill.length > 0) return this.getSkillValue(defenceSkill[0]);
         return(0);
     }
 
@@ -78,10 +78,10 @@ export default class CemBaseActor extends Actor {
     
     /**
      * @name getSkillValue
-     * @description Return the value of a specific skill
+     * @description Return the value of a specific skill Item
      * PC : Base + Bonus + 2 if developed
      * NPC : Base + Bonus, if the advanced rules are used, the base changes if it's an elite
-     * @param {*} skill 
+     * @param {Item} skill 
      * @returns 
      */
     getSkillValue(skill){
