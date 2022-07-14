@@ -5,18 +5,18 @@ export default class CemCombatTracker extends CombatTracker {
     }
 
     async getData(options) {
-        const data = await super.getData(options);
+        const context = await super.getData(options);
     
-        if (!data.hasCombat) {
-          return data;
+        if (!context.hasCombat) {
+          return context;
         }
     
-        for (let [i, combatant] of data.combat.turns.entries()) {
-          data.turns[i].hasActed = combatant.getFlag("world", "hasActed");
-          data.turns[i].isPlayer = combatant.actor.data.type == "player";
-          data.turns[i].isNpc = combatant.actor.data.type == "npc";
+        for (let [i, combatant] of context.combat.turns.entries()) {
+            context.turns[i].hasActed = combatant.getFlag("world", "hasActed");
+            context.turns[i].isPlayer = combatant.actor.type == "player";
+            context.turns[i].isNpc = combatant.actor.type == "npc";
         }
-        return data;
+        return context;
     }
 
     activateListeners(html) {
@@ -30,15 +30,18 @@ export default class CemCombatTracker extends CombatTracker {
      * @param {*} event 
      */
     async _onAct(event) {
+        event.preventDefault();
+        event.stopPropagation();
         const btn = event.currentTarget;
         const li = btn.closest(".combatant");
-        const combatant = this.viewed.combatants.get(li.dataset.combatantId);
+        const combat = this.viewed;
+        const combatant = combat.combatants.get(li.dataset.combatantId);
 
-        if (!combatant.data.flags.world.hasActed)
+        if (!combatant.flags.world.hasActed)
             await combatant.setFlag("world", "hasActed", true);
         else   
             await combatant.setFlag("world", "hasActed", false);
 
-        this.render();
+        //this.render();
     }
 }
