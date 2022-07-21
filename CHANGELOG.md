@@ -1,5 +1,7 @@
 
+# Version 1.1.2
 - Support du module DiceSoNice
+- icone pour dépense des points d'héroisme
 
 # Version 1.1.2
 - Bug sur la prise en compte des bonus / malus aux jets de défense
