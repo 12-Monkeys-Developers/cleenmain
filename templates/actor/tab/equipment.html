@@ -1,24 +1,27 @@
 <div class="equipment-tab">
     <div class="title-line">
-        <h1><div class="column-title">{{localize "CLEENMAIN.label.equipment"}}</div></h1>
+        <h1 class="column-title">{{localize "CLEENMAIN.label.equipment"}}</h1>
         {{#if unlocked}}
-            <a class="item-create right-icon" data-type="equipment" title="{{localize 'CLEENMAIN.equipment.add'}}"><i class="fas fa-plus"></i></a>
+        <a class="item-create right-icon" data-type="equipment" title="{{localize 'CLEENMAIN.equipment.add'}}"><i
+                class="fas fa-plus"></i></a>
         {{/if}}
     </div>
     <div class="equipment-column droppable">
         {{#each equipments as |item id|}}
-            <div class="equipment-line item" data-item-id="{{_id}}">
-                <div class="image-container">
-                    <img src="{{item.img}}" title="{{item.name}}" />
-                </div>
-                <div class="equipment-name">{{item.name}}</div>
-                {{#if ../unlocked}}
-                    <div class="icon-group">
-                        <a class="item-open-sheet" data-type="equipment" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i class="fas fa-pen"></i></a>
-                        <a class="inline-delete" data-type="equipment" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i class="fas fa-trash"></i></a>
-                    </div>
-                {{/if}}
+        <div class="equipment-line item" data-item-id="{{_id}}">
+            <div class="image-container">
+                <img src="{{item.img}}" title="{{item.name}}" />
             </div>
+            <div class="equipment-name">{{item.name}}</div>
+            {{#if ../unlocked}}
+            <div class="icon-group">
+                <a class="item-open-sheet" data-type="equipment" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i
+                        class="fas fa-pen"></i></a>
+                <a class="inline-delete" data-type="equipment" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i
+                        class="fas fa-trash"></i></a>
+            </div>
+            {{/if}}
+        </div>
         {{/each}}
     </div>
 </div>
