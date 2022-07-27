@@ -144,10 +144,13 @@
             "introBadShape": "{actingCharName} is in bad shape and uses the skill {itemName}.",
             "button":{
                 "cancel": "Cancel",
-                "roll": "Roll"
+                "roll": "Roll",
+                "validate": "Validate"
             },
             "bonus": "Add a bonus?",
-            "penalty": "Add a penalty?"
+            "penalty": "Add a penalty?",
+            "display_portrait_title":"Display portrait",
+            "display_portrait":"Do you want to display the NPC portrait to all players ?"
         },
         "notification":{
             "heroismNoMorePoints": "You have no more heroism points !", 

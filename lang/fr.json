@@ -144,10 +144,13 @@
             "introBadShape": "{actingCharName} est Mal en point et utilise {itemName}.",
             "button":{
                 "cancel": "Annuler",
-                "roll": "Lancer"
+                "roll": "Lancer",
+                "validate": "Valider"
             },
             "bonus": "Ajouter une prime ?",
-            "penalty": "Ajouter une pénalité ?"
+            "penalty": "Ajouter une pénalité ?",
+            "display_portrait_title":"Montrer le portrait",
+            "display_portrait":"Voulez-vous montrer le portait du personnage à toutes les joueuses et joueurs ?"
         },
         "notification":{
             "heroismNoMorePoints": "Vous n'avez plus de points d'héroïsme !", 

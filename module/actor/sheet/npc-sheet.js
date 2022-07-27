@@ -42,7 +42,8 @@ export default class NpcSheet extends CemBaseActorSheet {
     super.activateListeners(html);
 
     html.find(".npcdefence-roll").click(this._onNpcDefenceRoll.bind(this));
-    html.find(".npcdefence-edit").change(this._onNpcDefenceEdit.bind(this)); 
+    html.find(".npcdefence-edit").change(this._onNpcDefenceEdit.bind(this));
+    html.find(".showimage").click(this._onShowPortrait.bind(this));
   }
 
   _onNpcDefenceRoll(event) {
@@ -62,5 +63,33 @@ export default class NpcSheet extends CemBaseActorSheet {
     else if(element.type === "number") newValue = element.valueAsNumber;
     else newValue = element.value;
     return defenceSkill.update({[field]: newValue});
+  }
+
+  _onShowPortrait(event){
+    event.preventDefault();
+    let actor = this.actor;
+
+    let htmlTemplate = `
+    <h3> ${game.i18n.localize('CLEENMAIN.dialog.display_portrait')} </h3>`;
+    new Dialog({
+        title: game.i18n.localize('CLEENMAIN.dialog.display_portrait_title'), 
+        content: htmlTemplate,
+        buttons: {
+            validate: {
+                label: game.i18n.localize('CLEENMAIN.dialog.button.validate'),
+                callback: () => {
+                  let print = new ImagePopout(actor.img, {
+                    title: actor.name,
+                    shareable: true,
+                    uuid: actor.uuid
+                  }).render(true);
+                  print.shareImage();
+                }
+            }, 
+            close: {
+                label: game.i18n.localize('CLEENMAIN.dialog.button.cancel')
+            }
+        }
+    }).render(true);
   }
 }
