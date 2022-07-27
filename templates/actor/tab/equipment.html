@@ -20,6 +20,16 @@
                 <a class="inline-delete" data-type="equipment" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i
                         class="fas fa-trash"></i></a>
             </div>
+            {{else}}
+            <div class="icon-group">
+                {{#ife item.system.state "active"}}
+                <a class="item-state" title="{{localize 'CLEENMAIN.equipment.active'}}"><i class="fas fa-hand"></i></a>
+                {{else ife item.system.state "equipped"}}
+                    <a class="item-state" title="{{localize 'CLEENMAIN.equipment.equipped'}}"><i class="fas fa-backpack"></i></a>
+                {{else}}
+                    <a class="item-state" title="{{localize 'CLEENMAIN.equipment.other'}}"><i class="fas fa-house"></i></a>
+                {{/ife}}
+            </div>
             {{/if}}
         </div>
         {{/each}}

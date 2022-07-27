@@ -162,7 +162,10 @@
             "skill": "Skill (elite)"
         },
         "equipment":{
-            "add": "New equipment"
+            "add": "New equipment",
+            "active": "In hand, active",
+            "equipped": "In a bag, nearby",
+            "other": "Stashed at home, not available quickly"
         },
         "health": {
             "current": "Valeur actuelle",

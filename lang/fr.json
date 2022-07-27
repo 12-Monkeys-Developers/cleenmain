@@ -96,30 +96,6 @@
             "limiteduseinfo": "Cochez si l'atout est à usage limité : ",
             "used": "Utilisé : "
         },
-        "weapon": {
-            "category": {
-                "standard": "Normale",
-                "war": "Armes de guerre",
-                "heavy": "Armes lourdes"
-            },
-            "type": {
-                "melee": "Corps-à-corps",
-                "ranged": "A distance"
-            },
-            "add": "Nouvelle arme",
-            "delete": "Supprimer l'arme",
-            "name": "Nom",
-            "attack": "Attaque",
-            "targets": "Cibles",
-            "damage": "Dégâts",
-            "range": "Portée",
-            "skillName": "Compétence",
-            "special": "Spécial",
-            "zone": "Zone",
-            "sixPlus": "6+",
-            "skillValueNpc": "Compétence",
-            "skillValueNpcElite": "Comp. (élite)"
-        },
         "chatmessage":{
             "custommodifier": "Modificateur libre ajouté : ({rollModifier})",
             "heroismmodifier": "Point d'Héroïsme utilisé : +1d6",
@@ -152,17 +128,16 @@
             "display_portrait_title":"Montrer le portrait",
             "display_portrait":"Voulez-vous montrer le portait du personnage à toutes les joueuses et joueurs ?"
         },
-        "notification":{
-            "heroismNoMorePoints": "Vous n'avez plus de points d'héroïsme !", 
-            "heroismNotEnoughPoints": "Vous n'avez pas assez de points d'héroïsme !"
-        },
         "elite":{
             "defense": "Defense (élite)",
             "description":"Utilise les valeurs avancées de compétence et double les PVs.",
             "skill": "Compétence (élite)"
         },
         "equipment":{
-            "add": "Nouvel équipement"
+            "add": "Nouvel équipement",
+            "active": "En main, sur soi",
+            "equipped": "Dans un sac acessible",
+            "other": "Rangé chez soi, hors d'atteinte immédiate"
         },
         "health": {
             "current": "Valeur actuelle",
@@ -187,6 +162,10 @@
                     "support": "Figurant",
                     "secondfiddle": "Second Couteau",
                     "boss": "Boss"
+        },
+        "notification":{
+            "heroismNoMorePoints": "Vous n'avez plus de points d'héroïsme !", 
+            "heroismNotEnoughPoints": "Vous n'avez pas assez de points d'héroïsme !"
         },
         "npcskill":{
             "physical": {
@@ -392,6 +371,30 @@
             "electrum": "Électrum",
             "silver": "Argent",
             "copper": "Cuivre"
+        },
+        "weapon": {
+            "category": {
+                "standard": "Normale",
+                "war": "Armes de guerre",
+                "heavy": "Armes lourdes"
+            },
+            "type": {
+                "melee": "Corps-à-corps",
+                "ranged": "A distance"
+            },
+            "add": "Nouvelle arme",
+            "delete": "Supprimer l'arme",
+            "name": "Nom",
+            "attack": "Attaque",
+            "targets": "Cibles",
+            "damage": "Dégâts",
+            "range": "Portée",
+            "skillName": "Compétence",
+            "special": "Spécial",
+            "zone": "Zone",
+            "sixPlus": "6+",
+            "skillValueNpc": "Compétence",
+            "skillValueNpcElite": "Comp. (élite)"
         }
     }
 }

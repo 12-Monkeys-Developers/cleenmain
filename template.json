@@ -85,10 +85,13 @@
         "templates": {
             "base": {
                 "description": ""
+            },
+            "state": {
+                "state": "other"
             }
         },
         "weapon":{
-            "templates": ["base"],
+            "templates": ["base", "state"],
             "category": "standard",
             "type": "",
             "damageBase": "1d6",
@@ -105,7 +108,7 @@
             "quantity": 0
         },
         "armor":{
-            "templates": ["base"],
+            "templates": ["base", "state"],
             "category": "standard",
             "malus": 0,
             "protection":0,
@@ -119,7 +122,7 @@
             "used" : false
         },
         "equipment":{
-            "templates": ["base"],
+            "templates": ["base", "state"],
             "quantity": 0
         },
         "skill":{

@@ -79,30 +79,30 @@ export class CemBaseActorSheet extends ActorSheet {
    */
   _onItemCreate(event){
       event.preventDefault();
-      let element = event.currentTarget;
-      let newName = "New";
+      let element = event.currentTarget;      
+      let itemData = {
+        type: element.dataset.type
+      }
       switch (element.dataset.type){
         case "boon":
-          newName = game.i18n.localize("CLEENMAIN.boon.add");
+          itemData.name = game.i18n.localize("CLEENMAIN.boon.add");
           break;
         case "weapon":
-          newName = game.i18n.localize("CLEENMAIN.weapon.add");
+          itemData.name = game.i18n.localize("CLEENMAIN.weapon.add");
+          itemData.system.state = "active"
           break;
         case "skill":
-          newName = game.i18n.localize("CLEENMAIN.skill.add");
+          itemData.name = game.i18n.localize("CLEENMAIN.skill.add");
           break;
         case "armor":
-          newName = game.i18n.localize("CLEENMAIN.armor.add");
+          itemData.name = game.i18n.localize("CLEENMAIN.armor.add");
+          itemData.system.state = "active"
           break;
         case "equipment":
-          newName = game.i18n.localize("CLEENMAIN.equipment.add");
+          itemData.name = game.i18n.localize("CLEENMAIN.equipment.add")
           break;
       }
       
-      let itemData = {
-        name: newName,
-        type: element.dataset.type
-      }
       return(this.actor.createEmbeddedDocuments("Item", [itemData]));
   }
 

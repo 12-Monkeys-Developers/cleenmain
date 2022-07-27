@@ -41,6 +41,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
 
     html.find(".spend-heroism").click(this._onSpendHeroismOnePoint.bind(this));
     html.find(".spend-heroism").contextmenu(this._onSpendHeroismTwoPoints.bind(this));
+    html.find('.item-state').click(async (ev) => await this._onItemStateUpdate(ev));
   }
 
   /** @override */
@@ -124,6 +125,31 @@ export default class PlayerSheet extends CemBaseActorSheet {
    _onSpendHeroismTwoPoints(event) {
     event.preventDefault();
     this.actor.useHeroism(2);
+  }
+  
+  async _onItemStateUpdate(event) {
+    event.preventDefault();
+    const div = $(event.currentTarget).parents('.item');
+    const item = this.actor.items.get(div.data('itemId'));
+    console.log(item);
+
+    if (item === null || item === undefined) {
+      return;
+    }
+    let data;
+    switch (item.system.state) {
+      case 'active':
+        data = { _id: item.id, id: item.id, 'system.state': 'equipped' };
+        break;
+      case 'equipped':
+        data = { _id: item.id, id: item.id, 'system.state': 'other' };
+        break;
+      default:
+        data = { _id: item.id, id: item.id, 'system.state': 'active' };
+        break;
+    }    
+    
+    this.actor.updateEmbeddedDocuments("Item", [data]);
   }
 
 }
