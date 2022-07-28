@@ -18,7 +18,16 @@
   "esmodules": ["cleenmain.js"],
   "scripts": [],
   "styles": ["cleenmain.css"],
-  "packs": [],
+  "packs": [
+    {
+      "name": "Systemuserguidefr",
+      "label": "Guide utilisateur du système",
+      "system": "cleenmain",
+      "path": "./packs/userguide.db",
+      "module": "cleenmain",
+      "type": "JournalEntry"
+    }
+  ],
   "languages": [
     {
       "lang": "en",
