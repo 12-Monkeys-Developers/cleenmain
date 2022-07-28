@@ -13,9 +13,13 @@
     <p> Il y a deux types de personnages: les PJs et les PnJs. Lorsque vous créez un nouveau personnage , vous devez choisir son type.</p>
     <p>Une fois créé, pour modifier le personnage vous devez d'abord déverrouiller sa feuille en cliquant sur l'icone <em class="fas fa-lock">&nbsp;</em> . Elle passe alors en mode édition.<br />
     Recliquez sur l'icone pour la verrouiller. Les seules modifications qui peuvent être faites sur une feuille vérouillée sont les points d'endurance courants, les points d'héroisme courants et les blessures.</p>
-    <h4>Compétences</h4>
+    <h3>Compétences</h3>
     <p>Les feuilles sont automatiquement créés avec une liste de compétences "par défaut". Certains jeux de la gamme clé en main peuvent parfois indiquer d'autres compétence, ou en enlever certaines. Vous pouvez supprimer ou ajouter librement des compétences lorsque la feuille est en mode édition. Vous pouvez aussi ajouter des spécialités en modifiant le nom de la compétence (par exemple "Connaissance: stratégie militaire".</p>
-    <h4>Objets</h4>
+    <p>En mode édition, deux cases à cocher permettent de préciser:</p>
+    <ul><li>s'il s'agit d'une compétence physique (auquel cas, le malus d'armure s'appliquera aux jets),</li>
+    <li>si la compétence à été augmentée lors d'une <em>évolution</em> (auquel cas un +2 sera automatiquement appliqué à la valeur lorsque la feuille est verrouillée)</em></li></ul>
+
+    <h2>Objets</h2>
     <p>Vous pouvez ajouter les atouts, une arme, une armure ou un équipement de deux manières:</p>
         <ul>
             <li>Soit en créant un objet du bon type, puis en l'attribuant au personnage en faisant un glisser-déposer vers sa feuille,</li>
@@ -29,11 +33,25 @@
         </ul>
         <p>Il suffit de cliquer sur l'icone pour modifier l'état d'un objet.</p>
         <p>Seules les armes et armures marquées <em class="fas fa-hand">&nbsp;</em> apparaitront dans l'onglet combat.</p>
-    <h4>Jets d'attaque</h4>
+        <h3>Atouts</h3>
+        <P>Les atouts sont matérialisés par des items. Vous pouvez créer des atouts dans l'onglet "objets" de Foundry, puis les glisser-déposer vers les personnages qui en disposent. Vous pouvez aussi créer directement l'atout dans une feuille de personnage déverrouillée.</P>
+        <p>Lorsque que vous ouvrez un atout, vous pouvez en modifier la description. Si l'atout est à usage limité (par exemple 1 fois par jour), cochez la case correspondante. Lorsque l'atout sera affecté à un personnage, une case apparaitra à côté de l'atout sur la feuille de personnage qui permet de tracer l'utilisation de l'atout.</p>
+        <p>Les atouts affectés à un personnage apparaissent dans l'onglet "Atouts". Lorsque la feuille est déverrouillée, vous avez acces à des icones pour modifier l'atout ou le supprimer. Vous avez aussi accès à la case "appris", qui permet de préciser que l'atout a été débloqué par le personnage lors d'une progression.</p>
+        <h3>Armures</h3>
+        <p>Le champ malus des armures permet d'indiquer le malus qui s'appliquera aux jets de compétence physique. Il doit être indiéque en valeur absolue (ex: indiquez 2 pour une armure qui diminue de deux point la valeur des jets).</p>
+    <h3>Jets d'attaque</h3>
     <p>PJs: Pour pouvoir attaquer avec une arme, vous devez d'abord indiquer quelle compétence sera utilisée avec elle. Pour cela, en mode édition, cliquez sur la compétence, maintenez appuyé le bouton de souris et faites un glisser-déposer vers la ligne de l'arme.</p>
     <p>PnJs: la valeur de la compétence doit être rentrée manuellement dans le champ "compétence".</p>
-    <h3>PnJ</h3>
+    <h2>PnJ</h2>
     <p>Les PnJ sont par défaut créés avec les 4 compétences de base. Vous pouvez en ajouter d'autres avec l'icone <em class="fas fa-plus">&nbsp;</em> .</p>
-    <h4>Montrer le portrait</h4>
-    <p>Cliquer sur le portrait d'un PnJ ouvre une fenêtre qui propose de montrer ce portrait à tous les joueurs et joueuses. Si validé, une fenetre s'affichera dans leurs écrans avec le portrait.</p>
+    <h3>Montrer le portrait</h3>
+    <p>Cliquer sur le portrait d'un PnJ ouvre une fenêtre qui propose de montrer ce portrait à tous les joueurs et joueuses. Si validé, une fenetre s'affichera dans leurs écrans avec le portrait.</p>    
+    <h3>Règles avancées</h3>
+    <p>Lorsque l'option <em>Règles avancées</em> est activées, les feuilles de PNJs sont modifiées:</p>
+    <ul><li>Les compétences, dommages etc ont désormais deux cases valeurs: la première pour la valeur normale, la seconde pour la valeur élite. </li>
+    <li>Une case <em>élite</em> apparait à côté du type. Si la case est vide, le PNJ n'est pas élite et ce sont les premières valeurs qui seront utilisées et affichées lorsque la feuille est verrouillée. Cocher la case pour modifier le PNJ en élite et utiliser les secondes valeurs.</li></ul>
+    <h2>Jets de dés</h2>
+    <p>Les jets de compétence sont effectués en cliquant sur le symbole <em class="fas fa-dice">&nbsp;</em>.</p><p>Une fenetre apparaitt, dans laquelle vous pouvez préciser l'utilisation d'un point d'héroïsme pour rajouter 1d6. Attention: le point sera automatiquement dépensé dans la réserve du personnage.</p>
+    <h3>Primes et pénalités</h3>
+    <p></p>
 </div>

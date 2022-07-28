@@ -20,7 +20,7 @@
   "styles": ["cleenmain.css"],
   "packs": [
     {
-      "name": "Systemuserguidefr",
+      "name": "systemuserguidefr",
       "label": "Guide utilisateur du système",
       "system": "cleenmain",
       "path": "./packs/userguide.db",
