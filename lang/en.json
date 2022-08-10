@@ -133,6 +133,13 @@
             "explosive": "Explosive"
         },
         "dialog":{
+            "bonus": "Add a bonus?",
+            "button":{
+                "cancel": "Cancel",
+                "roll": "Roll",
+                "validate": "Validate"
+            },
+            "display_help_title": "Résumé de règles",
             "rollmodifier": "Modifier for the roll: ",
             "heroism": "Spend an heroism point for +1d6.",
             "introskill": "{actingCharName} uses the skill {itemName}.",
@@ -142,12 +149,6 @@
             "introdamage": "{actingCharName} does damage with {itemName}.",
             "titledamage": "Damages of {itemName}",
             "introBadShape": "{actingCharName} is in bad shape and uses the skill {itemName}.",
-            "button":{
-                "cancel": "Cancel",
-                "roll": "Roll",
-                "validate": "Validate"
-            },
-            "bonus": "Add a bonus?",
             "penalty": "Add a penalty?",
             "display_portrait_title":"Display portrait",
             "display_portrait":"Do you want to display the NPC portrait to all players ?"
@@ -176,7 +177,7 @@
             "fivepcs": "5 PCs",
             "status": {
                 "normal": "Normal",
-                "badshape": "Bad shapre",
+                "badshape": "Bad shape",
                 "unconscious": "Unconscious",
                 "riskofdeath": "Risk of death"
             }

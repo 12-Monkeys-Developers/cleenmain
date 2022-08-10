@@ -109,6 +109,13 @@
             "explosive": "Explosive"
         },
         "dialog":{
+            "bonus": "Ajouter une prime ?",
+            "button":{
+                "cancel": "Annuler",
+                "roll": "Lancer",
+                "validate": "Valider"
+            },
+            "display_help_title": "Résumé de règles",
             "rollmodifier": "Modificateur pour le jet: ",
             "heroism": "Utiliser un point d'héroïsme pour +1d6.",
             "introskill": "{actingCharName} utilise la compétence {itemName}",
@@ -118,12 +125,6 @@
             "introdamage": "{actingCharName} blesse son adversaire avec {itemName}",
             "titledamage": "Dégâts de {itemName}",
             "introBadShape": "{actingCharName} est Mal en point et utilise {itemName}.",
-            "button":{
-                "cancel": "Annuler",
-                "roll": "Lancer",
-                "validate": "Valider"
-            },
-            "bonus": "Ajouter une prime ?",
             "penalty": "Ajouter une pénalité ?",
             "display_portrait_title":"Montrer le portrait",
             "display_portrait":"Voulez-vous montrer le portait du personnage à toutes les joueuses et joueurs ?"

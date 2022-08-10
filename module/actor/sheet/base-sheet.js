@@ -56,6 +56,7 @@ export class CemBaseActorSheet extends ActorSheet {
         html.find(".weapon-attack-roll").click(this._onWeaponAttackRoll.bind(this));
         html.find(".weapon-damage-roll").click(this._onWeaponDamageRoll.bind(this));
         html.find(".badshape-roll").click(this._onBadShapeRoll.bind(this));
+        html.find(".info-window").click(this._onInfoClick.bind(this));
     }
 
 
@@ -202,5 +203,22 @@ export class CemBaseActorSheet extends ActorSheet {
       bonuses: [{value : ' - ' + malusValue.toString(), tooltip: game.i18n.format("CLEENMAIN.label.wounds") + ": -" + malusValue.toString()}]
     };
     return this.actor.check(rollSkill.id, "skill", options);
+  }
+  async _onInfoClick(event){
+    event.preventDefault();
+    const element  = event.currentTarget;
+    let infoReference = element.dataset.field;
+    let infoTemplate=CONFIG.CLEENMAIN.infoTemplate[infoReference];
+    console.log(infoTemplate);
+    if(!infoTemplate) return;
+    new Dialog({
+      title: game.i18n.localize('CLEENMAIN.dialog.display_help_title'), 
+      content: infoTemplate,
+      buttons: {
+          close: {
+              label: game.i18n.localize('CLEENMAIN.dialog.button.cancel')
+          }
+      }
+    }).render(true);
   }
 }

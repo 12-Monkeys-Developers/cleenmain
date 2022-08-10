@@ -74,7 +74,7 @@
                                 <div class="central-text">{{actorSystem.health.max}}</div>
                             {{/if}}
                             {{#if badShape}}
-                            <div class="central-text badshape-text">{{localize "CLEENMAIN.health.status.badshape"}} <a class="badshape-roll" data-field="willpower"><i class="fas fa-dizzy"></i></a> <a class="badshape-roll" data-field="resistance"><i class="fas fa-skull"></i></a></div>
+                            <div class="central-text badshape-text"><a class="info-window" data-field="badshape">{{localize "CLEENMAIN.health.status.badshape"}}</a> <a class="badshape-roll" data-field="willpower"><i class="fas fa-dizzy"></i></a> <a class="badshape-roll" data-field="resistance"><i class="fas fa-skull"></i></a></div>
                             {{/if}}
 
                         </div>
@@ -84,7 +84,7 @@
                             </div>
                     </div>
                     <div class="central-line">
-                            <div class="heroism-text">{{localize "CLEENMAIN.label.heroism"}}:</div>
+                            <div class="heroism-text"><a class="info-window" data-field="heroism">{{localize "CLEENMAIN.label.heroism"}}</a></div>
                             <div class="input-heroism">
                                 <input title="{{localize 'CLEENMAIN.heroism.current'}}" id="heroism" name="system.heroism.value" type="number" value="{{actorSystem.heroism.value}}"/>
                                 <div class="central-text">/</div>
