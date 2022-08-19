@@ -606,7 +606,7 @@ input {
   flex-grow: 1;
 }
 .cleenmain.sheet.player .main .central .combat-tab .trainings-list .trainings-group .trainings-name {
-  margin: 0 1em 0 0.2em;
+  margin: 0 0.6em 0 0.2em;
 }
 .cleenmain.sheet.player .main .central .combat-tab .bonus-list {
   display: flex;
