@@ -363,6 +363,8 @@
         "tooltip":{
             "armormalus": "Malus d'armure: ",
             "badshape": "Mal en point: ",
+            "defence_modifier": "Modificateur au prochain jet de de défense",
+            "protection": "Valeur totale de protection",
             "skill" : "Compétence: ",
             "untrained": "Pénalité non-entrainé"
         },

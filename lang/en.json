@@ -109,7 +109,7 @@
             "add": "New weapon",
             "delete": "Delete weapon",
             "name": "Name",
-            "attaque": "Attack",
+            "attack": "Attack",
             "targets": "targets",
             "damage": "Damage",
             "range": "Range",
@@ -387,6 +387,8 @@
         "tooltip":{
             "armormalus": "Armor malus: ",
             "badshape": "In bad shape : ",
+            "defence_modifier": "Modificateur au prochain jet de de défense",
+            "protection": "Valeur totale de protection",
             "skill" : "Skill: ",
             "untrained": "Untrained penalty"
         },

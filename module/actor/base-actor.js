@@ -130,7 +130,7 @@ export default class CemBaseActor extends Actor {
      * @description Add a value (positive or negative) to the Behaviour Modifier
      * @param {int} value to add to the behaviour modifier
      */
-     addBehaviourModifier(value) {
+    addBehaviourModifier(value) {
         const actualModifier = this.getModifier("behaviour");
         const actualValue =  actualModifier ? actualModifier.value : 0;
         let newValue = actualValue + value;
@@ -141,7 +141,7 @@ export default class CemBaseActor extends Actor {
         else {
             modifiers = foundry.utils.deepClone(this.getModifiers());
             modifiers.find(mod => mod.type === "behaviour").value = newValue;
-        }        
+        }
         this.update({'modifiers': modifiers});
     }
 
