@@ -9,7 +9,7 @@
     {{/if}}
     <div class="boon-group droppable">
         {{#each boons as |item id|}}
-        <div class="boon-card item" data-item-id="{{item._id}}">
+        <div class="boon-card item draggable" data-item-id="{{item._id}}">
             <div class="boon-name-line">
                 {{#if ../isPlayer}}
                 {{#if item.system.developed}}
