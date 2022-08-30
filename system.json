@@ -2,8 +2,8 @@
   "name": "cleenmain",
   "title": "Clé en main",
   "description": "Le système clé en main pour FoundryVTT.",
-  "version": "1.1.3",
-  "minimumCoreVersion": "9.245",
+  "version": "1.1.4",
+  "minimumCoreVersion": "9.280",
   "compatibleCoreVersion": "9",
   "authors": [
     {
@@ -33,8 +33,8 @@
   "gridUnits": "m",
   "primaryTokenAttribute": "health",
   "initiative": "3d6+@reflexes",
-  "url": "https://github.com/Khaali-dev/cleenmain",
-  "manifest": "https://github.com/Khaali-dev/cleenmain/releases/latest/download/system.json",
-  "download": "https://github.com/Khaali-dev/cleenmain/releases/download/1.1.3/system.zip",
+  "url": "https://github.com/12-Monkeys-Developers/cleenmain",
+  "manifest": "https://github.com/12-Monkeys-Developers/cleenmain/releases/latest/download/system.json",
+  "download": "https://github.com/12-Monkeys-Developers/cleenmain/releases/download/1.1.4/system.zip",
   "license": "LICENSE"
 }

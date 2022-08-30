@@ -1,5 +1,7 @@
 
-# Version 1.1.2
+# Version 1.1.4
+Déplacement du repository
+# Version 1.1.3
 - Support du module DiceSoNice
 - icone pour dépense des points d'héroisme
 
