@@ -5,12 +5,12 @@
   {{#if unlocked}}
     <div class="description-block">
       <h2 class="column-title">{{localize "CLEENMAIN.label.description"}}</h2>
-      {{editor actorSystem.description target="system.description" button=true owner=owner editable=editable}}
+      {{editor descriptionhtml target="system.description" button=true owner=owner editable=editable}}
     </div>
     {{#if isNpc}}
       <div class="description-block">
         <h2 class="column-title">{{localize "CLEENMAIN.label.equipment"}}</h2>
-        {{editor actorSystem.equipment target="system.equipment" button=true owner=owner editable=editable}}
+        {{editor equipmenthtml target="system.equipment" button=true owner=owner editable=editable}}
       </div>
       <div class="description-block">
         <h2 class="column-title">{{localize "CLEENMAIN.label.tactic"}}</h2>
@@ -25,14 +25,14 @@
     {{#if (isNotEmptyString actorSystem.description)}}
     <div class="description-block">
       <h2 class="column-title">{{localize "CLEENMAIN.label.description"}}</h2>
-      {{{actorSystem.description}}}
+      {{{descriptionhtml}}}
     </div>
     {{/if}}
     {{#if isNpc}}
       {{#if (isNotEmptyString actorSystem.equipment)}}
       <div class="description-block">
         <h2 class="column-title">{{localize "CLEENMAIN.label.equipment"}}</h2>
-        {{{actorSystem.equipment}}}
+        {{{equipmenthtml}}}
       </div>
       {{/if}}
       {{#if (isNotEmptyString actorSystem.tactic)}}

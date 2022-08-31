@@ -33,6 +33,7 @@ export default class NpcSheet extends CemBaseActorSheet {
     context.isSupport = this.actor.isSupport();
     context.eliteRuleset = (this.actor.system.level === NPC_LEVEL.secondfiddle) && game.settings.get('cleenmain', 'advancedRules');
     context.eliteRulesetModif = context.eliteRuleset && context.unlocked;
+    context.equipmenthtml = TextEditor.enrichHTML(this.actor.system.equipment, {async:false});
 
     return context;
   }

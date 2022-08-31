@@ -31,6 +31,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
     context.protection = this.actor.getArmorProtection();
     let defenceModifier = this.actor.getModifiers().find( modifier => modifier.type === "behaviour");
     context.defenceModifier = defenceModifier ? defenceModifier.value : 0;
+    context.notebookhtml = TextEditor.enrichHTML(this.actor.system.notebook, {async:false});
 
     return context;
   }

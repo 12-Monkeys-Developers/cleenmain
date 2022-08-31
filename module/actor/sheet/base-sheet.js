@@ -29,11 +29,10 @@ export class CemBaseActorSheet extends ActorSheet {
       context.skills = context.items.filter(item => item.type == "skill").sort(function (a, b) {return a.name.localeCompare(b.name);});
 
       context.unlocked = this.actor.getFlag(game.system.id, "SheetUnlocked");
-
       context.isPlayer = this.actor.isPlayer();
       context.isNpc = this.actor.isNpc();
-
       context.badShape = this.actor.isInBadShape();
+      context.descriptionhtml = TextEditor.enrichHTML(this.actor.system.description, {async:false});
 
       return context;
     }
