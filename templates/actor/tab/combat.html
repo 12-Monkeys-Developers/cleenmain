@@ -1,35 +1,35 @@
 <div class="combat-tab">
     <!-- PROTECTIONS PART -->
     <div class="title-line">
-        <h1 class="combat-domain-label">{{localize "CLEENMAIN.label.protections"}}  ( {{protection}} ) {{defenceModifier}}
+        <h1 class="combat-domain-label">{{localize "CLEENMAIN.label.protections"}}  ( <span class="tooltip">{{protection}}<span class="tooltiptext">{{localize "CLEENMAIN.tooltip.protection"}}</span></span> ) {{#if defenceModifier}}<span class="tooltip">{{defenceModifier}}<span class="tooltiptext">{{localize "CLEENMAIN.tooltip.defence_modifier"}}</span></span>{{/if}}
             {{#if unlocked}}
                 <a class="item-create right-icon" data-type="armor" title="{{localize 'CLEENMAIN.armor.add'}}"><i class="fas fa-plus"></i></a>
             {{/if}}
         </h1>
     </div>
-    <div class="combat-group-label">{{localize "CLEENMAIN.label.trainings"}}</div>
     <div class="trainings-list">
+        <div class="combat-group-label">{{localize "CLEENMAIN.label.trainings"}}</div>
         <div class="trainings-group">
             {{#if unlocked}}
-                <input class="checkbox" name="data.trainings.armors.war" type="checkbox" {{checked data.trainings.armors.war}}>
+                <input class="checkbox" name="system.trainings.armors.war" type="checkbox" {{checked actorSystem.trainings.armors.war}}>
             {{else}}
-                <i class="{{getCheckboxIcon  data.trainings.armors.war}}"></i>
+                <i class="{{getCheckboxIcon  actorSystem.trainings.armors.war}}"></i>
             {{/if}}
             <div class="trainings-name">{{localize "CLEENMAIN.armor.category.war"}}</div>
         </div>
         <div class="trainings-group">
             {{#if unlocked}}
-                <input class="checkbox" name="data.trainings.armors.heavy" type="checkbox" {{checked data.trainings.armors.heavy}}>
+                <input class="checkbox" name="system.trainings.armors.heavy" type="checkbox" {{checked actorSystem.trainings.armors.heavy}}>
             {{else}}
-                <i class="{{getCheckboxIcon  data.trainings.armors.heavy}}"></i>
+                <i class="{{getCheckboxIcon  actorSystem.trainings.armors.heavy}}"></i>
             {{/if}}
             <div class="trainings-name">{{localize "CLEENMAIN.armor.category.heavy"}}</div>
         </div>
         <div class="trainings-group">
             {{#if unlocked}}
-                <input class="checkbox" name="data.trainings.armors.shield" type="checkbox" {{checked data.trainings.armors.shield}}>
+                <input class="checkbox" name="system.trainings.armors.shield" type="checkbox" {{checked actorSystem.trainings.armors.shield}}>
             {{else}}
-                <i class="{{getCheckboxIcon  data.trainings.armors.shield}}"></i>
+                <i class="{{getCheckboxIcon  actorSystem.trainings.armors.shield}}"></i>
             {{/if}}
             <div class="trainings-name">{{localize "CLEENMAIN.armor.category.shield"}}</div>
         </div>
@@ -47,12 +47,13 @@
                     </tr>
             </thead>
             {{#each armors as |item id|}}  <tr class="item" data-item-id="{{_id}}"></tr>
+            {{#ife item.system.state "active"}}
                 <tr class="item" data-item-id="{{_id}}">
                     <th>{{name}}</th>
-                    <th>{{getCategoryLabel "armor" item.data.category}}</th>
-                    <th>{{item.data.protection}}</th>
-                    <th>{{item.data.malus}}</th>
-                    <th>{{item.data.special}}</th>
+                    <th>{{getCategoryLabel "armor" item.system.category}}</th>
+                    <th>{{item.system.protection}}</th>
+                    <th>{{item.system.malus}}</th>
+                    <th>{{item.system.special}}</th>
                     {{#if ../unlocked}}
                         <th>
                             <a class="item-open-sheet" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i class="fas fa-pen"></i></a>
@@ -60,6 +61,7 @@
                         </th>
                     {{/if}}
                 </tr>
+            {{/ife}}
             {{/each}}
         </table>
     </div>
@@ -72,38 +74,38 @@
             {{/if}}
         </h1>
     </div>
-    <div class="combat-group-label">{{localize "CLEENMAIN.label.trainings"}}</div>
     <div class="trainings-list">
+        <div class="combat-group-label">{{localize "CLEENMAIN.label.trainings"}}</div>
         <div class="trainings-group">
             {{#if unlocked}}
-                <input class="checkbox" name="data.trainings.weapons.war" type="checkbox" {{checked data.trainings.weapons.war}}>
+                <input class="checkbox" name="system.trainings.weapons.war" type="checkbox" {{checked actorSystem.trainings.weapons.war}}>
             {{else}}
-                <i class="{{getCheckboxIcon  data.trainings.weapons.war}}"></i>
+                <i class="{{getCheckboxIcon  actorSystem.trainings.weapons.war}}"></i>
             {{/if}}
             <div class="trainings-name">{{localize "CLEENMAIN.weapon.category.war"}}</div>
         </div>
         <div class="trainings-group">
             {{#if unlocked}}
-                <input class="checkbox" name="data.trainings.weapons.heavy" type="checkbox" {{checked data.trainings.weapons.heavy}}>
+                <input class="checkbox" name="system.trainings.weapons.heavy" type="checkbox" {{checked actorSystem.trainings.weapons.heavy}}>
             {{else}}
-                <i class="{{getCheckboxIcon  data.trainings.weapons.heavy}}"></i>
+                <i class="{{getCheckboxIcon  actorSystem.trainings.weapons.heavy}}"></i>
             {{/if}}
             <div class="trainings-name">{{localize "CLEENMAIN.weapon.category.heavy"}}</div>
         </div>
     </div>
-    <div class="combat-group-label">{{localize "CLEENMAIN.label.bonus"}}</div>
     <div class="bonus-list">
+        <div class="combat-group-label">{{localize "CLEENMAIN.label.bonus"}} :</div>
         <div class="bonus-line">            
             {{#if unlocked}}
                 <div class="bonus-name">{{localize "CLEENMAIN.label.melee"}}</div>
-                <input class="bonus-text input-small" id="bonusmelee" name="data.damageBonus.melee" type="number" value="{{data.damageBonus.melee}}"/>
+                <input class="bonus-text input-small" id="bonusmelee" name="system.damageBonus.melee" type="number" value="{{actorSystem.damageBonus.melee}}"/>
                 <div class="bonus-name">{{localize "CLEENMAIN.label.ranged"}}</div>
-                <input class="bonus-text input-small" id="bonusranged" name="data.damageBonus.ranged" type="number" value="{{data.damageBonus.ranged}}"/>
+                <input class="bonus-text input-small" id="bonusranged" name="system.damageBonus.ranged" type="number" value="{{actorSystem.damageBonus.ranged}}"/>
             {{else}}
                 <div class="bonus-name">{{localize "CLEENMAIN.label.melee"}}</div>
-                <div class="bonus-text input-small">{{data.damageBonus.melee}}</div>
+                <div class="bonus-text input-small">{{actorSystem.damageBonus.melee}}</div>
                 <div class="bonus-name">{{localize "CLEENMAIN.label.ranged"}}</div>
-                <div class="bonus-text input-small">{{data.damageBonus.ranged}}</div>
+                <div class="bonus-text input-small">{{actorSystem.damageBonus.ranged}}</div>
             {{/if}}
         </div>
     </div>
@@ -123,19 +125,20 @@
                 </tr>
             </thead>
             {{#each weapons as |item id|}}
+            {{#ife item.system.state "active"}}
                 <tr class="item draggable" data-item-id="{{_id}}">
                     <th>{{name}}</th>
-                    <th>{{getCategoryLabel "weapon" item.data.category}}</th>
-                    <th>{{item.data.skillName}}</th>
+                    <th>{{getCategoryLabel "weapon" item.system.category}}</th>
+                    <th>{{item.system.skillName}}</th>
                     <th>{{getWeaponSkill @root.actor item}}<a class="weapon-attack-roll"><i class="fas fa-dice"></i></a></th>
                     <th>{{getWeaponDamage @root.actor item}}<a class="weapon-damage-roll"><i class="fas fa-dice"></i></a></th>
-                    <th>{{item.data.range}}</th>
-                    <th>{{item.data.zone}}</th>
+                    <th>{{item.system.range}}</th>
+                    <th>{{item.system.zone}}</th>
                     <th>
                         {{#if unlocked}}
-                            <input class="checkbox" name="item.data.sixPlus" type="checkbox" {{checked item.data.sixPlus}}>
+                            <input class="checkbox" name="item.system.sixPlus" type="checkbox" {{checked item.system.sixPlus}}>
                         {{else}}
-                            <i class="{{getCheckboxIcon  item.data.sixPlus}}"></i>
+                            <i class="{{getCheckboxIcon  item.system.sixPlus}}"></i>
                         {{/if}}
                     </th>
                     <th>
@@ -145,6 +148,7 @@
                         {{/if}}
                     </th>
                 </tr>
+                {{/ife}}
             {{/each}}
         </table>
     </div>

@@ -1,6 +1,10 @@
+# Version 2.0.0
+- Mise à jour pour la version 10 de Foundry
+- cliquer sur le portait d'un PNJ permet de le montrer à tous les joueurs.
 
 # Version 1.1.4
-Déplacement du repository
+- Déplacement du repository
+
 # Version 1.1.3
 - Support du module DiceSoNice
 - icone pour dépense des points d'héroisme

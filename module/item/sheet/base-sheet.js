@@ -14,7 +14,7 @@ export default class CemBaseItemSheet extends ItemSheet {
    * @return the path of the specified item sheet.
    */  
    get template() {
-    return `systems/cleenmain/templates/item/${this.item.data.type}.html`;
+    return `systems/cleenmain/templates/item/${this.item.type}.html`;
   }
 
   /** 
@@ -40,9 +40,9 @@ export default class CemBaseItemSheet extends ItemSheet {
       owner: this.object.isOwner,
       editable : this.isEditable,
       item: context.item,
-      data: context.item.data.data,
+      system: context.item.system,
       config: CONFIG.CLEENMAIN,
-      hasNpcOwner: this.item.parent?.data.type === "npc"
+      hasNpcOwner: this.item.parent?.type === "npc"
     }
 
     return sheetData;

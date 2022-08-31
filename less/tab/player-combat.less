@@ -1,5 +1,29 @@
 .cleenmain.sheet.player {
     .main{
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+        
+            position: absolute;
+            z-index: 1;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+        h1{
+            .tooltiptext{
+                font-family: @long-text-font;
+                font-size: @long-text-font-size;
+                font-weight: normal;
+                text-transform: none;
+            }
+        }
         .central{
             .combat-tab{
                 margin: 1em 0 0.5em 0;
@@ -13,19 +37,17 @@
                 .item-create{
                     margin-left: auto;
                 }
-                .combat-domain-label{
-                    margin: 1em 0 0 0;
-                }
                 .trainings-list{
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
+                padding-bottom: 0.5em;
                     .trainings-group{
                         display: flex;
                         flex-direction: row;
                         flex-grow: 1;
                         .trainings-name{
-                            margin: 0 1em 0 .2em;
+                            margin: 0 .6em 0 .2em;
                         }
                     }
                 }
@@ -37,6 +59,9 @@
                         display: flex;
                         flex-direction: row;
                         flex-grow: 1;
+                        .bonus-name{
+                            padding: 0 0.5em 0 1em;
+                        }
                         .bonus-text{
                             background: @clear-background;
                             border: 1px solid @border-color-combat-bonus;
@@ -60,7 +85,7 @@
                 }
                 .combat-group-label{
                     font-style: italic;
-                    padding: 1em 0 0.5em 0;
+                    padding-right: 0.5em;
                 }
             }
         }

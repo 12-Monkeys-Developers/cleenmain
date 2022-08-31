@@ -70,6 +70,5 @@ export class WeaponSheet extends CemBaseItemSheet {
      */
      _onDropSkillItem(event, itemData) {
         event.preventDefault();
-        console.log(itemData);
     }
 }

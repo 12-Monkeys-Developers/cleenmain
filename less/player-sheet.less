@@ -1,4 +1,16 @@
 .cleenmain.sheet.player {
+    h1 {
+        font-family: @h1-font-family;
+        font-size: @h1-font-size;
+        color: @title-color;
+        text-transform: @h1-text-transform;
+        border: @h1-border;
+    }
+    h2 {
+        font-family: @h2-font-family;
+        font-size: @h1-font-size;
+        color: @title-color;
+    }
     .window-content {
         background: @playersheet-background;
         background-color: @clear-background;
@@ -37,10 +49,13 @@
     .main {
         display: flex;
         flex-direction: row;
+        width: 100%;
         .leftcolumn {
             display: flex;
             flex-direction: column;
-            min-width: 200px;
+            flex-grow: 0;
+            flex-shrink: 0;
+            width: 235px;
             margin-right: 50px;
             .title-line{
                 display: flex;
@@ -56,6 +71,8 @@
                     display: flex;
                     flex-direction: row;
                     align-items: center;
+                    font-family: @pc-skill-font;
+                    font-size: @pc-skill-font-size;
                     .skill-name{       
                         width: 70%;
                     }
@@ -81,9 +98,9 @@
             }
         }
         .central {
-            flex-grow: 4;
             display: flex;
             flex-direction: column;
+            width: 100%;
             .intro-block{
                 display: flex;
                 flex-direction: row;

@@ -9,13 +9,12 @@ export class CemBaseActorSheet extends ActorSheet {
         super(...args);
         this.options.submitOnClose = true;
     }
-//test
+
     /** @override */
     getData(options) {
       const context = super.getData(options);
-      context.actorData = context.data;      
-      context.data = context.actorData.data;
-      context.flags = context.actorData.flags;
+      context.actorSystem = context.actor.system;      
+      context.flags = context.actor.flags;
       context.id = context.actor.id;
       context.config = CONFIG.CLEENMAIN;
       context.editable = this.isEditable;
@@ -30,11 +29,10 @@ export class CemBaseActorSheet extends ActorSheet {
       context.skills = context.items.filter(item => item.type == "skill").sort(function (a, b) {return a.name.localeCompare(b.name);});
 
       context.unlocked = this.actor.getFlag(game.system.id, "SheetUnlocked");
-
       context.isPlayer = this.actor.isPlayer();
       context.isNpc = this.actor.isNpc();
-
       context.badShape = this.actor.isInBadShape();
+      context.descriptionhtml = TextEditor.enrichHTML(this.actor.system.description, {async:false});
 
       return context;
     }
@@ -44,7 +42,7 @@ export class CemBaseActorSheet extends ActorSheet {
     activateListeners(html){
         super.activateListeners(html);
         
-        html.find(".sheet-unlock").click(this._onSheetUnlock.bind(this));
+        html.find(".sheet-change-lock").click(this._onSheetChangelock.bind(this));
 
         html.find(".item-create").click(this._onItemCreate.bind(this));
         html.find(".item-edit").click(this._onItemEdit.bind(this));
@@ -57,14 +55,15 @@ export class CemBaseActorSheet extends ActorSheet {
         html.find(".weapon-attack-roll").click(this._onWeaponAttackRoll.bind(this));
         html.find(".weapon-damage-roll").click(this._onWeaponDamageRoll.bind(this));
         html.find(".badshape-roll").click(this._onBadShapeRoll.bind(this));
+        html.find(".info-window").click(this._onInfoClick.bind(this));
     }
 
 
   /**
-   * 
+   * @description Manage the lock/unlock button on the sheet
    * @param {*} event 
    */
-  async _onSheetUnlock(event){
+  async _onSheetChangelock(event){
     event.preventDefault();
 
     let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
@@ -80,30 +79,30 @@ export class CemBaseActorSheet extends ActorSheet {
    */
   _onItemCreate(event){
       event.preventDefault();
-      let element = event.currentTarget;
-      let newName = "New";
+      let element = event.currentTarget;      
+      let itemData = {
+        type: element.dataset.type
+      }
       switch (element.dataset.type){
         case "boon":
-          newName = game.i18n.localize("CLEENMAIN.boon.add");
+          itemData.name = game.i18n.localize("CLEENMAIN.boon.add");
           break;
         case "weapon":
-          newName = game.i18n.localize("CLEENMAIN.weapon.add");
+          itemData.name = game.i18n.localize("CLEENMAIN.weapon.add");
+          itemData.system.state = "active"
           break;
         case "skill":
-          newName = game.i18n.localize("CLEENMAIN.skill.add");
+          itemData.name = game.i18n.localize("CLEENMAIN.skill.add");
           break;
         case "armor":
-          newName = game.i18n.localize("CLEENMAIN.armor.add");
+          itemData.name = game.i18n.localize("CLEENMAIN.armor.add");
+          itemData.system.state = "active"
           break;
         case "equipment":
-          newName = game.i18n.localize("CLEENMAIN.equipment.add");
+          itemData.name = game.i18n.localize("CLEENMAIN.equipment.add")
           break;
       }
       
-      let itemData = {
-        name: newName,
-        type: element.dataset.type
-      }
       return(this.actor.createEmbeddedDocuments("Item", [itemData]));
   }
 
@@ -184,18 +183,41 @@ export class CemBaseActorSheet extends ActorSheet {
     return this.actor.check(itemId, "weapon-damage");    
   }
 
+  /**
+   * @description Handle the two rolls in case of bad shape
+   * resistance roll or willpower roll
+   * @param {*} event 
+   * @returns a roll
+   */
   async _onBadShapeRoll(event){
     event.preventDefault();
     const element  = event.currentTarget;
     let skillName = element.dataset.field;
     const itemId = $(event.currentTarget).parents(".item").data('itemId');
 
-      const rollSkill = this.actor.items.filter(i=>(i.type === "skill" && i.data.data.reference===skillName))[0];
-      let malusValue = this.actor.data.data.wounds*5;
-      let options = {
-        badShapeRoll: true,
-        bonuses: [{value : ' - ' + malusValue.toString(), tooltip: game.i18n.format("CLEENMAIN.label.wounds") + ": -" + malusValue.toString()}]
-      };
-      return this.actor.check(rollSkill.id, "skill", options);
+    const rollSkill = this.actor.items.filter(i => (i.type === "skill" && i.system.reference === skillName))[0];
+    let malusValue = this.actor.system.wounds*5;
+    let options = {
+      badShapeRoll: true,
+      bonuses: [{value : ' - ' + malusValue.toString(), tooltip: game.i18n.format("CLEENMAIN.label.wounds") + ": -" + malusValue.toString()}]
+    };
+    return this.actor.check(rollSkill.id, "skill", options);
+  }
+  async _onInfoClick(event){
+    event.preventDefault();
+    const element  = event.currentTarget;
+    let infoReference = element.dataset.field;
+    let infoTemplate=CONFIG.CLEENMAIN.infoTemplate[infoReference];
+    console.log(infoTemplate);
+    if(!infoTemplate) return;
+    new Dialog({
+      title: game.i18n.localize('CLEENMAIN.dialog.display_help_title'), 
+      content: infoTemplate,
+      buttons: {
+          close: {
+              label: game.i18n.localize('CLEENMAIN.dialog.button.cancel')
+          }
+      }
+    }).render(true);
   }
 }

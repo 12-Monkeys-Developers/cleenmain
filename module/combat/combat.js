@@ -13,8 +13,8 @@ export default class CemCombat extends Combat {
      */
     _sortCombatants(a, b) {
 
-        const typeA = a.actor.data.type;
-        const typeB = b.actor.data.type;
+        const typeA = a.actor.type;
+        const typeB = b.actor.type;
 
         const hasActedA = a.getFlag("world", "hasActed");
         const hasActedB = b.getFlag("world", "hasActed");
@@ -47,7 +47,7 @@ export default class CemCombat extends Combat {
      */
     async nextRound() {     
 
-        let turn = this.data.turn === null ? null : 0; // Preserve the fact that it's no-one's turn currently.
+        let turn = this.turn === null ? null : 0; // Preserve the fact that it's no-one's turn currently.
         if ( this.settings.skipDefeated && (turn !== null) ) {
           turn = this.turns.findIndex(t => !t.isDefeated);
           if (turn === -1) {
@@ -58,7 +58,7 @@ export default class CemCombat extends Combat {
 
         this.combatants.forEach(c => c.setFlag("world", "hasActed", false));
 
-        let advanceTime = Math.max(this.turns.length - (this.data.turn || 0), 0) * CONFIG.time.turnTime;
+        let advanceTime = Math.max(this.turns.length - (this.turn || 0), 0) * CONFIG.time.turnTime;
         advanceTime += CONFIG.time.roundTime;
         return this.update({round: this.round + 1, turn}, {advanceTime});
 
