@@ -1,4 +1,4 @@
-<div class="boons-tab">
+<div class="boons-tab droppable">
     {{#if unlocked}}
     <h1><br />
         <div class="line-label">{{localize "CLEENMAIN.boon.add"}}
@@ -7,7 +7,7 @@
         </div>
     </h1>
     {{/if}}
-    <div class="boon-group droppable">
+    <div class="boon-group">
         {{#each boons as |item id|}}
         <div class="boon-card item draggable" data-item-id="{{item._id}}">
             <div class="boon-name-line">

@@ -239,8 +239,8 @@ export default class CemBaseActor extends Actor {
         let protection = 0;
         const armors = this.items.filter(i=>i.type === "armor");
         armors.forEach(armor => {
-            if (armor.system.category !== "shield") protection += parseInt(armor.system.protection);
-            if (armor.system.category === "shield")  {
+            if (armor.system.category !== "shield" && armor.system.state==="active") protection += parseInt(armor.system.protection);
+            if (armor.system.category === "shield" && armor.system.state==="active")  {
                 if (this.isTrainedWithShield()) protection += parseInt(armor.system.protection);
                 else {
                     if (armors.length == 1) protection += parseInt(armor.system.protection);
