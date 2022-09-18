@@ -129,7 +129,7 @@
                 <tr class="item draggable" data-item-id="{{_id}}">
                     <th>{{name}}</th>
                     <th>{{getCategoryLabel "weapon" item.system.category}}</th>
-                    <th>{{item.system.skillName}}</th>
+                    <th>{{getWeaponSkillName @root.actor item}}</th>
                     <th>{{getWeaponSkill @root.actor item}}<a class="weapon-attack-roll"><i class="fas fa-dice"></i></a></th>
                     <th>{{getWeaponDamage @root.actor item}}<a class="weapon-damage-roll"><i class="fas fa-dice"></i></a></th>
                     <th>{{item.system.range}}</th>

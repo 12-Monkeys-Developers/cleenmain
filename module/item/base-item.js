@@ -26,6 +26,23 @@ export default class CemBaseItem extends Item {
     }
     
     /**
+     * @name weaponSkillName
+     * @description For weapon Item, get the Name
+     * @param {*} actor 
+     * @returns The name of the skill used 
+     */
+     weaponSkillName(actor) {
+        if (this.type !== "weapon") return;
+        
+        const skillId = this.getSystemData('skillId');
+        if (!skillId) return;
+        const skill = actor.items.get(skillId);
+        if (skill === undefined || skill.type !== "skill") return;
+        const skillName = skill.name;
+        return skillName;
+    }
+
+    /**
      * @name weaponSkill
      * @description For weapon Item, calculates the walue of the skill by using the linked skill
      * @param {*} actor 
@@ -38,7 +55,7 @@ export default class CemBaseItem extends Item {
             const skillId = this.getSystemData('skillId');
             if (!skillId) return;
             const skill = actor.items.get(skillId);
-            if (skill.type !== "skill") return;
+            if (skill === undefined || skill.type !== "skill") return;
             const skillValue = actor.getSkillValue(skill);
             return skillValue;
         }

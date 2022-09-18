@@ -100,16 +100,19 @@ export const registerHandlebarsHelpers = function() {
         return "far fa-square";
     });
 
+    Handlebars.registerHelper('getWeaponSkillName', function (actor, item) {
+       const it = actor.items.get(item._id);
+       return it.weaponSkillName(actor);;
+    });
+
     Handlebars.registerHelper('getWeaponSkill', function (actor, item) {
         const it = actor.items.get(item._id);
-        const weaponSkill = it.weaponSkill(actor);
-       return weaponSkill;
+        return it.weaponSkill(actor);;
     });
 
     Handlebars.registerHelper('getWeaponDamage', function (actor, item) {
-        const it = actor.items.get(item._id);
-        const weaponDamage = it.weaponDamage(actor);
-       return weaponDamage;
+       const it = actor.items.get(item._id);       
+       return it.weaponDamage(actor);
     });
 
     Handlebars.registerHelper('getDefenceValue', function (actor) {
