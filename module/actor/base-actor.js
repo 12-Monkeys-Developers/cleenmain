@@ -142,7 +142,7 @@ export default class CemBaseActor extends Actor {
             modifiers = foundry.utils.deepClone(this.getModifiers());
             modifiers.find(mod => mod.type === "behaviour").value = newValue;
         }
-        this.update({'modifiers': modifiers});
+        this.update({'system.modifiers': modifiers});
     }
 
     /**
@@ -204,7 +204,7 @@ export default class CemBaseActor extends Actor {
         if (this.system.heroism.value == 0) return ui.notifications.warn("CLEENMAIN.notification.heroismNoMorePoints", {localize: true});
         if (nbPoints > this.system.heroism.value) return ui.notifications.warn("CLEENMAIN.notification.heroismNotEnoughPoints", {localize: true});
         let newValue = this.system.heroism.value - nbPoints;
-        await this.update({'data.heroism.value': newValue});
+        await this.update({'system.heroism.value': newValue});
     }
 
     /**
@@ -268,6 +268,6 @@ export default class CemBaseActor extends Actor {
     }
 
     setHealthToMax(){
-        this.update({'health.value': this.system.health.max});
+        this.update({'system.health.value': this.system.health.max});
     }
 }
