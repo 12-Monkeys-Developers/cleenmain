@@ -27,12 +27,13 @@ export default class NpcSheet extends CemBaseActorSheet {
   getData(options) {
     const context = super.getData(options);
 
-    context.skills = context.items.filter(item => item.type === "skill" && item.data.reference !== "defence");
-    context.defenceSkill = context.items.filter(item => item.type === "skill" && item.data.reference === "defence")[0];
+    context.skills = context.items.filter(item => item.type === "skill" && item.system.reference !== "defence");
+    context.defenceSkill = context.items.filter(item => item.type === "skill" && item.system.reference === "defence")[0];
     context.isBoss = this.actor.isBoss();
     context.isSupport = this.actor.isSupport();
-    context.eliteRuleset = (this.actor.data.data.level === NPC_LEVEL.secondfiddle) && game.settings.get('cleenmain', 'advancedRules');
+    context.eliteRuleset = (this.actor.system.level === NPC_LEVEL.secondfiddle) && game.settings.get('cleenmain', 'advancedRules');
     context.eliteRulesetModif = context.eliteRuleset && context.unlocked;
+    context.equipmenthtml = TextEditor.enrichHTML(this.actor.system.equipment, {async:false});
 
     return context;
   }
@@ -42,18 +43,19 @@ export default class NpcSheet extends CemBaseActorSheet {
     super.activateListeners(html);
 
     html.find(".npcdefence-roll").click(this._onNpcDefenceRoll.bind(this));
-    html.find(".npcdefence-edit").change(this._onNpcDefenceEdit.bind(this)); 
+    html.find(".npcdefence-edit").change(this._onNpcDefenceEdit.bind(this));
+    html.find(".showimage").click(this._onShowPortrait.bind(this));
   }
 
   _onNpcDefenceRoll(event) {
     event.preventDefault();
-    let defenceSkill = this.actor.items.filter(item => item.type === "skill" && item.data.data.reference === "defence")[0];
-    return this.actor.check(defenceSkill.data._id, "skill");
+    let defenceSkill = this.actor.items.filter(item => item.type === "skill" && item.system.reference === "defence")[0];
+    return this.actor.check(defenceSkill._id, "skill");
   }
 
   _onNpcDefenceEdit(event){
     event.preventDefault();
-    let defenceSkill = this.actor.items.filter(item => item.type === "skill" && item.data.data.reference === "defence")[0];
+    let defenceSkill = this.actor.items.filter(item => item.type === "skill" && item.system.reference === "defence")[0];
     if(defenceSkill === undefined) return;
     const element  = event.currentTarget;
     let field = element.dataset.field;
@@ -62,5 +64,33 @@ export default class NpcSheet extends CemBaseActorSheet {
     else if(element.type === "number") newValue = element.valueAsNumber;
     else newValue = element.value;
     return defenceSkill.update({[field]: newValue});
+  }
+
+  _onShowPortrait(event){
+    event.preventDefault();
+    let actor = this.actor;
+
+    let htmlTemplate = `
+    <h3> ${game.i18n.localize('CLEENMAIN.dialog.display_portrait')} </h3>`;
+    new Dialog({
+        title: game.i18n.localize('CLEENMAIN.dialog.display_portrait_title'), 
+        content: htmlTemplate,
+        buttons: {
+            validate: {
+                label: game.i18n.localize('CLEENMAIN.dialog.button.validate'),
+                callback: () => {
+                  let print = new ImagePopout(actor.img, {
+                    title: actor.name,
+                    shareable: true,
+                    uuid: actor.uuid
+                  }).render(true);
+                  print.shareImage();
+                }
+            }, 
+            close: {
+                label: game.i18n.localize('CLEENMAIN.dialog.button.cancel')
+            }
+        }
+    }).render(true);
   }
 }

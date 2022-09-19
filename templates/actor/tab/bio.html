@@ -1,52 +1,50 @@
 <div class="tab-bio">
   {{#ifn isNpc}}
-    <div class="title-line">
-      <h1 class="column-title">{{localize "CLEENMAIN.label.bio"}}</h1>
-    </div>
+  <p>&nbsp;</p>
     {{/ifn}}
   {{#if unlocked}}
     <div class="description-block">
       <h2 class="column-title">{{localize "CLEENMAIN.label.description"}}</h2>
-      {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+      {{editor descriptionhtml target="system.description" button=true owner=owner editable=editable}}
     </div>
     {{#if isNpc}}
       <div class="description-block">
         <h2 class="column-title">{{localize "CLEENMAIN.label.equipment"}}</h2>
-        {{editor content=data.equipment target="data.equipment" button=true owner=owner editable=editable}}
+        {{editor equipmenthtml target="system.equipment" button=true owner=owner editable=editable}}
       </div>
       <div class="description-block">
         <h2 class="column-title">{{localize "CLEENMAIN.label.tactic"}}</h2>
-        {{editor content=data.tactic target="data.tactic" button=true owner=owner editable=editable}}
+        {{editor actorSystem.tactic target="system.tactic" button=true owner=owner editable=editable}}
       </div>        
       <div class="traits-block">
         <h2 class="column-title">{{localize "CLEENMAIN.label.traits"}}</h2>
-        {{editor content=data.traits target="data.traits" button=true owner=owner editable=editable}}
+        {{editor actorSystem.traits target="system.traits" button=true owner=owner editable=editable}}
       </div>
     {{/if}}
   {{else}}
-    {{#if (isNotEmptyString data.description)}}
+    {{#if (isNotEmptyString actorSystem.description)}}
     <div class="description-block">
       <h2 class="column-title">{{localize "CLEENMAIN.label.description"}}</h2>
-      {{{data.description}}}
+      {{{descriptionhtml}}}
     </div>
     {{/if}}
     {{#if isNpc}}
-      {{#if (isNotEmptyString data.equipment)}}
+      {{#if (isNotEmptyString actorSystem.equipment)}}
       <div class="description-block">
         <h2 class="column-title">{{localize "CLEENMAIN.label.equipment"}}</h2>
-        {{{data.equipment}}}
+        {{{equipmenthtml}}}
       </div>
       {{/if}}
-      {{#if (isNotEmptyString data.tactic)}}
+      {{#if (isNotEmptyString actorSystem.tactic)}}
       <div class="description-block">
         <h2 class="column-title">{{localize "CLEENMAIN.label.tactic"}}</h2>
-        {{{data.tactic}}}
+        {{{actorSystem.tactic}}}
       </div>  
       {{/if}}
-      {{#if (isNotEmptyString data.traits)}}
+      {{#if (isNotEmptyString actorSystem.traits)}}
       <div class="traits-block">
         <h2 class="column-title">{{localize "CLEENMAIN.label.traits"}}</h2>
-        {{{data.traits}}}
+        {{{actorSystem.traits}}}
       </div>
       {{/if}}
     {{/if}}

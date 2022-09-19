@@ -31,6 +31,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
     context.protection = this.actor.getArmorProtection();
     let defenceModifier = this.actor.getModifiers().find( modifier => modifier.type === "behaviour");
     context.defenceModifier = defenceModifier ? defenceModifier.value : 0;
+    context.notebookhtml = TextEditor.enrichHTML(this.actor.system.notebook, {async:false});
 
     return context;
   }
@@ -41,6 +42,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
 
     html.find(".spend-heroism").click(this._onSpendHeroismOnePoint.bind(this));
     html.find(".spend-heroism").contextmenu(this._onSpendHeroismTwoPoints.bind(this));
+    html.find('.item-state').click(async (ev) => await this._onItemStateUpdate(ev));
   }
 
   /** @override */
@@ -75,7 +77,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
    */
   _onDropItem(event, data) {
     Item.fromDropData(data).then((item) => {
-      const itemData = duplicate(item.data);
+      const itemData = duplicate(item);
       switch (itemData.type) {
         case "skill":
           return this._onDropSkillItem(event, itemData);
@@ -99,11 +101,11 @@ export default class PlayerSheet extends CemBaseActorSheet {
     const id = event.target.parentElement.dataset["itemId"];
     const target = this.actor.items.get(id);
     if (!target || target.type !== "weapon") return;
-    let targetData = duplicate(target.data);
-    targetData.data.skillName = itemData.name;
-    targetData.data.skillValue = this.actor.getSkillValue(itemData);
+    let targetData = duplicate(target);
+    targetData.system.skillName = itemData.name;
+    targetData.system.skillValue = this.actor.getSkillValue(itemData);
 
-    targetData.data.skillId = itemData._id;
+    targetData.system.skillId = itemData._id;
 
     this.actor.updateEmbeddedDocuments("Item", [targetData]);
   }
@@ -124,6 +126,31 @@ export default class PlayerSheet extends CemBaseActorSheet {
    _onSpendHeroismTwoPoints(event) {
     event.preventDefault();
     this.actor.useHeroism(2);
+  }
+  
+  async _onItemStateUpdate(event) {
+    event.preventDefault();
+    const div = $(event.currentTarget).parents('.item');
+    const item = this.actor.items.get(div.data('itemId'));
+    console.log(item);
+
+    if (item === null || item === undefined) {
+      return;
+    }
+    let data;
+    switch (item.system.state) {
+      case 'active':
+        data = { _id: item.id, id: item.id, 'system.state': 'equipped' };
+        break;
+      case 'equipped':
+        data = { _id: item.id, id: item.id, 'system.state': 'other' };
+        break;
+      default:
+        data = { _id: item.id, id: item.id, 'system.state': 'active' };
+        break;
+    }    
+    
+    this.actor.updateEmbeddedDocuments("Item", [data]);
   }
 
 }

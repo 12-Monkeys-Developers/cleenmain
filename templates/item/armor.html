@@ -15,8 +15,8 @@
                 </tr>
             </thead> 
             <td>
-                <select name="data.category">
-                    {{#select data.category}}
+                <select name="system.category">
+                    {{#select system.category}}
                     {{#each config.armor.category as |name type|}}
                     <option value="{{type}}">{{localize name}}</option>
                     {{/each}}
@@ -24,21 +24,21 @@
                 </select>
             </td>
             <td>
-                <input name="data.protection" type="text" value="{{data.protection}}" />
+                <input name="system.protection" type="text" value="{{system.protection}}" />
             </td>
             <td>
-                <input name="data.malus" type="number" value="{{data.malus}}" />
+                <input name="system.malus" type="number" value="{{system.malus}}" />
             </td>
             <td>
-                <input name="data.special" type="text" value="{{data.special}}" />
+                <input name="system.special" type="text" value="{{system.special}}" />
             </td>
             <td>
-                <input name="data.quality" type="text" value="{{data.quality}}" />
+                <input name="system.quality" type="text" value="{{system.quality}}" />
             </td>
             </table>
             
             <div class="description">{{localize "CLEENMAIN.label.description"}}</div>
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            {{editor system.description target="system.description" button=true owner=owner editable=editable}}
     </div>
 </form>
 

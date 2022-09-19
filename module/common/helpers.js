@@ -4,8 +4,8 @@ export const registerHandlebarsHelpers = function() {
         return stringtotest.length > 0;
       });
     
-    Handlebars.registerHelper('hasAnytraining', function (data) {
-        return data.trainings.weapons.war || data.trainings.weapons.heavy || data.trainings.armors.shield || data.trainings.armors.war || data.trainings.armors.heavy;
+    Handlebars.registerHelper('hasAnytraining', function (system) {
+        return system.trainings.weapons.war || system.trainings.weapons.heavy || system.trainings.armors.shield || system.trainings.armors.war || system.trainings.armors.heavy;
     });
 
     Handlebars.registerHelper('removeMarkup', function (text) {
@@ -58,7 +58,7 @@ export const registerHandlebarsHelpers = function() {
     });   
 
     Handlebars.registerHelper('keyIndex', function (str) {
-        return 'data.power.' + str + '.description';
+        return 'system.power.' + str + '.description';
     });
 
     Handlebars.registerHelper('addOne', function (v1) {
@@ -100,16 +100,19 @@ export const registerHandlebarsHelpers = function() {
         return "far fa-square";
     });
 
+    Handlebars.registerHelper('getWeaponSkillName', function (actor, item) {
+       const it = actor.items.get(item._id);
+       return it.weaponSkillName(actor);;
+    });
+
     Handlebars.registerHelper('getWeaponSkill', function (actor, item) {
         const it = actor.items.get(item._id);
-        const weaponSkill = it.weaponSkill(actor);
-       return weaponSkill;
+        return it.weaponSkill(actor);;
     });
 
     Handlebars.registerHelper('getWeaponDamage', function (actor, item) {
-        const it = actor.items.get(item._id);
-        const weaponDamage = it.weaponDamage(actor);
-       return weaponDamage;
+       const it = actor.items.get(item._id);       
+       return it.weaponDamage(actor);
     });
 
     Handlebars.registerHelper('getDefenceValue', function (actor) {

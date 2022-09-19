@@ -10,20 +10,20 @@
   font-family: "Merriweather";
   src: url("./assets/fonts/Merriweather-Regular.ttf");
 }
-h1 {
+input {
+  color: #456;
+}
+.cleenmain.sheet.player h1 {
   font-family: "Signika";
   font-size: 1.2rem;
   color: black;
   text-transform: uppercase;
   border: none;
 }
-h2 {
+.cleenmain.sheet.player h2 {
   font-family: "Signika";
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: black;
-}
-input {
-  color: #456;
 }
 .cleenmain.sheet.player .window-content {
   background: no-repeat url('../../../ui/parchment.jpg');
@@ -63,11 +63,14 @@ input {
 .cleenmain.sheet.player .main {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 .cleenmain.sheet.player .main .leftcolumn {
   display: flex;
   flex-direction: column;
-  min-width: 200px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 235px;
   margin-right: 50px;
 }
 .cleenmain.sheet.player .main .leftcolumn .title-line {
@@ -85,6 +88,8 @@ input {
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-family: "Modesto condensed";
+  font-size: 1.1rem;
 }
 .cleenmain.sheet.player .main .leftcolumn .skills .skill-line .skill-name {
   width: 70%;
@@ -108,9 +113,9 @@ input {
   width: 10%;
 }
 .cleenmain.sheet.player .main .central {
-  flex-grow: 4;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .cleenmain.sheet.player .main .central .intro-block {
   display: flex;
@@ -219,6 +224,18 @@ input {
   font-size: 1.2rem;
   color: #705a10;
 }
+.cleenmain.sheet.npc h1 {
+  font-family: "Signika";
+  font-size: 1.2rem;
+  color: black;
+  text-transform: uppercase;
+  border: none;
+}
+.cleenmain.sheet.npc h2 {
+  font-family: "Signika";
+  font-size: 1.2rem;
+  color: black;
+}
 .cleenmain.sheet.npc .input-short {
   width: 2em;
 }
@@ -277,7 +294,7 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line input {
   height: 2em;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line .sheet-unlock {
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line .sheet-change-lock {
   margin-left: auto;
   padding-left: 1em;
   color: #705a10;
@@ -363,6 +380,18 @@ input {
   width: 200px;
   height: 250px;
   object-fit: contain;
+}
+.cleenmain.sheet.item h1 {
+  font-family: "Signika";
+  font-size: 1.2rem;
+  color: black;
+  text-transform: uppercase;
+  border: none;
+}
+.cleenmain.sheet.item h2 {
+  font-family: "Signika";
+  font-size: 1.2rem;
+  color: black;
 }
 .cleenmain.sheet.item .window-content {
   background: repeat url('../../../ui/parchment-white.jpg');
@@ -514,10 +543,14 @@ input {
 .tab-bio .description-block {
   font-family: "Merriweather";
   font-size: 0.7rem;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 .tab-bio .traits-block {
   font-family: "Merriweather";
   font-size: 0.7rem;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 .tab-bio .editor {
   min-height: 5em;
@@ -527,6 +560,26 @@ input {
 }
 .tab-bio .editor .tox.tox-tinymce {
   min-height: 10em;
+}
+.cleenmain.sheet.player .main .tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+}
+.cleenmain.sheet.player .main .tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.cleenmain.sheet.player .main h1 .tooltiptext {
+  font-family: "Merriweather";
+  font-size: 0.7rem;
+  font-weight: normal;
+  text-transform: none;
 }
 .cleenmain.sheet.player .main .central .combat-tab {
   margin: 1em 0 0.5em 0;
@@ -541,13 +594,11 @@ input {
 .cleenmain.sheet.player .main .central .combat-tab .item-create {
   margin-left: auto;
 }
-.cleenmain.sheet.player .main .central .combat-tab .combat-domain-label {
-  margin: 1em 0 0 0;
-}
 .cleenmain.sheet.player .main .central .combat-tab .trainings-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding-bottom: 0.5em;
 }
 .cleenmain.sheet.player .main .central .combat-tab .trainings-list .trainings-group {
   display: flex;
@@ -555,7 +606,7 @@ input {
   flex-grow: 1;
 }
 .cleenmain.sheet.player .main .central .combat-tab .trainings-list .trainings-group .trainings-name {
-  margin: 0 1em 0 0.2em;
+  margin: 0 0.6em 0 0.2em;
 }
 .cleenmain.sheet.player .main .central .combat-tab .bonus-list {
   display: flex;
@@ -566,6 +617,9 @@ input {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
+}
+.cleenmain.sheet.player .main .central .combat-tab .bonus-list .bonus-line .bonus-name {
+  padding: 0 0.5em 0 1em;
 }
 .cleenmain.sheet.player .main .central .combat-tab .bonus-list .bonus-line .bonus-text {
   background: #fffdfc;
@@ -585,7 +639,7 @@ input {
 }
 .cleenmain.sheet.player .main .central .combat-tab .combat-group-label {
   font-style: italic;
-  padding: 1em 0 0.5em 0;
+  padding-right: 0.5em;
 }
 .notes-tab {
   display: flex;
@@ -595,13 +649,16 @@ input {
   font-size: 0.7rem;
 }
 .notes-tab .editor {
-  min-height: 5em;
+  min-height: 200px;
+  max-height: 400px;
+  width: auto;
 }
 .notes-tab .editor .editor-content {
-  min-height: 5em;
+  min-height: 200px;
+  max-height: 400px;
 }
 .notes-tab .editor .tox.tox-tinymce {
-  min-height: 10em;
+  min-height: auto;
 }
 .equipment-tab {
   display: flex;
@@ -640,6 +697,8 @@ input {
 .equipment-tab .equipment-column .equipment-line .equipment-name {
   font-family: "Merriweather";
   font-size: 0.7rem;
+  padding-left: 0.5em;
+  align-self: center;
 }
 .equipment-tab .equipment-column .equipment-line .icon-group {
   margin-left: auto;

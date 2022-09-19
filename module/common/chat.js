@@ -95,17 +95,17 @@ export class CemChat {
         // Set the roll parameter if necessary
         if (this.roll) {
             d.roll = this.roll;
-            d.rollMode = game.settings.get("core", "rollMode");
+            d.rollMode = this.data.rollMode;
             d.type = CONST.CHAT_MESSAGE_TYPES.ROLL;
         }
-        
         // Set the flags parameter if necessary
         if (this.flags) {
             d.flags = this.flags;
         }
 
         // Set the whisper and blind parameters according to the player roll mode settings
-        switch (game.settings.get('core', 'rollMode')) {
+        //switch (game.settings.get('core', 'rollMode')) {
+        switch (this.data.rollMode) {
             case 'gmroll':
                 d.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
                 break;

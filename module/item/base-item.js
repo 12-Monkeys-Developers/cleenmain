@@ -13,19 +13,35 @@ export default class CemBaseItem extends Item {
         super.prepareDerivedData();
     
         // Get the Item's data
-        const itemData = this.data;
-        const data = itemData.data;
+        const system = this.system;
     /*
         // Skill item        
-        if ( itemData.type === "skill" ) {
+        if ( this.type === "skill" ) {
           data.value = Skills.getSkillValue(data.base, data.bonus, data.developed);
         }*/  
     }
     
     getSystemData(field) {
-        return eval(`this.data.data.${field}`);
+        return eval(`this.system.${field}`);
     }
     
+    /**
+     * @name weaponSkillName
+     * @description For weapon Item, get the Name
+     * @param {*} actor 
+     * @returns The name of the skill used 
+     */
+     weaponSkillName(actor) {
+        if (this.type !== "weapon") return;
+        
+        const skillId = this.getSystemData('skillId');
+        if (!skillId) return;
+        const skill = actor.items.get(skillId);
+        if (skill === undefined || skill.type !== "skill") return;
+        const skillName = skill.name;
+        return skillName;
+    }
+
     /**
      * @name weaponSkill
      * @description For weapon Item, calculates the walue of the skill by using the linked skill
@@ -33,18 +49,18 @@ export default class CemBaseItem extends Item {
      * @returns The value of the skill
      */
     weaponSkill(actor) {
-        if (this.data.type !== "weapon") return;
+        if (this.type !== "weapon") return;
         
         if (actor.type === "player") {            
             const skillId = this.getSystemData('skillId');
             if (!skillId) return;
             const skill = actor.items.get(skillId);
-            if (skill.type !== "skill") return;
-            const skillValue = actor.getSkillValue(skill.data);
+            if (skill === undefined || skill.type !== "skill") return;
+            const skillValue = actor.getSkillValue(skill);
             return skillValue;
         }
         if (actor.type === "npc") {
-            if (game.settings.get('cleenmain', 'advancedRules') && (actor.data.data.level === NPC_LEVEL.secondfiddle) && actor.data.data.elite) return this.getSystemData('skillValueNpcElite');
+            if (game.settings.get('cleenmain', 'advancedRules') && (actor.system.level === NPC_LEVEL.secondfiddle) && actor.system.elite) return this.getSystemData('skillValueNpcElite');
             return this.getSystemData('skillValue');
         }        
     }
@@ -56,15 +72,15 @@ export default class CemBaseItem extends Item {
      * @param {*} actor 
      */
     weaponDamage(actor) {
-        if (this.data.type !== "weapon") return;
+        if (this.type !== "weapon") return;
 
         let damage = this.getSystemData('damageBase');
-
+        
         if (this.getSystemData('type') === 'ranged') {
-            damage += " + " + actor.data.data.damageBonus.ranged;
+            damage += " + " + actor.system.damageBonus.ranged;
         }
         else if (this.getSystemData('type') === 'melee') {
-            damage += " + " + actor.data.data.damageBonus.melee;
+            damage += " + " + actor.system.damageBonus.melee;
         }
         return damage;
     }
@@ -75,7 +91,7 @@ export default class CemBaseItem extends Item {
      *  For a player : damage = damageBase + melee/range bonus
      *  For a npc : damage = damageBase
      * @param {*} actor 
-     * @param {*} dices The dices results of a roll
+     * @param {*} dices The dices results of a roll, if there are 3 dices it's an attack
      * @param {*} useHeroism 
      * @param {*} lethalattack Number of Letah Attack boon
      * @param {*} minorinjury  Number of Minor Injury penalty
@@ -83,9 +99,9 @@ export default class CemBaseItem extends Item {
      * @returns 
      */
      calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury, multipleattacks) {
-        if (this.data.type !== "weapon") return;
+        if (this.type !== "weapon") return;
 
-        let nbDamageDices = parseInt(this.getSystemData('damageBase').substring(0,1));
+        const nbDamageDices= this.getSystemData('damageBase').match(/([0-9])d6/) ? parseInt(this.getSystemData('damageBase').match(/([0-9])d6/)[1]) : 0;
         let damageFormula = null;
         let damage = 0;
         let nbSix = 0;
@@ -94,14 +110,23 @@ export default class CemBaseItem extends Item {
         // Damage ToolTip creation
         let damageToolTipInfos = Rolls.createDamageToolTip("weapon", nbDamageDices, dices);
 
-        for (let index = 0; index < nbDamageDices; index++) {
-            let indexMod = nbDamageDices == 2 ? index+1 : index;
-            damage += dices[indexMod].result;
-            if (dices[indexMod].result == 6) nbSix++;  
+        // If it's a damage roll, there are as many nbDamageDices than dices
+        if (dices.length == nbDamageDices) {
+            for (let index = 0; index < nbDamageDices; index++) {
+                damage += dices[index].result;
+                if (dices[index].result == 6) nbSix++;  
+            }
         }
+        else {
+            for (let index = 0; index < nbDamageDices; index++) {
+                let indexMod = nbDamageDices == 2 ? index + 1 : index;
+                damage += dices[indexMod].result;
+                if (dices[indexMod].result == 6) nbSix++;  
+            }
+        }    
 
         // Damage formula for npc
-        if (actor.data.type === "npc") {
+        if (actor.type === "npc") {
             damageFormula = this.getSystemData('damageBase');
 
             // xd6 + value : 2d6 + 2
@@ -118,15 +143,15 @@ export default class CemBaseItem extends Item {
         } 
 
         // Damage formula and bonus for player
-        if (actor.data.type === "player") {
+        if (actor.type === "player") {
             damageFormula = nbDamageDices + "d6";
             if (this.getSystemData('range') > 0) {
-                damageFormula += " + " + parseInt(actor.data.data.damageBonus.ranged);
-                damage += parseInt(actor.data.data.damageBonus.ranged);
+                damageFormula += " + " + parseInt(actor.system.damageBonus.ranged);
+                damage += parseInt(actor.system.damageBonus.ranged);
             }
             else {
-                damageFormula += " + " + parseInt(actor.data.data.damageBonus.melee);
-                damage += parseInt(actor.data.data.damageBonus.melee);
+                damageFormula += " + " + parseInt(actor.system.damageBonus.melee);
+                damage += parseInt(actor.system.damageBonus.melee);
             }
 
             if (useHeroism) {
@@ -161,7 +186,7 @@ export default class CemBaseItem extends Item {
             } else {
                 damageFormula += " + " + lethalattack + "d6";
             }
-            const lethalRoll = new Roll(lethalFormula, {}).roll({ async: false })
+            const lethalRoll = new Roll(lethalFormula, {}).roll({ async: false });
             let lethalDices = [];
             for (let index = 0; index < lethalRoll.dice.length; index++) {
                 const dice = lethalRoll.dice[index];
