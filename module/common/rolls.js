@@ -114,6 +114,13 @@ export class Rolls {
                     formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
                 }
             }
+            if (actor.isPlayer() && actor.isInBadShape()) {
+                let modValue = actor.system.health.badShapeSkillBonus ? " + "+actor.system.health.badShapeSkillBonus.toString() : ' - 2';
+                let tooltipModValue =  actor.system.health.badShapeSkillBonus ? "+"+actor.system.health.badShapeSkillBonus.toString() : '-2';
+                rollFormulaDisplay = rollFormulaDisplay.concat(modValue);
+                rollFormula += modValue;
+                formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.badshape") + tooltipModValue;
+            }
         }
 
         // Damage roll
