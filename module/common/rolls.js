@@ -25,6 +25,8 @@ export class Rolls {
         let rollFormula;
         let formulaTooltip = "";
 
+        if(actor.type==="npc" && game.user.isGM) data.rollMode = "gmroll";
+
         // Skill Roll
         if (rollType === "skill") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleskill", {itemName: item.name});
@@ -325,7 +327,8 @@ export class Rolls {
                 skillRoll: data.skillRoll,
                 attackRoll: data.attackRoll,
                 damageRoll: data.damageRoll,
-                rolls: rolls
+                rolls: rolls,
+                rollMode: data.rollMode
             })
             .withRoll(true)
             .create();        

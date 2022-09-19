@@ -7,6 +7,10 @@
     </div>
     <div class="equipment-column droppable">
         {{#each equipments as |item id|}}
+
+        <span class="tooltip">{{protection}}<span class="tooltiptext">{{localize "CLEENMAIN.tooltip.protection"}}</span></span>
+
+
         <div class="equipment-line item" data-item-id="{{_id}}">
             <div class="image-container">
                 <img src="{{item.img}}" title="{{item.name}}" />
@@ -19,7 +23,7 @@
                 <a class="inline-delete" data-type="equipment" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i
                         class="fas fa-trash"></i></a>
             </div>
-            {{else}}
+            {{/if}}
             <div class="icon-group">
                 {{#ife item.system.state "active"}}
                 <a class="item-state" title="{{localize 'CLEENMAIN.equipment.active'}}"><i class="fas fa-hand"></i></a>
@@ -28,8 +32,9 @@
                 {{else}}
                     <a class="item-state" title="{{localize 'CLEENMAIN.equipment.other'}}"><i class="fas fa-house"></i></a>
                 {{/ife}}
+                <a class="item-open-sheet" data-type="equipment" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i
+                    class="fas fa-pen"></i></a>
             </div>
-            {{/if}}
         </div>
         {{/each}}
     </div>
