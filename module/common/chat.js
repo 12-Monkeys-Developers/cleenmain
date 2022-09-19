@@ -98,7 +98,6 @@ export class CemChat {
             d.rollMode = this.data.rollMode;
             d.type = CONST.CHAT_MESSAGE_TYPES.ROLL;
         }
-        console.log("data",this.data.rollMode);
         // Set the flags parameter if necessary
         if (this.flags) {
             d.flags = this.flags;

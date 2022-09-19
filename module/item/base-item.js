@@ -101,7 +101,7 @@ export default class CemBaseItem extends Item {
      calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury, multipleattacks) {
         if (this.type !== "weapon") return;
 
-        const nbDamageDices = parseInt(this.getSystemData('damageBase').substring(0,1));
+        const nbDamageDices= this.getSystemData('damageBase').match(/([0-9])d6/) ? parseInt(this.getSystemData('damageBase').match(/([0-9])d6/)[1]) : 0;
         let damageFormula = null;
         let damage = 0;
         let nbSix = 0;
