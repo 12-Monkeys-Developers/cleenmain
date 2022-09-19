@@ -27,6 +27,7 @@ export class Rolls {
         let heroismBonus1d6 = false;
 
         if(actor.type==="npc" && game.user.isGM) data.rollMode = "gmroll";
+        console.log(item);
 
         // Skill Roll
         if (rollType === "skill") {
@@ -88,9 +89,9 @@ export class Rolls {
         if (rollType === "weapon-attack") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleweapon", {itemName: item.name});
             attackRoll = true;
-            rollFormula = "1d6[red] + 2d6[white] + " +  item.weaponSkill(actor);
-            rollFormulaDisplay = "3d6 + " + item.weaponSkill(actor);            
-            formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + item.weaponSkill(actor);
+            rollFormula = "1d6[red] + 2d6[white] + " +  item.weaponSkill(actor) + (item.system.skillBonus ? " + " + item.system.skillBonus.toString():"");
+            rollFormulaDisplay = "3d6 + " + item.weaponSkill(actor) + (item.system.skillBonus ? " + " + item.system.skillBonus.toString():"");            
+            formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + item.weaponSkill(actor) + (item.system.skillBonus ? ", " + game.i18n.format("CLEENMAIN.tooltip.weaponbonus") + item.system.skillBonus.toString():"");
 
             introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingChar.name, itemName: item.name});
 

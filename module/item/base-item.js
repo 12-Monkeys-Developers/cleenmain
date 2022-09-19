@@ -102,6 +102,7 @@ export default class CemBaseItem extends Item {
         if (this.type !== "weapon") return;
 
         const nbDamageDices= this.getSystemData('damageBase').match(/([0-9])d6/) ? parseInt(this.getSystemData('damageBase').match(/([0-9])d6/)[1]) : 0;
+        const baseBonusDamage= this.getSystemData('damageBase').match(/d6[ ]?\+[ ]?([0-9])/) ? parseInt(this.getSystemData('damageBase').match(/d6[ ]?\+[ ]?([0-9])/)[1]) : 0;
         let damageFormula = null;
         let damage = 0;
         let nbSix = 0;
@@ -144,7 +145,8 @@ export default class CemBaseItem extends Item {
 
         // Damage formula and bonus for player
         if (actor.type === "player") {
-            damageFormula = nbDamageDices + "d6";
+            damageFormula = this.getSystemData('damageBase');
+            damage += baseBonusDamage;
             if (this.getSystemData('range') > 0) {
                 damageFormula += " + " + parseInt(actor.system.damageBonus.ranged);
                 damage += parseInt(actor.system.damageBonus.ranged);

@@ -108,17 +108,19 @@
             },
             "add": "New weapon",
             "delete": "Delete weapon",
+            "diceRerollNb": "Rerolls",
             "name": "Name",
             "attack": "Attack",
             "targets": "targets",
             "damage": "Damage",
             "range": "Range",
-            "skillName": "Skill",
-            "special": "Special",
-            "zone": "Zone",
+            "rollBonus": "Roll bonus",
             "sixPlus": "6+",
             "skillValueNpc": "skill",
-            "skillValueNpcElite": "skill (elite)"
+            "skillValueNpcElite": "skill (elite)",
+            "skillName": "Skill",
+            "special": "Special",
+            "zone": "Zone"
         },
         "chatmessage":{
             "badshapedamage": "In bad shape",
@@ -392,7 +394,8 @@
             "defence_modifier": "Modificateur au prochain jet de de défense",
             "protection": "Valeur totale de protection",
             "skill" : "Skill: ",
-            "untrained": "Untrained penalty"
+            "untrained": "Untrained penalty",
+            "weaponbonus": "Weapon bonus: "
         },
         "wealth": {
             "platinium": "Platinium",

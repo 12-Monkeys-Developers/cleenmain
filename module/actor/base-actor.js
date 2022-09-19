@@ -236,7 +236,7 @@ export default class CemBaseActor extends Actor {
      * @returns The total of protection
      */
     getArmorProtection() {
-        let protection = 0;
+        let protection = this.system.health.bonusProtection ?? 0;
         const armors = this.items.filter(i=>i.type === "armor");
         armors.forEach(armor => {
             if (armor.system.category !== "shield" && armor.system.state==="active") protection += parseInt(armor.system.protection);
@@ -291,11 +291,15 @@ export default class CemBaseActor extends Actor {
         this.system.health.bonus+=options.value;
         return;
     }
+    boonEffect_protection_bonus(options){
+        if(!options?.value) return;
+        this.system.health.bonusProtection = options.value;
+    }
     boonEffect_skill_bonus(options){
         if(!options?.reference || !options?.value) return;
         const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
         for (let skill of skillList){
-            skill.system.rollBonus=options.value;
+            skill.system.rollBonus=skill.system.rollBonus? skill.system.rollBonus+options.value:options.value;
         }
         return;
     }
@@ -314,5 +318,12 @@ export default class CemBaseActor extends Actor {
     boonEffect_badShape_damageBonus(options){
         if(!options?.value) return;
         this.system.health.badShapeDamageBonus=options.value;
+    }
+    boonEffect_badShape_skill_heroism_bonus1d6(options){
+        if(!options?.reference || !this.isInBadShape()) return;
+        const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
+        for (let skill of skillList){
+            skill.system.heroismBonus1d6=true;
+        }
     }
 }

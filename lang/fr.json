@@ -368,7 +368,8 @@
             "defence_modifier": "Modificateur au prochain jet de de défense",
             "protection": "Valeur totale de protection",
             "skill" : "Compétence: ",
-            "untrained": "Pénalité non-entrainé"
+            "untrained": "Pénalité non-entrainé",
+            "weaponbonus": "Bonus de l'arme: "
         },
         "wealth": {
             "platinium": "Platine",
@@ -389,17 +390,19 @@
             },
             "add": "Nouvelle arme",
             "delete": "Supprimer l'arme",
+            "diceRerollNb": "Relances",
             "name": "Nom",
             "attack": "Attaque",
             "targets": "Cibles",
             "damage": "Dégâts",
             "range": "Portée",
+            "rollBonus": "Bonus au jet",
             "skillName": "Compétence",
-            "special": "Spécial",
-            "zone": "Zone",
-            "sixPlus": "6+",
             "skillValueNpc": "Compétence",
-            "skillValueNpcElite": "Comp. (élite)"
+            "skillValueNpcElite": "Comp. (élite)",
+            "sixPlus": "6+",
+            "special": "Spécial",
+            "zone": "Zone"
         }
     }
 }

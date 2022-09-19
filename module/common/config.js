@@ -63,11 +63,13 @@ export const CLEENMAIN = {
                 heroism:"<p>Grâce aux points d’héroïsme, cinq effets sont possibles : </p><ul><li>Effectuer un test de compétence avec 4d6 au lieu de 3 habituels. Coût : 1 point d’héroïsme</li><li>Après avoir effectué un test, l’annuler et le recommencer (en lançant le même nombre de dés). Coût : 1 point d’héroïsme</li><li>Déclencher l’effet héroïque d’un de ses atouts. Coût : 1 point d’héroïsme</li><li>Au moment de subir des dégâts annoncés par le MJ, les annuler, ainsi que les désagréments qui les accompagneraient. Coût : 2 points d’héroïsme</li><li>Encaisser des dégâts à la place d’un allié proche. Coût : 2 points d’héroïsme</li></ul><p>Un joueur peut utiliser les points d’Héroïsme comme il le souhaite, cumulant différents effets s’il le désire. Cependant, il ne peut utiliser chacun des cinq effets présentés ci-dessus qu’une seule fois par tour de jeu, mais ce en plus de l’action et des défenses de son personnage.</p><p><em>Récupération des points d’héroïsme</em> : Ils sont récupérés au début d'un scénario.<br /></p></div>"
         },
         boon_effect: {
-                health_bonus : "health_bonus", // options: {value : number}  for example {value: 4}
-                skill_bonus: "skill_bonus", // options: {reference: string, value : number}  for example {reference: "willpower", value: 3}
-                skill_heroism_bonus1d6: "skill_heroism_bonus1d6", // options: {reference: string}  for example {reference: "willpower"}
-                badShape_skillBonus: "badShape_skillBonus", // options: {value : number}  for example {value: 2}
-                badShape_damageBonus: "badShape_damageBonus"  // options: {value : string}  for example {value:"1d6"}
+                health_bonus : "Bonus to health, options: {value : number}  for example {value: 4}",
+                skill_bonus: "Bonus to skill, options: {reference: string, value : number}  for example {reference: 'willpower', value: 3}",
+                skill_heroism_bonus1d6: "+2d6 when using heroism on skill, options: {reference: string}  for example {reference: 'willpower'}",
+                badShape_skillBonus: "Bonus instead of -2 on skills when in bad shape, options: {value : number}  for example {value: 2}",
+                badShape_damageBonus: "Bonus on damage when in bad shape, options: {value : string}  for example {value:'1d6'}",
+                badShape_skill_heroism_bonus1d6:"+2d6 when using heroism on skill while in bad shape, options: {reference: string}  for example {reference: 'willpower'}",
+                protection_bonus: "permanent bonus to protection, option: {value : number} example: {value: 4}"
         }
 };
 
@@ -77,3 +79,4 @@ export const HEALTH_STATUS = {
         "unconscious": "CLEENMAIN.health.status.unconscious",
         "riskOfDeath": "CLEENMAIN.health.status.riskofdeath"
 }
+
