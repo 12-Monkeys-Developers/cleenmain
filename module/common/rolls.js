@@ -24,6 +24,7 @@ export class Rolls {
         let rollFormulaDisplay;
         let rollFormula;
         let formulaTooltip = "";
+        let heroismBonus1d6 = false;
 
         if(actor.type==="npc" && game.user.isGM) data.rollMode = "gmroll";
 
@@ -32,9 +33,12 @@ export class Rolls {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleskill", {itemName: item.name});
             skillRoll = true;
             let value = actor.getSkillValue(item).toString();
+            let rollBonus=item.system.rollBonus;
+            if(rollBonus) value += " + "+rollBonus.toString();
             rollFormulaDisplay = "3d6 + " + value;
             rollFormula = "1d6[red] + 2d6[white] + " + value;
             formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + value;
+            heroismBonus1d6 = item.system.heroismBonus1d6 ? true:false;
 
             introText = game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: data.actingChar.name, itemName: item.name});
 
@@ -55,9 +59,11 @@ export class Rolls {
                 }
             }
             if (actor.isPlayer() && actor.isInBadShape() && !data.options?.badShapeRoll) {
-                rollFormulaDisplay = rollFormulaDisplay.concat(' - 2');
-                rollFormula += ' - 2';
-                formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.badshape") + "-2";
+                let modValue = actor.system.health.badShapeSkillBonus ? " + "+actor.system.health.badShapeSkillBonus.toString() : ' - 2';
+                let tooltipModValue =  actor.system.health.badShapeSkillBonus ? "+"+actor.system.health.badShapeSkillBonus.toString() : '-2';
+                rollFormulaDisplay = rollFormulaDisplay.concat(modValue);
+                rollFormula += modValue;
+                formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.badshape") + tooltipModValue;
             }
 
             // Defence check : bonus or malus from boon or penality
@@ -136,7 +142,8 @@ export class Rolls {
                 formulaTooltip: formulaTooltip,
                 skillRoll: skillRoll,
                 attackRoll: attackRoll,
-                damageRoll: damageRoll
+                damageRoll: damageRoll,
+                heroismBonus1d6: heroismBonus1d6
         });
 
         // Display the action panel
@@ -177,9 +184,10 @@ export class Rolls {
 
                         if (html.find("#heroism")[0]?.checked) {
                             data.useHeroism = true;
-                            data.formula += ' + 1d6';
-                            data.formulaColor += ' + 1d6[bronze]';
-                            data.applyModifiers.push(game.i18n.format("CLEENMAIN.chatmessage.heroismmodifier"));
+                            let dice = item.system.heroismBonus1d6 ? "2":"1";
+                            data.formula += ' + '+dice+'d6';
+                            data.formulaColor += ' + '+dice+'d6[bronze]';
+                            data.applyModifiers.push(game.i18n.format("CLEENMAIN.chatmessage.heroismmodifier", {dice:dice}));
                             actor.useHeroism(1);
                         }
                         
@@ -262,6 +270,7 @@ export class Rolls {
                         // Status
                         if (actor.isPlayer() && actor.isInBadShape()) {
                             data.applyModifiers.push(game.i18n.localize("CLEENMAIN.health.status.badshape"));
+                            data.badShapeDamageBonus = actor.system.health.badShapeDamageBonus ?? 0;
                         }
 
                         // Calculate the final difficulty
@@ -305,7 +314,7 @@ export class Rolls {
         let attackDamage = null;
 
         if (item.type === "weapon") {
-            attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack, data.minorinjury, data.multipleattacks);
+            attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack, data.minorinjury, data.multipleattacks, data.badShapeDamageBonus);
             attackDamage.rolls.forEach(r => {rolls.push(r)});
         }
         

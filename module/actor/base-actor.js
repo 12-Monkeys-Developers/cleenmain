@@ -6,7 +6,7 @@ export default class CemBaseActor extends Actor {
     /** @override */
     prepareBaseData(){
         super.prepareBaseData();
-
+        this._computeBoons();
         if (this.isPlayer()) this._prepareBaseDataPlayer();
         if (this.isNpc()) this._prepareBaseDataNpc();
     }
@@ -267,7 +267,52 @@ export default class CemBaseActor extends Actor {
         return this.isPlayer() ? this.system.health.value <= 0 : false;
     }
 
+    healthMax(){
+        return(this.system.health.max + this.system.health.bonus)
+    }
+
     setHealthToMax(){
-        this.update({'system.health.value': this.system.health.max});
+        this.update({'system.health.value': this.system.health.max + this.system.health.bonus});
+    }
+
+    _computeBoons() {
+        const boonsList = this.items.filter(element => element.type === "boon" && element.system.developed && element.system?.effect.length>0);
+        if(!this.system.health.bonus) this.system.health.bonus = 0;
+        for(let boon of boonsList){
+            for(let boonEffect of boon.system.effect){
+                if( typeof this["boonEffect_"+boonEffect.name] == "function" ) {
+                    this["boonEffect_"+boonEffect.name](boonEffect.options);
+                }
+            }
+        }
+    }
+    boonEffect_health_bonus(options){
+        if(!options?.value) return;
+        this.system.health.bonus+=options.value;
+        return;
+    }
+    boonEffect_skill_bonus(options){
+        if(!options?.reference || !options?.value) return;
+        const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
+        for (let skill of skillList){
+            skill.system.rollBonus=options.value;
+        }
+        return;
+    }
+    boonEffect_skill_heroism_bonus1d6(options){
+        if(!options?.reference) return;
+        const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
+        for (let skill of skillList){
+            skill.system.heroismBonus1d6=true;
+        }
+        return;
+    }
+    boonEffect_badShape_skillBonus(options){
+        if(!options?.value) return;
+        this.system.health.badShapeSkillBonus=options.value;
+    }
+    boonEffect_badShape_damageBonus(options){
+        if(!options?.value) return;
+        this.system.health.badShapeDamageBonus=options.value;
     }
 }

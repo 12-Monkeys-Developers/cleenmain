@@ -71,7 +71,7 @@
                             {{#if unlocked}}
                                 <input class="health-input" title="{{localize 'CLEENMAIN.health.max'}}" id="health" name="system.health.max" type="number" value="{{actorSystem.health.max}}"/>
                             {{else}}
-                                <div class="central-text">{{actorSystem.health.max}}</div>
+                                <div class="central-text">{{healthMax}}</div>
                             {{/if}}
                             {{#if badShape}}
                             <div class="central-text badshape-text"><a class="info-window" data-field="badshape">{{localize "CLEENMAIN.health.status.badshape"}}</a> <a class="badshape-roll" data-field="willpower"><i class="fas fa-dizzy"></i></a> <a class="badshape-roll" data-field="resistance"><i class="fas fa-skull"></i></a></div>

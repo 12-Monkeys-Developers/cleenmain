@@ -121,8 +121,9 @@
             "skillValueNpcElite": "skill (elite)"
         },
         "chatmessage":{
+            "badshapedamage": "In bad shape",
             "custommodifier": "Custom modifier used : ({rollModifier}).",
-            "heroismmodifier": "One Heroism point used : +1d6",
+            "heroismmodifier": "One Heroism point used : +{dice}d6",
             "rollformula": "Dices rolled: ",
             "rollresult": "Result of the dice roll: ",
             "rollDamageFormula": "Damage roll:",
@@ -142,6 +143,7 @@
             "display_help_title": "Résumé de règles",
             "rollmodifier": "Modifier for the roll: ",
             "heroism": "Spend an heroism point for +1d6.",
+            "heroismBonus1d6": "Spend an heroism point for +2d6.",
             "introskill": "{actingCharName} uses the skill {itemName}.",
             "titleskill": "Roll of {itemName}",
             "introweapon": "{actingCharName} attacks with {itemName}.",

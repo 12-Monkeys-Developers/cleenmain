@@ -119,7 +119,8 @@
             "templates": ["base"],
             "developed": false,
             "limitedUse" : false,
-            "used" : false
+            "used" : false,
+            "effect": []
         },
         "equipment":{
             "templates": ["base", "state"],

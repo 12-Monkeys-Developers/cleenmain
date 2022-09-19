@@ -97,8 +97,9 @@
             "used": "Utilisé : "
         },
         "chatmessage":{
+            "badshapedamage": "Mal en point",
             "custommodifier": "Modificateur libre ajouté : ({rollModifier})",
-            "heroismmodifier": "Point d'Héroïsme utilisé : +1d6",
+            "heroismmodifier": "Point d'Héroïsme utilisé : +{dice}d6",
             "rollformula": "Dés lancés :",
             "rollresult": "Résultat du jet : ",
             "rollDamageFormula": "Jet de dégâts :",
@@ -118,6 +119,7 @@
             "display_help_title": "Résumé de règles",
             "rollmodifier": "Modificateur pour le jet: ",
             "heroism": "Utiliser un point d'héroïsme pour +1d6.",
+            "heroismBonus1d6": "Utiliser un point d'héroïsme pour +2d6.",
             "introskill": "{actingCharName} utilise la compétence {itemName}",
             "titleskill": "Jet de {itemName}",
             "introweapon": "{actingCharName} attaque avec {itemName}",
