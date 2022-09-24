@@ -1,5 +1,4 @@
 import { CemBaseActorSheet } from "./base-sheet.js";
-import { NPC_LEVEL } from "../../common/constants.js";
 
 export default class NpcSheet extends CemBaseActorSheet {
 
@@ -31,7 +30,7 @@ export default class NpcSheet extends CemBaseActorSheet {
     context.defenceSkill = context.items.filter(item => item.type === "skill" && item.system.reference === "defence")[0];
     context.isBoss = this.actor.isBoss();
     context.isSupport = this.actor.isSupport();
-    context.eliteRuleset = (this.actor.system.level === NPC_LEVEL.secondfiddle) && game.settings.get('cleenmain', 'advancedRules');
+    context.eliteRuleset = (this.actor.system.level === game.cleenmain.config.npc_level.secondfiddle) && game.settings.get('cleenmain', 'advancedRules');
     context.eliteRulesetModif = context.eliteRuleset && context.unlocked;
     context.equipmenthtml = TextEditor.enrichHTML(this.actor.system.equipment, {async:false});
 

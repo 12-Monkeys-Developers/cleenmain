@@ -1,6 +1,5 @@
 import { Rolls } from "../common/rolls.js";
 import { Utils } from "../common/utils.js";
-import { NPC_LEVEL } from "../common/constants.js";
 export default class CemBaseActor extends Actor {
 
     /** @override */
@@ -37,7 +36,7 @@ export default class CemBaseActor extends Actor {
     _initializeNpcHealth(){
         let numberOfPlayers = game.settings.get('cleenmain', 'numberOfPlayers');
 
-        if(game.settings.get('cleenmain', 'advancedRules') && (this.system.level === NPC_LEVEL.secondfiddle) && this.system.elite){
+        if(game.settings.get('cleenmain', 'advancedRules') && (this.system.level === game.cleenmain.config.npc_level.secondfiddle) && this.system.elite){
             this.system.health.max = this.system.healthByNumberPlayers[numberOfPlayers]*2;
         }
         else this.system.health.max =  this.system.healthByNumberPlayers[numberOfPlayers];
@@ -55,11 +54,11 @@ export default class CemBaseActor extends Actor {
     }
 
     isBoss() {
-        return this.isNpc() ? this.system.level === NPC_LEVEL.boss : false;   
+        return this.isNpc() ? this.system.level === game.cleenmain.config.npc_level.boss : false;   
     }
 
     isSupport() {
-        return this.isNpc() ? this.system.level === NPC_LEVEL.support : false;
+        return this.isNpc() ? this.system.level === game.cleenmain.config.npc_level.support : false;
     }
     
     /**
@@ -87,7 +86,7 @@ export default class CemBaseActor extends Actor {
     getSkillValue(skill){
         let newValue = 0;
         if(this.isNpc()){
-            if(game.settings.get('cleenmain', 'advancedRules') && (this.system.level === NPC_LEVEL.secondfiddle) && this.system.elite){
+            if(game.settings.get('cleenmain', 'advancedRules') && (this.system.level === game.cleenmain.config.npc_level.secondfiddle) && this.system.elite){
                 newValue = skill.system.baseNpcElite + skill.system.bonus;
             }
             else newValue = skill.system.base + skill.system.bonus;

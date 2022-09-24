@@ -70,6 +70,17 @@ export const CLEENMAIN = {
                 badShape_damageBonus: "Bonus on damage when in bad shape, options: {value : string}  for example {value:'1d6'}",
                 badShape_skill_heroism_bonus1d6:"+2d6 when using heroism on skill while in bad shape, options: {reference: string}  for example {reference: 'willpower'}",
                 protection_bonus: "permanent bonus to protection, option: {value : number} example: {value: 4}"
+        },
+        max_heroism: {
+            "TWO_PLAYERS": 10,
+            "THREE_PLAYERS": 8,
+            "FOUR_PLAYERS": 6,
+            "FIVE_PLAYERS": 4        
+        },
+        npc_level: {
+            "support": "support",
+            "secondfiddle": "secondfiddle",
+            "boss": "boss"
         }
 };
 

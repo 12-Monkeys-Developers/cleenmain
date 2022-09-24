@@ -1,5 +1,4 @@
 import { Skills } from "../common/skills.js";
-import { NPC_LEVEL } from "../common/constants.js";
 import { Rolls } from "../common/rolls.js";
 export default class CemBaseItem extends Item {
 
@@ -60,7 +59,7 @@ export default class CemBaseItem extends Item {
             return skillValue;
         }
         if (actor.type === "npc") {
-            if (game.settings.get('cleenmain', 'advancedRules') && (actor.system.level === NPC_LEVEL.secondfiddle) && actor.system.elite) return this.getSystemData('skillValueNpcElite');
+            if (game.settings.get('cleenmain', 'advancedRules') && (actor.system.level === game.cleenmain.config.npc_level.secondfiddle) && actor.system.elite) return this.getSystemData('skillValueNpcElite');
             return this.getSystemData('skillValue');
         }        
     }

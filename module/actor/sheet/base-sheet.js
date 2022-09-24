@@ -14,7 +14,7 @@ export class CemBaseActorSheet extends ActorSheet {
     context.actorSystem = context.actor.system;
     context.flags = context.actor.flags;
     context.id = context.actor.id;
-    context.config = CONFIG.CLEENMAIN;
+    context.config = game.cleenmain.config;
     context.editable = this.isEditable;
     context.isGm = game.user.isGM;
 
@@ -227,7 +227,7 @@ export class CemBaseActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     let infoReference = element.dataset.field;
-    let infoTemplate = CONFIG.CLEENMAIN.infoTemplate[infoReference];
+    let infoTemplate = game.cleenmain.config.infoTemplate[infoReference];
 
     if (!infoTemplate) return;
     new Dialog({
