@@ -2,6 +2,18 @@ export default function registerSystemSettings() {
 
     const debouncedReload = foundry.utils.debounce(() => window.location.reload(), 100);
 
+    async function setAllActorsHealthToMax(){
+        for(let actor of game.actors){
+            if(actor.type==="npc") {
+                actor._initializeNpcHealth();
+                actor.setHealthToMax();
+            }
+            else{
+                actor._prepareBaseDataPlayer()
+            }
+        }
+    }
+
     game.settings.register('cleenmain', 'numberOfPlayers', {
         name: 'CLEENMAIN.options.numberofplayers.name',
         hint: 'CLEENMAIN.options.numberofplayers.hint',
@@ -15,7 +27,7 @@ export default function registerSystemSettings() {
             "four" : 'CLEENMAIN.options.numberofplayers.four',
             "five" : 'CLEENMAIN.options.numberofplayers.five'
         },
-        onChange: () => debouncedReload(),
+        onChange: () => setAllActorsHealthToMax(),
     });
     game.settings.register('cleenmain', 'advancedRules', {
         name: 'CLEENMAIN.options.advancedrules.name',
