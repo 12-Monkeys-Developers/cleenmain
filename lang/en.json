@@ -49,6 +49,10 @@
             "weapons": "Weapons",
             "wounds": "Wounds"
         },
+        "combatTracker": {
+            "tourNotPlayed": "Click when the tour has not been played",
+            "tourPlayed": "CLick when the tour has been played"
+        },
         "armor": {
             "category": {
                 "standard": "Standard",

@@ -49,6 +49,10 @@
             "weapons": "Armes",
             "wounds": "Blessures"
         },
+        "combatTracker": {
+            "tourNotPlayed": "Cliquer quand le tour n'a pas été joué",
+            "tourPlayed": "Cliquer quand le tour a été joué"
+        },
         "armor": {
             "category": {
                 "standard": "Normale",
