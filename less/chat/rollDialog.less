@@ -2,8 +2,7 @@
     background-color: @clear-background;
     display: flex;
     flex-direction: column;
-    font-family: @dialog-font;
-    font-size: @dialog-font-size;
+    font: @dialog-font;
     .tooltip {
     position: relative;
     display: inline-block;
@@ -30,7 +29,7 @@
     .intro{
         display: flex;
         flex-direction: row;
-        align-content: center;
+        justify-content:center;
         .introImg {
             border: none;
             padding: 5px;
@@ -41,18 +40,16 @@
             align-self:center;
         }
         .introtext{
-            font-size: @dialog-intro-font-size;
-            font-weight: @dialog-intro-font-weight;
+            font: @dialog-intro-font;
+            margin: 0.5em;
             padding-top: 1.5em;
             text-align: center;
-            width: 300px;
         }
     }
     .formula{
         text-align: center;
         margin: 0.5em;
-        font-size: @dialog-intro-font-size;
-        font-weight: @dialog-intro-font-weight;
+        font: @dialog-formula-font;
     }
     .rollmodifier{
         display: flex;
@@ -65,6 +62,9 @@
     }
     .paddingend{
         padding: 0 0 5em 0;
+    }
+    .bonus-label{
+        font: @dialog-bonus-label-font;
     }
     .bonus{
         h2{

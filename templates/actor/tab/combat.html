@@ -34,7 +34,7 @@
             <div class="trainings-name">{{localize "CLEENMAIN.armor.category.shield"}}</div>
         </div>
     </div>
-    <div class="items armors droppable">
+    <div class="combat-table-head armors droppable">
         <table>
             <thead>
                     <tr>
@@ -48,7 +48,7 @@
             </thead>
             {{#each armors as |item id|}}  <tr class="item" data-item-id="{{_id}}"></tr>
             {{#ife item.system.state "active"}}
-                <tr class="item" data-item-id="{{_id}}">
+                <tr class="combat-table" data-item-id="{{_id}}">
                     <th>{{name}}</th>
                     <th>{{getCategoryLabel "armor" item.system.category}}</th>
                     <th>{{item.system.protection}}</th>
@@ -109,31 +109,27 @@
             {{/if}}
         </div>
     </div>
-    <div class="items weapons droppable">
+    <div class="weapons droppable">
         <table>
-            <thead>
+            <thead class="combat-table-head">
                 <tr>
                     <th>{{localize "CLEENMAIN.weapon.name"}}</th>
                     <th>{{localize "CLEENMAIN.label.category"}}</th>
                     <th>{{localize "CLEENMAIN.weapon.skillName"}}</th>
                     <th>{{localize "CLEENMAIN.weapon.attack"}}</th>
                     <th>{{localize "CLEENMAIN.weapon.damage"}}</th>
-                    <th>{{localize "CLEENMAIN.weapon.range"}}</th>
-                    <th>{{localize "CLEENMAIN.weapon.zone"}}</th>
                     <th>{{localize "CLEENMAIN.weapon.sixPlus"}}</th>
                     <th></th>
                 </tr>
             </thead>
             {{#each weapons as |item id|}}
             {{#ife item.system.state "active"}}
-                <tr class="item draggable" data-item-id="{{_id}}">
+                <tr class="combat-table draggable" data-item-id="{{_id}}">
                     <th>{{name}}</th>
                     <th>{{getCategoryLabel "weapon" item.system.category}}</th>
                     <th>{{getWeaponSkillName @root.actor item}}</th>
                     <th>{{getWeaponSkill @root.actor item}}<a class="weapon-attack-roll"><i class="fas fa-dice"></i></a></th>
                     <th>{{getWeaponDamage @root.actor item}}<a class="weapon-damage-roll"><i class="fas fa-dice"></i></a></th>
-                    <th>{{item.system.range}}</th>
-                    <th>{{item.system.zone}}</th>
                     <th>
                         {{#if unlocked}}
                             <input class="checkbox" name="item.system.sixPlus" type="checkbox" {{checked item.system.sixPlus}}>

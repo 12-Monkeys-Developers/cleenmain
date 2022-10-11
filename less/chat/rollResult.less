@@ -3,14 +3,14 @@
     background-color: @clear-background;
     display: flex;
     flex-direction: column;
-    font-family: @chat-font;
-    font-size: @chat-font-size;
+    font: @chat-font;
     color:@chat-introtext;
     .intro{
         background: @chat-title-background;
         border-radius: @chat-title-border-radius;
         display: flex;
         flex-direction: row;
+        justify-content:center;
         .introImg {
             border: none;
             padding: 5px;
@@ -24,24 +24,24 @@
             width: 210px;
             min-height: 60px;
             padding-top: 0.5em;
-            font-family: @chat-intro-font;
-            font-size: @chat-intro-font-size;
+            font: @chat-intro-font;
             text-align: center;
         }
     }
     .modifierText{
         margin-bottom: 5px;
         color: @chat-modifiertext;
-        font-style: @chat-modifier-font-style;
-        font-size: @chat-modifier-font-size;
+        font: @chat-modifier-font;
         text-align: center;
     }
     .formulaText{
         padding: 1em 0 0 0;
+        font: @chat-formulatext-font;
         color: @chat-formulatext;
         text-align: center;
     }
     .finalText{
+        font: @chat-finaltext-font;
         color: @chat-finaltext;
         text-align: center;
         .tooltip {

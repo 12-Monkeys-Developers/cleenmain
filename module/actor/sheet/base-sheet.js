@@ -181,8 +181,7 @@ export class CemBaseActorSheet extends ActorSheet {
    */
   async _onWeaponAttackRoll(event) {
     event.preventDefault();
-    const itemId = $(event.currentTarget).parents(".item").data("itemId");
-
+    const itemId = $(event.currentTarget).parents(".combat-table").data("itemId");
     return this.actor.check(itemId, "weapon-attack");
   }
 
@@ -193,8 +192,7 @@ export class CemBaseActorSheet extends ActorSheet {
    */
   async _onWeaponDamageRoll(event) {
     event.preventDefault();
-    const itemId = $(event.currentTarget).parents(".item").data("itemId");
-
+    const itemId = $(event.currentTarget).parents(".combat-table").data("itemId");
     return this.actor.check(itemId, "weapon-damage");
   }
 

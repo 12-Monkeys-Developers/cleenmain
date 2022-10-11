@@ -106,8 +106,8 @@
             "heroismmodifier": "Point d'Héroïsme utilisé : +{dice}d6",
             "rollformula": "Dés lancés :",
             "rollresult": "Résultat du jet : ",
-            "rollDamageFormula": "Jet de dégâts :",
-            "damageresult": "Résultat du jet : ",
+            "rollDamageFormula": "Formule des dégâts : ",
+            "damageresult": "Résultat des dégâts : ",
             "weapon": "Arme ({nbDices}d6)",
             "heroism": "Héroisme",
             "lethalattack": "Meurtrière",
@@ -372,7 +372,7 @@
             "defence_modifier": "Modificateur au prochain jet de de défense",
             "protection": "Valeur totale de protection",
             "skill" : "Compétence: ",
-            "untrained": "Pénalité non-entrainé",
+            "untrained": "Pénalité non-formé",
             "weaponbonus": "Bonus de l'arme: "
         },
         "wealth": {

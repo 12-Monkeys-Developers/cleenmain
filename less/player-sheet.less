@@ -1,21 +1,18 @@
 .cleenmain.sheet.player {
     h1 {
-        font-family: @h1-font-family;
-        font-size: @h1-font-size;
+        font: @h1-font;
         color: @title-color;
         text-transform: @h1-text-transform;
         border: @h1-border;
     }
     h2 {
-        font-family: @h2-font-family;
-        font-size: @h1-font-size;
+        font: @h2-font;
         color: @title-color;
     }
     .window-content {
         background: @playersheet-background;
         background-color: @clear-background;
-        font-family: @default-font;
-        font-size: @default-font-size;
+        font: @default-font;
     }
     textarea {
         resize: none;
@@ -61,18 +58,18 @@
                 flex-direction: row;
                 justify-content: center;
                 padding: 0 0 2em 0;
+                font: @pc-title-font;
             }
             .skills{
                 display: flex;
                 flex-direction: column;
                 gap: .2em;
                 .skill-line{
+                    font: @pc-skill-font;
                     display: flex;
                     flex-direction: row;
                     align-items: center;
-                    font-family: @pc-skill-font;
-                    font-size: @pc-skill-font-size;
-                    .skill-name{       
+                    .skill-name{
                         width: 70%;
                     }
                     .skill-value{
@@ -119,37 +116,37 @@
                     .space-between{
                         justify-content: space-between;}
                     .central-line{
-                        font-family: @default-font;
-                        font-size: 1em;
-                        font-weight: bold;
+                        font: @pc-description-font;
                         display: flex;
                         flex-flow: row nowrap;
                         margin: 0.5em;
                         white-space: nowrap;
+                        .pcname{
+                            font: @pc-name-font;
+                        }
                         .activity-text{
-                            font-family: @long-text-font;
-                            font-size: @long-text-font-size;
+                            font: @pc-activity-font;
                         }
                         .input-heroism{
                             display: flex;
                             flex-direction: row;
                             input{
-                                width: 1em;
+                                width: 2em;
                             }
                         }
                         .right-icon{
                             margin: 0 0 0 .5em;
                         }
                         .central-text{
-                            margin: 0.3em .2em 0 .1em;
+                            margin: 0 .2em 0 .1em;
                         }
                         .name-text, .wounds-text, .heroism-text, .health-text, .activity-text{
                             margin: 0.3em .3em 0 .3em;
                         }
                         .activity-text{
-                            font-weight: normal;
-                            font-size: small;
+                            font: @pc-activity-font;
                             white-space: normal;
+                            margin-top: 0.3em;
                         }
                         .health-block{
                             display: flex;
@@ -181,27 +178,28 @@
                 font-size: 1,5em;
             }
                 
-            .actor {
+            .tab-name {
                 background: @clear-background;
-                color: @font-soft-color;
+                font: @pc-tab-font;
+                color: @pc-tab-font-color;
                 border: 1px solid @core-main-color;
                 border-top-left-radius: 15px;
                 border-top-right-radius: 15px;
                 text-align: center;
                 padding: .5em .5em .3em .5em;
             }                
-            .actor.active {
+            .tab-name.active {
             border: 1px solid black;
             color: @core-main-color;
             border-bottom-width: 0;
             }
             .sheet-body{
-                background: @clear-background;
+                background:none ;
             }
         }
     }
     .right-icon{
-        font-family: @default-font;
+        font: @default-font;
         font-size: 1.2rem;
         color: @icon-color;
     }
