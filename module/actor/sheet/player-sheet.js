@@ -132,7 +132,6 @@ export default class PlayerSheet extends CemBaseActorSheet {
     event.preventDefault();
     const div = $(event.currentTarget).parents('.item');
     const item = this.actor.items.get(div.data('itemId'));
-    console.log(item);
 
     if (item === null || item === undefined) {
       return;

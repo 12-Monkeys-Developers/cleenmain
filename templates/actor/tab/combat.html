@@ -124,7 +124,7 @@
             </thead>
             {{#each weapons as |item id|}}
             {{#ife item.system.state "active"}}
-                <tr class="combat-table draggable" data-item-id="{{_id}}">
+                <tr class="combat-table item draggable" data-item-id="{{item._id}}">
                     <th>{{name}}</th>
                     <th>{{getCategoryLabel "weapon" item.system.category}}</th>
                     <th>{{getWeaponSkillName @root.actor item}}</th>
