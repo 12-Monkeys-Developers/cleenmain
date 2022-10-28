@@ -17,7 +17,7 @@ export default function registerHooks() {
                 createChanges.token.actorLink = true;
     
                 // Add all the base skills to the new player actor
-                for (const skill of CONFIG.CLEENMAIN.skills) {
+                for (const skill of game.cleenmain.config.skills) {
                     let skillData = {
                         name: game.i18n.localize("CLEENMAIN.skill." + skill.name + ".name"),
                         type: 'skill',
@@ -37,7 +37,7 @@ export default function registerHooks() {
             // NPC
             if (document.type === 'npc' && !options.fromImport) {
                 // Add all the base skills to the new npc actor
-                for (const skill of CONFIG.CLEENMAIN.npcSkills) {
+                for (const skill of game.cleenmain.config.npcSkills) {
                     let skillData = {
                         name: game.i18n.localize("CLEENMAIN.skill." + skill.name + ".name"),
                         type: 'skill',

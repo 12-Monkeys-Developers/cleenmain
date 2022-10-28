@@ -8,29 +8,25 @@
 }
 @font-face {
   font-family: "Merriweather";
-  src: url("./assets/fonts/Merriweather-Regular.ttf");
+  src: url("../../systems/cleenmain/assets/fonts/Merriweather-Regular.ttf");
 }
 input {
   color: #456;
 }
 .cleenmain.sheet.player h1 {
-  font-family: "Signika";
-  font-size: 1.2rem;
+  font: 1.2rem "Signika";
   color: black;
   text-transform: uppercase;
   border: none;
 }
 .cleenmain.sheet.player h2 {
-  font-family: "Signika";
-  font-size: 1.2rem;
+  font: 1rem "Signika";
   color: black;
 }
 .cleenmain.sheet.player .window-content {
-  background: no-repeat url('../../../ui/parchment.jpg');
+  background: repeat url('../../../ui/parchment.jpg');
   background-color: #fffdfc;
-  font-family: "Modesto condensed";
-  font-size: 1.1rem;
-  background-size: 250px 100%;
+  font: 1.1rem "Modesto condensed";
 }
 .cleenmain.sheet.player textarea {
   resize: none;
@@ -78,6 +74,7 @@ input {
   flex-direction: row;
   justify-content: center;
   padding: 0 0 2em 0;
+  font: 1.1rem "Signika";
 }
 .cleenmain.sheet.player .main .leftcolumn .skills {
   display: flex;
@@ -85,11 +82,10 @@ input {
   gap: 0.2em;
 }
 .cleenmain.sheet.player .main .leftcolumn .skills .skill-line {
+  font: 1.2rem "Modesto condensed";
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-family: "Modesto condensed";
-  font-size: 1.1rem;
 }
 .cleenmain.sheet.player .main .leftcolumn .skills .skill-line .skill-name {
   width: 70%;
@@ -139,24 +135,24 @@ input {
   justify-content: space-between;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line {
-  font-family: "Modesto condensed";
-  font-size: 1em;
-  font-weight: bold;
+  font: 1.1rem "Modesto condensed";
   display: flex;
   flex-flow: row nowrap;
   margin: 0.5em;
   white-space: nowrap;
 }
+.cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .pcname {
+  font: 1.4rem "Signika";
+}
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .activity-text {
-  font-family: "Merriweather";
-  font-size: 0.7rem;
+  font: 1rem "Signika";
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .input-heroism {
   display: flex;
   flex-direction: row;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .input-heroism input {
-  width: 1em;
+  width: 2em;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .right-icon {
   margin: 0 0 0 0.5em;
@@ -172,9 +168,9 @@ input {
   margin: 0.3em 0.3em 0 0.3em;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .activity-text {
-  font-weight: normal;
-  font-size: small;
+  font: 1rem "Signika";
   white-space: normal;
+  margin-top: 0.3em;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .health-block {
   display: flex;
@@ -202,38 +198,37 @@ input {
   flex-direction: row;
   font-size: 1,5em;
 }
-.cleenmain.sheet.player .main .central .actor {
+.cleenmain.sheet.player .main .central .tab-name {
   background: #fffdfc;
-  color: #8e8d8d;
+  font: 1.1rem "Modesto condensed";
+  color: #726e6e;
   border: 1px solid #456;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   text-align: center;
   padding: 0.5em 0.5em 0.3em 0.5em;
 }
-.cleenmain.sheet.player .main .central .actor.active {
+.cleenmain.sheet.player .main .central .tab-name.active {
   border: 1px solid black;
   color: #456;
   border-bottom-width: 0;
 }
 .cleenmain.sheet.player .main .central .sheet-body {
-  background: #fffdfc;
+  background: none ;
 }
 .cleenmain.sheet.player .right-icon {
-  font-family: "Modesto condensed";
+  font: 1.1rem "Modesto condensed";
   font-size: 1.2rem;
   color: #705a10;
 }
 .cleenmain.sheet.npc h1 {
-  font-family: "Signika";
-  font-size: 1.2rem;
+  font: 1.2rem "Signika";
   color: black;
   text-transform: uppercase;
   border: none;
 }
 .cleenmain.sheet.npc h2 {
-  font-family: "Signika";
-  font-size: 1.2rem;
+  font: 1rem "Signika";
   color: black;
 }
 .cleenmain.sheet.npc .input-short {
@@ -248,8 +243,7 @@ input {
 .cleenmain.sheet.npc .window-content {
   background: repeat url('../../../ui/parchment-white.jpg');
   background-color: #fffdfc;
-  font-family: "Modesto condensed";
-  font-size: 1.1rem;
+  font: 1.1rem "Modesto condensed";
 }
 .cleenmain.sheet.npc .editor {
   height: 100%;
@@ -280,6 +274,7 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left {
   display: flex;
   flex-direction: column;
+  flex-basis: 70%;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line {
   margin: 0.5em;
@@ -287,9 +282,8 @@ input {
   flex-direction: row;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line .name-text {
-  font-family: "Signika";
+  font: 2em "Signika";
   color: black;
-  font-size: 2em;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line input {
   height: 2em;
@@ -303,9 +297,8 @@ input {
   margin: 0 0.5em 1em 1em;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .activity-line .activity-text {
-  font-family: "Signika";
+  font: 1.1em "Signika";
   color: black;
-  font-size: 1.1em;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .level-line {
   display: flex;
@@ -320,8 +313,7 @@ input {
   display: flex;
   flex-direction: row;
   margin: 0.5em 0.5em;
-  font-family: "Signika";
-  font-size: 1.2rem;
+  font: 1.2rem "Signika";
   color: black;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line .line-label {
@@ -335,8 +327,7 @@ input {
   color: #705a10;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line {
-  font-family: "Modesto condensed";
-  font-size: 1.2rem;
+  font: 1.2rem "Modesto condensed";
   color: black;
   display: flex;
   flex-direction: row;
@@ -364,10 +355,14 @@ input {
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npchealth-line {
   display: flex;
   flex-direction: row;
-  margin: 1em;
+  margin: 1rem;
+  font: 1.2rem "Signika";
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npchealth-line .central-text {
-  margin: 0.3em 0.2em 0 0.1em;
+  margin: 0 0.2em 0 0.1em;
+}
+.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npchealth-line input {
+  padding-bottom: 0.2rem;
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npchealth-line .health-block {
   display: flex;
@@ -376,35 +371,31 @@ input {
 }
 .cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-right {
   flex-basis: 30%;
-  text-align: center;
   width: 200px;
-  height: 250px;
+  height: 200px;
   object-fit: contain;
 }
 .cleenmain.sheet.item h1 {
-  font-family: "Signika";
-  font-size: 1.2rem;
+  font: 1.2rem "Signika";
   color: black;
   text-transform: uppercase;
   border: none;
 }
 .cleenmain.sheet.item h2 {
-  font-family: "Signika";
-  font-size: 1.2rem;
+  font: 1rem "Signika";
   color: black;
 }
 .cleenmain.sheet.item .window-content {
   background: repeat url('../../../ui/parchment-white.jpg');
   background-color: #fffdfc;
-  font-family: "Modesto condensed";
+  font: 1.1rem "Modesto condensed";
 }
 .cleenmain.sheet.item .editor {
   height: 100%;
   width: 100%;
   background: #f5fdfb;
   box-shadow: inset 0 0 6px black;
-  font-family: "Merriweather";
-  font-size: 0.7rem;
+  font: 0.7rem "Merriweather";
 }
 .cleenmain.sheet.item input {
   background-color: #f5fdfb;
@@ -438,8 +429,7 @@ input {
 .cleenmain.sheet.item .sheet-content .boon-line {
   display: flex;
   flex-direction: row;
-  font-family: "Merriweather";
-  font-size: 0.7rem;
+  font: 1.2rem "Modesto condensed";
 }
 .cleenmain.sheet.item .sheet-content .boon-line .boon-block {
   display: flex;
@@ -508,16 +498,18 @@ input {
   font-size: 0.8em;
 }
 .boons-tab .boon-group .boon-card .boon-name-line .boon-name {
+  font: 1.2rem "Modesto condensed";
   color: black;
-  font-size: 1.2rem;
+}
+.boons-tab .boon-group .boon-card .boon-used-line {
+  font: 1.2rem "Modesto condensed";
 }
 .boons-tab .boon-group .boon-card .boon-description {
   background: url('../../../ui/parchment-white.jpg');
   padding: 0.5em;
   box-shadow: inset 0 0 3px black;
   color: black;
-  font-family: "Merriweather";
-  font-size: 0.7rem;
+  font: 0.7rem "Merriweather";
   max-width: 400px;
 }
 .boons-tab .boon-group .boon-card .icon-group {
@@ -540,15 +532,16 @@ input {
 .tab-bio .title-line .item-create {
   margin-left: auto;
 }
+.tab-bio .bioelement-title {
+  font: 1rem "Signika";
+  border-bottom: 2px solid black;
+}
 .tab-bio .description-block {
-  font-family: "Merriweather";
-  font-size: 0.7rem;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+  font: 0.7rem "Merriweather";
+  padding: 0.5em;
 }
 .tab-bio .traits-block {
-  font-family: "Merriweather";
-  font-size: 0.7rem;
+  font: 0.7rem "Merriweather";
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
@@ -576,8 +569,7 @@ input {
   visibility: visible;
 }
 .cleenmain.sheet.player .main h1 .tooltiptext {
-  font-family: "Merriweather";
-  font-size: 0.7rem;
+  font: 0.7rem "Merriweather";
   font-weight: normal;
   text-transform: none;
 }
@@ -595,10 +587,15 @@ input {
   margin-left: auto;
 }
 .cleenmain.sheet.player .main .central .combat-tab .trainings-list {
+  font: 1.1rem "Modesto condensed";
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   padding-bottom: 0.5em;
+}
+.cleenmain.sheet.player .main .central .combat-tab .trainings-list .combat-group-label {
+  font-style: italic;
+  padding-right: 0.5em;
 }
 .cleenmain.sheet.player .main .central .combat-tab .trainings-list .trainings-group {
   display: flex;
@@ -609,6 +606,7 @@ input {
   margin: 0 0.6em 0 0.2em;
 }
 .cleenmain.sheet.player .main .central .combat-tab .bonus-list {
+  font: 1.1rem "Modesto condensed";
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -628,25 +626,17 @@ input {
   width: 10%;
   text-align: center;
 }
-.cleenmain.sheet.player .main .central .combat-tab .items thead {
-  font-family: "Modesto condensed";
-  font-size: 1rem;
+.cleenmain.sheet.player .main .central .combat-tab .combat-table-head {
+  font: 0.9rem "Signika";
 }
-.cleenmain.sheet.player .main .central .combat-tab .items .item {
-  font-family: "Signika";
-  font-size: 0.9rem;
-  font-weight: lighter;
-}
-.cleenmain.sheet.player .main .central .combat-tab .combat-group-label {
-  font-style: italic;
-  padding-right: 0.5em;
+.cleenmain.sheet.player .main .central .combat-tab .combat-table {
+  font: normal 0.9rem "Signika";
 }
 .notes-tab {
   display: flex;
   flex-direction: column;
   margin: 1em;
-  font-family: "Merriweather";
-  font-size: 0.7rem;
+  font: 0.7rem "Merriweather";
 }
 .notes-tab .editor {
   min-height: 200px;
@@ -656,6 +646,7 @@ input {
 .notes-tab .editor .editor-content {
   min-height: 200px;
   max-height: 400px;
+  margin: 1em;
 }
 .notes-tab .editor .tox.tox-tinymce {
   min-height: auto;
@@ -695,8 +686,7 @@ input {
   object-fit: contain;
 }
 .equipment-tab .equipment-column .equipment-line .equipment-name {
-  font-family: "Merriweather";
-  font-size: 0.7rem;
+  font: 0.9rem "Signika";
   padding-left: 0.5em;
   align-self: center;
 }
@@ -714,8 +704,7 @@ input {
   background-color: #fffdfc;
   display: flex;
   flex-direction: column;
-  font-family: "Signika";
-  font-size: 1rem;
+  font: 1rem "Signika";
   /* Tooltip text */
 }
 .dialog .tooltip {
@@ -741,7 +730,7 @@ input {
 .dialog .intro {
   display: flex;
   flex-direction: row;
-  align-content: center;
+  justify-content: center;
 }
 .dialog .intro .introImg {
   border: none;
@@ -753,17 +742,15 @@ input {
   align-self: center;
 }
 .dialog .intro .introtext {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font: bold 1.2rem "Signika";
+  margin: 0.5em;
   padding-top: 1.5em;
   text-align: center;
-  width: 300px;
 }
 .dialog .formula {
   text-align: center;
   margin: 0.5em;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font: bold 1.2rem "Signika";
 }
 .dialog .rollmodifier {
   display: flex;
@@ -776,6 +763,9 @@ input {
 }
 .dialog .paddingend {
   padding: 0 0 5em 0;
+}
+.dialog .bonus-label {
+  font: 1rem "Signika";
 }
 .dialog .bonus h2 {
   font-weight: bold;
@@ -800,8 +790,7 @@ input {
   background-color: #fffdfc;
   display: flex;
   flex-direction: column;
-  font-family: "Signika";
-  font-size: 1rem;
+  font: 1rem "Signika";
   color: white;
 }
 .chatroll .intro {
@@ -809,6 +798,7 @@ input {
   border-radius: 20px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 .chatroll .intro .introImg {
   border: none;
@@ -823,23 +813,23 @@ input {
   width: 210px;
   min-height: 60px;
   padding-top: 0.5em;
-  font-family: "Signika";
-  font-size: 1rem;
+  font: 1rem "Signika";
   text-align: center;
 }
 .chatroll .modifierText {
   margin-bottom: 5px;
   color: #470e0e;
-  font-style: italic;
-  font-size: 0.9rem;
+  font: italic 0.9rem "Signika";
   text-align: center;
 }
 .chatroll .formulaText {
   padding: 1em 0 0 0;
+  font: 1rem "Signika";
   color: black;
   text-align: center;
 }
 .chatroll .finalText {
+  font: 1rem "Signika";
   color: black;
   text-align: center;
   /* Tooltip text */

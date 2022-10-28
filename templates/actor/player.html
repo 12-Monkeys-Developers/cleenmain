@@ -1,37 +1,44 @@
-
 <form class="{{cssClass}}" autocomplete="off">
     <div class="main">
         <div class="leftcolumn">
             <div class="title-line">
                 <h1 class="column-title">{{localize "CLEENMAIN.label.skills"}}
                     {{#if unlocked}}
-                        <a class="item-create right-icon" data-type="skill" title="{{localize 'CLEENMAIN.skill.add'}}"><i class="fas fa-plus"></i></a>
+                    <a class="item-create right-icon" data-type="skill" title="{{localize 'CLEENMAIN.skill.add'}}"><i
+                            class="fas fa-plus"></i></a>
                     {{/if}}
-                </h1>                    
+                </h1>
             </div>
             {{#if unlocked}}
-                <div class="skills item-list">
-                    {{#each skills as |skill type|}}
-                        <div class="skill-line item" data-item-id="{{_id}}">
-                            <input class="inline-edit skill-name draggable" data-field="name" type="text" value="{{skill.name}}" data-dtype="Text" data-item-id="{{_id}}"/>
-                            <input class="inline-edit skill-value" data-field="system.base" type="number" name="skill.system.base" value="{{skill.system.base}}" data-dtype="Number" />
-                            <input title="{{localize 'CLEENMAIN.skill.isDeveloped'}}" class="inline-edit skill-dev checkbox" data-field="system.developed" name="skill.system.developed" type="checkbox" {{checked skill.system.developed}}>
-                            <input title="{{localize 'CLEENMAIN.skill.isPhysical'}}" class="inline-edit skill-physical checkbox" data-field="system.physical" name="skill.system.physical" type="checkbox" {{checked skill.system.physical}}>
-                            <a class="inline-delete" data-type="skill" title="{{localize 'CLEENMAIN.skill.delete'}}"><i class="fas fa-trash"></i></a>
-                        </div>
-                    {{/each}}
+            <div class="skills item-list">
+                {{#each skills as |skill type|}}
+                <div class="skill-line item" data-item-id="{{_id}}">
+                    <input class="inline-edit skill-name draggable" data-field="name" type="text" value="{{skill.name}}"
+                        data-dtype="Text" data-item-id="{{_id}}" />
+                    <input class="inline-edit skill-value" data-field="system.base" type="number"
+                        name="skill.system.base" value="{{skill.system.base}}" data-dtype="Number" />
+                    <input title="{{localize 'CLEENMAIN.skill.isDeveloped'}}" class="inline-edit skill-dev checkbox"
+                        data-field="system.developed" name="skill.system.developed" type="checkbox" {{checked
+                        skill.system.developed}}>
+                    <input title="{{localize 'CLEENMAIN.skill.isPhysical'}}" class="inline-edit skill-physical checkbox"
+                        data-field="system.physical" name="skill.system.physical" type="checkbox" {{checked
+                        skill.system.physical}}>
+                    <a class="inline-delete" data-type="skill" title="{{localize 'CLEENMAIN.skill.delete'}}"><i
+                            class="fas fa-trash"></i></a>
                 </div>
+                {{/each}}
+            </div>
             {{else}}
-                <div class="skills">
-                    {{#each skills as |skill type|}}
-                        <div class="skill-line item" data-item-id="{{_id}}">
-                            <div class="skill-name" title="{{skill.system.description}}" >{{skill.name}}</div>
-                            <div class="skill-value">{{getSkillValue @root.actor skill}}</div>
-                            <div><i class="{{getCheckboxIcon  skill.system.developed}}"></i></div>
-                            <a class="skill-roll"><i class="fas fa-dice"></i></a>                            
-                        </div>
-                    {{/each}}
+            <div class="skills">
+                {{#each skills as |skill type|}}
+                <div class="skill-line item" data-item-id="{{_id}}">
+                    <div class="skill-name" title="{{skill.system.description}}">{{skill.name}}</div>
+                    <div class="skill-value">{{getSkillValue @root.actor skill}}</div>
+                    <div><i class="{{getCheckboxIcon  skill.system.developed}}"></i></div>
+                    <a class="skill-roll"><i class="fas fa-dice"></i></a>
                 </div>
+                {{/each}}
+            </div>
             {{/if}}
         </div>
         <div class="central">
@@ -42,13 +49,17 @@
                 <div class="intro-block-right">
                     <div class="central-line">
                         <div class="name-text">{{localize "CLEENMAIN.label.character"}} :</div>
-                        <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+                        {{#if unlocked}}
+                        <input name="name" type="text" value="{{actor.name}}" placeholder="Name" />
+                        {{else}}
+                        <div class="pcname">{{actor.name}}</div>
+                        {{/if}}
                         <div class="right-icon">
                             <a class="sheet-change-lock" title="{{localize 'CLEENMAIN.label.unlock_sheet'}}">
                                 {{#if unlocked}}
-                                    <i class="fas fa-lock-open"></i>
+                                <i class="fas fa-lock-open"></i>
                                 {{else}}
-                                    <i class="fas fa-lock"></i>
+                                <i class="fas fa-lock"></i>
                                 {{/if}}
                             </a>
                         </div>
@@ -56,66 +67,83 @@
                     <div class="central-line">
                         <div class="name-text">{{localize "CLEENMAIN.label.activity"}} :</div>
                         {{#if unlocked}}
-                            <input id="activity" name="system.activity" type="text" value="{{actorSystem.activity}}" />
+                        <input id="activity" name="system.activity" type="text" value="{{actorSystem.activity}}" />
                         {{else}}
-                            {{#if (isNotEmptyString actorSystem.activity)}}
-                            <div class="activity-text">{{actorSystem.activity}}</div>
-                            {{/if}}
+                        {{#if (isNotEmptyString actorSystem.activity)}}
+                        <div class="activity-text">{{actorSystem.activity}}</div>
+                        {{/if}}
                         {{/if}}
                     </div>
                     <div class="central-line space-between">
                         <div class="health-block">
                             <div class="health-text">{{localize "CLEENMAIN.label.health"}} :</div>
-                            <input class="health-input" title="{{localize 'CLEENMAIN.health.current'}}" id="health" name="system.health.value" type="number" value="{{actorSystem.health.value}}"/>
+                            <input class="health-input" title="{{localize 'CLEENMAIN.health.current'}}" id="health"
+                                name="system.health.value" type="number" value="{{actorSystem.health.value}}" />
                             <div class="central-text">/</div>
                             {{#if unlocked}}
-                                <input class="health-input" title="{{localize 'CLEENMAIN.health.max'}}" id="health" name="system.health.max" type="number" value="{{actorSystem.health.max}}"/>
+                            <input class="health-input" title="{{localize 'CLEENMAIN.health.max'}}" id="health"
+                                name="system.health.max" type="number" value="{{actorSystem.health.max}}" />
                             {{else}}
-                                <div class="central-text">{{actorSystem.health.max}}</div>
+                            <div class="central-text">{{healthMax}}</div>
                             {{/if}}
                             {{#if badShape}}
-                            <div class="central-text badshape-text"><a class="info-window" data-field="badshape">{{localize "CLEENMAIN.health.status.badshape"}}</a> <a class="badshape-roll" data-field="willpower"><i class="fas fa-dizzy"></i></a> <a class="badshape-roll" data-field="resistance"><i class="fas fa-skull"></i></a></div>
+                            <div class="central-text badshape-text"><a class="info-window"
+                                    data-field="badshape">{{localize "CLEENMAIN.health.status.badshape"}}</a> <a
+                                    class="badshape-roll" data-field="willpower"><i class="fas fa-dizzy"></i></a> <a
+                                    class="badshape-roll" data-field="resistance"><i class="fas fa-skull"></i></a></div>
                             {{/if}}
 
                         </div>
-                            <div class="wounds-block">
-                                <div class="wounds-text">{{localize "CLEENMAIN.label.wounds"}} :</div>
-                                <input class="wounds-input" title="{{localize 'CLEENMAIN.label.wounds'}}" id="wounds" name="system.wounds" type="number" value="{{actorSystem.wounds}}"/>                                
-                            </div>
+                        <div class="wounds-block">
+                            <div class="wounds-text">{{localize "CLEENMAIN.label.wounds"}} :</div>
+                            <input class="wounds-input" title="{{localize 'CLEENMAIN.label.wounds'}}" id="wounds"
+                                name="system.wounds" type="number" value="{{actorSystem.wounds}}" />
+                        </div>
                     </div>
                     <div class="central-line">
-                            <div class="heroism-text"><a class="info-window" data-field="heroism">{{localize "CLEENMAIN.label.heroism"}}</a></div>
-                            <div class="input-heroism">
-                                <input title="{{localize 'CLEENMAIN.heroism.current'}}" id="heroism" name="system.heroism.value" type="number" value="{{actorSystem.heroism.value}}"/>
-                                <div class="central-text">/</div>
-                                {{#if unlocked}}
-                                    <input title="{{localize 'CLEENMAIN.heroism.max'}}" id="heroismmax" name="system.heroism.max" type="number" value="{{actorSystem.heroism.max}}" readonly/>
-                                    <input class="checkbox" data-field="system.heroism.developed" name="system.heroism.developed" type="checkbox" {{checked actorSystem.heroism.developed}}>
-                                {{else}}
-                                    <div class="central-text">{{actorSystem.heroism.max}}</div><i class="{{getCheckboxIcon actorSystem.heroism.developed}} central-text"></i>
-                                    <i class="fas fa-arrow-down spend-heroism central-text" title="{{localize 'CLEENMAIN.heroism.spend'}}" ></i>
-                                {{/if}}
+                        <div class="heroism-text"><a class="info-window" data-field="heroism">{{localize
+                                "CLEENMAIN.label.heroism"}} :</a></div>
+                        <div class="input-heroism">
+                            <input title="{{localize 'CLEENMAIN.heroism.current'}}" id="heroism"
+                                name="system.heroism.value" type="number" value="{{actorSystem.heroism.value}}" />
+                            <div class="central-text">/</div>
+                            {{#if unlocked}}
+                            <input title="{{localize 'CLEENMAIN.heroism.max'}}" id="heroismmax"
+                                name="system.heroism.max" type="number" value="{{actorSystem.heroism.max}}" readonly />
+                            <input class="checkbox" data-field="system.heroism.developed"
+                                name="system.heroism.developed" type="checkbox" {{checked
+                                actorSystem.heroism.developed}}>
+                            {{else}}
+                            <div class="central-text">{{actorSystem.heroism.max}}</div><i
+                                class="{{getCheckboxIcon actorSystem.heroism.developed}} central-text"></i>
+                            <i class="fas fa-arrow-down spend-heroism central-text"
+                                title="{{localize 'CLEENMAIN.heroism.spend'}}"></i>
+                            {{/if}}
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="sheet-tabs tabs" data-group="primary">
-                <b class="actor" data-tab="combat">{{localize "CLEENMAIN.sheet.tab.combat"}}</b>
-                <b class="actor" data-tab="boons">{{localize "CLEENMAIN.sheet.tab.boons"}}</b>
-                <b class="actor" data-tab="equipment">{{localize "CLEENMAIN.sheet.tab.equipment"}}</b>
-                <b class="actor" data-tab="bio">{{localize "CLEENMAIN.sheet.tab.bio"}}</b>
-                <b class="actor" data-tab="notes">{{localize "CLEENMAIN.sheet.tab.notes"}}</b>
+                <b class="tab-name" data-tab="combat">{{localize "CLEENMAIN.sheet.tab.combat"}}</b>
+                <b class="tab-name" data-tab="boons">{{localize "CLEENMAIN.sheet.tab.boons"}}</b>
+                <b class="tab-name" data-tab="equipment">{{localize "CLEENMAIN.sheet.tab.equipment"}}</b>
+                <b class="tab-name" data-tab="bio">{{localize "CLEENMAIN.sheet.tab.bio"}}</b>
+                <b class="tab-name" data-tab="notes">{{localize "CLEENMAIN.sheet.tab.notes"}}</b>
             </div>
-    
+
             <div class="sheet-body">
-                <div class="tab" data-group="primary" data-tab="combat">{{> systems/cleenmain/templates/actor/tab/combat.html}}</div>
-                <div class="tab" data-group="primary" data-tab="boons">{{> systems/cleenmain/templates/actor/tab/boons.html}}</div>
-                <div class="tab" data-group="primary" data-tab="equipment">{{> systems/cleenmain/templates/actor/tab/equipment.html}}</div>
-                <div class="tab" data-group="primary" data-tab="bio">{{> systems/cleenmain/templates/actor/tab/bio.html}}</div>
-                <div class="tab" data-group="primary" data-tab="notes">{{> systems/cleenmain/templates/actor/tab/notes.html}}</div>
+                <div class="tab" data-group="primary" data-tab="combat">{{>
+                    systems/cleenmain/templates/actor/tab/combat.html}}</div>
+                <div class="tab" data-group="primary" data-tab="boons">{{>
+                    systems/cleenmain/templates/actor/tab/boons.html}}</div>
+                <div class="tab" data-group="primary" data-tab="equipment">{{>
+                    systems/cleenmain/templates/actor/tab/equipment.html}}</div>
+                <div class="tab" data-group="primary" data-tab="bio">{{>
+                    systems/cleenmain/templates/actor/tab/bio.html}}</div>
+                <div class="tab" data-group="primary" data-tab="notes">{{>
+                    systems/cleenmain/templates/actor/tab/notes.html}}</div>
             </div>
         </div>
     </div>
 </form>
-

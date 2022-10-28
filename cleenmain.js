@@ -23,7 +23,7 @@ Hooks.once("init", function(){
 
     console.log(LOG_HEAD + "Initializing Cles en mains System");
 
-    CONFIG.CLEENMAIN = CLEENMAIN;
+    //CONFIG.CLEENMAIN = CLEENMAIN;   displaced in game.cleenmain.config
     CONFIG.Item.documentClass = CemBaseItem;
     CONFIG.Actor.documentClass = CemBaseActor;
     CONFIG.Combat.documentClass = CemCombat;
@@ -37,7 +37,11 @@ Hooks.once("init", function(){
     Actors.unregisterSheet('core', ActorSheet);
     Actors.registerSheet('cleenmain', PlayerSheet, {types: ['player'], makeDefault: true });
     Actors.registerSheet('cleenmain', NpcSheet, {types: ['npc'], makeDefault: true });
-
+    
+    game.cleenmain = {
+        config: CLEENMAIN
+    }
+;
 	// Preload Handlebars Templates
 	preloadTemplates();
 

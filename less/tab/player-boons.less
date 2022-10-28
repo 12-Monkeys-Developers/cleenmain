@@ -20,17 +20,19 @@
                     font-size: .8em;
                 }
                 .boon-name{
+                    font: @boon-name-font;
                     color: @boon-color;
-                    font-size: @boon-name-size;
                 }
+            }
+            .boon-used-line{
+                font: @boon-extratext-font;
             }
             .boon-description{
                 background: @booncard-background;
                 padding: 0.5em;
                 box-shadow: inset 0 0 3px black;
                 color: @font-color-booncard;
-                font-family: @long-text-font;
-                font-size: @long-text-font-size;
+                font: @boon-text-font;
                 max-width: 400px;
             }
             .icon-group{

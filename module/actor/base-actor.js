@@ -1,12 +1,11 @@
 import { Rolls } from "../common/rolls.js";
 import { Utils } from "../common/utils.js";
-import { NPC_LEVEL } from "../common/constants.js";
 export default class CemBaseActor extends Actor {
 
     /** @override */
     prepareBaseData(){
         super.prepareBaseData();
-
+        this._computeBoons();
         if (this.isPlayer()) this._prepareBaseDataPlayer();
         if (this.isNpc()) this._prepareBaseDataNpc();
     }
@@ -37,7 +36,7 @@ export default class CemBaseActor extends Actor {
     _initializeNpcHealth(){
         let numberOfPlayers = game.settings.get('cleenmain', 'numberOfPlayers');
 
-        if(game.settings.get('cleenmain', 'advancedRules') && (this.system.level === NPC_LEVEL.secondfiddle) && this.system.elite){
+        if(game.settings.get('cleenmain', 'advancedRules') && (this.system.level === game.cleenmain.config.npc_level.secondfiddle) && this.system.elite){
             this.system.health.max = this.system.healthByNumberPlayers[numberOfPlayers]*2;
         }
         else this.system.health.max =  this.system.healthByNumberPlayers[numberOfPlayers];
@@ -55,11 +54,11 @@ export default class CemBaseActor extends Actor {
     }
 
     isBoss() {
-        return this.isNpc() ? this.system.level === NPC_LEVEL.boss : false;   
+        return this.isNpc() ? this.system.level === game.cleenmain.config.npc_level.boss : false;   
     }
 
     isSupport() {
-        return this.isNpc() ? this.system.level === NPC_LEVEL.support : false;
+        return this.isNpc() ? this.system.level === game.cleenmain.config.npc_level.support : false;
     }
     
     /**
@@ -87,7 +86,7 @@ export default class CemBaseActor extends Actor {
     getSkillValue(skill){
         let newValue = 0;
         if(this.isNpc()){
-            if(game.settings.get('cleenmain', 'advancedRules') && (this.system.level === NPC_LEVEL.secondfiddle) && this.system.elite){
+            if(game.settings.get('cleenmain', 'advancedRules') && (this.system.level === game.cleenmain.config.npc_level.secondfiddle) && this.system.elite){
                 newValue = skill.system.baseNpcElite + skill.system.bonus;
             }
             else newValue = skill.system.base + skill.system.bonus;
@@ -236,7 +235,7 @@ export default class CemBaseActor extends Actor {
      * @returns The total of protection
      */
     getArmorProtection() {
-        let protection = 0;
+        let protection = this.system.health.bonusProtection ?? 0;
         const armors = this.items.filter(i=>i.type === "armor");
         armors.forEach(armor => {
             if (armor.system.category !== "shield" && armor.system.state==="active") protection += parseInt(armor.system.protection);
@@ -267,7 +266,84 @@ export default class CemBaseActor extends Actor {
         return this.isPlayer() ? this.system.health.value <= 0 : false;
     }
 
+    healthMax(){
+        return(this.system.health.max + this.system.health.bonus)
+    }
+
     setHealthToMax(){
-        this.update({'system.health.value': this.system.health.max});
+        this.update({'system.health.value': this.system.health.max + this.system.health.bonus});
+    }
+
+    _computeBoons() {
+        const boonsList = this.items.filter(element => element.type === "boon" && element.system.developed && element.system?.effect.length>0);
+        if(!this.system.health.bonus) this.system.health.bonus = 0;
+        for(let boon of boonsList){
+            for(let boonEffect of boon.system.effect){
+                if( typeof this["boonEffect_"+boonEffect.name] == "function" ) {
+                    this["boonEffect_"+boonEffect.name](boonEffect.options, boon._id);
+                }
+            }
+        }
+    }
+    boonEffect_health_bonus(options, boonId){
+        if(!options?.value) return;
+        this.system.health.bonus+=options.value;
+        return;
+    }
+    boonEffect_protection_bonus(options, boonId){
+        if(!options?.value) return;
+        this.system.health.bonusProtection = options.value;
+    }
+    boonEffect_skill_bonus(options, boonId){
+        if(!options?.reference || !options?.value) return;
+        const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
+        for (let skill of skillList){
+            skill.system.rollBonus=skill.system.rollBonus? skill.system.rollBonus+options.value:options.value;
+        }
+        return;
+    }
+    boonEffect_skill_bonus_1d6(options, boonId){
+        if(!options?.reference) return;
+        const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
+        for (let skill of skillList){
+            skill.system.rollBonus1d6=true;
+        }
+        return;
+    }
+    boonEffect_skill_heroism_bonus1d6(options, boonId){
+        if(!options?.reference) return;
+        const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
+        for (let skill of skillList){
+            skill.system.heroismBonus1d6=true;
+        }
+        return;
+    }
+    boonEffect_badShape_skillBonus(options, boonId){
+        if(!options?.value) return;
+        this.system.health.badShapeSkillBonus=options.value;
+    }
+    boonEffect_badShape_damageBonus(options, boonId){
+        if(!options?.value) return;
+        this.system.health.badShapeDamageBonus=options.value;
+    }
+    boonEffect_badShape_skill_heroism_bonus1d6(options, boonId){
+        if(!options?.reference || !this.isInBadShape()) return;
+        const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
+        for (let skill of skillList){
+            skill.system.heroismBonus1d6=true;
+        }
+    }
+    boonEffect_boon_uses(options, boonId){
+        if(!options) return;
+        const boon = this.items.get(boonId);
+        if(!boon) return;
+        const updates = {"_id": boonId, "system" : {}};
+        
+        console.log("options",options);
+        for (let element in options){
+            updates.system[element] = true;
+            };
+        this.updateEmbeddedDocuments('Item', [updates]);
+
     }
 }

@@ -49,6 +49,10 @@
             "weapons": "Armes",
             "wounds": "Blessures"
         },
+        "combatTracker": {
+            "tourNotPlayed": "Cliquer quand le tour n'a pas été joué",
+            "tourPlayed": "Cliquer quand le tour a été joué"
+        },
         "armor": {
             "category": {
                 "standard": "Normale",
@@ -97,12 +101,13 @@
             "used": "Utilisé : "
         },
         "chatmessage":{
+            "badshapedamage": "Mal en point",
             "custommodifier": "Modificateur libre ajouté : ({rollModifier})",
-            "heroismmodifier": "Point d'Héroïsme utilisé : +1d6",
+            "heroismmodifier": "Point d'Héroïsme utilisé : +{dice}d6",
             "rollformula": "Dés lancés :",
             "rollresult": "Résultat du jet : ",
-            "rollDamageFormula": "Jet de dégâts :",
-            "damageresult": "Résultat du jet : ",
+            "rollDamageFormula": "Formule des dégâts : ",
+            "damageresult": "Résultat des dégâts : ",
             "weapon": "Arme ({nbDices}d6)",
             "heroism": "Héroisme",
             "lethalattack": "Meurtrière",
@@ -118,6 +123,7 @@
             "display_help_title": "Résumé de règles",
             "rollmodifier": "Modificateur pour le jet: ",
             "heroism": "Utiliser un point d'héroïsme pour +1d6.",
+            "heroismBonus1d6": "Utiliser un point d'héroïsme pour +2d6.",
             "introskill": "{actingCharName} utilise la compétence {itemName}",
             "titleskill": "Jet de {itemName}",
             "introweapon": "{actingCharName} attaque avec {itemName}",
@@ -366,7 +372,8 @@
             "defence_modifier": "Modificateur au prochain jet de de défense",
             "protection": "Valeur totale de protection",
             "skill" : "Compétence: ",
-            "untrained": "Pénalité non-entrainé"
+            "untrained": "Pénalité non-formé",
+            "weaponbonus": "Bonus de l'arme: "
         },
         "wealth": {
             "platinium": "Platine",
@@ -387,17 +394,19 @@
             },
             "add": "Nouvelle arme",
             "delete": "Supprimer l'arme",
+            "diceRerollNb": "Relances",
             "name": "Nom",
             "attack": "Attaque",
             "targets": "Cibles",
             "damage": "Dégâts",
             "range": "Portée",
+            "rollBonus": "Bonus au jet",
             "skillName": "Compétence",
-            "special": "Spécial",
-            "zone": "Zone",
-            "sixPlus": "6+",
             "skillValueNpc": "Compétence",
-            "skillValueNpcElite": "Comp. (élite)"
+            "skillValueNpcElite": "Comp. (élite)",
+            "sixPlus": "6+",
+            "special": "Spécial",
+            "zone": "Zone"
         }
     }
 }

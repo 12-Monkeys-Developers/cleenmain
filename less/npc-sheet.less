@@ -1,14 +1,12 @@
 .cleenmain.sheet.npc {
     h1 {
-        font-family: @h1-font-family;
-        font-size: @h1-font-size;
+        font: @h1-font;
         color: @title-color;
         text-transform: @h1-text-transform;
         border: @h1-border;
     }
     h2 {
-        font-family: @h2-font-family;
-        font-size: @h1-font-size;
+        font: @h2-font;
         color: @title-color;
     }
     .input-short{
@@ -23,8 +21,7 @@
     .window-content {
         background: @npcsheet-background;
         background-color: @clear-background;
-        font-family: @default-font;
-        font-size: @default-font-size;
+        font: @default-font;
     }
     .editor {
         height: 100%;
@@ -53,14 +50,14 @@
             .npcstat-block-left{
                 display: flex;
                 flex-direction: column;
+                flex-basis: 70%;
                 .name-line{
                     margin: .5em;
                     display: flex;
                     flex-direction: row;
                     .name-text{
-                        font-family: @npc-name-font;
+                        font: @npc-name-font;
                         color: @npc-name-color;
-                        font-size:  @npc-name-font-size;
                     }
                     input{
                         height: 2em;
@@ -74,9 +71,8 @@
                 .activity-line{
                     margin: 0 0.5em 1em 1em;
                     .activity-text{
-                        font-family: @npc-name-font;
+                        font:  @npc-activity-font;
                         color: @npc-name-color;
-                        font-size:  @npc-activity-font-size;
                     }
                 }
                 .level-line{
@@ -93,8 +89,7 @@
                         display: flex;
                         flex-direction: row;
                         margin: 0.5em 0.5em;
-                        font-family: @npc-combat-line-font;
-                        font-size: @npc-combat-line-font-size;
+                        font: @npc-combat-line-font;
                         color: @npc-combat-line-font-color;
                         .line-label{
                             font-weight: bold;
@@ -110,8 +105,7 @@
                 }
                 .skills{
                     .skill-line{
-                        font-family: @npc-skill-font;
-                        font-size: @npc-skill-font-size;
+                        font: @npc-skill-font;
                         color: @npc-skill-font-color;
                         display: flex;
                         flex-direction: row;
@@ -141,9 +135,13 @@
                 .npchealth-line{
                     display: flex;
                     flex-direction: row;
-                    margin: 1em;
+                    margin: 1rem;
+                    font: @npc-health-font;
                     .central-text{
-                        margin: 0.3em .2em 0 .1em;
+                        margin: 0 .2em 0 0.1em;
+                    }
+                    input{
+                        padding-bottom: .2rem;
                     }
                     .health-block{
                         display: flex;
@@ -154,9 +152,8 @@
             }
             .npcstat-block-right{
                 flex-basis: 30%;
-                text-align: center;
                 width: 200px;
-                height: 250px;
+                height: 200px;
                 object-fit: contain;
             }
         }

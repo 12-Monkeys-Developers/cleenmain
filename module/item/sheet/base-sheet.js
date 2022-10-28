@@ -41,7 +41,7 @@ export default class CemBaseItemSheet extends ItemSheet {
       editable : this.isEditable,
       item: context.item,
       system: context.item.system,
-      config: CONFIG.CLEENMAIN,
+      config: game.cleenmain.config,
       hasNpcOwner: this.item.parent?.type === "npc"
     }
 

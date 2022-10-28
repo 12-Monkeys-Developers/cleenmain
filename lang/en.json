@@ -49,6 +49,10 @@
             "weapons": "Weapons",
             "wounds": "Wounds"
         },
+        "combatTracker": {
+            "tourNotPlayed": "Click when the tour has not been played",
+            "tourPlayed": "CLick when the tour has been played"
+        },
         "armor": {
             "category": {
                 "standard": "Standard",
@@ -108,21 +112,24 @@
             },
             "add": "New weapon",
             "delete": "Delete weapon",
+            "diceRerollNb": "Rerolls",
             "name": "Name",
             "attack": "Attack",
             "targets": "targets",
             "damage": "Damage",
             "range": "Range",
-            "skillName": "Skill",
-            "special": "Special",
-            "zone": "Zone",
+            "rollBonus": "Roll bonus",
             "sixPlus": "6+",
             "skillValueNpc": "skill",
-            "skillValueNpcElite": "skill (elite)"
+            "skillValueNpcElite": "skill (elite)",
+            "skillName": "Skill",
+            "special": "Special",
+            "zone": "Zone"
         },
         "chatmessage":{
+            "badshapedamage": "In bad shape",
             "custommodifier": "Custom modifier used : ({rollModifier}).",
-            "heroismmodifier": "One Heroism point used : +1d6",
+            "heroismmodifier": "One Heroism point used : +{dice}d6",
             "rollformula": "Dices rolled: ",
             "rollresult": "Result of the dice roll: ",
             "rollDamageFormula": "Damage roll:",
@@ -142,6 +149,7 @@
             "display_help_title": "Résumé de règles",
             "rollmodifier": "Modifier for the roll: ",
             "heroism": "Spend an heroism point for +1d6.",
+            "heroismBonus1d6": "Spend an heroism point for +2d6.",
             "introskill": "{actingCharName} uses the skill {itemName}.",
             "titleskill": "Roll of {itemName}",
             "introweapon": "{actingCharName} attacks with {itemName}.",
@@ -390,7 +398,8 @@
             "defence_modifier": "Modificateur au prochain jet de de défense",
             "protection": "Valeur totale de protection",
             "skill" : "Skill: ",
-            "untrained": "Untrained penalty"
+            "untrained": "Untrained penalty",
+            "weaponbonus": "Weapon bonus: "
         },
         "wealth": {
             "platinium": "Platinium",

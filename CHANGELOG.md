@@ -1,3 +1,10 @@
+# Version 2.1.0
+- Automatisation de certains atouts
+- les armes peuvent donner un bonus aux jets de compétence
+- Amélioration de la modularité
+- Les PnJs font des jets cachés
+- corrections de bugs
+
 # Version 2.0.0
 - Mise à jour pour la version 10 de Foundry
 - cliquer sur le portait d'un PNJ permet de le montrer à tous les joueurs.
