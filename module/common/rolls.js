@@ -25,6 +25,7 @@ export class Rolls {
         let rollFormula;
         let formulaTooltip = "";
         let heroismBonus1d6 = false;
+        let skillBonus1d6 = false;
 
         if(actor.type==="npc" && game.user.isGM) data.rollMode = "gmroll";
         console.log(item);
@@ -34,11 +35,21 @@ export class Rolls {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleskill", {itemName: item.name});
             skillRoll = true;
             let value = actor.getSkillValue(item).toString();
+            //rollBonus : +fixed value to roll, from boon 
             let rollBonus=item.system.rollBonus;
             if(rollBonus) value += " + "+rollBonus.toString();
-            rollFormulaDisplay = "3d6 + " + value;
-            rollFormula = "1d6[red] + 2d6[white] + " + value;
+            //rollBonus1d6 : +1d6 to roll, from boon 
+            if (item.system.rollBonus1d6){
+                rollFormulaDisplay = "4d6 + " + value;
+                rollFormula = "1d6[red] + 2d6[white] + 1d6[green] + " + value;
+                skillBonus1d6=true;
+            }
+            else{
+                rollFormulaDisplay = "3d6 + " + value;
+                rollFormula = "1d6[red] + 2d6[white] + " + value;
+            }
             formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + value;
+            //heroismBonus1d6 : +1d6 when using heroism, from boon 
             heroismBonus1d6 = item.system.heroismBonus1d6 ? true:false;
 
             introText = game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: data.actingChar.name, itemName: item.name});

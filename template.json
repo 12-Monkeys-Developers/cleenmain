@@ -122,6 +122,10 @@
             "developed": false,
             "limitedUse" : false,
             "used" : false,
+            "limitedUse2" : false,
+            "used2" : false,
+            "limitedUse3" : false,
+            "used3" : false,
             "effect": []
         },
         "equipment":{

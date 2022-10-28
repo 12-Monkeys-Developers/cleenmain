@@ -280,21 +280,21 @@ export default class CemBaseActor extends Actor {
         for(let boon of boonsList){
             for(let boonEffect of boon.system.effect){
                 if( typeof this["boonEffect_"+boonEffect.name] == "function" ) {
-                    this["boonEffect_"+boonEffect.name](boonEffect.options);
+                    this["boonEffect_"+boonEffect.name](boonEffect.options, boon._id);
                 }
             }
         }
     }
-    boonEffect_health_bonus(options){
+    boonEffect_health_bonus(options, boonId){
         if(!options?.value) return;
         this.system.health.bonus+=options.value;
         return;
     }
-    boonEffect_protection_bonus(options){
+    boonEffect_protection_bonus(options, boonId){
         if(!options?.value) return;
         this.system.health.bonusProtection = options.value;
     }
-    boonEffect_skill_bonus(options){
+    boonEffect_skill_bonus(options, boonId){
         if(!options?.reference || !options?.value) return;
         const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
         for (let skill of skillList){
@@ -302,7 +302,15 @@ export default class CemBaseActor extends Actor {
         }
         return;
     }
-    boonEffect_skill_heroism_bonus1d6(options){
+    boonEffect_skill_bonus_1d6(options, boonId){
+        if(!options?.reference) return;
+        const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
+        for (let skill of skillList){
+            skill.system.rollBonus1d6=true;
+        }
+        return;
+    }
+    boonEffect_skill_heroism_bonus1d6(options, boonId){
         if(!options?.reference) return;
         const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
         for (let skill of skillList){
@@ -310,19 +318,32 @@ export default class CemBaseActor extends Actor {
         }
         return;
     }
-    boonEffect_badShape_skillBonus(options){
+    boonEffect_badShape_skillBonus(options, boonId){
         if(!options?.value) return;
         this.system.health.badShapeSkillBonus=options.value;
     }
-    boonEffect_badShape_damageBonus(options){
+    boonEffect_badShape_damageBonus(options, boonId){
         if(!options?.value) return;
         this.system.health.badShapeDamageBonus=options.value;
     }
-    boonEffect_badShape_skill_heroism_bonus1d6(options){
+    boonEffect_badShape_skill_heroism_bonus1d6(options, boonId){
         if(!options?.reference || !this.isInBadShape()) return;
         const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
         for (let skill of skillList){
             skill.system.heroismBonus1d6=true;
         }
+    }
+    boonEffect_boon_uses(options, boonId){
+        if(!options) return;
+        const boon = this.items.get(boonId);
+        if(!boon) return;
+        const updates = {"_id": boonId, "system" : {}};
+        
+        console.log("options",options);
+        for (let element in options){
+            updates.system[element] = true;
+            };
+        this.updateEmbeddedDocuments('Item', [updates]);
+
     }
 }

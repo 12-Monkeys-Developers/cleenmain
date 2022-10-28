@@ -64,12 +64,14 @@ export const CLEENMAIN = {
         },
         boon_effect: {
                 health_bonus : "Bonus to health, options: {value : number}  for example {value: 4}",
-                skill_bonus: "Bonus to skill, options: {reference: string, value : number}  for example {reference: 'willpower', value: 3}",
+                skill_bonus: "Bonus to skill roll, options: {reference: string, value : number}  for example {reference: 'willpower', value: 3}",
+                skill_bonus_1d6: "Bonus 1d6 to skill roll, options: {reference: string}  for example {reference: 'willpower'}",
                 skill_heroism_bonus1d6: "+2d6 when using heroism on skill, options: {reference: string}  for example {reference: 'willpower'}",
                 badShape_skillBonus: "Bonus instead of -2 on skills when in bad shape, options: {value : number}  for example {value: 2}",
                 badShape_damageBonus: "Bonus on damage when in bad shape, options: {value : string}  for example {value:'1d6'}",
                 badShape_skill_heroism_bonus1d6:"+2d6 when using heroism on skill while in bad shape, options: {reference: string}  for example {reference: 'willpower'}",
-                protection_bonus: "permanent bonus to protection, option: {value : number} example: {value: 4}"
+                protection_bonus: "permanent bonus to protection, option: {value : number} example: {value: 4}",
+                boon_uses : "Boon can be used limited times, but more than 1, option: {limitedUse2 : true, limitedUse3? : true}}"
         },
         max_heroism: {
             "TWO_PLAYERS": 10,
