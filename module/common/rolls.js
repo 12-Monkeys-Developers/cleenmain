@@ -544,11 +544,15 @@ export class Rolls {
             newTotal = newTotal - roll.dice[0].results[0].result + newDice.total;
             roll.dice[0].results[0].result = newDice.total;            
         }
-
         // White dices
         else if (dice == 1 || dice == 2) {
             newTotal = newTotal - roll.dice[1].results[dice - 1].result + newDice.total;
             roll.dice[1].results[dice - 1].result = newDice.total;            
+        }
+        // Bronze dice
+        else if (dice == 3) {
+            newTotal = newTotal - roll.dice[2].results[0].result + newDice.total;
+            roll.dice[2].results[0].result = newDice.total;
         }
      
         roll._total = newTotal;   
