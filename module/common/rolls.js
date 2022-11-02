@@ -369,7 +369,13 @@ export class Rolls {
         // Display the roll action
         let chatData = {
             actorId: actor.id,
+            itemId: item.id,
             item: item,
+            useHeroism: data.useHeroism,
+            lethalattack: data.lethalattack,
+            minorinjury: data.minorinjury,
+            multipleattacks: data.multipleattacks,
+            badShapeDamageBonus: data.badShapeDamageBonus,
             difficulty: data.targetDifficulty,
             introText: data.introText,
             actingCharImg: data.actingChar.img,
@@ -569,16 +575,21 @@ export class Rolls {
 
             await actor.setFlag("world", "reRoll", chatData);
         }
-        /*
         else {
             await actor.setFlag("world", "canReRoll", false);
             await actor.unsetFlag("world", "reRoll");
-        }*/
-
+        }
 
         // Calculate damage if it's a weapon
         if (chatData.item.type == "weapon") {
-           
+            const itemId = chatData.itemId;
+            const item = game.actors.get(actorId).items.get(itemId);
+            let attackDamage = item.calculateWeaponDamage(actor, chatData.result.dices, chatData.useHeroism, chatData.lethalattack, chatData.minorinjury, chatData.multipleattacks, chatData.badShapeDamageBonus);
+            attackDamage.rolls.forEach(r => {rolls.push(r)});
+
+            chatData.damage = attackDamage?.damage;
+            chatData.damageFormula = attackDamage?.damageFormula;
+            chatData.damageToolTip = attackDamage !== null ? await Rolls.getDamageTooltip(attackDamage.damageToolTipInfos) : null;
         }
 
         // Create the chat message
