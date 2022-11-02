@@ -1,3 +1,4 @@
+import CemBaseItem from "../item/base-item.js";
 import { CemChat } from "./chat.js";
 import { CLEENMAIN } from "./config.js";
 
@@ -11,7 +12,19 @@ export class Rolls {
      * @param actor The actor which performs the action
      * @param item  The purpose of the action, that is the item, the attribute
      * @param rollType  The type of roll 
-     * @param data  The action data
+     * @param data  The action data : ll specific data used to display the roll <br>
+     * rollMode
+     * formula : 
+     * formulaColor : formula with colored dices
+     * targetDifficulty
+     * To calculate weapon damage :
+     *      boolean : useHeroism
+     *      int : lethalattack (boon), minorinjury (penalty), multipleattacks (boon)
+     *      ? : badShapeDamageBonus
+     * For display : introText, actingChar (object with name and image)
+     * applyModifiers : Array[String] all modifiers' description
+     * Type of roll (boolean) : skillRoll, attackRoll, damageRoll
+     * options.bonuses : {value, tooltip}
      */
        static async check(actor, item, rollType, data) {       
                 
@@ -27,24 +40,25 @@ export class Rolls {
         let heroismBonus1d6 = false;
         let skillBonus1d6 = false;
 
-        if(actor.type==="npc" && game.user.isGM) data.rollMode = "gmroll";
-        console.log(item);
+        if (actor.type ==="npc" && game.user.isGM) data.rollMode = "gmroll";
 
         // Skill Roll
         if (rollType === "skill") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleskill", {itemName: item.name});
             skillRoll = true;
             let value = actor.getSkillValue(item).toString();
+
             //rollBonus : +fixed value to roll, from boon 
-            let rollBonus=item.system.rollBonus;
-            if(rollBonus) value += " + "+rollBonus.toString();
+            let rollBonus = item.system.rollBonus;
+            if (rollBonus) value += " + " + rollBonus.toString();
+
             //rollBonus1d6 : +1d6 to roll, from boon 
-            if (item.system.rollBonus1d6){
+            if (item.system.rollBonus1d6) {
                 rollFormulaDisplay = "4d6 + " + value;
                 rollFormula = "1d6[red] + 2d6[white] + 1d6[green] + " + value;
-                skillBonus1d6=true;
+                skillBonus1d6 = true;
             }
-            else{
+            else {
                 rollFormulaDisplay = "3d6 + " + value;
                 rollFormula = "1d6[red] + 2d6[white] + " + value;
             }
@@ -63,13 +77,17 @@ export class Rolls {
                     formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.armormalus") + "-" + armorMalus;
                 } 
             }   
-            if(data.options?.bonuses){
+
+            // Bonuses
+            if (data.options?.bonuses) {
                 for(let bonus of data.options.bonuses){
                     rollFormulaDisplay = rollFormulaDisplay += bonus.value;
                     rollFormula += bonus.value;
                     formulaTooltip += ", " + bonus.tooltip;
                 }
             }
+
+            // Bad Shape for player
             if (actor.isPlayer() && actor.isInBadShape() && !data.options?.badShapeRoll) {
                 let modValue = actor.system.health.badShapeSkillBonus ? " + "+actor.system.health.badShapeSkillBonus.toString() : ' - 2';
                 let tooltipModValue =  actor.system.health.badShapeSkillBonus ? "+"+actor.system.health.badShapeSkillBonus.toString() : '-2';
@@ -100,8 +118,10 @@ export class Rolls {
         if (rollType === "weapon-attack") {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleweapon", {itemName: item.name});
             attackRoll = true;
-            rollFormula = "1d6[red] + 2d6[white] + " +  item.weaponSkill(actor) + (item.system.skillBonus ? " + " + item.system.skillBonus.toString():"");
-            rollFormulaDisplay = "3d6 + " + item.weaponSkill(actor) + (item.system.skillBonus ? " + " + item.system.skillBonus.toString():"");            
+
+            rollFormula = "1d6[red] + 2d6[white] " + this._getTerm(item.weaponSkill(actor)) + this._getTerm(item.system.skillBonus);
+            rollFormulaDisplay = "3d6" + this._getTerm(item.weaponSkill(actor)) + this._getTerm(item.system.skillBonus);
+       
             formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + item.weaponSkill(actor) + (item.system.skillBonus ? ", " + game.i18n.format("CLEENMAIN.tooltip.weaponbonus") + item.system.skillBonus.toString():"");
 
             introText = game.i18n.format("CLEENMAIN.dialog.introweapon", {actingCharName: data.actingChar.name, itemName: item.name});
@@ -312,61 +332,88 @@ export class Rolls {
         }).render(true);
     }
 
+    static _getTerm(element) {
+        if (element && element != 0) {
+            if (typeof element === 'string') return ' + '.concat(element);
+            else if (typeof element === 'number') return ' + '.concat(element.toString());
+        }
+        return '';
+    }
+
     /**
      * This method is used to display a roll result.
-     * @param {*} actor    The actor which performs the action.
-     * @param {*} item     The purpose of the action, that is the item, the attribute or the ka. 
-     * @param {*} data 
+     * @param {CemBaseActor} actor   The actor which performs the action
+     * @param {CemBaseItem} item     The purpose of the action, that is the item, the attribute
+     * @param {Object} data 
      */
      static async displayRoll(actor, item, data) {
         
         // Roll the dice
-        const result = await Rolls.getRollResult({
-            actor: actor.id,
-            alias: actor.name,
-            scene: null,
-            token: null,
-        }, typeof(data.formulaColor) !== 'undefined' ? data.formulaColor : data.formula, data.targetDifficulty);
+        const result = await Rolls.getRollResult({actor: actor.id, alias: actor.name, scene: null, token: null}, typeof(data.formulaColor) !== 'undefined' ? data.formulaColor : data.formula, data.targetDifficulty);
 
-        let rolls =[result.roll];
+        // Rolls is an array of roll
+        let rolls = [result.roll];
+
+        // Reroll
+        let reRollNb = 0;
+        let reRollDices = [];
+
         // Calculate damages
         let attackDamage = null;
-
         if (item.type === "weapon") {
             attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack, data.minorinjury, data.multipleattacks, data.badShapeDamageBonus);
             attackDamage.rolls.forEach(r => {rolls.push(r)});
+            reRollNb = item.system.diceRerollNb;
         }
         
         // Display the roll action
-        await new CemChat(actor)
+        let chatData = {
+            actorId: actor.id,
+            item: item,
+            difficulty: data.targetDifficulty,
+            introText: data.introText,
+            actingCharImg: data.actingChar.img,
+            formula: data.formula,
+            applyModifiers: data.applyModifiers,
+            result: result,
+            damage: attackDamage?.damage,
+            damageFormula: attackDamage?.damageFormula,
+            damageToolTip: attackDamage !== null ? await Rolls.getDamageTooltip(attackDamage.damageToolTipInfos) : null,
+            skillRoll: data.skillRoll,
+            attackRoll: data.attackRoll,
+            damageRoll: data.damageRoll,
+            rolls: rolls,
+            rollMode: data.rollMode,
+            reRollNb: reRollNb,
+            reRollDices: reRollDices
+        };
+
+        // If Reroll available, put the roll in actor's flags
+        if (reRollNb > 0) {
+            actor.setFlag("world", "canReRoll", true);
+            actor.setFlag("world", "reRoll", chatData);
+
+            // Get the dices
+            result.dices.forEach(dice => {
+                chatData.reRollDices.push(dice.result);
+            });
+        }
+
+        let chat = await new CemChat(actor)
             .withTemplate("systems/cleenmain/templates/chat/roll-result.html")
-            .withData({
-                actor: actor,
-                item: item,
-                difficulty: data.targetDifficulty,
-                introText: data.introText,
-                actingCharImg: data.actingChar.img,
-                formula: data.formula,
-                applyModifiers: data.applyModifiers,
-                result: result,
-                damage: attackDamage?.damage,
-                damageFormula: attackDamage?.damageFormula,
-                damageToolTip: attackDamage !== null ? await Rolls.getDamageTooltip(attackDamage.damageToolTipInfos) : null,
-                skillRoll: data.skillRoll,
-                attackRoll: data.attackRoll,
-                damageRoll: data.damageRoll,
-                rolls: rolls,
-                rollMode: data.rollMode
-            })
+            .withData(chatData)
             .withRoll(true)
-            .create();        
+            .create();
+
+        await chat.display();
     }
 
     /**
-     * Rolls dices and displays the specified message and returns the result.
+     * @description Rolls dices, calculate some results as critical or fumble and returns the result.
      * @param {*} speaker 
-     * @param {*} difficulty 
-     * @returns the roll result. 
+     * @param {*} formula
+     * @param {*} targetDifficulty //TO DO : NOT USED RIGHT NOW
+     * @returns the roll result
      */
      static async getRollResult(speaker, formula, targetDifficulty) {
         const roll = new Roll(formula, {}).roll({ async: false });
@@ -374,8 +421,8 @@ export class Rolls {
     }
 
     /**
-     * @param {*} roll  The roll value is several d6
-     * @param {*} targetDifficulty The difficulty to succeed
+     * @param {*} roll The roll value is several d6
+     * @param {*} targetDifficulty The difficulty to succeed //TO DO : NOT USED RIGHT NOW
      * @return the roll result
      */
      static async getResult(roll, targetDifficulty) {
@@ -457,6 +504,94 @@ export class Rolls {
         damageToolTipInfos.push(damageToolTipInfosDetails);
 
         return damageToolTipInfos;
+    }
+
+    /**
+     * @description Handles the reroll button in the chat message
+     * @param {*} event 
+     * @param {*} message 
+     */
+    static async reroll(event, message) {
+
+        const actorId = $(event.currentTarget).parents(".chatroll").data("actorId");
+        const actor = game.actors.get(actorId);
+
+        const canReroll = await actor.getFlag("world", "canReRoll");
+        if (!canReroll) return;
+
+        // Get the dice which is rerolled (from 0 to 2)
+        const btn = $(event.currentTarget);
+        const dice = btn.data("diceNb");
+
+        // Roll 1d6
+        const newDice = new Roll("1d6", {}).roll({ async: false });
+
+        // Take the existing roll
+        let jsonRoll = message.rolls[0];
+        let roll = Roll.fromJSON(jsonRoll);
+
+        // Replace in the roll : the dice rerolled and the new total
+        let newTotal = roll._total;
+     
+        // Red dice
+        if (dice == 0) {
+            newTotal = newTotal - roll.dice[0].results[0].result + newDice.total;
+            roll.dice[0].results[0].result = newDice.total;            
+        }
+
+        // White dices
+        else if (dice == 1 || dice == 2) {
+            newTotal = newTotal - roll.dice[1].results[dice - 1].result + newDice.total;
+            roll.dice[1].results[dice - 1].result = newDice.total;            
+        }
+     
+        roll._total = newTotal;   
+
+        // Get the chat data stored in the actor
+        let chatData = actor.getFlag("world", "reRoll");
+        chatData.rolls[0] = roll;
+        
+        // Generate the new result
+        chatData.result = await this.getResult(roll, null);
+        
+        // Update the reroll number
+        chatData.reRollNb = chatData.reRollNb - 1;
+
+        // If Reroll available, put the roll in actor's flags
+        if (chatData.reRollNb > 0) {
+            await actor.setFlag("world", "canReRoll", true);
+
+            // Get the dices
+            chatData.reRollDices = [];
+            chatData.result.dices.forEach(dice => {
+                chatData.reRollDices.push(dice.result);
+            });
+
+            await actor.setFlag("world", "reRoll", chatData);
+        }
+        /*
+        else {
+            await actor.setFlag("world", "canReRoll", false);
+            await actor.unsetFlag("world", "reRoll");
+        }*/
+
+
+        // Calculate damage if it's a weapon
+        if (chatData.item.type == "weapon") {
+           
+        }
+
+        // Create the chat message
+        let chatMessage = await new CemChat(actor)
+            .withTemplate("systems/cleenmain/templates/chat/roll-result.html")
+            .withData(chatData)
+            .withRoll(true)
+            .create();
+
+        // Update the chat message content and rolls
+        const messageId = message._id;
+        const newMessage = game.messages.get(messageId);
+        await newMessage.update({ content: chatMessage.content, rolls: [roll.toJSON()] });
     }
 
 }

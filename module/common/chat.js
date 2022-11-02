@@ -10,6 +10,7 @@ export class CemChat {
         this.content = null;
         this.template = null;
         this.data = null;
+        this.chatData = null;
         this.flags = null;
         this.roll = null;
     }
@@ -120,8 +121,8 @@ export class CemChat {
         const pool = PoolTerm.fromRolls(this.data.rolls);
         d.roll = Roll.fromTerms([pool]);
        
-        // Create the chat
-        this.chat = await ChatMessage.create(d);
+        this.chatData = d;
+
         return this;
 
     }
@@ -140,6 +141,16 @@ export class CemChat {
         // Call the template renderer.
         return await renderTemplate(this.template, d);
 
+    }
+
+    /**
+    * @description Displays the chat message
+    * @returns this instance
+    */
+    async display() {
+        // Create the chat
+        this.chat = await ChatMessage.create(this.chatData);
+        return this;
     }
 
 }

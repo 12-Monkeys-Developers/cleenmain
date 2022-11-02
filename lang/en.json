@@ -137,7 +137,8 @@
             "weapon": "Weapon ({nbDices}d6)",
             "heroism": "Heroism",
             "lethalattack": "Lethal",
-            "explosive": "Explosive"
+            "explosive": "Explosive",
+            "reRollNumber": "Reroll dices: "
         },
         "dialog":{
             "bonus": "Add a bonus?",

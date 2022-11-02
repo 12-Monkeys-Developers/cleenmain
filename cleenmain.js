@@ -18,6 +18,7 @@ import { WeaponSheet } from "./module/item/sheet/weapon-sheet.js";
 
 import PlayerSheet from "./module/actor/sheet/player-sheet.js";
 import NpcSheet from "./module/actor/sheet/npc-sheet.js";
+import { Rolls } from "./module/common/rolls.js";
 
 Hooks.once("init", function(){
 
@@ -55,8 +56,10 @@ Hooks.once("init", function(){
 	registerHooks();
 
     // The hook to create a macro by draggind and dropping an item of the character sheet in the hot bar.
-    Hooks.on("hotbarDrop", (bar, data, slot) => {
-        onHotbarDrop(bar, data, slot);
-        return false;
+    // @param {ChatMessage} message   The ChatMessage document being rendered
+    // @param {object} data           The input data provided for template rendering
+    // @param {jQuery} html           The pending HTML as a jQuery object
+    Hooks.on("renderChatMessage", (message, html, data) => {
+        html.find(".reroll").click(ev => Rolls.reroll(ev, data.message));    
     });
 });

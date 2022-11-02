@@ -111,7 +111,8 @@
             "weapon": "Arme ({nbDices}d6)",
             "heroism": "Héroisme",
             "lethalattack": "Meurtrière",
-            "explosive": "Explosive"
+            "explosive": "Explosive",
+            "reRollNumber": "Dés de relance : "
         },
         "dialog":{
             "bonus": "Ajouter une prime ?",

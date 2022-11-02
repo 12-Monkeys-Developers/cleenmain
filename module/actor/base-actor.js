@@ -81,7 +81,7 @@ export default class CemBaseActor extends Actor {
      * PC : Base + Bonus + 2 if developed
      * NPC : Base + Bonus, if the advanced rules are used, the base changes if it's an elite
      * @param {Item} skill 
-     * @returns 
+     * @returns {int} the value of the skill
      */
     getSkillValue(skill){
         let newValue = 0;
@@ -285,15 +285,18 @@ export default class CemBaseActor extends Actor {
             }
         }
     }
+
     boonEffect_health_bonus(options, boonId){
         if(!options?.value) return;
         this.system.health.bonus+=options.value;
         return;
     }
+
     boonEffect_protection_bonus(options, boonId){
         if(!options?.value) return;
         this.system.health.bonusProtection = options.value;
     }
+
     boonEffect_skill_bonus(options, boonId){
         if(!options?.reference || !options?.value) return;
         const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
@@ -302,6 +305,7 @@ export default class CemBaseActor extends Actor {
         }
         return;
     }
+
     boonEffect_skill_bonus_1d6(options, boonId){
         if(!options?.reference) return;
         const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
@@ -310,6 +314,7 @@ export default class CemBaseActor extends Actor {
         }
         return;
     }
+
     boonEffect_skill_heroism_bonus1d6(options, boonId){
         if(!options?.reference) return;
         const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
@@ -318,14 +323,17 @@ export default class CemBaseActor extends Actor {
         }
         return;
     }
+
     boonEffect_badShape_skillBonus(options, boonId){
         if(!options?.value) return;
         this.system.health.badShapeSkillBonus=options.value;
     }
+
     boonEffect_badShape_damageBonus(options, boonId){
         if(!options?.value) return;
-        this.system.health.badShapeDamageBonus=options.value;
+        this.system.health.badShapeDamageBonus = options.value;
     }
+
     boonEffect_badShape_skill_heroism_bonus1d6(options, boonId){
         if(!options?.reference || !this.isInBadShape()) return;
         const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
@@ -333,6 +341,7 @@ export default class CemBaseActor extends Actor {
             skill.system.heroismBonus1d6=true;
         }
     }
+
     boonEffect_boon_uses(options, boonId){
         if(!options) return;
         const boon = this.items.get(boonId);

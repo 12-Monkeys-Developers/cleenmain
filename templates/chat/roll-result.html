@@ -1,4 +1,5 @@
-<div class="chatroll">
+{{log 'chat' this}}
+<div class="chatroll" data-actor-id="{{actorId}}">
     <div class="intro">
         {{#if (ne actingCharImg "icons/svg/mystery-man.svg")}}
         <div class="introImg">
@@ -19,6 +20,14 @@
             <span class="tooltiptext">{{{result.tooltip.string}}}</span>
         </div>
     </div>
+    {{#if (gt reRollNb 0)}}
+        <div class="finalText">{{localize  "CLEENMAIN.chatmessage.reRollNumber"}}{{reRollNb}}</div>
+        <div>
+            {{#each reRollDices as |dice id|}}
+                <a class="reroll dice d6" data-dice-nb="{{id}}">{{dice}}</a>
+            {{/each}}
+        </div>        
+    {{/if}}
     {{#if attackRoll}}
         <div class="formulaText">
             {{localize "CLEENMAIN.chatmessage.rollDamageFormula"}}  {{damageFormula}}

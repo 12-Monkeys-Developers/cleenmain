@@ -91,10 +91,11 @@ export default class CemBaseItem extends Item {
      *  For a npc : damage = damageBase
      * @param {*} actor 
      * @param {*} dices The dices results of a roll, if there are 3 dices it's an attack
-     * @param {*} useHeroism 
-     * @param {*} lethalattack Number of Letah Attack boon
-     * @param {*} minorinjury  Number of Minor Injury penalty
-     * @param {*} multipleattacks Number of Multiple Attacks boon
+     * @param {boolean} useHeroism 
+     * @param {int} lethalattack Number of Letah Attack boon
+     * @param {int} minorinjury  Number of Minor Injury penalty
+     * @param {int} multipleattacks Number of Multiple Attacks boon
+     * @param {*} badShapeDamageBonus 
      * @returns 
      */
      calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury, multipleattacks, badShapeDamageBonus) {
@@ -197,21 +198,25 @@ export default class CemBaseItem extends Item {
             damage += lethalRoll._total;
             rolls.push(lethalRoll);
         }
-        //bad shape damage bonus from boon
-        if(badShapeDamageBonus){
+
+        // Bad shape damage bonus from boon
+        if (badShapeDamageBonus) {
             let badShapeFormula = badShapeDamageBonus + "[black]";
+             
             if (this.getSystemData('sixPlus')) {
                 damageFormula += " + " + badShapeDamageBonus + "x";
                 badShapeFormula = badShapeDamageBonus + "x[black]";
             } else {
                 damageFormula += " + " + badShapeDamageBonus;
             }
+
             const badShapeRoll = new Roll(badShapeFormula, {}).roll({ async: false });
             let badShapeDices = [];
             for (let index = 0; index < badShapeRoll.dice.length; index++) {
                 const dice = badShapeRoll.dice[index];
                 badShapeDices.push(...dice.results);
             }
+
             damageToolTipInfos.push(...Rolls.createDamageToolTip("badshapedamage", badShapeRoll.dice[0].results.length, badShapeDices));
             damage += badShapeRoll._total;
             rolls.push(badShapeRoll);

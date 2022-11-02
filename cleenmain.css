@@ -862,3 +862,18 @@ input {
 #combat-tracker .combatant .token-name .npc {
   background-color: #5c5353;
 }
+
+.chatroll .dice.d6 {
+  position: relative;
+  width: 24px;
+  line-height: 24px;
+  float: left;
+  margin-right: 1px;
+  background-image: url('assets/image/d6-grey.svg');
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  font-size: var(--font-size-16);
+  color: #000;
+  font-weight: bold;
+  text-align: center;
+}
