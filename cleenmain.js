@@ -55,5 +55,8 @@ Hooks.once("init", function(){
 	registerHooks();
 
     // The hook to create a macro by draggind and dropping an item of the character sheet in the hot bar.
-    Hooks.on("hotbarDrop", async (bar, data, slot) => onHotbarDrop(bar, data, slot));
+    Hooks.on("hotbarDrop", (bar, data, slot) => {
+        onHotbarDrop(bar, data, slot);
+        return false;
+    });
 });
