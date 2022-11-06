@@ -10,10 +10,13 @@
     </div>  
     {{#each applyModifiers as |mod id|}}    
         <div class="modifierText">{{mod}}</div>
-    {{/each}}
-    <div class="formulaText">
-        {{localize "CLEENMAIN.chatmessage.rollformula"}}  {{formula}}
-    </div>        
+    {{/each}}   
+    <div class="formulaTooltip">
+        <div class="formulaText">{{localize "CLEENMAIN.chatmessage.rollformula"}}  {{formula}}</div>
+        {{#if (isStringNotEmpty formulaTooltip)}}
+            <span class="tooltiptext">{{formulaTooltip}}</span>
+        {{/if}}
+      </div>
     <div class="finalText">
         <div class="tooltip">
             <p>{{localize "CLEENMAIN.chatmessage.rollresult"}} {{result.total}}</p>
@@ -21,13 +24,18 @@
         </div>
     </div>
     {{#if (gt reRollNb 0)}}
-        <div class="finalText">{{localize  "CLEENMAIN.chatmessage.reRollNumber"}}{{reRollNb}}</div>
-        <div>
+        <div class="finalText">{{localize "CLEENMAIN.chatmessage.reRollNumber"}}    
+            {{reRollNb}}        
+        </div>
+        <div class="finalText">
             {{#each reRollDices as |dice id|}}
                 <a class="reroll dice d6" data-dice-nb="{{id}}">{{dice}}</a>
             {{/each}}
         </div>        
     {{/if}}
+    {{#if (gt reRollDone 0)}}
+        <div class="finalText">{{localize "CLEENMAIN.chatmessage.reRollDone"}}{{reRollDone}}</div>
+    {{/if}}                
     {{#if attackRoll}}
         <div class="formulaText">
             {{localize "CLEENMAIN.chatmessage.rollDamageFormula"}}  {{damageFormula}}

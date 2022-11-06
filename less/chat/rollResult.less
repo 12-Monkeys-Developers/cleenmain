@@ -28,6 +28,20 @@
             text-align: center;
         }
     }
+    .dice.d6 {
+        position: relative;
+        width: 24px;
+        line-height: 24px;
+        margin-right: 5px;
+        /* float: left; */
+        /* background-image: url('assets/image/d6-grey.svg'); */
+        /* background-repeat: no-repeat; */
+        /* background-size: 100px; */
+        font-size: var(--font-size-16);
+        color: #000;
+        font-weight: bold;
+        text-align: center;
+      }    
     .modifierText{
         margin-bottom: 5px;
         color: @chat-modifiertext;
@@ -40,6 +54,26 @@
         color: @chat-formulatext;
         text-align: center;
     }
+    .formulaTooltip {
+        position: relative;
+        display: inline-block;
+        .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            z-index: 1;
+          }
+    }
+      .formulaTooltip:hover .tooltiptext {
+        visibility: visible;
+    }
     .finalText{
         font: @chat-finaltext-font;
         color: @chat-finaltext;
@@ -48,8 +82,6 @@
         position: relative;
         display: inline-block;
         }
-        
-        /* Tooltip text */
         .tooltip .tooltiptext {
             visibility: hidden;
             width: 120px;

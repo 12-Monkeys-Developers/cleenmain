@@ -7,13 +7,14 @@
     </div>
     <div class="tooltip">
       <div class="formula">{{rollFormula}}</div>
-      <span class="tooltiptext">{{formulaTooltip}}</span>
+      {{#if (isStringNotEmpty formulaTooltip)}}
+        <span class="tooltiptext">{{formulaTooltip}}</span>
+      {{/if}}
     </div>
     <div class="rollmodifier">
-      <label>{{localize "CLEENMAIN.dialog.rollmodifier"}}</label><input id="rollmodifier" value="" type="text"
-        data-dtype="Text" />
+      <label>{{localize "CLEENMAIN.dialog.rollmodifier"}}</label><input id="rollmodifier" value="" type="text" data-dtype="Text" />
     </div>
-  
+    
     {{#ifn damageRoll}}
       {{#if isPlayer}}
         {{#if hasHeroism}}
@@ -24,6 +25,12 @@
       {{/if}}
     {{/ifn}}
   
+    {{#ifn attackRoll}}
+        <div class="roll rollmodifier">
+          <label>{{localize "CLEENMAIN.dialog.nbReroll"}}</label><input type="number" id="nbReroll" name="nbReroll" min="0" max="10" value="0" />
+        </div>
+    {{/ifn}}
+
     {{#if attackRoll}}
     <div class="bonus">
       <h2>{{localize "CLEENMAIN.dialog.bonus"}}</h2>

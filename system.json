@@ -4,40 +4,48 @@
   "description": "Le système clé en main pour FoundryVTT.",
   "version": "2.1.0",
   "compatibility": {
-    "minimum": 10,
+    "minimum": "10",
     "verified": "10.288"
   },
   "authors": [
     {
-      "name": "Khaali"
+      "name": "Khaali",
+      "flags": {}
     },
     {
-      "name": "Kristov"
+      "name": "Kristov",
+      "flags": {}
     }
   ],
-  "esmodules": ["cleenmain.js"],
-  "scripts": [],
-  "styles": ["cleenmain.css"],
+  "esmodules": [
+    "cleenmain.js"
+  ],
+  "styles": [
+    "cleenmain.css"
+  ],
   "packs": [
     {
       "name": "systemuserguidefr",
       "label": "Guide utilisateur du système",
       "system": "cleenmain",
-      "path": "./packs/userguide.db",
-      "module": "cleenmain",
-      "type": "JournalEntry"
+      "path": "packs/userguide.db",
+      "type": "JournalEntry",
+      "private": false,
+      "flags": {}
     }
   ],
   "languages": [
     {
       "lang": "en",
       "name": "English",
-      "path": "lang/en.json"
+      "path": "lang/en.json",
+      "flags": {}
     },
     {
       "lang": "fr",
       "name": "French",
-      "path": "lang/fr.json"
+      "path": "lang/fr.json",
+      "flags": {}
     }
   ],
   "gridDistance": 1,

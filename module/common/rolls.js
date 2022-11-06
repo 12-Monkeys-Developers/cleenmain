@@ -1,6 +1,7 @@
 import CemBaseItem from "../item/base-item.js";
 import { CemChat } from "./chat.js";
 import { CLEENMAIN } from "./config.js";
+import { ROLL_TYPE } from "./constants.js";
 
 export class Rolls {
 
@@ -43,16 +44,16 @@ export class Rolls {
         if (actor.type ==="npc" && game.user.isGM) data.rollMode = "gmroll";
 
         // Skill Roll
-        if (rollType === "skill") {
+        if (rollType === ROLL_TYPE.SKILL) {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleskill", {itemName: item.name});
             skillRoll = true;
             let value = actor.getSkillValue(item).toString();
 
-            //rollBonus : +fixed value to roll, from boon 
+            // rollBonus : +fixed value to roll, from boon 
             let rollBonus = item.system.rollBonus;
             if (rollBonus) value += " + " + rollBonus.toString();
 
-            //rollBonus1d6 : +1d6 to roll, from boon 
+            // rollBonus1d6 : +1d6 to roll, from boon 
             if (item.system.rollBonus1d6) {
                 rollFormulaDisplay = "4d6 + " + value;
                 rollFormula = "1d6[red] + 2d6[white] + 1d6[green] + " + value;
@@ -63,7 +64,7 @@ export class Rolls {
                 rollFormula = "1d6[red] + 2d6[white] + " + value;
             }
             formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + value;
-            //heroismBonus1d6 : +1d6 when using heroism, from boon 
+            // heroismBonus1d6 : +1d6 when using heroism, from boon 
             heroismBonus1d6 = item.system.heroismBonus1d6 ? true:false;
 
             introText = game.i18n.format("CLEENMAIN.dialog.introskill", {actingCharName: data.actingChar.name, itemName: item.name});
@@ -115,7 +116,7 @@ export class Rolls {
         }
 
         // Attack roll
-        if (rollType === "weapon-attack") {
+        if (rollType === ROLL_TYPE.ATTACK) {
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titleweapon", {itemName: item.name});
             attackRoll = true;
 
@@ -156,7 +157,7 @@ export class Rolls {
         }
 
         // Damage roll
-        if (rollType === "weapon-damage") {
+        if (rollType === ROLL_TYPE.DAMAGE) {
             if (actor.type == "npc") return;
             titleDialog += game.i18n.format("CLEENMAIN.dialog.titledamage", {itemName: item.name});
             damageRoll = true;
@@ -211,6 +212,7 @@ export class Rolls {
 
                         data.formula = rollFormulaDisplay;
                         data.formulaColor = rollFormula;
+                        data.formulaTooltip = formulaTooltip;
 
                         if (data.modifier) {
                             data.formula = data.formula.concat(' + ', data.modifier.toString());
@@ -299,6 +301,12 @@ export class Rolls {
 
                         }
 
+                        // Reroll if it's not an attack
+                        if (!attackRoll) {
+                            let nbReroll = html.find("#nbReroll")[0].value;
+                            data.nbReroll = parseInt(nbReroll) ?? 0;
+                        }
+
                         // Remove one bonus or malus for a defence roll
                         if (skillRoll) {
                             if (item.system.reference === "defence") {
@@ -356,11 +364,17 @@ export class Rolls {
 
         // Reroll
         let reRollNb = 0;
+        let reRollDone = 0;
         let reRollDices = [];
 
+        // Skill or damage reroll
+        if (data.skillRoll || data.damageRoll) {
+            reRollNb = data.nbReroll;
+        }
+
         // Calculate damages
-        let attackDamage = null;
-        if (item.type === "weapon") {
+        let attackDamage = null;        
+        if (data.attackRoll && item.type === "weapon") {
             attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack, data.minorinjury, data.multipleattacks, data.badShapeDamageBonus);
             attackDamage.rolls.forEach(r => {rolls.push(r)});
             reRollNb = item.system.diceRerollNb;
@@ -380,6 +394,7 @@ export class Rolls {
             introText: data.introText,
             actingCharImg: data.actingChar.img,
             formula: data.formula,
+            formulaTooltip: data.formulaTooltip,
             applyModifiers: data.applyModifiers,
             result: result,
             damage: attackDamage?.damage,
@@ -391,7 +406,8 @@ export class Rolls {
             rolls: rolls,
             rollMode: data.rollMode,
             reRollNb: reRollNb,
-            reRollDices: reRollDices
+            reRollDices: reRollDices,
+            reRollDone: reRollDone
         };
 
         // If Reroll available, put the roll in actor's flags
@@ -538,27 +554,34 @@ export class Rolls {
 
         // Replace in the roll : the dice rerolled and the new total
         let newTotal = roll._total;
-     
-        // Red dice
-        if (dice == 0) {
-            newTotal = newTotal - roll.dice[0].results[0].result + newDice.total;
-            roll.dice[0].results[0].result = newDice.total;            
-        }
-        // White dices
-        else if (dice == 1 || dice == 2) {
-            newTotal = newTotal - roll.dice[1].results[dice - 1].result + newDice.total;
-            roll.dice[1].results[dice - 1].result = newDice.total;            
-        }
-        // Bronze dice
-        else if (dice == 3) {
-            newTotal = newTotal - roll.dice[2].results[0].result + newDice.total;
-            roll.dice[2].results[0].result = newDice.total;
-        }
-     
-        roll._total = newTotal;   
 
         // Get the chat data stored in the actor
         let chatData = actor.getFlag("world", "reRoll");
+        
+        // Attack or skill Roll
+        if (chatData.attackRoll || chatData.skillRoll) {
+            // Red dice
+            if (dice == 0) {
+                newTotal = newTotal - roll.dice[0].results[0].result + newDice.total;
+                roll.dice[0].results[0].result = newDice.total;            
+            }
+            // White dices
+            else if (dice == 1 || dice == 2) {
+                newTotal = newTotal - roll.dice[1].results[dice - 1].result + newDice.total;
+                roll.dice[1].results[dice - 1].result = newDice.total;            
+            }
+            // Bronze dice
+            else if (dice == 3) {
+                newTotal = newTotal - roll.dice[2].results[0].result + newDice.total;
+                roll.dice[2].results[0].result = newDice.total;
+            }
+        }
+        else if (chatData.damageRoll) {
+            newTotal = newTotal - roll.dice[0].results[dice].result + newDice.total;
+            roll.dice[0].results[dice].result = newDice.total;  
+        }
+            
+        roll._total = newTotal;   
         chatData.rolls[0] = roll;
         
         // Generate the new result
@@ -566,6 +589,7 @@ export class Rolls {
         
         // Update the reroll number
         chatData.reRollNb = chatData.reRollNb - 1;
+        chatData.reRollDone = chatData.reRollDone + 1;
 
         // If Reroll available, put the roll in actor's flags
         if (chatData.reRollNb > 0) {

@@ -112,7 +112,8 @@
             "heroism": "Héroisme",
             "lethalattack": "Meurtrière",
             "explosive": "Explosive",
-            "reRollNumber": "Dés de relance : "
+            "reRollNumber": "Dés de relance : ",
+            "reRollDone": "Relances faites : "
         },
         "dialog":{
             "bonus": "Ajouter une prime ?",
@@ -122,9 +123,10 @@
                 "validate": "Valider"
             },
             "display_help_title": "Résumé de règles",
-            "rollmodifier": "Modificateur pour le jet: ",
-            "heroism": "Utiliser un point d'héroïsme pour +1d6.",
-            "heroismBonus1d6": "Utiliser un point d'héroïsme pour +2d6.",
+            "rollmodifier": "Modificateur pour le jet : ",
+            "nbReroll": "Nombre de relances possibles :",
+            "heroism": "Utiliser un point d'héroïsme pour +1d6",
+            "heroismBonus1d6": "Utiliser un point d'héroïsme pour +2d6",
             "introskill": "{actingCharName} utilise la compétence {itemName}",
             "titleskill": "Jet de {itemName}",
             "introweapon": "{actingCharName} attaque avec {itemName}",
