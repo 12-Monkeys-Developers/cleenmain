@@ -275,7 +275,7 @@ export default class CemBaseActor extends Actor {
     }
 
     _computeBoons() {
-        const boonsList = this.items.filter(element => element.type === "boon" && element.system.developed && element.system?.effect.length>0);
+        const boonsList = this.items.filter(element => element.type === "boon" && (element.system.developed || !this.isPlayer()) && element.system?.effect.length>0);
         if(!this.system.health.bonus) this.system.health.bonus = 0;
         for(let boon of boonsList){
             for(let boonEffect of boon.system.effect){

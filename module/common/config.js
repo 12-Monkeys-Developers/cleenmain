@@ -71,7 +71,7 @@ export const CLEENMAIN = {
                 badShape_damageBonus: "Bonus on damage when in bad shape, options: {value : string}  for example {value:'1d6'}",
                 badShape_skill_heroism_bonus1d6:"+2d6 when using heroism on skill while in bad shape, options: {reference: string}  for example {reference: 'willpower'}",
                 protection_bonus: "permanent bonus to protection, option: {value : number} example: {value: 4}",
-                boon_uses : "Boon can be used limited times, but more than 1, option: {limitedUse2 : true, limitedUse3? : true}}"
+                boon_uses : "Boon can be used limited times, but more than 1, option: {limitedUse2 : true, limitedUse3 : true}}"
         },
         max_heroism: {
             "TWO_PLAYERS": 10,
