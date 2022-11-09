@@ -129,7 +129,7 @@ export class Rolls {
 
             // Check weapons trainings
             if (item.system.category === "war") {
-                if (!actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
+                if (!actor.system.trainings.weapons.war) {
                     data.difficulty = 1;
                     data.risk = 1;
                     formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
@@ -141,7 +141,7 @@ export class Rolls {
                     data.risk = 1;
                     formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
                 }
-                if (actor.system.trainings.weapons.war) {
+                if (actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
                     data.difficulty = 1;
                     data.risk = 1;
                     formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
