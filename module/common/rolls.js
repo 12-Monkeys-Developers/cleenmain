@@ -535,7 +535,12 @@ export class Rolls {
      */
     static async reroll(event, message) {
 
+        // Get the id of the actor who has sent the chat message
         const actorId = $(event.currentTarget).parents(".chatroll").data("actorId");
+
+        // Only the GM and the actor who has sent the message can reroll
+        if (!game.user.isGM && actorId != game.user?.character._id) return;
+
         const actor = game.actors.get(actorId);
 
         const canReroll = await actor.getFlag("world", "canReRoll");
