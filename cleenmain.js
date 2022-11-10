@@ -1,11 +1,10 @@
 import { CLEENMAIN } from "./module/common/config.js";
 import { LOG_HEAD } from "./module/common/constants.js";
 
-import { preloadTemplates } from "./module/common/templates.js";
-import { registerHandlebarsHelpers } from "./module/common/helpers.js"
+import preloadTemplates from "./module/common/templates.js";
+import registerHandlebarsHelpers from "./module/common/helpers.js"
 import registerSystemSettings from './module/common/settings.js';
 import registerHooks from './module/common/hooks.js';
-import onHotbarDrop from "./module/common/macros.js";
 
 import CemBaseItem from "./module/item/base-item.js";
 import CemBaseActor from "./module/actor/base-actor.js";
@@ -15,10 +14,8 @@ import CemCombatant from "./module/combat/combatant.js";
 
 import CemBaseItemSheet from "./module/item/sheet/base-sheet.js";
 import { WeaponSheet } from "./module/item/sheet/weapon-sheet.js";
-
 import PlayerSheet from "./module/actor/sheet/player-sheet.js";
 import NpcSheet from "./module/actor/sheet/npc-sheet.js";
-import { Rolls } from "./module/common/rolls.js";
 
 Hooks.once("init", function(){
 
@@ -55,11 +52,4 @@ Hooks.once("init", function(){
 	// Register Hooks
 	registerHooks();
 
-    // The hook to create a macro by draggind and dropping an item of the character sheet in the hot bar.
-    // @param {ChatMessage} message   The ChatMessage document being rendered
-    // @param {object} data           The input data provided for template rendering
-    // @param {jQuery} html           The pending HTML as a jQuery object
-    Hooks.on("renderChatMessage", (message, html, data) => {
-        html.find(".reroll").click(ev => Rolls.reroll(ev, data.message));    
-    });
 });
