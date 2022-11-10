@@ -414,11 +414,36 @@ export class Rolls {
         if (reRollNb > 0) {
             actor.setFlag("world", "canReRoll", true);
             actor.setFlag("world", "reRoll", chatData);
-
+            let i=1;
+            let color="#ff0000";
+            let spelledNb;
             // Get the dices
-            result.dices.forEach(dice => {
-                chatData.reRollDices.push(dice.result);
-            });
+            for(let dice of result.dices){
+                if(i>1){color="#ffffff"};
+                if(i>3){color="#cd7f32"};
+                switch (dice.result) {
+                  case 1:
+                    spelledNb="one";
+                    break;
+                  case 2:
+                    spelledNb="two";
+                    break;
+                  case 3:
+                    spelledNb="three";
+                    break;
+                  case 4:
+                    spelledNb="four";
+                    break;
+                  case 5:
+                    spelledNb="five";
+                    break;
+                  case 6:
+                    spelledNb="six";
+                    break;
+                }
+                chatData.reRollDices.push({nb:spelledNb, color:color});
+                i++;
+            }
         }
 
         let chat = await new CemChat(actor)
@@ -619,9 +644,36 @@ export class Rolls {
 
             // Get the dices
             chatData.reRollDices = [];
-            chatData.result.dices.forEach(dice => {
-                chatData.reRollDices.push(dice.result);
-            });
+            let i=1;
+            let color="#ff0000";
+            let spelledNb;
+            // Get the dices
+            for(let dice of chatData.result.dices){
+                if(i>1){color="#ffffff"};
+                if(i>3){color="#cd7f32"};
+                switch (dice.result) {
+                  case 1:
+                    spelledNb="one";
+                    break;
+                  case 2:
+                    spelledNb="two";
+                    break;
+                  case 3:
+                    spelledNb="three";
+                    break;
+                  case 4:
+                    spelledNb="four";
+                    break;
+                  case 5:
+                    spelledNb="five";
+                    break;
+                  case 6:
+                    spelledNb="six";
+                    break;
+                }
+                chatData.reRollDices.push({nb:spelledNb, color:color});
+                i++;
+            }
 
             await actor.setFlag("world", "reRoll", chatData);
         }

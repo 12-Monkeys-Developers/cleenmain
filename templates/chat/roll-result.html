@@ -27,9 +27,10 @@
         <div class="finalText">{{localize "CLEENMAIN.chatmessage.reRollNumber"}}    
             {{reRollNb}}        
         </div>
-        <div class="finalText">
+        <div class="finalText" style="padding-top: 8px;">
+            <i class="fas fa-sync"></i>
             {{#each reRollDices as |dice id|}}
-                <a class="reroll dice d6" data-dice-nb="{{id}}">{{dice}}</a>
+                <a class="reroll dice d6" data-dice-nb="{{id}}"><i style="font-size:1.3em;color:{{dice.color}};" class="fas fa-dice-{{dice.nb}}"></i></a>
             {{/each}}
         </div>        
     {{/if}}
