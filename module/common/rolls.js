@@ -551,7 +551,24 @@ export class Rolls {
         const dice = btn.data("diceNb");
 
         // Roll 1d6
-        const newDice = new Roll("1d6", {}).roll({ async: false });
+        let diceColor;
+        // Red dice
+        if (dice == 0) {
+            diceColor = 'red';
+        }
+        // White dices
+        else if (dice == 1 || dice == 2) {
+            diceColor = 'white';
+        }
+        // Bronze dice
+        else if (dice == 3) {
+            diceColor = 'bronze';
+        }
+        const newDice = new Roll("1d6[" + diceColor + "]", {}).roll({ async: false });
+        // display the roll in Dice So Nice if the module is active
+        if (game.modules.get('dice-so-nice')?.active) {            
+            game.dice3d.showForRoll(newDice, game.user, true);
+        }        
 
         // Take the existing roll
         let jsonRoll = message.rolls[0];
