@@ -511,7 +511,7 @@ export class Rolls {
       total: roll._total,
       tooltip: toolTip,
       dices: dices,
-      roll: roll,
+      roll: roll
     };
   }
 
@@ -588,7 +588,7 @@ export class Rolls {
       let found =false;
       let userArray = await actor.getOwnerPlayer();
       let userId = game.user._id;
-      for(let user of userArray){
+      for(let user of userArray) {
         if (user._id==userId) found = true;
       }
       if(!found) return;
@@ -623,7 +623,13 @@ export class Rolls {
 
     // Take the existing roll
     let jsonRoll = message.rolls[0];
-    let roll = Roll.fromJSON(jsonRoll);
+    let rollFromJson = Roll.fromJSON(jsonRoll);
+    let term = rollFromJson.terms[0];
+    let roll;
+    if (term instanceof PoolTerm) {
+      roll = rollFromJson.terms[0].rolls[0];
+    }
+    else roll = rollFromJson;
 
     // Replace in the roll : the dice rerolled and the new total
     let newTotal = roll._total;
@@ -655,6 +661,10 @@ export class Rolls {
 
     roll._total = newTotal;
     chatData.rolls[0] = roll;
+    for (let index = 1; index < chatData.rolls.length; index++) {
+      const element = Roll.fromData(chatData.rolls[index]);
+      chatData.rolls[index] = element;
+    }
 
     // Generate the new result
     chatData.result = await this.getResult(roll, null);
@@ -710,22 +720,28 @@ export class Rolls {
       await newMessage.unsetFlag("world", "reRoll");
     }
 
+    let lethalRoll;
+    if (chatData.lethalattack > 0) {
+      lethalRoll = chatData.rolls[1];
+    }
+
     // Calculate damage if it's a weapon
     if (chatData.item.type == "weapon") {
       const itemId = chatData.itemId;
       const item = game.actors.get(actorId).items.get(itemId);
-      let attackDamage = item.calculateWeaponDamage(
+      let attackDamage = item.calculateWeaponDamageWithBoons(
         actor,
         chatData.result.dices,
         chatData.useHeroism,
-        chatData.lethalattack,
+        lethalRoll,
         chatData.minorinjury,
         chatData.multipleattacks,
         chatData.badShapeDamageBonus
       );
-      attackDamage.rolls.forEach((r) => {
+      /*attackDamage.rolls.forEach((r) => {
         rolls.push(r);
       });
+      */
 
       chatData.damage = attackDamage?.damage;
       chatData.damageFormula = attackDamage?.damageFormula;
@@ -740,6 +756,6 @@ export class Rolls {
         .create();
 
     // Update the chat message content and rolls
-    await newMessage.update({ content: newChatMessage.content, rolls: [roll.toJSON()], flags: newChatMessage.flags });
+    await newMessage.update({ content: newChatMessage.content, rolls: [roll.toJSON()] });
   }
 }
