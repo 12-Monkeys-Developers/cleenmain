@@ -584,7 +584,15 @@ export class Rolls {
     const newMessage = game.messages.get(messageId);
 
     // Only the GM and the actor who has sent the message can reroll
-    if (!game.user.isGM && actorId != game.user?.character._id) return;
+    if (!game.user.isGM){
+      let found =false;
+      let userArray = await actor.getOwnerPlayer();
+      let userId = game.user._id;
+      for(let user of userArray){
+        if (user._id==userId) found = true;
+      }
+      if(!found) return;
+    }
 
     const canReroll = newMessage.getFlag("world", "canReRoll");
     if (!canReroll) return;

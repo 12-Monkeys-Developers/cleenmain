@@ -70,6 +70,19 @@ export default class CemBaseActor extends Actor {
         if (defenceSkill.length > 0) return this.getSkillValue(defenceSkill[0]);
         return(0);
     }
+    
+    /* Get the Players owning an actor, that is not a GM and that is connected */
+    async getOwnerPlayer(){
+        let permissions = Object.entries(this.ownership);
+        let ownerIds = permissions.reduce((idValue, e) => {
+            if(e[1] === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+                idValue.push(e[0]);
+            }
+            return idValue
+        },[])
+        let owningPlayers = game.users.filter(user => user.active && !user.isGM && ownerIds.includes(user.id));
+        return(owningPlayers)
+    }
 
     hasHeroismPoints() {
         return this.isPlayer() && this.system.heroism.value > 0;
