@@ -1,4 +1,4 @@
-export const registerHandlebarsHelpers = function() {
+export default function registerHandlebarsHelpers() {
 
     Handlebars.registerHelper('isStringNotEmpty', function (stringtotest) {
         return stringtotest.length > 0;

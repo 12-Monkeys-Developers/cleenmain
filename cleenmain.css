@@ -158,7 +158,7 @@ input {
   margin: 0 0 0 0.5em;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .central-text {
-  margin: 0.3em 0.2em 0 0.1em;
+  margin: 0 0.2em 0 0.1em;
 }
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .name-text,
 .cleenmain.sheet.player .main .central .intro-block .intro-block-right .central-line .wounds-text,
@@ -755,11 +755,11 @@ input {
 .dialog .rollmodifier {
   display: flex;
   flex-direction: row;
-  margin: 1em;
+  margin: 0 0 1em 1em;
 }
 .dialog .rollmodifier input {
-  width: 6em;
-  margin: 0 0 1em  1em;
+  width: 5em;
+  margin: 0 0 1em 1em;
 }
 .dialog .paddingend {
   padding: 0 0 5em 0;
@@ -816,6 +816,20 @@ input {
   font: 1rem "Signika";
   text-align: center;
 }
+.chatroll .dice.d6 {
+  position: relative;
+  width: 24px;
+  line-height: 24px;
+  margin-right: 5px;
+  /* float: left; */
+  /* background-image: url('assets/image/d6-grey.svg'); */
+  /* background-repeat: no-repeat; */
+  /* background-size: 100px; */
+  font-size: var(--font-size-16);
+  color: #000;
+  font-weight: bold;
+  text-align: center;
+}
 .chatroll .modifierText {
   margin-bottom: 5px;
   color: #470e0e;
@@ -828,11 +842,30 @@ input {
   color: black;
   text-align: center;
 }
+.chatroll .formulaTooltip {
+  position: relative;
+  display: inline-block;
+}
+.chatroll .formulaTooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  z-index: 1;
+}
+.chatroll .formulaTooltip:hover .tooltiptext {
+  visibility: visible;
+}
 .chatroll .finalText {
   font: 1rem "Signika";
   color: black;
   text-align: center;
-  /* Tooltip text */
 }
 .chatroll .finalText .tooltip {
   position: relative;

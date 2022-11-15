@@ -7,35 +7,35 @@
     </div>
     <div class="equipment-column droppable">
         {{#each equipments as |item id|}}
-
-        <span class="tooltip">{{protection}}<span class="tooltiptext">{{localize
-                "CLEENMAIN.tooltip.protection"}}</span></span>
-
-
-        <div class="equipment-line item" data-item-id="{{_id}}">
-            {{#if (ne item.img "icons/svg/item-bag.svg")}}
-            <div class="image-container">
-                <img src="{{item.img}}" title="{{item.name}}" />
-            </div>
-            {{/if}}
-            <div class="equipment-name">{{item.name}}</div>
-            <div class="icon-group">
-                {{#ife item.system.state "active"}}
-                <a class="item-state" title="{{localize 'CLEENMAIN.equipment.active'}}"><i class="fas fa-hand"></i></a>
-                {{else ife item.system.state "equipped"}}
-                <a class="item-state" title="{{localize 'CLEENMAIN.equipment.equipped'}}"><i
-                        class="fas fa-backpack"></i></a>
-                {{else}}
-                <a class="item-state" title="{{localize 'CLEENMAIN.equipment.other'}}"><i class="fas fa-house"></i></a>
-                {{/ife}}
-                <a class="item-open-sheet" data-type="equipment" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i
-                        class="fas fa-pen"></i></a>
-                {{#if ../unlocked}}
-                <a class="inline-delete" data-type="equipment" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i
-                        class="fas fa-trash"></i></a>
+        <details>
+            <summary class="equipment-line item" data-item-id="{{_id}}">
+                {{#if (ne item.img "icons/svg/item-bag.svg")}}
+                <div class="image-container">
+                    <img src="{{item.img}}" title="{{item.name}}" />
+                </div>
                 {{/if}}
-            </div>
-        </div>
+                <div class="equipment-name">{{item.name}}</div>
+                <div class="icon-group">
+                    {{#ife item.system.state "active"}}
+                    <a class="item-state" title="{{localize 'CLEENMAIN.equipment.active'}}"><i
+                            class="fas fa-hand"></i></a>
+                    {{else ife item.system.state "equipped"}}
+                    <a class="item-state" title="{{localize 'CLEENMAIN.equipment.equipped'}}"><i
+                            class="fas fa-backpack"></i></a>
+                    {{else}}
+                    <a class="item-state" title="{{localize 'CLEENMAIN.equipment.other'}}"><i
+                            class="fas fa-house"></i></a>
+                    {{/ife}}
+                    <a class="item-open-sheet" data-type="equipment" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i
+                            class="fas fa-pen"></i></a>
+                    {{#if ../unlocked}}
+                    <a class="inline-delete" data-type="equipment" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i
+                            class="fas fa-trash"></i></a>
+                    {{/if}}
+                </div>
+            </summary>
+            {{{item.system.descriptionhtml}}}
+        </details>
         {{/each}}
     </div>
 </div>

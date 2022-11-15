@@ -137,7 +137,9 @@
             "weapon": "Weapon ({nbDices}d6)",
             "heroism": "Heroism",
             "lethalattack": "Lethal",
-            "explosive": "Explosive"
+            "explosive": "Explosive",
+            "reRollNumber": "Reroll dices: ",
+            "reRollDone": "Reroll done: "
         },
         "dialog":{
             "bonus": "Add a bonus?",
@@ -148,8 +150,9 @@
             },
             "display_help_title": "Résumé de règles",
             "rollmodifier": "Modifier for the roll: ",
-            "heroism": "Spend an heroism point for +1d6.",
-            "heroismBonus1d6": "Spend an heroism point for +2d6.",
+            "nbReroll": "Reroll maximum number:",
+            "heroism": "Spend an heroism point for +1d6",
+            "heroismBonus1d6": "Spend an heroism point for +2d6",
             "introskill": "{actingCharName} uses the skill {itemName}.",
             "titleskill": "Roll of {itemName}",
             "introweapon": "{actingCharName} attacks with {itemName}.",
