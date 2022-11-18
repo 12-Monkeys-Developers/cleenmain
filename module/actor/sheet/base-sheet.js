@@ -211,7 +211,7 @@ export class CemBaseActorSheet extends ActorSheet {
     const itemId = $(event.currentTarget).parents(".item").data("itemId");
 
     const rollSkill = this.actor.items.filter((i) => i.type === "skill" && i.system.reference === skillName)[0];
-    let malusValue = this.actor.system.wounds * 5;
+    let malusValue = this.actor.system.badShape_noWoundMalus ? 0 : this.actor.system.wounds * 5;
     let options = {
       badShapeRoll: true,
       bonuses: [{ value: " - " + malusValue.toString(), tooltip: game.i18n.format("CLEENMAIN.label.wounds") + ": -" + malusValue.toString() }],

@@ -84,8 +84,8 @@ export class Rolls {
         }
       }
 
-      // Bad Shape for player
-      if (actor.isPlayer() && actor.isInBadShape() && !data.options?.badShapeRoll) {
+      // Bad Shape for player and boss
+      if (actor.isInBadShape() && !data.options?.badShapeRoll) {
         let modValue = actor.system.health.badShapeSkillBonus ? " + " + actor.system.health.badShapeSkillBonus.toString() : " - 2";
         let tooltipModValue = actor.system.health.badShapeSkillBonus ? "+" + actor.system.health.badShapeSkillBonus.toString() : "-2";
         rollFormulaDisplay = rollFormulaDisplay.concat(modValue);
@@ -145,7 +145,7 @@ export class Rolls {
           formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
         }
       }
-      if (actor.isPlayer() && actor.isInBadShape()) {
+      if (actor.isInBadShape()) {
         let modValue = actor.system.health.badShapeSkillBonus ? " + " + actor.system.health.badShapeSkillBonus.toString() : " - 2";
         let tooltipModValue = actor.system.health.badShapeSkillBonus ? "+" + actor.system.health.badShapeSkillBonus.toString() : "-2";
         rollFormulaDisplay = rollFormulaDisplay.concat(modValue);
@@ -311,7 +311,7 @@ export class Rolls {
             }
 
             // Status
-            if (actor.isPlayer() && actor.isInBadShape()) {
+            if (actor.isInBadShape()) {
               data.applyModifiers.push(game.i18n.localize("CLEENMAIN.health.status.badshape"));
               data.badShapeDamageBonus = actor.system.health.badShapeDamageBonus ?? 0;
             }
