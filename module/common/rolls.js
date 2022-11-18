@@ -729,7 +729,7 @@ export class Rolls {
     if (chatData.item.type == "weapon") {
       const itemId = chatData.itemId;
       const item = game.actors.get(actorId).items.get(itemId);
-      let attackDamage = item.calculateWeaponDamageWithBoons(
+      let attackDamage = item.calculateWeaponDamage(
         actor,
         chatData.result.dices,
         chatData.useHeroism,
@@ -738,10 +738,9 @@ export class Rolls {
         chatData.multipleattacks,
         chatData.badShapeDamageBonus
       );
-      /*attackDamage.rolls.forEach((r) => {
+      attackDamage.rolls.forEach((r) => {
         rolls.push(r);
       });
-      */
 
       chatData.damage = attackDamage?.damage;
       chatData.damageFormula = attackDamage?.damageFormula;
