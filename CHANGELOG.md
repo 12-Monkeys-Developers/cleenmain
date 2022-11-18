@@ -1,3 +1,10 @@
+# Version 2.2.0
+- Correction du bug de la création de macro dans la hotbar : plus de double macros (celle du système et celle générique)
+- Ajout des effets des atouts pour les PNJs
+- Gestion de la relance pour les jets de compétence, les jets d'attaque et de dommmages
+- Dans l'inventaire, ajout du clic sur l'objet pour afficher la description
+- Divers correctifs
+
 # Version 2.1.0
 - Automatisation de certains atouts
 - les armes peuvent donner un bonus aux jets de compétence
