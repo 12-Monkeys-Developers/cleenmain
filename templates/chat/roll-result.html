@@ -1,4 +1,5 @@
-<div class="chatroll">
+{{log 'chat' this}}
+<div class="chatroll" data-actor-id="{{actorId}}">
     <div class="intro">
         {{#if (ne actingCharImg "icons/svg/mystery-man.svg")}}
         <div class="introImg">
@@ -9,16 +10,33 @@
     </div>  
     {{#each applyModifiers as |mod id|}}    
         <div class="modifierText">{{mod}}</div>
-    {{/each}}
-    <div class="formulaText">
-        {{localize "CLEENMAIN.chatmessage.rollformula"}}  {{formula}}
-    </div>        
+    {{/each}}   
+    <div class="formulaTooltip">
+        <div class="formulaText">{{localize "CLEENMAIN.chatmessage.rollformula"}}  {{formula}}</div>
+        {{#if (isStringNotEmpty formulaTooltip)}}
+            <span class="tooltiptext">{{formulaTooltip}}</span>
+        {{/if}}
+      </div>
     <div class="finalText">
         <div class="tooltip">
             <p>{{localize "CLEENMAIN.chatmessage.rollresult"}} {{result.total}}</p>
             <span class="tooltiptext">{{{result.tooltip.string}}}</span>
         </div>
     </div>
+    {{#if (gt reRollNb 0)}}
+        <div class="finalText">{{localize "CLEENMAIN.chatmessage.reRollNumber"}}    
+            {{reRollNb}}        
+        </div>
+        <div class="finalText" style="padding-top: 8px;background-color: black;">
+            <i class="fas fa-sync"></i>
+            {{#each reRollDices as |dice id|}}
+                <a class="reroll dice d6" data-dice-nb="{{id}}"><i style="font-size:1.3em;color:{{dice.color}};" class="fas fa-dice-{{dice.nb}}"></i></a>
+            {{/each}}
+        </div>        
+    {{/if}}
+    {{#if (gt reRollDone 0)}}
+        <div class="finalText">{{localize "CLEENMAIN.chatmessage.reRollDone"}}{{reRollDone}}</div>
+    {{/if}}                
     {{#if attackRoll}}
         <div class="formulaText">
             {{localize "CLEENMAIN.chatmessage.rollDamageFormula"}}  {{damageFormula}}

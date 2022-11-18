@@ -1,8 +1,10 @@
 
+import { Rolls } from "./rolls.js";
+
 export default function registerHooks() {
     
     Hooks.once('ready', () => {
-        showUserGuide();
+        _showUserGuide();
       });
 
     Hooks.on('createActor', async (document, options, userId) => {
@@ -60,8 +62,18 @@ export default function registerHooks() {
     
     });
 
+    /**
+     * @description The hook to create a macro by draggind and dropping an item of the character sheet in the hot bar
+     * @param {ChatMessage} message   The ChatMessage document being rendered 
+     * @param {jQuery} html           The pending HTML as a jQuery object
+    * @param {object} data           The input data provided for template rendering
+     * @returns the roll result
+     */   
+    Hooks.on("renderChatMessage", (message, html, data) => {
+        html.find(".reroll").click(ev => Rolls.reroll(ev, data.message));    
+    });
           
-    async function showUserGuide() {
+    async function _showUserGuide() {
         if (game.user.isGM) {
             const newVer = game.system.version;
             const userGuideJournalName = 'Présentation du Système Clé en main';

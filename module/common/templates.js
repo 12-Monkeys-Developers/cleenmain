@@ -3,7 +3,7 @@
  * Pre-loaded templates are compiled and cached for fast access when rendering
  * @return {Promise}
  */
- export const preloadTemplates = async function () {
+ export default async function preloadTemplates() {
 
     return loadTemplates([
         "systems/cleenmain/templates/actor/npc.html",  

@@ -70,6 +70,19 @@ export default class CemBaseActor extends Actor {
         if (defenceSkill.length > 0) return this.getSkillValue(defenceSkill[0]);
         return(0);
     }
+    
+    /* Get the Players owning an actor, that is not a GM and that is connected */
+    async getOwnerPlayer(){
+        let permissions = Object.entries(this.ownership);
+        let ownerIds = permissions.reduce((idValue, e) => {
+            if(e[1] === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+                idValue.push(e[0]);
+            }
+            return idValue
+        },[])
+        let owningPlayers = game.users.filter(user => user.active && !user.isGM && ownerIds.includes(user.id));
+        return(owningPlayers)
+    }
 
     hasHeroismPoints() {
         return this.isPlayer() && this.system.heroism.value > 0;
@@ -81,7 +94,7 @@ export default class CemBaseActor extends Actor {
      * PC : Base + Bonus + 2 if developed
      * NPC : Base + Bonus, if the advanced rules are used, the base changes if it's an elite
      * @param {Item} skill 
-     * @returns 
+     * @returns {int} the value of the skill
      */
     getSkillValue(skill){
         let newValue = 0;
@@ -275,7 +288,7 @@ export default class CemBaseActor extends Actor {
     }
 
     _computeBoons() {
-        const boonsList = this.items.filter(element => element.type === "boon" && element.system.developed && element.system?.effect.length>0);
+        const boonsList = this.items.filter(element => element.type === "boon" && (element.system.developed || !this.isPlayer()) && element.system?.effect.length>0);
         if(!this.system.health.bonus) this.system.health.bonus = 0;
         for(let boon of boonsList){
             for(let boonEffect of boon.system.effect){
@@ -285,15 +298,18 @@ export default class CemBaseActor extends Actor {
             }
         }
     }
+
     boonEffect_health_bonus(options, boonId){
         if(!options?.value) return;
         this.system.health.bonus+=options.value;
         return;
     }
+
     boonEffect_protection_bonus(options, boonId){
         if(!options?.value) return;
         this.system.health.bonusProtection = options.value;
     }
+
     boonEffect_skill_bonus(options, boonId){
         if(!options?.reference || !options?.value) return;
         const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
@@ -302,6 +318,7 @@ export default class CemBaseActor extends Actor {
         }
         return;
     }
+
     boonEffect_skill_bonus_1d6(options, boonId){
         if(!options?.reference) return;
         const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
@@ -310,6 +327,7 @@ export default class CemBaseActor extends Actor {
         }
         return;
     }
+
     boonEffect_skill_heroism_bonus1d6(options, boonId){
         if(!options?.reference) return;
         const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
@@ -318,14 +336,17 @@ export default class CemBaseActor extends Actor {
         }
         return;
     }
+
     boonEffect_badShape_skillBonus(options, boonId){
         if(!options?.value) return;
         this.system.health.badShapeSkillBonus=options.value;
     }
+
     boonEffect_badShape_damageBonus(options, boonId){
         if(!options?.value) return;
-        this.system.health.badShapeDamageBonus=options.value;
+        this.system.health.badShapeDamageBonus = options.value;
     }
+
     boonEffect_badShape_skill_heroism_bonus1d6(options, boonId){
         if(!options?.reference || !this.isInBadShape()) return;
         const skillList = this.items.filter(element => element.type === "skill" && element.system.reference===options.reference);
@@ -333,6 +354,7 @@ export default class CemBaseActor extends Actor {
             skill.system.heroismBonus1d6=true;
         }
     }
+
     boonEffect_boon_uses(options, boonId){
         if(!options) return;
         const boon = this.items.get(boonId);
