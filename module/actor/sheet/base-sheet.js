@@ -1,3 +1,4 @@
+import { ROLL_TYPE } from "../../common/constants.js";
 export class CemBaseActorSheet extends ActorSheet {
   /**
    * @constructor
@@ -174,7 +175,7 @@ export class CemBaseActorSheet extends ActorSheet {
     event.preventDefault();
     const itemId = $(event.currentTarget).parents(".item").data("itemId");
 
-    return this.actor.check(itemId, "skill");
+    return this.actor.check(itemId, ROLL_TYPE.SKILL);
   }
 
   /**
@@ -185,7 +186,7 @@ export class CemBaseActorSheet extends ActorSheet {
   async _onWeaponAttackRoll(event) {
     event.preventDefault();
     const itemId = $(event.currentTarget).parents(".combat-table").data("itemId");
-    return this.actor.check(itemId, "weapon-attack");
+    return this.actor.check(itemId, ROLL_TYPE.ATTACK);
   }
 
   /**
@@ -196,7 +197,7 @@ export class CemBaseActorSheet extends ActorSheet {
   async _onWeaponDamageRoll(event) {
     event.preventDefault();
     const itemId = $(event.currentTarget).parents(".combat-table").data("itemId");
-    return this.actor.check(itemId, "weapon-damage");
+    return this.actor.check(itemId, ROLL_TYPE.DAMAGE);
   }
 
   /**

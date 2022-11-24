@@ -95,7 +95,7 @@ export class CemChat {
 
         // Set the roll parameter if necessary
         if (this.roll) {
-            d.roll = this.roll;
+            //d.roll = this.roll;
             d.rollMode = this.data.rollMode;
             d.type = CONST.CHAT_MESSAGE_TYPES.ROLL;
         }

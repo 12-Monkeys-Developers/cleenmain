@@ -42,127 +42,37 @@ export class Rolls {
 
     // Skill Roll
     if (rollType === ROLL_TYPE.SKILL) {
-      titleDialog += game.i18n.format("CLEENMAIN.dialog.titleskill", { itemName: item.name });
       skillRoll = true;
-      let value = actor.getSkillValue(item).toString();
-
-      // rollBonus : +fixed value to roll, from boon
-      let rollBonus = item.system.rollBonus;
-      if (rollBonus) value += " + " + rollBonus.toString();
-
-      // rollBonus1d6 : +1d6 to roll, from boon
-      if (item.system.rollBonus1d6) {
-        rollFormulaDisplay = "4d6 + " + value;
-        rollFormula = "1d6[red] + 2d6[white] + 1d6[green] + " + value;
-        skillBonus1d6 = true;
-      } else {
-        rollFormulaDisplay = "3d6 + " + value;
-        rollFormula = "1d6[red] + 2d6[white] + " + value;
-      }
-      formulaTooltip += game.i18n.format("CLEENMAIN.tooltip.skill") + value;
-      // heroismBonus1d6 : +1d6 when using heroism, from boon
-      heroismBonus1d6 = item.system.heroismBonus1d6 ? true : false;
-
-      introText = game.i18n.format("CLEENMAIN.dialog.introskill", { actingCharName: data.actingChar.name, itemName: item.name });
-
-      // Check armors training
-      if (item.system.physical) {
-        const armorMalus = actor.getArmorMalus();
-        if (armorMalus > 0) {
-          rollFormulaDisplay = rollFormulaDisplay.concat(" - ", armorMalus);
-          rollFormula += " - " + armorMalus;
-          formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.armormalus") + "-" + armorMalus;
-        }
-      }
-
-      // Bonuses
-      if (data.options?.bonuses) {
-        for (let bonus of data.options.bonuses) {
-          rollFormulaDisplay = rollFormulaDisplay += bonus.value;
-          rollFormula += bonus.value;
-          formulaTooltip += ", " + bonus.tooltip;
-        }
-      }
-
-      // Bad Shape for player and boss
-      if (actor.isInBadShape() && !data.options?.badShapeRoll) {
-        let modValue = actor.system.health.badShapeSkillBonus ? " + " + actor.system.health.badShapeSkillBonus.toString() : " - 2";
-        let tooltipModValue = actor.system.health.badShapeSkillBonus ? "+" + actor.system.health.badShapeSkillBonus.toString() : "-2";
-        rollFormulaDisplay = rollFormulaDisplay.concat(modValue);
-        rollFormula += modValue;
-        formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.badshape") + tooltipModValue;
-      }
-
-      // Defence check : bonus or malus from boon or penality
-      if (CLEENMAIN.skillsModifiedBehaviour.includes(item.system.reference)) {
-        const mod = actor.getBehaviourValue();
-        if (mod) {
-          if (mod > 0) {
-            rollFormulaDisplay = rollFormulaDisplay.concat(" + ").concat(mod);
-            rollFormula += " + " + mod.toString();
-            formulaTooltip += ", " + game.i18n.format("CLEENMAIN.bonus.caution.label") + ": " + mod;
-          } else if (mod < 0) {
-            rollFormulaDisplay = rollFormulaDisplay.concat(" - ").concat(Math.abs(mod));
-            rollFormula += " - " + Math.abs(mod).toString();
-            formulaTooltip += ", " + game.i18n.format("CLEENMAIN.penalty.danger.label") + ": " + mod;
-          }
-        }
-      }
+      const roll = this._skillRoll(actor, item, data);
+      titleDialog = roll.titleDialog;
+      introText = roll.introText;
+      rollFormulaDisplay = roll.rollFormulaDisplay;
+      rollFormula = roll.rollFormula;
+      formulaTooltip = roll.formulaTooltip;
+      skillBonus1d6 = roll.skillBonus1d6;
     }
 
     // Attack roll
     if (rollType === ROLL_TYPE.ATTACK) {
-      titleDialog += game.i18n.format("CLEENMAIN.dialog.titleweapon", { itemName: item.name });
       attackRoll = true;
-
-      rollFormula = "1d6[red] + 2d6[white] " + this._getTerm(item.weaponSkill(actor)) + this._getTerm(item.system.skillBonus);
-      rollFormulaDisplay = "3d6" + this._getTerm(item.weaponSkill(actor)) + this._getTerm(item.system.skillBonus);
-
-      formulaTooltip +=
-        game.i18n.format("CLEENMAIN.tooltip.skill") +
-        item.weaponSkill(actor) +
-        (item.system.skillBonus ? ", " + game.i18n.format("CLEENMAIN.tooltip.weaponbonus") + item.system.skillBonus.toString() : "");
-
-      introText = game.i18n.format("CLEENMAIN.dialog.introweapon", { actingCharName: data.actingChar.name, itemName: item.name });
-
-      // Check weapons trainings
-      if (item.system.category === "war") {
-        if (!actor.system.trainings.weapons.war) {
-          data.difficulty = 1;
-          data.risk = 1;
-          formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
-        }
-      }
-      if (item.system.category === "heavy") {
-        if (!actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
-          data.difficulty = 2;
-          data.risk = 1;
-          formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
-        }
-        if (actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
-          data.difficulty = 1;
-          data.risk = 1;
-          formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.untrained");
-        }
-      }
-      if (actor.isInBadShape()) {
-        let modValue = actor.system.health.badShapeSkillBonus ? " + " + actor.system.health.badShapeSkillBonus.toString() : " - 2";
-        let tooltipModValue = actor.system.health.badShapeSkillBonus ? "+" + actor.system.health.badShapeSkillBonus.toString() : "-2";
-        rollFormulaDisplay = rollFormulaDisplay.concat(modValue);
-        rollFormula += modValue;
-        formulaTooltip += ", " + game.i18n.format("CLEENMAIN.tooltip.badshape") + tooltipModValue;
-      }
+      const roll = this._attackRoll(actor, item, data);
+      titleDialog = roll.titleDialog;
+      introText = roll.introText;
+      rollFormulaDisplay = roll.rollFormulaDisplay;
+      rollFormula = roll.rollFormula;
+      formulaTooltip = roll.formulaTooltip;
     }
 
     // Damage roll
     if (rollType === ROLL_TYPE.DAMAGE) {
       if (actor.type == "npc") return;
-      titleDialog += game.i18n.format("CLEENMAIN.dialog.titledamage", { itemName: item.name });
       damageRoll = true;
-      rollFormula = item.weaponDamage(actor);
-      rollFormulaDisplay = rollFormula;
 
-      introText = game.i18n.format("CLEENMAIN.dialog.introdamage", { actingCharName: data.actingChar.name, itemName: item.name });
+      const roll = this._damageRoll(actor, item, data);
+      titleDialog = roll.titleDialog;
+      introText = roll.introText;
+      rollFormulaDisplay = roll.rollFormulaDisplay;
+      rollFormula = roll.rollFormula;
     }
 
     // Create the dialog panel to display.
@@ -205,6 +115,12 @@ export class Rolls {
             const modifierInput = html.find("#rollmodifier")[0].value;
             if (modifierInput !== "") {
               data.modifier = parseInt(Math.floor(parseInt(modifierInput)));
+            }
+
+            // The optional damage bonus
+            if (!skillRoll) {
+              const damageBonus = html.find("#damageBonus")[0].value;
+              data.damageBonus = parseInt(damageBonus);
             }
 
             data.formula = rollFormulaDisplay;
@@ -334,6 +250,163 @@ export class Rolls {
     }).render(true);
   }
 
+  /**
+   *
+   * @param {*} actor
+   * @param {*} item
+   * @param {*} data
+   * @returns titleDialog, introText, rollFormulaDisplay, rollFormula, formulaTooltip, skillBonus1d6
+   */
+  static _skillRoll(actor, item, data) {
+    let titleDialog = game.i18n.format("CLEENMAIN.dialog.titleskill", { itemName: item.name });
+    let introText = game.i18n.format("CLEENMAIN.dialog.introskill", { actingCharName: data.actingChar.name, itemName: item.name });
+
+    let rollFormulaDisplay;
+    let rollFormula;
+    let skillBonus1d6 = false;
+
+    let value = actor.getSkillValue(item).toString();
+
+    // rollBonus : +fixed value to roll, from boon
+    let rollBonus = item.system.rollBonus;
+    if (rollBonus) value += " + " + rollBonus.toString();
+
+    // rollBonus1d6 : +1d6 to roll, from boon
+    if (item.system.rollBonus1d6) {
+      rollFormulaDisplay = "4d6 + " + value;
+      rollFormula = "1d6[red] + 2d6[white] + 1d6[green] + " + value;
+      skillBonus1d6 = true;
+    } else {
+      rollFormulaDisplay = "3d6 + " + value;
+      rollFormula = "1d6[red] + 2d6[white] + " + value;
+    }
+
+    let formulaTooltip = game.i18n.format("CLEENMAIN.tooltip.skill") + value;
+
+    // heroismBonus1d6 : +1d6 when using heroism, from boon
+    let heroismBonus1d6 = item.system.heroismBonus1d6 ? true : false;
+
+    // Check armors training
+    if (item.system.physical) {
+      const armorMalus = actor.getArmorMalus();
+      if (armorMalus > 0) {
+        rollFormulaDisplay = rollFormulaDisplay.concat(" - ", armorMalus);
+        rollFormula = rollFormula.concat(" - ", armorMalus);
+        formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.armormalus"), "-", armorMalus);
+      }
+    }
+
+    // Bonuses
+    if (data.options?.bonuses) {
+      for (let bonus of data.options.bonuses) {
+        rollFormulaDisplay = rollFormulaDisplay.concat(" + ", bonus.value);
+        rollFormula = rollFormula.concat(bonus.value);
+        formulaTooltip = formulaTooltip.concat(", ", bonus.tooltip);
+      }
+    }
+
+    // Bad Shape for player and boss
+    if (actor.isInBadShape() && !data.options?.badShapeRoll) {
+      let modValue = actor.system.health.badShapeSkillBonus ? " + " + actor.system.health.badShapeSkillBonus.toString() : " - 2";
+      let tooltipModValue = actor.system.health.badShapeSkillBonus ? "+" + actor.system.health.badShapeSkillBonus.toString() : "-2";
+      rollFormulaDisplay = rollFormulaDisplay.concat(modValue);
+      rollFormula = rollFormula.concat(modValue);
+      formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.badshape"), tooltipModValue);
+    }
+
+    // Defence check : bonus or malus from boon or penality
+    if (CLEENMAIN.skillsModifiedBehaviour.includes(item.system.reference)) {
+      const mod = actor.getBehaviourValue();
+      if (mod) {
+        if (mod > 0) {
+          rollFormulaDisplay = rollFormulaDisplay.concat(" + ").concat(mod);
+          rollFormula = rollFormula.concat(" + ", mod.toString());
+          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.bonus.caution.label"), " + ", mod);
+        } else if (mod < 0) {
+          rollFormulaDisplay = rollFormulaDisplay.concat(" - ").concat(Math.abs(mod));
+          rollFormula = rollFormula.concat(" - ", Math.abs(mod).toString());
+          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.penalty.danger.label"), ": ", mod);
+        }
+      }
+    }
+
+    return { titleDialog, introText, rollFormulaDisplay, rollFormula, formulaTooltip, skillBonus1d6 };
+  }
+
+  /**
+   *
+   * @param {*} actor
+   * @param {*} item
+   * @param {*} data
+   * @returns titleDialog, introText, rollFormulaDisplay, rollFormula, formulaTooltip, skillBonus1d6
+   */
+  static _attackRoll(actor, item, data) {
+    let titleDialog = game.i18n.format("CLEENMAIN.dialog.titleweapon", { itemName: item.name });
+    let introText = game.i18n.format("CLEENMAIN.dialog.introweapon", { actingCharName: data.actingChar.name, itemName: item.name });
+
+    let rollFormulaDisplay = "3d6" + this._getTerm(item.weaponSkill(actor)) + this._getTerm(item.system.skillBonus);
+    let rollFormula = "1d6[red] + 2d6[white] " + this._getTerm(item.weaponSkill(actor)) + this._getTerm(item.system.skillBonus);
+
+    let formulaTooltip =
+      game.i18n.format("CLEENMAIN.tooltip.skill") +
+      item.weaponSkill(actor) +
+      (item.system.skillBonus ? ", " + game.i18n.format("CLEENMAIN.tooltip.weaponbonus") + item.system.skillBonus.toString() : "");
+
+    // Check weapons trainings
+    if (item.system.category === "war") {
+      if (!actor.system.trainings.weapons.war) {
+        data.difficulty = 1;
+        data.risk = 1;
+        formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
+      }
+    }
+    if (item.system.category === "heavy") {
+      if (!actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
+        data.difficulty = 2;
+        data.risk = 1;
+        formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
+      }
+      if (actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
+        data.difficulty = 1;
+        data.risk = 1;
+        formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
+      }
+    }
+
+    // Bad Shape for player and boss
+    if (actor.isInBadShape()) {
+      let modValue = actor.system.health.badShapeSkillBonus ? " + " + actor.system.health.badShapeSkillBonus.toString() : " - 2";
+      let tooltipModValue = actor.system.health.badShapeSkillBonus ? "+" + actor.system.health.badShapeSkillBonus.toString() : "-2";
+      rollFormulaDisplay = rollFormulaDisplay.concat(modValue);
+      rollFormula = rollFormula.concat(modValue);
+      formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.badshape"), tooltipModValue);
+    }
+
+    return { titleDialog, introText, rollFormulaDisplay, rollFormula, formulaTooltip };
+  }
+
+  /**
+   *
+   * @param {*} actor
+   * @param {*} item
+   * @param {*} data
+   * @returns titleDialog, introText, rollFormulaDisplay, rollFormula, formulaTooltip, skillBonus1d6
+   */
+  static _damageRoll(actor, item, data) {
+    let titleDialog = game.i18n.format("CLEENMAIN.dialog.titledamage", { itemName: item.name });
+    let introText = game.i18n.format("CLEENMAIN.dialog.introdamage", { actingCharName: data.actingChar.name, itemName: item.name });
+
+    let rollFormulaDisplay = item.weaponDamage(actor);
+    let rollFormula = rollFormulaDisplay;
+
+    return { titleDialog, introText, rollFormulaDisplay, rollFormula };
+  }
+
+  /**
+   * Transforme l'élément en fonction du type
+   * @param {string|number} element
+   * @returns "" ou + element
+   */
   static _getTerm(element) {
     if (element && element != 0) {
       if (typeof element === "string") return " + ".concat(element);
@@ -372,7 +445,16 @@ export class Rolls {
     // Calculate damages
     let attackDamage = null;
     if (data.attackRoll && item.type === "weapon") {
-      attackDamage = item.calculateWeaponDamage(actor, result.dices, data.useHeroism, data.lethalattack, data.minorinjury, data.multipleattacks, data.badShapeDamageBonus);
+      attackDamage = item.calculateWeaponDamage(
+        actor,
+        result.dices,
+        data.useHeroism,
+        data.lethalattack,
+        data.minorinjury,
+        data.multipleattacks,
+        data.badShapeDamageBonus,
+        data.damageBonus
+      );
       attackDamage.rolls.forEach((r) => {
         rolls.push(r);
       });
@@ -389,6 +471,7 @@ export class Rolls {
       minorinjury: data.minorinjury,
       multipleattacks: data.multipleattacks,
       badShapeDamageBonus: data.badShapeDamageBonus,
+      damageBonus: data.damageBonus,
       difficulty: data.targetDifficulty,
       introText: data.introText,
       actingCharImg: data.actingChar.img,
@@ -487,14 +570,12 @@ export class Rolls {
   /**
    * @param {*} roll The roll value is several d6
    * @param {*} targetDifficulty The difficulty to succeed //TO DO : NOT USED RIGHT NOW
-   * @return the roll result
+   * @return the roll result with fumble, critical, total, tolltip, dices, roll
    */
   static async getResult(roll, targetDifficulty) {
     /*
         const fail = roll === 100 || (roll > (level * 10) && roll !== 1);
-        const fumble = Rolls.isDouble(roll) && fail;
-        const critical = Rolls.isDouble(roll) && !fail;
-        */
+    */
     const critical = Rolls._isTriple(roll, 1);
     const fumble = Rolls._isTriple(roll, 6);
     let toolTip = new Handlebars.SafeString(await roll.getTooltip());
@@ -511,7 +592,7 @@ export class Rolls {
       total: roll._total,
       tooltip: toolTip,
       dices: dices,
-      roll: roll
+      roll: roll,
     };
   }
 
@@ -557,10 +638,31 @@ export class Rolls {
 
     let totalAttack = 0;
 
-    for (let index = 0; index < nbDamageDices; index++) {
-      let indexMod = nbDamageDices == 2 && dices.length == 3 ? index + 1 : index;
-      damageToolTipInfosDetails.dices[index] = dices[indexMod].result;
-      totalAttack += dices[indexMod].result;
+    if (source == "weapon") {
+      // First dice
+      if (nbDamageDices == 1) {
+        damageToolTipInfosDetails.dices[0] = dices[0].result;
+        totalAttack += dices[0].result;
+      }
+      // Second and third dices
+      else if (nbDamageDices == 2) {
+        damageToolTipInfosDetails.dices[0] = dices[1].result;
+        damageToolTipInfosDetails.dices[1] = dices[2].result;
+        totalAttack += dices[1].result + dices[2].result;
+      }
+      // All three dices
+      else if (nbDamageDices == 3) {
+        damageToolTipInfosDetails.dices[0] = dices[0].result;
+        damageToolTipInfosDetails.dices[1] = dices[1].result;
+        damageToolTipInfosDetails.dices[2] = dices[2].result;
+        totalAttack += dices[0].result + dices[1].result + dices[2].result;
+      }
+    }
+    else {
+      for (let index = 0; index < dices.length; index++) {
+        damageToolTipInfosDetails.dices[index] = dices[index].result;
+        totalAttack += dices[index].result;
+      }
     }
 
     damageToolTipInfosDetails.total = totalAttack.toString();
@@ -584,20 +686,20 @@ export class Rolls {
     const newMessage = game.messages.get(messageId);
 
     // Only the GM and the actor who has sent the message can reroll
-    if (!game.user.isGM){
-      let found =false;
+    if (!game.user.isGM) {
+      let found = false;
       let userArray = await actor.getOwnerPlayer();
       let userId = game.user._id;
-      for(let user of userArray) {
-        if (user._id==userId) found = true;
+      for (let user of userArray) {
+        if (user._id == userId) found = true;
       }
-      if(!found) return;
+      if (!found) return;
     }
 
     const canReroll = newMessage.getFlag("world", "canReRoll");
     if (!canReroll) return;
 
-    // Get the dice which is rerolled (from 0 to 2)
+    // Get the dice which is rerolled (start at 0)
     const btn = $(event.currentTarget);
     const dice = btn.data("diceNb");
 
@@ -616,62 +718,151 @@ export class Rolls {
       diceColor = "bronze";
     }
     const newDice = new Roll("1d6[" + diceColor + "]", {}).roll({ async: false });
+
     // display the roll in Dice So Nice if the module is active
     if (game.modules.get("dice-so-nice")?.active) {
       game.dice3d.showForRoll(newDice, game.user, true);
     }
 
     // Take the existing roll
-    let jsonRoll = message.rolls[0];
-    let rollFromJson = Roll.fromJSON(jsonRoll);
-    let term = rollFromJson.terms[0];
-    let roll;
-    if (term instanceof PoolTerm) {
-      roll = rollFromJson.terms[0].rolls[0];
-    }
-    else roll = rollFromJson;
+    // let jsonRoll = message.rolls[0];
+    // let rollFromJson = Roll.fromJSON(jsonRoll);
+    // let term = rollFromJson.terms[0];
+    let roll = newMessage.rolls[0];
 
-    // Replace in the roll : the dice rerolled and the new total
-    let newTotal = roll._total;
+    // rolls[0].terms[0].rolls : simple jet 1 seul Roll, sinon plusieurs Roll, le premier est le jet, les autres les bonus à conserver
 
     // Get the chat data stored in the message's flag
     let chatData = newMessage.getFlag("world", "reRoll");
 
-    // Attack or skill Roll
-    if (chatData.attackRoll || chatData.skillRoll) {
+    // Pas de bonus de dés particuliers : juste éventuellement l'héroïsme
+    if (roll.terms[0].rolls.length == 1) {
+      // Replace in the roll : the dice rerolled and the new total
+      let newTotal = roll._total;
+
+      // Attack or skill Roll
+      if (chatData.attackRoll || chatData.skillRoll) {
+        // Red dice
+        if (dice == 0) {
+          newTotal = newTotal - roll.dice[0].results[0].result + newDice.total;
+          roll.dice[0].results[0].result = newDice.total;
+        }
+        // White dices
+        else if (dice == 1 || dice == 2) {
+          newTotal = newTotal - roll.dice[1].results[dice - 1].result + newDice.total;
+          roll.dice[1].results[dice - 1].result = newDice.total;
+        }
+        // Bronze dice
+        else if (dice == 3) {
+          newTotal = newTotal - roll.dice[2].results[0].result + newDice.total;
+          roll.dice[2].results[0].result = newDice.total;
+        }
+      } else if (chatData.damageRoll) {
+        newTotal = newTotal - roll.dice[0].results[dice].result + newDice.total;
+        roll.dice[0].results[dice].result = newDice.total;
+      }
+
+      roll._total = newTotal;
+      chatData.rolls[0] = roll;
+
+      /* On transforme les rolls de type Object restants en Roll
+      for (let index = 1; index < chatData.rolls.length; index++) {
+        const element = Roll.fromData(chatData.rolls[index]);
+        chatData.rolls[index] = element;
+      }*/
+
+      // Generate the new result
+      chatData.result = await this.getResult(roll, null);
+
+      // Update the reroll number
+      chatData.reRollNb = chatData.reRollNb - 1;
+      chatData.reRollDone = chatData.reRollDone + 1;
+
+      // Calculate damage if it's a weapon
+      if (chatData.attackRoll && chatData.item.type == "weapon") {
+        const itemId = chatData.itemId;
+        const item = game.actors.get(actorId).items.get(itemId);
+        let attackDamage = item.calculateRerolleWeaponDamage(actor, chatData.result.dices, null, 
+          chatData.useHeroism, 
+          chatData.lethalattack,
+          chatData.minorinjury,
+          chatData.multipleattacks,
+          chatData.badShapeDamageBonus,
+          chatData.damageBonus); /*
+      attackDamage.otherRolls.forEach((r) => {
+        chatData.rolls.push(r);
+      });*/
+
+        chatData.damage = attackDamage?.damage;
+        chatData.damageFormula = attackDamage?.damageFormula;
+        chatData.damageToolTip = attackDamage !== null ? await Rolls.getDamageTooltip(attackDamage.damageToolTipInfos) : null;
+      }
+    }
+    // Several Rolls roll.terms[O].rolls : Array de Roll, le premier c'est l'attaque
+    else {
+      // Replace in the roll : the dice rerolled and the new total
+      let mainRoll = roll.terms[0].rolls[0]; // roll =  newMessage.rolls[0]; et mainRoll =  newMessage.rolls[0].terms[0].rolls[0]
+      // let newTotal = mainRoll._total;
+
       // Red dice
       if (dice == 0) {
-        newTotal = newTotal - roll.dice[0].results[0].result + newDice.total;
-        roll.dice[0].results[0].result = newDice.total;
+        // newTotal = newTotal - mainRoll.dice[0].results[0].result + newDice.total;
+        mainRoll.dice[0].results[0].result = newDice.total;
       }
       // White dices
       else if (dice == 1 || dice == 2) {
-        newTotal = newTotal - roll.dice[1].results[dice - 1].result + newDice.total;
-        roll.dice[1].results[dice - 1].result = newDice.total;
+        // newTotal = newTotal - mainRoll.dice[1].results[dice - 1].result + newDice.total;
+        mainRoll.dice[1].results[dice - 1].result = newDice.total;
       }
       // Bronze dice
       else if (dice == 3) {
-        newTotal = newTotal - roll.dice[2].results[0].result + newDice.total;
-        roll.dice[2].results[0].result = newDice.total;
+        // newTotal = newTotal - mainRoll.dice[2].results[0].result + newDice.total;
+        mainRoll.dice[2].results[0].result = newDice.total;
       }
-    } else if (chatData.damageRoll) {
-      newTotal = newTotal - roll.dice[0].results[dice].result + newDice.total;
-      roll.dice[0].results[dice].result = newDice.total;
+
+      // mainRoll._total = newTotal;
+      // chatData.rolls[0] = mainRoll; // roll =  newMessage.rolls[0];
+
+      let newRolls = [mainRoll];
+
+      // On transforme les rolls de type Object restants en Roll
+      for (let index = 1; index < chatData.rolls.length; index++) {
+        const element = Roll.fromData(chatData.rolls[index]);
+        newRolls[index] = element;
+      }
+      const pool = PoolTerm.fromRolls(newRolls);
+      roll = Roll.fromTerms([pool]);
+
+      // Generate the new result
+      chatData.result = await this.getResult(mainRoll, null);
+
+      // Update the reroll number
+      chatData.reRollNb = chatData.reRollNb - 1;
+      chatData.reRollDone = chatData.reRollDone + 1;
+
+      // Calculate damage if it's a weapon
+      if (chatData.attackRoll && chatData.item.type == "weapon") {
+        const itemId = chatData.itemId;
+        const item = game.actors.get(actorId).items.get(itemId);
+        let attackDamage = item.calculateRerolleWeaponDamage(
+          actor,
+          chatData.result.dices,
+          newRolls,
+          chatData.useHeroism,
+          chatData.lethalattack,
+          chatData.minorinjury,
+          chatData.multipleattacks,
+          chatData.badShapeDamageBonus,
+          chatData.damageBonus
+        );
+
+        chatData.damage = attackDamage?.damage;
+        chatData.damageFormula = attackDamage?.damageFormula;
+        chatData.damageToolTip = attackDamage !== null ? await Rolls.getDamageTooltip(attackDamage.damageToolTipInfos) : null;
+
+        // Ajouter les damage damageFormula et damageToolTip des autres
+      }
     }
-
-    roll._total = newTotal;
-    chatData.rolls[0] = roll;
-    for (let index = 1; index < chatData.rolls.length; index++) {
-      const element = Roll.fromData(chatData.rolls[index]);
-      chatData.rolls[index] = element;
-    }
-
-    // Generate the new result
-    chatData.result = await this.getResult(roll, null);
-
-    // Update the reroll number
-    chatData.reRollNb = chatData.reRollNb - 1;
-    chatData.reRollDone = chatData.reRollDone + 1;
 
     // If Reroll available, put the roll in actor's flags
     if (chatData.reRollNb > 0) {
@@ -720,41 +911,13 @@ export class Rolls {
       await newMessage.unsetFlag("world", "reRoll");
     }
 
-    let lethalRoll;
-    if (chatData.lethalattack > 0) {
-      lethalRoll = chatData.rolls[1];
-    }
-
-    // Calculate damage if it's a weapon
-    if (chatData.item.type == "weapon") {
-      const itemId = chatData.itemId;
-      const item = game.actors.get(actorId).items.get(itemId);
-      let attackDamage = item.calculateWeaponDamage(
-        actor,
-        chatData.result.dices,
-        chatData.useHeroism,
-        lethalRoll,
-        chatData.minorinjury,
-        chatData.multipleattacks,
-        chatData.badShapeDamageBonus
-      );
-      attackDamage.rolls.forEach((r) => {
-        rolls.push(r);
-      });
-
-      chatData.damage = attackDamage?.damage;
-      chatData.damageFormula = attackDamage?.damageFormula;
-      chatData.damageToolTip = attackDamage !== null ? await Rolls.getDamageTooltip(attackDamage.damageToolTipInfos) : null;
-    }
-
     // Create the chat message
-    let newChatMessage = await new CemChat(actor)
-        .withTemplate("systems/cleenmain/templates/chat/roll-result.html")
-        .withData(chatData)
-        .withRoll(true)
-        .create();
+    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/roll-result.html").withData(chatData).withRoll(true).create();
 
     // Update the chat message content and rolls
-    await newMessage.update({ content: newChatMessage.content, rolls: [roll.toJSON()] });
+
+    await newMessage.update({ content: newChatMessage.content, rolls: [JSON.stringify(roll)] });
+
+    //await newMessage.update({ content: newChatMessage.content, rolls: chatData.rolls });
   }
 }
