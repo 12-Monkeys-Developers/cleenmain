@@ -549,7 +549,7 @@ export class Rolls {
             }
           : {}
       )
-      .withRoll(true)
+      .withRolls(rolls)
       .create();
 
     await chat.display();
@@ -725,9 +725,6 @@ export class Rolls {
     }
 
     // Take the existing roll
-    // let jsonRoll = message.rolls[0];
-    // let rollFromJson = Roll.fromJSON(jsonRoll);
-    // let term = rollFromJson.terms[0];
     let roll = newMessage.rolls[0];
 
     // rolls[0].terms[0].rolls : simple jet 1 seul Roll, sinon plusieurs Roll, le premier est le jet, les autres les bonus à conserver
@@ -765,12 +762,6 @@ export class Rolls {
       roll._total = newTotal;
       chatData.rolls[0] = roll;
 
-      /* On transforme les rolls de type Object restants en Roll
-      for (let index = 1; index < chatData.rolls.length; index++) {
-        const element = Roll.fromData(chatData.rolls[index]);
-        chatData.rolls[index] = element;
-      }*/
-
       // Generate the new result
       chatData.result = await this.getResult(roll, null);
 
@@ -802,26 +793,19 @@ export class Rolls {
     else {
       // Replace in the roll : the dice rerolled and the new total
       let mainRoll = roll.terms[0].rolls[0]; // roll =  newMessage.rolls[0]; et mainRoll =  newMessage.rolls[0].terms[0].rolls[0]
-      // let newTotal = mainRoll._total;
 
       // Red dice
       if (dice == 0) {
-        // newTotal = newTotal - mainRoll.dice[0].results[0].result + newDice.total;
         mainRoll.dice[0].results[0].result = newDice.total;
       }
       // White dices
       else if (dice == 1 || dice == 2) {
-        // newTotal = newTotal - mainRoll.dice[1].results[dice - 1].result + newDice.total;
         mainRoll.dice[1].results[dice - 1].result = newDice.total;
       }
       // Bronze dice
       else if (dice == 3) {
-        // newTotal = newTotal - mainRoll.dice[2].results[0].result + newDice.total;
         mainRoll.dice[2].results[0].result = newDice.total;
       }
-
-      // mainRoll._total = newTotal;
-      // chatData.rolls[0] = mainRoll; // roll =  newMessage.rolls[0];
 
       let newRolls = [mainRoll];
 
@@ -912,12 +896,10 @@ export class Rolls {
     }
 
     // Create the chat message
-    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/roll-result.html").withData(chatData).withRoll(true).create();
+    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/roll-result.html").withData(chatData).withRolls(chatData.rolls).create();
 
     // Update the chat message content and rolls
 
     await newMessage.update({ content: newChatMessage.content, rolls: [JSON.stringify(roll)] });
-
-    //await newMessage.update({ content: newChatMessage.content, rolls: chatData.rolls });
   }
 }
