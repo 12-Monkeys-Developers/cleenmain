@@ -721,7 +721,8 @@ export class Rolls {
 
     // display the roll in Dice So Nice if the module is active
     if (game.modules.get("dice-so-nice")?.active) {
-      game.dice3d.showForRoll(newDice, game.user, true);
+      let synchro = (actor.type==="player" || !game.user.isGM);
+      game.dice3d.showForRoll(newDice, game.user, synchro);
     }
 
     // Take the existing roll
