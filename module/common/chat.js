@@ -12,7 +12,7 @@ export class CemChat {
         this.data = null;
         this.chatData = null;
         this.flags = null;
-        this.roll = null;
+        this.rolls = null;
     }
 
     /**
@@ -56,12 +56,12 @@ export class CemChat {
     }
 
     /**
-     * Indicates if the chat is a roll.
-     * @param roll True if the chat is a roll.
+     * Indicates if the chat is a roll
+     * @param rolls all the rolls
      * @returns the instance.
      */
-    withRoll(roll) {
-        this.roll = roll;
+    withRolls(rolls) {
+        this.rolls = rolls;
         return this;
     }
 
@@ -94,10 +94,11 @@ export class CemChat {
         }
 
         // Set the roll parameter if necessary
-        if (this.roll) {
-            d.roll = this.roll;
+        if (this.rolls) {
             d.rollMode = this.data.rollMode;
             d.type = CONST.CHAT_MESSAGE_TYPES.ROLL;
+            const pool = PoolTerm.fromRolls(this.rolls);
+            d.roll = Roll.fromTerms([pool]);
         }
         // Set the flags parameter if necessary
         if (this.flags) {
@@ -118,8 +119,6 @@ export class CemChat {
                 d.whisper = [game.user.id];
                 break;
         }
-        const pool = PoolTerm.fromRolls(this.data.rolls);
-        d.roll = Roll.fromTerms([pool]);
        
         this.chatData = d;
 

@@ -69,6 +69,7 @@ export const CLEENMAIN = {
                 skill_heroism_bonus1d6: "+2d6 when using heroism on skill, options: {reference: string}  for example {reference: 'willpower'}",
                 badShape_skillBonus: "Bonus instead of -2 on skills when in bad shape, options: {value : number}  for example {value: 2}",
                 badShape_damageBonus: "Bonus on damage when in bad shape, options: {value : string}  for example {value:'1d6'}",
+                badShape_noWoundMalus: "No malus on Resistance roll from wounds when in bad shape",
                 badShape_skill_heroism_bonus1d6:"+2d6 when using heroism on skill while in bad shape, options: {reference: string}  for example {reference: 'willpower'}",
                 protection_bonus: "permanent bonus to protection, option: {value : number} example: {value: 4}",
                 boon_uses : "Boon can be used limited times, but more than 1, option: {limitedUse2 : true, limitedUse3 : true}}"

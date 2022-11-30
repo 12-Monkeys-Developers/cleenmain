@@ -1,3 +1,4 @@
+import { ROLL_TYPE } from "../../common/constants.js";
 export class CemBaseActorSheet extends ActorSheet {
   /**
    * @constructor
@@ -174,7 +175,7 @@ export class CemBaseActorSheet extends ActorSheet {
     event.preventDefault();
     const itemId = $(event.currentTarget).parents(".item").data("itemId");
 
-    return this.actor.check(itemId, "skill");
+    return this.actor.check(itemId, ROLL_TYPE.SKILL);
   }
 
   /**
@@ -185,7 +186,7 @@ export class CemBaseActorSheet extends ActorSheet {
   async _onWeaponAttackRoll(event) {
     event.preventDefault();
     const itemId = $(event.currentTarget).parents(".combat-table").data("itemId");
-    return this.actor.check(itemId, "weapon-attack");
+    return this.actor.check(itemId, ROLL_TYPE.ATTACK);
   }
 
   /**
@@ -196,7 +197,7 @@ export class CemBaseActorSheet extends ActorSheet {
   async _onWeaponDamageRoll(event) {
     event.preventDefault();
     const itemId = $(event.currentTarget).parents(".combat-table").data("itemId");
-    return this.actor.check(itemId, "weapon-damage");
+    return this.actor.check(itemId, ROLL_TYPE.DAMAGE);
   }
 
   /**
@@ -211,7 +212,7 @@ export class CemBaseActorSheet extends ActorSheet {
     const itemId = $(event.currentTarget).parents(".item").data("itemId");
 
     const rollSkill = this.actor.items.filter((i) => i.type === "skill" && i.system.reference === skillName)[0];
-    let malusValue = this.actor.system.wounds * 5;
+    let malusValue = this.actor.system.badShape_noWoundMalus ? 0 : this.actor.system.wounds * 5;
     let options = {
       badShapeRoll: true,
       bonuses: [{ value: " - " + malusValue.toString(), tooltip: game.i18n.format("CLEENMAIN.label.wounds") + ": -" + malusValue.toString() }],

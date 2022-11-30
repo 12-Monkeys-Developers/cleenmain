@@ -761,6 +761,10 @@ input {
   width: 5em;
   margin: 0 0 1em 1em;
 }
+.dialog .rollmodifier select {
+  width: 5em;
+  margin: 0 0 1em 1em;
+}
 .dialog .paddingend {
   padding: 0 0 5em 0;
 }

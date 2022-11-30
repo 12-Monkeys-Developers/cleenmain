@@ -42,7 +42,6 @@
                 "developed": false
             },
             "wounds": 0,
-            "healthStatus": "normal",
             "damageBonus": {
                 "melee": 4,
                 "ranged": 4
@@ -69,6 +68,7 @@
                 "four": 12,
                 "five": 15
             },
+            "wounds": 0,
             "equipment": "",
             "tactic": "",
             "modifiers": []

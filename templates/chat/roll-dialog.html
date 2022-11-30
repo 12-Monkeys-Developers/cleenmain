@@ -14,7 +14,19 @@
     <div class="rollmodifier">
       <label>{{localize "CLEENMAIN.dialog.rollmodifier"}}</label><input id="rollmodifier" value="" type="text" data-dtype="Text" />
     </div>
-    
+
+    {{#ifn skillRoll}}
+    <div class="rollmodifier">
+      <label>{{localize "CLEENMAIN.dialog.damageBonus"}}</label>
+      <select id="damageBonus">
+        <option value="0" default></option>
+        <option value="1">1d6</option>
+        <option value="2">2d6</option>
+        <option value="3">3d6</option>
+      </select>
+    </div>
+    {{/ifn}}
+
     {{#ifn damageRoll}}
       {{#if isPlayer}}
         {{#if hasHeroism}}

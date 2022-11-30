@@ -57,6 +57,10 @@ export default class CemBaseActor extends Actor {
         return this.isNpc() ? this.system.level === game.cleenmain.config.npc_level.boss : false;   
     }
 
+    isPlayerOrBoss(){
+        return this.isPlayer() || this.isBoss();   
+    }
+
     isSupport() {
         return this.isNpc() ? this.system.level === game.cleenmain.config.npc_level.support : false;
     }
@@ -99,7 +103,7 @@ export default class CemBaseActor extends Actor {
     getSkillValue(skill){
         let newValue = 0;
         if(this.isNpc()){
-            if(game.settings.get('cleenmain', 'advancedRules') && (this.system.level === game.cleenmain.config.npc_level.secondfiddle) && this.system.elite){
+            if(game.settings.get('cleenmain', 'advancedRules') && this.system.elite){
                 newValue = skill.system.baseNpcElite + skill.system.bonus;
             }
             else newValue = skill.system.base + skill.system.bonus;
@@ -276,7 +280,7 @@ export default class CemBaseActor extends Actor {
     }
 
     isInBadShape() {
-        return this.isPlayer() ? this.system.health.value <= 0 : false;
+        return this.isPlayerOrBoss() ? this.system.health.value <= 0 : false;
     }
 
     healthMax(){
@@ -354,7 +358,9 @@ export default class CemBaseActor extends Actor {
             skill.system.heroismBonus1d6=true;
         }
     }
-
+    boonEffect_badShape_noWoundMalus(options, boonId){
+        this.system.badShape_noWoundMalus=true;
+    }
     boonEffect_boon_uses(options, boonId){
         if(!options) return;
         const boon = this.items.get(boonId);
