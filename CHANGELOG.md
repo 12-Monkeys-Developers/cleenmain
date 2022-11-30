@@ -1,3 +1,7 @@
+# Version 2.3.0
+- Extension et debug de la fonctionnalité de relance
+- Gestion des blessures et de l'état Mal en point pour les Boss
+- correction de bugs mineurs
 # Version 2.2.1
 - Correction de la relance pour les PNJs
 # Version 2.2.0
