@@ -107,7 +107,7 @@ export default function registerHandlebarsHelpers() {
 
     Handlebars.registerHelper('getWeaponSkill', function (actor, item) {
         const it = actor.items.get(item._id);
-        return it.weaponSkill(actor);;
+        return it.weaponSkillValue(actor);;
     });
 
     Handlebars.registerHelper('getWeaponDamage', function (actor, item) {

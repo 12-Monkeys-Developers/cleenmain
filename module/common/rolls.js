@@ -267,7 +267,6 @@ export class Rolls {
     let skillBonus1d6 = false;
 
     let value = actor.getSkillValue(item).toString();
-
     // rollBonus : +fixed value to roll, from boon
     let rollBonus = item.system.rollBonus;
     if (rollBonus) value += " + " + rollBonus.toString();
@@ -345,12 +344,19 @@ export class Rolls {
     let titleDialog = game.i18n.format("CLEENMAIN.dialog.titleweapon", { itemName: item.name });
     let introText = game.i18n.format("CLEENMAIN.dialog.introweapon", { actingCharName: data.actingChar.name, itemName: item.name });
 
-    let rollFormulaDisplay = "3d6" + this._getTerm(item.weaponSkill(actor)) + this._getTerm(item.system.skillBonus);
-    let rollFormula = "1d6[red] + 2d6[white] " + this._getTerm(item.weaponSkill(actor)) + this._getTerm(item.system.skillBonus);
+    let rollFormulaDisplay = "3d6" + this._getTerm(item.weaponSkillValue(actor)) + this._getTerm(item.system.skillBonus);
+    let rollFormula = "1d6[red] + 2d6[white] " + this._getTerm(item.weaponSkillValue(actor)) + this._getTerm(item.system.skillBonus);
 
+    // rollBonus : +fixed value to roll, from boon
+    let skill = item.weaponSkill(actor);
+    let rollBonus = skill.system.rollBonus;
+    if (rollBonus) {
+      rollFormulaDisplay += " + " + rollBonus.toString();
+      rollFormula += " + " + rollBonus.toString();
+    }
     let formulaTooltip =
       game.i18n.format("CLEENMAIN.tooltip.skill") +
-      item.weaponSkill(actor) +
+      item.weaponSkillValue(actor) +
       (item.system.skillBonus ? ", " + game.i18n.format("CLEENMAIN.tooltip.weaponbonus") + item.system.skillBonus.toString() : "");
 
     // Check weapons trainings
@@ -424,11 +430,7 @@ export class Rolls {
    */
   static async displayRoll(actor, item, data) {
     // Roll the dice
-    const result = await Rolls.getRollResult(
-      { actor: actor.id, alias: actor.name, scene: null, token: null },
-      typeof data.formulaColor !== "undefined" ? data.formulaColor : data.formula,
-      data.targetDifficulty
-    );
+    const result = await Rolls.getRollResult(actor, typeof data.formulaColor !== "undefined" ? data.formulaColor : data.formula, data.targetDifficulty);
 
     // Rolls is an array of roll
     let rolls = [result.roll];
@@ -442,8 +444,7 @@ export class Rolls {
     if (data.skillRoll || data.damageRoll) {
       reRollNb = data.nbReroll;
     }
-    console.log("rollbiotech",this.rollbiotech);
-    if(this.rollbiotech) data.formula = data.formula + " (+1d6 bonus)";
+    if (result.rollbiotech) data.formula = data.formula + " (+1d6 bonus)";
     // Calculate damages
     let attackDamage = null;
     if (data.attackRoll && item.type === "weapon") {
@@ -456,7 +457,7 @@ export class Rolls {
         data.multipleattacks,
         data.badShapeDamageBonus,
         data.damageBonus,
-        this.rollbiotech
+        result.rollbiotech
       );
       attackDamage.rolls.forEach((r) => {
         rolls.push(r);
@@ -565,9 +566,9 @@ export class Rolls {
    * @param {*} targetDifficulty //TO DO : NOT USED RIGHT NOW
    * @returns the roll result
    */
-  static async getRollResult(speaker, formula, targetDifficulty) {
+  static async getRollResult(actor, formula, targetDifficulty) {
     const roll = new Roll(formula, {}).roll({ async: false });
-    return Rolls.getResult(roll, targetDifficulty);
+    return Rolls.getResult(actor, roll, targetDifficulty);
   }
 
   /**
@@ -575,22 +576,20 @@ export class Rolls {
    * @param {*} targetDifficulty The difficulty to succeed //TO DO : NOT USED RIGHT NOW
    * @return the roll result with fumble, critical, total, tolltip, dices, roll
    */
-  static async getResult(roll, targetDifficulty) {
-    console.log("roll", roll);
-    //rajouter condition <4
+  static async getResult(actor, roll, targetDifficulty) {
+    let rollbiotech;
     if (game.settings.get("cleenmain", "pointsbiotech")) {
       let firstBiotechTerm;
-      roll.terms.forEach(element => {
-        if(element.options.flavor === "bronze" ) firstBiotechTerm=duplicate(element);
+      roll.terms.forEach((element) => {
+        if (element.options.flavor === "bronze") firstBiotechTerm = duplicate(element);
       });
-      if(firstBiotechTerm.results[0].result < 4){
-        const rollbiotech = new Roll("1d6", {}).roll({ async: false });
-        console.log("rollbiotech", rollbiotech);
-        roll._formula = roll._formula + " + 1d6[yellow]";
-        roll._total = roll._total + rollbiotech._total;
-        roll.terms.push(rollbiotech.terms[0]);
-        this.rollbiotech = rollbiotech;
-        console.log("roll2", roll);
+      if (firstBiotechTerm) {
+        if (firstBiotechTerm?.results[0]?.result < 4 || actor.system.always2dice) {
+          rollbiotech = new Roll("1d6", {}).roll({ async: false });
+          roll._formula = roll._formula + " + 1d6[yellow]";
+          roll._total = roll._total + rollbiotech._total;
+          roll.terms.push(rollbiotech.terms[0]);
+        }
       }
     }
     /*
@@ -609,6 +608,7 @@ export class Rolls {
       /*success: !fail,*/
       fumble: fumble,
       critical: critical,
+      rollbiotech: rollbiotech,
       total: roll._total,
       tooltip: toolTip,
       dices: dices,
@@ -783,7 +783,7 @@ export class Rolls {
       chatData.rolls[0] = roll;
 
       // Generate the new result
-      chatData.result = await this.getResult(roll, null);
+      chatData.result = await this.getResult(actor, roll, null);
 
       // Update the reroll number
       chatData.reRollNb = chatData.reRollNb - 1;
@@ -803,7 +803,7 @@ export class Rolls {
           chatData.multipleattacks,
           chatData.badShapeDamageBonus,
           chatData.damageBonus,
-          this.rollbiotech
+          chatData.result.rollbiotech
         ); /*
       attackDamage.otherRolls.forEach((r) => {
         chatData.rolls.push(r);
@@ -843,7 +843,7 @@ export class Rolls {
       roll = Roll.fromTerms([pool]);
 
       // Generate the new result
-      chatData.result = await this.getResult(mainRoll, null);
+      chatData.result = await this.getResult(actor, mainRoll, null);
 
       // Update the reroll number
       chatData.reRollNb = chatData.reRollNb - 1;

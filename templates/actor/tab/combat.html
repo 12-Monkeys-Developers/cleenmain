@@ -103,9 +103,9 @@
                 <input class="bonus-text input-small" id="bonusranged" name="system.damageBonus.ranged" type="number" value="{{actorSystem.damageBonus.ranged}}"/>
             {{else}}
                 <div class="bonus-name">{{localize "CLEENMAIN.label.melee"}}</div>
-                <div class="bonus-text input-small">{{actorSystem.damageBonus.melee}}</div>
+                <div class="bonus-text input-small">{{meleeBonus}}</div>
                 <div class="bonus-name">{{localize "CLEENMAIN.label.ranged"}}</div>
-                <div class="bonus-text input-small">{{actorSystem.damageBonus.ranged}}</div>
+                <div class="bonus-text input-small">{{rangedBonus}}</div>
             {{/if}}
         </div>
     </div>

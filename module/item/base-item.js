@@ -42,18 +42,16 @@ export default class CemBaseItem extends Item {
   }
 
   /**
-   * @name weaponSkill
+   * @name weaponSkillValue
    * @description For weapon Item, calculates the walue of the skill by using the linked skill
    * @param {*} actor
    * @returns The value of the skill
    */
-  weaponSkill(actor) {
+  weaponSkillValue(actor) {
     if (this.type !== "weapon") return;
 
     if (actor.type === "player") {
-      const skillId = this.getSystemData("skillId");
-      if (!skillId) return;
-      const skill = actor.items.get(skillId);
+      const skill = this.weaponSkill(actor);
       if (skill === undefined || skill.type !== "skill") return;
       const skillValue = actor.getSkillValue(skill);
       return skillValue;
@@ -64,7 +62,12 @@ export default class CemBaseItem extends Item {
     }
   }
 
-  /**
+  weaponSkill(actor){
+    const skillId = this.getSystemData("skillId");
+    if (!skillId) return;
+    const skill = actor.items.get(skillId);
+    return(skill);
+  }  /**
    * @name weaponDamage
    * @description For weapon Item, calculates the value of the damage
    *  damage = damageBase + melee/range bonus
@@ -76,9 +79,9 @@ export default class CemBaseItem extends Item {
     let damage = this.getSystemData("damageBase");
 
     if (this.getSystemData("type") === "ranged") {
-      damage += " + " + actor.system.damageBonus.ranged;
+      damage += " + " + actor.rangedBonus().toString();
     } else if (this.getSystemData("type") === "melee") {
-      damage += " + " + actor.system.damageBonus.melee;
+      damage += " + " + actor.meleeBonus().toString();
     }
     return damage;
   }
@@ -156,11 +159,11 @@ export default class CemBaseItem extends Item {
       damage += baseBonusDamage;
       
       if (this.getSystemData("type") === "ranged") {
-        damageFormula += " + " + parseInt(actor.system.damageBonus.ranged);
-        damage += parseInt(actor.system.damageBonus.ranged);
+        damageFormula += " + " + actor.rangedBonus().toString();
+        damage += actor.rangedBonus();
       } else {
-        damageFormula += " + " + parseInt(actor.system.damageBonus.melee);
-        damage += parseInt(actor.system.damageBonus.melee);
+        damageFormula += " + " + actor.meleeBonus().toString();
+        damage += actor.meleeBonus();
       }
 
       // Heroism is the 4th dice
@@ -338,12 +341,12 @@ export default class CemBaseItem extends Item {
     if (actor.type === "player") {
       damageFormula = this.getSystemData("damageBase");
       damage += baseBonusDamage;
-      if (this.getSystemData("range") > 0) {
-        damageFormula += " + " + parseInt(actor.system.damageBonus.ranged);
-        damage += parseInt(actor.system.damageBonus.ranged);
+      if (this.getSystemData("type") === "ranged") {
+        damageFormula += " + " + actor.rangedBonus().toString();
+        damage += actor.rangedBonus();
       } else {
-        damageFormula += " + " + parseInt(actor.system.damageBonus.melee);
-        damage += parseInt(actor.system.damageBonus.melee);
+        damageFormula += " + " + actor.meleeBonus().toString();
+        damage += actor.meleeBonus();
       }
 
       if (useHeroism) {

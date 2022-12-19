@@ -33,6 +33,8 @@ export default class PlayerSheet extends CemBaseActorSheet {
     context.defenceModifier = defenceModifier ? defenceModifier.value : 0;
     context.notebookhtml = TextEditor.enrichHTML(this.actor.system.notebook, {async:false});
     context.healthMax = this.actor.healthMax();
+    context.rangedBonus= this.actor.rangedBonus();
+    context.meleeBonus= this.actor.meleeBonus();
     //biotech for wwk module
     context.useBiotech = game.settings.get('cleenmain', 'pointsbiotech');
     return context;

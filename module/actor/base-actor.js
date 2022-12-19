@@ -310,10 +310,19 @@ export default class CemBaseActor extends Actor {
     setHealthToMax(){
         this.update({'system.health.value': this.system.health.max + this.system.health.bonus});
     }
+    rangedBonus(){
+        return(parseInt(this.system.damageBonus.ranged) + this.system.damageBonus.rangedBonus)
+    }
+    meleeBonus(){
+        return(parseInt(this.system.damageBonus.melee) + this.system.damageBonus.meleeBonus)
+    }
 
     _computeBoons() {
         const boonsList = this.items.filter(element => element.type === "boon" && (element.system.developed || !this.isPlayer()) && element.system?.effect.length>0);
         if(!this.system.health.bonus) this.system.health.bonus = 0;
+        if(this.isPlayer()){
+        if(!this.system.damageBonus.meleeBonus) this.system.damageBonus.meleeBonus = 0;
+        if(!this.system.damageBonus.rangedBonus) this.system.damageBonus.rangedBonus = 0;}
         for(let boon of boonsList){
             for(let boonEffect of boon.system.effect){
                 if( typeof this["boonEffect_"+boonEffect.name] == "function" ) {
@@ -322,7 +331,19 @@ export default class CemBaseActor extends Actor {
             }
         }
     }
-
+    boonEffect_always2dice(options, boonId){
+        this.system.always2dice = true;
+    }
+    boonEffect_melee_bonus(options, boonId){
+        if(!options?.value) return;
+        this.system.damageBonus.meleeBonus+=options.value;
+        return;
+    }
+    boonEffect_ranged_bonus(options, boonId){
+        if(!options?.value) return;
+        this.system.damageBonus.rangedBonus+=options.value;
+        return;
+    }
     boonEffect_health_bonus(options, boonId){
         if(!options?.value) return;
         this.system.health.bonus+=options.value;
@@ -344,13 +365,15 @@ export default class CemBaseActor extends Actor {
     }
 
     boonEffect_biotech_profile(options, boonId){
+        console.log("options",options);
         if(!options?.referenceList) return;
         this.items.forEach(element => {
+            console.log(element);
             if(element.type === "skill" && options.referenceList.includes(element.system.reference)){
-                skill.system.rollBonus=skill.system.rollBonus? skill.system.rollBonus+3:3;
+                element.system.rollBonus=element.system.rollBonus? element.system.rollBonus+3:3;
             }
             else if(element.type === "skill"){
-                skill.system.rollBonus=skill.system.rollBonus? skill.system.rollBonus+2:2;
+                element.system.rollBonus=element.system.rollBonus? element.system.rollBonus+2:2;
             }
         });
         return;
@@ -405,6 +428,5 @@ export default class CemBaseActor extends Actor {
             updates.system[element] = true;
             };
         this.updateEmbeddedDocuments('Item', [updates]);
-
     }
 }

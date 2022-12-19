@@ -1,3 +1,6 @@
+# Version 2.4.0
+- Mécanique des points biotech pour World War Korea
+- Correction de bugs mineurs
 # Version 2.3.0
 - Extension et debug de la fonctionnalité de relance
 - Gestion des blessures et de l'état Mal en point pour les Boss
