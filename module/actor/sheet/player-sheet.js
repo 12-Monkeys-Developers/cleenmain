@@ -33,6 +33,8 @@ export default class PlayerSheet extends CemBaseActorSheet {
     context.defenceModifier = defenceModifier ? defenceModifier.value : 0;
     context.notebookhtml = TextEditor.enrichHTML(this.actor.system.notebook, {async:false});
     context.healthMax = this.actor.healthMax();
+    //biotech for wwk module
+    context.useBiotech = game.settings.get('cleenmain', 'pointsbiotech');
     return context;
   }
 
@@ -42,6 +44,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
 
     html.find(".spend-heroism").click(this._onSpendHeroismOnePoint.bind(this));
     html.find(".spend-heroism").contextmenu(this._onSpendHeroismTwoPoints.bind(this));
+    html.find(".spend-biotechboon").click(this._onSpendBiotechBoon.bind(this));
     html.find('.item-state').click(async (ev) => await this._onItemStateUpdate(ev));
   }
 
@@ -127,7 +130,12 @@ export default class PlayerSheet extends CemBaseActorSheet {
     event.preventDefault();
     this.actor.useHeroism(2);
   }
-  
+
+  _onSpendBiotechBoon(event){
+    event.preventDefault();
+    this.actor.useBiotech();
+  }
+
   async _onItemStateUpdate(event) {
     event.preventDefault();
     const div = $(event.currentTarget).parents('.item');

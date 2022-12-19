@@ -85,6 +85,7 @@ export class Rolls {
       actingCharImg: data.actingChar.img,
       isPlayer: actor.isPlayer(),
       hasHeroism: actor.hasHeroismPoints(),
+      hasBiotech: game.settings.get("cleenmain", "pointsbiotech"),
       rollFormula: rollFormulaDisplay,
       rollFormulaColor: rollFormula,
       formulaTooltip: formulaTooltip,
@@ -441,7 +442,8 @@ export class Rolls {
     if (data.skillRoll || data.damageRoll) {
       reRollNb = data.nbReroll;
     }
-
+    console.log("rollbiotech",this.rollbiotech);
+    if(this.rollbiotech) data.formula = data.formula + " (+1d6 bonus)";
     // Calculate damages
     let attackDamage = null;
     if (data.attackRoll && item.type === "weapon") {
@@ -453,7 +455,8 @@ export class Rolls {
         data.minorinjury,
         data.multipleattacks,
         data.badShapeDamageBonus,
-        data.damageBonus
+        data.damageBonus,
+        this.rollbiotech
       );
       attackDamage.rolls.forEach((r) => {
         rolls.push(r);
@@ -573,6 +576,23 @@ export class Rolls {
    * @return the roll result with fumble, critical, total, tolltip, dices, roll
    */
   static async getResult(roll, targetDifficulty) {
+    console.log("roll", roll);
+    //rajouter condition <4
+    if (game.settings.get("cleenmain", "pointsbiotech")) {
+      let firstBiotechTerm;
+      roll.terms.forEach(element => {
+        if(element.options.flavor === "bronze" ) firstBiotechTerm=duplicate(element);
+      });
+      if(firstBiotechTerm.results[0].result < 4){
+        const rollbiotech = new Roll("1d6", {}).roll({ async: false });
+        console.log("rollbiotech", rollbiotech);
+        roll._formula = roll._formula + " + 1d6[yellow]";
+        roll._total = roll._total + rollbiotech._total;
+        roll.terms.push(rollbiotech.terms[0]);
+        this.rollbiotech = rollbiotech;
+        console.log("roll2", roll);
+      }
+    }
     /*
         const fail = roll === 100 || (roll > (level * 10) && roll !== 1);
     */
@@ -657,8 +677,7 @@ export class Rolls {
         damageToolTipInfosDetails.dices[2] = dices[2].result;
         totalAttack += dices[0].result + dices[1].result + dices[2].result;
       }
-    }
-    else {
+    } else {
       for (let index = 0; index < dices.length; index++) {
         damageToolTipInfosDetails.dices[index] = dices[index].result;
         totalAttack += dices[index].result;
@@ -721,7 +740,7 @@ export class Rolls {
 
     // display the roll in Dice So Nice if the module is active
     if (game.modules.get("dice-so-nice")?.active) {
-      let synchro = (actor.type==="player" || !game.user.isGM);
+      let synchro = actor.type === "player" || !game.user.isGM;
       game.dice3d.showForRoll(newDice, game.user, synchro);
     }
 
@@ -774,13 +793,18 @@ export class Rolls {
       if (chatData.attackRoll && chatData.item.type == "weapon") {
         const itemId = chatData.itemId;
         const item = game.actors.get(actorId).items.get(itemId);
-        let attackDamage = item.calculateRerolleWeaponDamage(actor, chatData.result.dices, null, 
-          chatData.useHeroism, 
+        let attackDamage = item.calculateRerolleWeaponDamage(
+          actor,
+          chatData.result.dices,
+          null,
+          chatData.useHeroism,
           chatData.lethalattack,
           chatData.minorinjury,
           chatData.multipleattacks,
           chatData.badShapeDamageBonus,
-          chatData.damageBonus); /*
+          chatData.damageBonus,
+          this.rollbiotech
+        ); /*
       attackDamage.otherRolls.forEach((r) => {
         chatData.rolls.push(r);
       });*/

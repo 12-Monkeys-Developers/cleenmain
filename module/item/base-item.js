@@ -96,9 +96,10 @@ export default class CemBaseItem extends Item {
    * @param {int} multipleattacks Number of Multiple Attacks boon
    * @param {*} badShapeDamageBonus
    * @param {String} damageBonus 0, +1 , +2, +3 D6 added to damage
+   * @param {*} rollbiotech 2nd bonus dice for biotech
    * @returns
    */
-  calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury, multipleattacks, badShapeDamageBonus, damageBonus) {
+  calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury, multipleattacks, badShapeDamageBonus, damageBonus, rollbiotech) {
     if (this.type !== "weapon") return;
 
     const nbDamageDices = this.getSystemData("damageBase").match(/([0-9])d6/) ? parseInt(this.getSystemData("damageBase").match(/([0-9])d6/)[1]) : 0;
@@ -153,7 +154,8 @@ export default class CemBaseItem extends Item {
     if (actor.type === "player") {
       damageFormula = this.getSystemData("damageBase");
       damage += baseBonusDamage;
-      if (this.getSystemData("range") > 0) {
+      
+      if (this.getSystemData("type") === "ranged") {
         damageFormula += " + " + parseInt(actor.system.damageBonus.ranged);
         damage += parseInt(actor.system.damageBonus.ranged);
       } else {
@@ -165,6 +167,10 @@ export default class CemBaseItem extends Item {
       if (useHeroism) {
         damageFormula += " + 1d6";
         damage += dices[3].result;
+        if(rollbiotech){
+          damageFormula += " (+1d6 bonus)";
+          damage += rollbiotech._total;  
+        }
         damageToolTipInfos.push(...Rolls.createDamageToolTip(DAMAGE_TOOLTIP_SOURCE.HEROISM, 1, dices.slice(3)));
       }
 

@@ -101,6 +101,11 @@
                         </div>
                     </div>
                     <div class="central-line">
+                        {{#if useBiotech}}
+                        <div class="central-text">{{localize "CLEENMAIN.label.biotechboonuse"}} : </div>
+                        <i class="fas fa-dice spend-biotechboon central-text"
+                            title="{{localize 'CLEENMAIN.label.biotechboonuse'}}"></i>
+                        {{else}}
                         <div class="heroism-text"><a class="info-window" data-field="heroism">{{localize
                                 "CLEENMAIN.label.heroism"}} :</a></div>
                         <div class="input-heroism">
@@ -120,6 +125,7 @@
                                 title="{{localize 'CLEENMAIN.heroism.spend'}}"></i>
                             {{/if}}
                         </div>
+                        {{/if}}
                     </div>
                 </div>
             </div>

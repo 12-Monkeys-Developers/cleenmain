@@ -16,6 +16,7 @@
         "label": {
             "activity": "Occupation",
             "armors": "Armures",
+            "biotechboonuse": "Utiliser le niveau héroïque d'un atout",
             "bond": "Lien",
             "bonus": "Bonus aux dégâts",
             "bio": "Biographie",
@@ -102,6 +103,9 @@
         },
         "chatmessage":{
             "badshapedamage": "Mal en point",
+            "biotechBoonRollFail": "La température corporelle monte, un point de biotech est dépensé... ",
+            "biotechBoonRollIntro": "{actingCharName} utilise le niveau héroïque d'un de ses atouts",
+            "biotechBoonRollSuccess": "La température corporelle reste stable, pas de dépense de point de biotech. ",
             "custommodifier": "Modificateur libre ajouté : ({rollModifier})",
             "heroismmodifier": "Point d'Héroïsme utilisé : +{dice}d6",
             "rollformula": "Dés lancés :",

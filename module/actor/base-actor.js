@@ -1,5 +1,6 @@
 import { Rolls } from "../common/rolls.js";
 import { Utils } from "../common/utils.js";
+import { CemChat } from "../common/chat.js";
 export default class CemBaseActor extends Actor {
 
     /** @override */
@@ -89,7 +90,7 @@ export default class CemBaseActor extends Actor {
     }
 
     hasHeroismPoints() {
-        return this.isPlayer() && this.system.heroism.value > 0;
+        return ((this.isPlayer() && this.system.heroism.value > 0) || game.settings.get('cleenmain', 'pointsbiotech'));
     }
     
     /**
@@ -217,11 +218,30 @@ export default class CemBaseActor extends Actor {
      * @param {*} nbPoints 
      */
     async useHeroism(nbPoints) {
+        if(await game.settings.get('cleenmain', 'pointsbiotech')) return;
         if (this.system.heroism.value == 0) return ui.notifications.warn("CLEENMAIN.notification.heroismNoMorePoints", {localize: true});
         if (nbPoints > this.system.heroism.value) return ui.notifications.warn("CLEENMAIN.notification.heroismNotEnoughPoints", {localize: true});
         let newValue = this.system.heroism.value - nbPoints;
         await this.update({'system.heroism.value': newValue});
     }
+
+    async useBiotech(){
+        const biotechboonroll = new Roll("1d6[green]", {}).roll({ async: false });
+        let biotechRollResultText = biotechboonroll._total<5 ? game.i18n.format("CLEENMAIN.chatmessage.biotechBoonRollFail") : game.i18n.format("CLEENMAIN.chatmessage.biotechBoonRollSuccess");
+        let chatData = {
+            owner: this.id,
+            introText: game.i18n.format("CLEENMAIN.chatmessage.biotechBoonRollIntro", { actingCharName: this.name }),
+            resultText: biotechRollResultText,
+            actingCharName: this.name,
+            actingCharImg: this.img,
+            formula: "1d6",
+            result: biotechboonroll._total,
+            tooltip: new Handlebars.SafeString(await biotechboonroll.getTooltip())
+        };
+        
+    let newChatMessage = await new CemChat(this).withTemplate("systems/cleenmain/templates/chat/biotech-roll-result.html").withData(chatData).withRolls(chatData.rolls).create();
+    newChatMessage.display();
+}
 
     /**
      * @description Calculates the armor malus
@@ -320,6 +340,19 @@ export default class CemBaseActor extends Actor {
         for (let skill of skillList){
             skill.system.rollBonus=skill.system.rollBonus? skill.system.rollBonus+options.value:options.value;
         }
+        return;
+    }
+
+    boonEffect_biotech_profile(options, boonId){
+        if(!options?.referenceList) return;
+        this.items.forEach(element => {
+            if(element.type === "skill" && options.referenceList.includes(element.system.reference)){
+                skill.system.rollBonus=skill.system.rollBonus? skill.system.rollBonus+3:3;
+            }
+            else if(element.type === "skill"){
+                skill.system.rollBonus=skill.system.rollBonus? skill.system.rollBonus+2:2;
+            }
+        });
         return;
     }
 
