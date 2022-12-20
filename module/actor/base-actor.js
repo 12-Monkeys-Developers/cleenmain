@@ -365,15 +365,23 @@ export default class CemBaseActor extends Actor {
     }
 
     boonEffect_biotech_profile(options, boonId){
-        console.log("options",options);
         if(!options?.referenceList) return;
         this.items.forEach(element => {
-            console.log(element);
             if(element.type === "skill" && options.referenceList.includes(element.system.reference)){
                 element.system.rollBonus=element.system.rollBonus? element.system.rollBonus+3:3;
             }
             else if(element.type === "skill"){
                 element.system.rollBonus=element.system.rollBonus? element.system.rollBonus+2:2;
+            }
+        });
+        return;
+    }
+
+    boonEffect_all_skills_bonus(options, boonId){
+        if(!options?.value) return;
+        this.items.forEach(element => {
+            if(element.type === "skill"){
+                element.system.rollBonus=element.system.rollBonus? element.system.rollBonus+options.value:options.value;
             }
         });
         return;
@@ -423,7 +431,6 @@ export default class CemBaseActor extends Actor {
         if(!boon) return;
         const updates = {"_id": boonId, "system" : {}};
         
-        console.log("options",options);
         for (let element in options){
             updates.system[element] = true;
             };
