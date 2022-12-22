@@ -249,7 +249,7 @@ export default class CemBaseActor extends Actor {
      */
     getArmorMalus() {
         let malus = 0;
-        const armors = this.items.filter(i=>i.type === "armor");
+        const armors = this.items.filter(i=>i.type == "armor" && i.system.state == "active");
         armors.forEach(armor => {
             if (armor.system.category === "war") {
                 if (!this.isTrainedWithWarArmor() && !this.isTrainedWithHeavyArmor()) malus+= 2;
