@@ -1,5 +1,6 @@
 import { Rolls } from "../common/rolls.js";
 import { Utils } from "../common/utils.js";
+import { CemChat } from "../common/chat.js";
 export default class CemBaseActor extends Actor {
 
     /** @override */
@@ -89,7 +90,7 @@ export default class CemBaseActor extends Actor {
     }
 
     hasHeroismPoints() {
-        return this.isPlayer() && this.system.heroism.value > 0;
+        return ((this.isPlayer() && this.system.heroism.value > 0) || game.settings.get('cleenmain', 'pointsbiotech'));
     }
     
     /**
@@ -217,11 +218,30 @@ export default class CemBaseActor extends Actor {
      * @param {*} nbPoints 
      */
     async useHeroism(nbPoints) {
+        if(await game.settings.get('cleenmain', 'pointsbiotech')) return;
         if (this.system.heroism.value == 0) return ui.notifications.warn("CLEENMAIN.notification.heroismNoMorePoints", {localize: true});
         if (nbPoints > this.system.heroism.value) return ui.notifications.warn("CLEENMAIN.notification.heroismNotEnoughPoints", {localize: true});
         let newValue = this.system.heroism.value - nbPoints;
         await this.update({'system.heroism.value': newValue});
     }
+
+    async useBiotech(){
+        const biotechboonroll = new Roll("1d6[green]", {}).roll({ async: false });
+        let biotechRollResultText = biotechboonroll._total<5 ? game.i18n.format("CLEENMAIN.chatmessage.biotechBoonRollFail") : game.i18n.format("CLEENMAIN.chatmessage.biotechBoonRollSuccess");
+        let chatData = {
+            owner: this.id,
+            introText: game.i18n.format("CLEENMAIN.chatmessage.biotechBoonRollIntro", { actingCharName: this.name }),
+            resultText: biotechRollResultText,
+            actingCharName: this.name,
+            actingCharImg: this.img,
+            formula: "1d6",
+            result: biotechboonroll._total,
+            tooltip: new Handlebars.SafeString(await biotechboonroll.getTooltip())
+        };
+        
+    let newChatMessage = await new CemChat(this).withTemplate("systems/cleenmain/templates/chat/biotech-roll-result.html").withData(chatData).withRolls(chatData.rolls).create();
+    newChatMessage.display();
+}
 
     /**
      * @description Calculates the armor malus
@@ -229,7 +249,7 @@ export default class CemBaseActor extends Actor {
      */
     getArmorMalus() {
         let malus = 0;
-        const armors = this.items.filter(i=>i.type === "armor");
+        const armors = this.items.filter(i=>i.type == "armor" && i.system.state == "active");
         armors.forEach(armor => {
             if (armor.system.category === "war") {
                 if (!this.isTrainedWithWarArmor() && !this.isTrainedWithHeavyArmor()) malus+= 2;
@@ -290,10 +310,19 @@ export default class CemBaseActor extends Actor {
     setHealthToMax(){
         this.update({'system.health.value': this.system.health.max + this.system.health.bonus});
     }
+    rangedBonus(){
+        return(parseInt(this.system.damageBonus.ranged) + this.system.damageBonus.rangedBonus)
+    }
+    meleeBonus(){
+        return(parseInt(this.system.damageBonus.melee) + this.system.damageBonus.meleeBonus)
+    }
 
     _computeBoons() {
         const boonsList = this.items.filter(element => element.type === "boon" && (element.system.developed || !this.isPlayer()) && element.system?.effect.length>0);
         if(!this.system.health.bonus) this.system.health.bonus = 0;
+        if(this.isPlayer()){
+        if(!this.system.damageBonus.meleeBonus) this.system.damageBonus.meleeBonus = 0;
+        if(!this.system.damageBonus.rangedBonus) this.system.damageBonus.rangedBonus = 0;}
         for(let boon of boonsList){
             for(let boonEffect of boon.system.effect){
                 if( typeof this["boonEffect_"+boonEffect.name] == "function" ) {
@@ -302,7 +331,19 @@ export default class CemBaseActor extends Actor {
             }
         }
     }
-
+    boonEffect_always2dice(options, boonId){
+        this.system.always2dice = true;
+    }
+    boonEffect_melee_bonus(options, boonId){
+        if(!options?.value) return;
+        this.system.damageBonus.meleeBonus+=options.value;
+        return;
+    }
+    boonEffect_ranged_bonus(options, boonId){
+        if(!options?.value) return;
+        this.system.damageBonus.rangedBonus+=options.value;
+        return;
+    }
     boonEffect_health_bonus(options, boonId){
         if(!options?.value) return;
         this.system.health.bonus+=options.value;
@@ -320,6 +361,29 @@ export default class CemBaseActor extends Actor {
         for (let skill of skillList){
             skill.system.rollBonus=skill.system.rollBonus? skill.system.rollBonus+options.value:options.value;
         }
+        return;
+    }
+
+    boonEffect_biotech_profile(options, boonId){
+        if(!options?.referenceList) return;
+        this.items.forEach(element => {
+            if(element.type === "skill" && options.referenceList.includes(element.system.reference)){
+                element.system.rollBonus=element.system.rollBonus? element.system.rollBonus+3:3;
+            }
+            else if(element.type === "skill"){
+                element.system.rollBonus=element.system.rollBonus? element.system.rollBonus+2:2;
+            }
+        });
+        return;
+    }
+
+    boonEffect_all_skills_bonus(options, boonId){
+        if(!options?.value) return;
+        this.items.forEach(element => {
+            if(element.type === "skill"){
+                element.system.rollBonus=element.system.rollBonus? element.system.rollBonus+options.value:options.value;
+            }
+        });
         return;
     }
 
@@ -367,11 +431,9 @@ export default class CemBaseActor extends Actor {
         if(!boon) return;
         const updates = {"_id": boonId, "system" : {}};
         
-        console.log("options",options);
         for (let element in options){
             updates.system[element] = true;
             };
         this.updateEmbeddedDocuments('Item', [updates]);
-
     }
 }

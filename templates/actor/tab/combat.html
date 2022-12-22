@@ -46,22 +46,22 @@
                         <th></th>
                     </tr>
             </thead>
-            {{#each armors as |item id|}}  <tr class="item" data-item-id="{{_id}}"></tr>
-            {{#ife item.system.state "active"}}
-                <tr class="combat-table" data-item-id="{{_id}}">
-                    <th>{{name}}</th>
-                    <th>{{getCategoryLabel "armor" item.system.category}}</th>
-                    <th>{{item.system.protection}}</th>
-                    <th>{{item.system.malus}}</th>
-                    <th>{{item.system.special}}</th>
-                    {{#if ../unlocked}}
-                        <th>
-                            <a class="item-open-sheet" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i class="fas fa-pen"></i></a>
-                            <a class="inline-delete" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i class="fas fa-trash"></i></a>
-                        </th>
-                    {{/if}}
-                </tr>
-            {{/ife}}
+            {{#each armors as |item id|}}
+                {{#ife item.system.state "active"}}
+                    <tr class="combat-table item draggable" data-item-id="{{item._id}}">
+                        <th>{{name}}</th>
+                        <th>{{getCategoryLabel "armor" item.system.category}}</th>
+                        <th>{{item.system.protection}}</th>
+                        <th>{{getArmorMalus @root.actor item}}</th> 
+                        <th>{{item.system.special}}</th>
+                        {{#if ../unlocked}}
+                            <th>
+                                <a class="item-open-sheet" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i class="fas fa-pen"></i></a>
+                                <a class="inline-delete" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i class="fas fa-trash"></i></a>
+                            </th>
+                        {{/if}}
+                    </tr>
+                {{/ife}}
             {{/each}}
         </table>
     </div>
@@ -103,9 +103,9 @@
                 <input class="bonus-text input-small" id="bonusranged" name="system.damageBonus.ranged" type="number" value="{{actorSystem.damageBonus.ranged}}"/>
             {{else}}
                 <div class="bonus-name">{{localize "CLEENMAIN.label.melee"}}</div>
-                <div class="bonus-text input-small">{{actorSystem.damageBonus.melee}}</div>
+                <div class="bonus-text input-small">{{meleeBonus}}</div>
                 <div class="bonus-name">{{localize "CLEENMAIN.label.ranged"}}</div>
-                <div class="bonus-text input-small">{{actorSystem.damageBonus.ranged}}</div>
+                <div class="bonus-text input-small">{{rangedBonus}}</div>
             {{/if}}
         </div>
     </div>
@@ -123,27 +123,27 @@
                 </tr>
             </thead>
             {{#each weapons as |item id|}}
-            {{#ife item.system.state "active"}}
-                <tr class="combat-table item draggable" data-item-id="{{item._id}}">
-                    <th>{{name}}</th>
-                    <th>{{getCategoryLabel "weapon" item.system.category}}</th>
-                    <th>{{getWeaponSkillName @root.actor item}}</th>
-                    <th>{{getWeaponSkill @root.actor item}}<a class="weapon-attack-roll"><i class="fas fa-dice"></i></a></th>
-                    <th>{{getWeaponDamage @root.actor item}}<a class="weapon-damage-roll"><i class="fas fa-dice"></i></a></th>
-                    <th>
-                        {{#if unlocked}}
-                            <input class="checkbox" name="item.system.sixPlus" type="checkbox" {{checked item.system.sixPlus}}>
-                        {{else}}
-                            <i class="{{getCheckboxIcon  item.system.sixPlus}}"></i>
-                        {{/if}}
-                    </th>
-                    <th>
-                        {{#if ../unlocked}}
-                            <a class="item-open-sheet" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i class="fas fa-pen"></i></a>
-                            <a class="inline-delete" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i class="fas fa-trash"></i></a>
-                        {{/if}}
-                    </th>
-                </tr>
+                {{#ife item.system.state "active"}}
+                    <tr class="combat-table item draggable" data-item-id="{{item._id}}">
+                        <th>{{name}}</th>
+                        <th>{{getCategoryLabel "weapon" item.system.category}}</th>
+                        <th>{{getWeaponSkillName @root.actor item}}</th>
+                        <th>{{getWeaponSkill @root.actor item}}<a class="weapon-attack-roll"><i class="fas fa-dice"></i></a></th>
+                        <th>{{getWeaponDamage @root.actor item}}<a class="weapon-damage-roll"><i class="fas fa-dice"></i></a></th>
+                        <th>
+                            {{#if unlocked}}
+                                <input class="checkbox" name="item.system.sixPlus" type="checkbox" {{checked item.system.sixPlus}}>
+                            {{else}}
+                                <i class="{{getCheckboxIcon  item.system.sixPlus}}"></i>
+                            {{/if}}
+                        </th>
+                        <th>
+                            {{#if ../unlocked}}
+                                <a class="item-open-sheet" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i class="fas fa-pen"></i></a>
+                                <a class="inline-delete" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i class="fas fa-trash"></i></a>
+                            {{/if}}
+                        </th>
+                    </tr>
                 {{/ife}}
             {{/each}}
         </table>

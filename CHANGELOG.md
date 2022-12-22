@@ -1,9 +1,19 @@
+# Version 2.4.0
+- Mécanique des points biotech pour World War Korea
+- Suppression de l'affichage du champ malus sur l'item de type armure, le malus étant calculé automatiquement selon la catégorie
+- Sur l'onglet Combat, le malus de l'armure affiché est calculé selon la catégorie de l'armure et les formations de personnage
+- Correction de bugs mineurs
+- Correction du bug sur la prise en compte du malus d'armure même quand l'armure n'est pas équipée
+- Correction de l'édition de l'armure depuis l'onglet Combat
+
 # Version 2.3.0
 - Extension et debug de la fonctionnalité de relance
 - Gestion des blessures et de l'état Mal en point pour les Boss
-- correction de bugs mineurs
+- Correction de bugs mineurs
+
 # Version 2.2.1
 - Correction de la relance pour les PNJs
+
 # Version 2.2.0
 - Correction du bug de la création de macro dans la hotbar : plus de double macros (celle du système et celle générique)
 - Ajout des effets des atouts pour les PNJs
@@ -16,7 +26,7 @@
 - les armes peuvent donner un bonus aux jets de compétence
 - Amélioration de la modularité
 - Les PnJs font des jets cachés
-- corrections de bugs
+- Corrections de bugs
 
 # Version 2.0.0
 - Mise à jour pour la version 10 de Foundry
@@ -27,7 +37,7 @@
 
 # Version 1.1.3
 - Support du module DiceSoNice
-- icone pour dépense des points d'héroisme
+- Icone pour dépense des points d'héroisme
 
 # Version 1.1.2
 - Bug sur la prise en compte des bonus / malus aux jets de défense

@@ -38,4 +38,12 @@ export default function registerSystemSettings() {
         default: false,
         onChange: () => debouncedReload(),
     });
+    game.settings.register('cleenmain', 'pointsbiotech', {
+        name: "Points Biotech",
+        hint: "Pour utiliser les points Biotech plutot que l'héroïsme",
+        scope: "world",
+        config: false,
+        type: Boolean,
+        default: false             
+    });   
 }

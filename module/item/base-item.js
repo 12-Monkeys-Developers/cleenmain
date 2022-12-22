@@ -42,18 +42,16 @@ export default class CemBaseItem extends Item {
   }
 
   /**
-   * @name weaponSkill
+   * @name weaponSkillValue
    * @description For weapon Item, calculates the walue of the skill by using the linked skill
    * @param {*} actor
    * @returns The value of the skill
    */
-  weaponSkill(actor) {
+  weaponSkillValue(actor) {
     if (this.type !== "weapon") return;
 
     if (actor.type === "player") {
-      const skillId = this.getSystemData("skillId");
-      if (!skillId) return;
-      const skill = actor.items.get(skillId);
+      const skill = this.weaponSkill(actor);
       if (skill === undefined || skill.type !== "skill") return;
       const skillValue = actor.getSkillValue(skill);
       return skillValue;
@@ -64,6 +62,12 @@ export default class CemBaseItem extends Item {
     }
   }
 
+  weaponSkill(actor) {
+    const skillId = this.getSystemData("skillId");
+    if (!skillId) return;
+    const skill = actor.items.get(skillId);
+    return skill;
+  }
   /**
    * @name weaponDamage
    * @description For weapon Item, calculates the value of the damage
@@ -76,9 +80,9 @@ export default class CemBaseItem extends Item {
     let damage = this.getSystemData("damageBase");
 
     if (this.getSystemData("type") === "ranged") {
-      damage += " + " + actor.system.damageBonus.ranged;
+      damage += " + " + actor.rangedBonus().toString();
     } else if (this.getSystemData("type") === "melee") {
-      damage += " + " + actor.system.damageBonus.melee;
+      damage += " + " + actor.meleeBonus().toString();
     }
     return damage;
   }
@@ -96,9 +100,10 @@ export default class CemBaseItem extends Item {
    * @param {int} multipleattacks Number of Multiple Attacks boon
    * @param {*} badShapeDamageBonus
    * @param {String} damageBonus 0, +1 , +2, +3 D6 added to damage
+   * @param {*} rollbiotech 2nd bonus dice for biotech
    * @returns
    */
-  calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury, multipleattacks, badShapeDamageBonus, damageBonus) {
+  calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury, multipleattacks, badShapeDamageBonus, damageBonus, rollbiotech) {
     if (this.type !== "weapon") return;
 
     const nbDamageDices = this.getSystemData("damageBase").match(/([0-9])d6/) ? parseInt(this.getSystemData("damageBase").match(/([0-9])d6/)[1]) : 0;
@@ -153,18 +158,23 @@ export default class CemBaseItem extends Item {
     if (actor.type === "player") {
       damageFormula = this.getSystemData("damageBase");
       damage += baseBonusDamage;
-      if (this.getSystemData("range") > 0) {
-        damageFormula += " + " + parseInt(actor.system.damageBonus.ranged);
-        damage += parseInt(actor.system.damageBonus.ranged);
+
+      if (this.getSystemData("type") === "ranged") {
+        damageFormula += " + " + actor.rangedBonus().toString();
+        damage += actor.rangedBonus();
       } else {
-        damageFormula += " + " + parseInt(actor.system.damageBonus.melee);
-        damage += parseInt(actor.system.damageBonus.melee);
+        damageFormula += " + " + actor.meleeBonus().toString();
+        damage += actor.meleeBonus();
       }
 
       // Heroism is the 4th dice
       if (useHeroism) {
         damageFormula += " + 1d6";
         damage += dices[3].result;
+        if (rollbiotech) {
+          damageFormula += " (+1d6 bonus)";
+          damage += rollbiotech._total;
+        }
         damageToolTipInfos.push(...Rolls.createDamageToolTip(DAMAGE_TOOLTIP_SOURCE.HEROISM, 1, dices.slice(3)));
       }
 
@@ -332,12 +342,12 @@ export default class CemBaseItem extends Item {
     if (actor.type === "player") {
       damageFormula = this.getSystemData("damageBase");
       damage += baseBonusDamage;
-      if (this.getSystemData("range") > 0) {
-        damageFormula += " + " + parseInt(actor.system.damageBonus.ranged);
-        damage += parseInt(actor.system.damageBonus.ranged);
+      if (this.getSystemData("type") === "ranged") {
+        damageFormula += " + " + actor.rangedBonus().toString();
+        damage += actor.rangedBonus();
       } else {
-        damageFormula += " + " + parseInt(actor.system.damageBonus.melee);
-        damage += parseInt(actor.system.damageBonus.melee);
+        damageFormula += " + " + actor.meleeBonus().toString();
+        damage += actor.meleeBonus();
       }
 
       if (useHeroism) {
@@ -406,5 +416,20 @@ export default class CemBaseItem extends Item {
       damageToolTipInfos: damageToolTipInfos,
       rolls: rolls,
     };
+  }
+
+  getArmorMalus(actor) {
+    if (this.type != "armor") return null;
+    let malus = 0;
+    if (this.system.category === "war") {
+      if (!actor.isTrainedWithWarArmor() && !actor.isTrainedWithHeavyArmor()) malus += 2;
+    } else if (this.system.category === "heavy") {
+      if (!actor.isTrainedWithHeavyArmor()) {
+        if (actor.isTrainedWithWarArmor()) {
+          malus += 2;
+        } else malus += 4;
+      }
+    }
+    return malus;
   }
 }
