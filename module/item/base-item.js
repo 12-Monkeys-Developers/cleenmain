@@ -62,12 +62,13 @@ export default class CemBaseItem extends Item {
     }
   }
 
-  weaponSkill(actor){
+  weaponSkill(actor) {
     const skillId = this.getSystemData("skillId");
     if (!skillId) return;
     const skill = actor.items.get(skillId);
-    return(skill);
-  }  /**
+    return skill;
+  }
+  /**
    * @name weaponDamage
    * @description For weapon Item, calculates the value of the damage
    *  damage = damageBase + melee/range bonus
@@ -157,7 +158,7 @@ export default class CemBaseItem extends Item {
     if (actor.type === "player") {
       damageFormula = this.getSystemData("damageBase");
       damage += baseBonusDamage;
-      
+
       if (this.getSystemData("type") === "ranged") {
         damageFormula += " + " + actor.rangedBonus().toString();
         damage += actor.rangedBonus();
@@ -170,9 +171,9 @@ export default class CemBaseItem extends Item {
       if (useHeroism) {
         damageFormula += " + 1d6";
         damage += dices[3].result;
-        if(rollbiotech){
+        if (rollbiotech) {
           damageFormula += " (+1d6 bonus)";
-          damage += rollbiotech._total;  
+          damage += rollbiotech._total;
         }
         damageToolTipInfos.push(...Rolls.createDamageToolTip(DAMAGE_TOOLTIP_SOURCE.HEROISM, 1, dices.slice(3)));
       }
@@ -415,5 +416,20 @@ export default class CemBaseItem extends Item {
       damageToolTipInfos: damageToolTipInfos,
       rolls: rolls,
     };
+  }
+
+  getArmorMalus(actor) {
+    if (this.type != "armor") return null;
+    let malus = 0;
+    if (this.system.category === "war") {
+      if (!actor.isTrainedWithWarArmor() && !actor.isTrainedWithHeavyArmor()) malus += 2;
+    } else if (this.system.category === "heavy") {
+      if (!actor.isTrainedWithHeavyArmor()) {
+        if (actor.isTrainedWithWarArmor()) {
+          malus += 2;
+        } else malus += 4;
+      }
+    }
+    return malus;
   }
 }

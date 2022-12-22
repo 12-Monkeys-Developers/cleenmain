@@ -140,4 +140,8 @@ export default function registerHandlebarsHelpers() {
         if (isNpc) return "npc";
     });
     
+    Handlebars.registerHelper('getArmorMalus', function (actor, item) {
+        const it = actor.items.get(item._id);
+        return it.getArmorMalus(actor);
+    });
 }
