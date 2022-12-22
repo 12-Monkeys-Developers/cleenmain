@@ -152,7 +152,7 @@
         "equipment":{
             "add": "Nouvel équipement",
             "active": "En main, sur soi",
-            "equipped": "Dans un sac acessible",
+            "equipped": "Dans un sac accessible",
             "other": "Rangé chez soi, hors d'atteinte immédiate"
         },
         "health": {

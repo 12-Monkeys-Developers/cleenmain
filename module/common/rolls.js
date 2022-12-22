@@ -612,7 +612,7 @@ export class Rolls {
       total: roll._total,
       tooltip: toolTip,
       dices: dices,
-      roll: roll,
+      roll: roll
     };
   }
 
