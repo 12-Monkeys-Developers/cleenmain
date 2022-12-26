@@ -35,7 +35,7 @@ export class Rolls {
     let rollFormulaDisplay;
     let rollFormula;
     let formulaTooltip = "";
-    let heroismBonus1d6 = false;
+    let heroismBonus1d6 = item.system.heroismBonus1d6;
     let skillBonus1d6 = false;
 
     if (actor.type === "npc" && game.user.isGM) data.rollMode = "gmroll";
