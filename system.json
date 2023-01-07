@@ -2,10 +2,10 @@
   "id": "cleenmain",
   "title": "Clé en main",
   "description": "Le système clé en main pour FoundryVTT.",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "compatibility": {
     "minimum": "10",
-    "verified": "10.290"
+    "verified": "10.291"
   },
   "authors": [
     {
