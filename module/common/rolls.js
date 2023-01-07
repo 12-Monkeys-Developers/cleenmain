@@ -35,7 +35,7 @@ export class Rolls {
     let rollFormulaDisplay;
     let rollFormula;
     let formulaTooltip = "";
-    let heroismBonus1d6 = false;
+    let heroismBonus1d6 = item.system.heroismBonus1d6;
     let skillBonus1d6 = false;
 
     if (actor.type === "npc" && game.user.isGM) data.rollMode = "gmroll";
@@ -348,11 +348,13 @@ export class Rolls {
     let rollFormula = "1d6[red] + 2d6[white] " + this._getTerm(item.weaponSkillValue(actor)) + this._getTerm(item.system.skillBonus);
 
     // rollBonus : +fixed value to roll, from boon
+    if(actor.isPlayer()){
     let skill = item.weaponSkill(actor);
-    let rollBonus = skill.system.rollBonus;
-    if (rollBonus) {
-      rollFormulaDisplay += " + " + rollBonus.toString();
-      rollFormula += " + " + rollBonus.toString();
+      let rollBonus = skill.system.rollBonus;
+      if (rollBonus) {
+        rollFormulaDisplay += " + " + rollBonus.toString();
+        rollFormula += " + " + rollBonus.toString();
+      }
     }
     let formulaTooltip =
       game.i18n.format("CLEENMAIN.tooltip.skill") +

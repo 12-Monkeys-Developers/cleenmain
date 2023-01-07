@@ -31,7 +31,11 @@
       {{#if isPlayer}}
         {{#if hasHeroism}}
         <div class="rollmodifier">
+          {{#if hasBiotech}}
+          <label>{{#if heroismBonus1d6}}{{localize "CLEENMAIN.dialog.biotechBonus1d6"}}{{else}}{{localize "CLEENMAIN.dialog.biotech"}}{{/if}}</label><input type="checkbox" id="heroism" />
+          {{else}}
           <label>{{#if heroismBonus1d6}}{{localize "CLEENMAIN.dialog.heroismBonus1d6"}}{{else}}{{localize "CLEENMAIN.dialog.heroism"}}{{/if}}</label><input type="checkbox" id="heroism" />
+          {{/if}}
         </div>
         {{/if}}
       {{/if}}

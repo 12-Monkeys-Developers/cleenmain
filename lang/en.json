@@ -146,6 +146,8 @@
             "reRollDone": "Reroll done: "
         },
         "dialog":{
+            "biotech": "Utiliser un point Biotech pour +1d6",
+            "biotechBonus1d6": "Utiliser un point Biotech pour +2d6",
             "bonus": "Add a bonus?",
             "button":{
                 "cancel": "Cancel",

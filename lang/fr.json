@@ -121,6 +121,8 @@
             "reRollDone": "Relances faites : "
         },
         "dialog":{
+            "biotech": "Utiliser un point Biotech pour +1d6",
+            "biotechBonus1d6": "Utiliser un point Biotech pour +2d6",
             "bonus": "Ajouter une prime ?",
             "button":{
                 "cancel": "Annuler",
