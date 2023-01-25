@@ -29,6 +29,7 @@ export default function registerSystemSettings() {
         },
         onChange: () => setAllActorsHealthToMax(),
     });
+
     game.settings.register('cleenmain', 'advancedRules', {
         name: 'CLEENMAIN.options.advancedrules.name',
         hint: 'CLEENMAIN.options.advancedrules.hint',
@@ -38,6 +39,7 @@ export default function registerSystemSettings() {
         default: false,
         onChange: () => debouncedReload(),
     });
+
     game.settings.register('cleenmain', 'pointsbiotech', {
         name: "Points Biotech",
         hint: "Pour utiliser les points Biotech plutot que l'héroïsme",
@@ -46,4 +48,12 @@ export default function registerSystemSettings() {
         type: Boolean,
         default: false             
     });   
+
+    game.settings.register('cleenmain', 'worldKey', {
+        name: "Unique world key",
+        scope: "world",
+        config: false,
+        type: String,
+        default: ""
+  });
 }

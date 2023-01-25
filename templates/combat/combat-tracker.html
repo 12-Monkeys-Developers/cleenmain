@@ -75,6 +75,10 @@
                     <a class="combatant-control act" {{#if this.hasActed}} data-tooltip="{{localize 'CLEENMAIN.combatTracker.tourNotPlayed'}}" {{else}} data-tooltip="{{localize 'CLEENMAIN.combatTracker.tourPlayed'}}" {{/if}}>
                         <i {{#if this.hasActed}} class="fas fa-fist-raised" style="color:green" {{else}} class="fas fa-fist-raised" style="color:gray" {{/if}}></i>
                     </a>
+                    {{else if this.owner}}
+                    <a class="combatant-control act" {{#if this.hasActed}} data-tooltip="{{localize 'CLEENMAIN.combatTracker.tourNotPlayed'}}" {{else}} data-tooltip="{{localize 'CLEENMAIN.combatTracker.tourPlayed'}}" {{/if}}>
+                        <i {{#if this.hasActed}} class="fas fa-fist-raised" style="color:green" {{else}} class="fas fa-fist-raised" style="color:gray" {{/if}}></i>
+                    </a>
                     {{/if}}
                     {{#if this.canPing}}
                     <a class="combatant-control" data-tooltip="COMBAT.PingCombatant" data-control="pingCombatant">
