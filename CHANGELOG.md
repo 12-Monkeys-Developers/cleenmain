@@ -1,5 +1,8 @@
+# Version 2.4.2
+- Correction sur un message d'erreur côté joueur au démarrage d'un combat
+- Ajout d'un compteur anonyme de monde actif
 # Version 2.4.1
-- correction d'un bug sur les jets d'attaque des PNJs.
+- Correction d'un bug sur les jets d'attaque des PNJs
 # Version 2.4.0
 - Mécanique des points biotech pour World War Korea
 - Suppression de l'affichage du champ malus sur l'item de type armure, le malus étant calculé automatiquement selon la catégorie

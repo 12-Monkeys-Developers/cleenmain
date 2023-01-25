@@ -1,5 +1,5 @@
 import { CLEENMAIN } from "./module/common/config.js";
-import { LOG_HEAD } from "./module/common/constants.js";
+import { LOG_HEAD, DEV_MODE } from "./module/common/constants.js";
 
 import preloadTemplates from "./module/common/templates.js";
 import registerHandlebarsHelpers from "./module/common/helpers.js"
@@ -19,7 +19,7 @@ import NpcSheet from "./module/actor/sheet/npc-sheet.js";
 
 Hooks.once("init", function(){
 
-    console.log(LOG_HEAD + "Initializing Cles en mains System");
+    console.log(LOG_HEAD + "Initializing System");
 
     //CONFIG.CLEENMAIN = CLEENMAIN;   displaced in game.cleenmain.config
     CONFIG.Item.documentClass = CemBaseItem;
@@ -52,4 +52,43 @@ Hooks.once("init", function(){
 	// Register Hooks
 	registerHooks();
 
+    console.log(LOG_HEAD + 'System initialized');
+
 });
+
+// Register world usage statistics
+function registerWorldCount(registerKey) {
+    if (game.user.isGM) {
+      let worldKey = game.settings.get(registerKey,"worldKey");
+      if (worldKey == undefined || worldKey == "") {
+        worldKey = randomID(32);
+        game.settings.set(registerKey, "worldKey", worldKey);
+      }
+  
+      // Simple API counter
+      const worldData = {
+          "register_key": registerKey,
+          "world_key": worldKey,
+          "foundry_version": `${game.release.generation}.${game.release.build}`,
+          "system_name": game.system.id,
+          "system_version": game.system.version
+      }
+  
+      let apiURL = "https://worlds.qawstats.info/worlds-counter";
+      $.ajax({
+          url: apiURL,
+          type: 'POST',
+          data: JSON.stringify(worldData),
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          async: false
+        });
+    }
+  }
+
+  Hooks.once("ready", async function() {
+    if (!DEV_MODE) {
+      registerWorldCount('cleenmain');
+    }
+    console.log(LOG_HEAD + 'System ready');
+  });
