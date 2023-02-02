@@ -1,7 +1,8 @@
 {
     "ACTOR": {
         "TypePlayer": "Joueur",
-        "TypeNpc": "PNJ"
+        "TypeNpc": "PNJ",
+        "TypeVehicle": "Véhicule"
     },
 
     "ITEM": {
@@ -37,6 +38,7 @@
             "name": "Nom",
             "origin": "Origine",
             "quote": "Citation",
+            "protection": "Protection",
             "protections": "Protections",
             "ranged": "Distance",
             "skills" : "Compétences",
@@ -48,7 +50,14 @@
             "unlock_sheet": "Verrouiller/Déverrouiller la feuille",
             "wealth": "Richesses",
             "weapons": "Armes",
-            "wounds": "Blessures"
+            "wounds": "Blessures",
+            "resistance": "Résistance",
+            "damageCollision": "Dégâts (collision)",
+            "damageDistance": "Dégâts (distance)",
+            "structure": "Structure",
+            "attack": "Attaque",
+            "dodge": "Défense",
+            "pursuit": "Poursuite"
         },
         "combatTracker": {
             "tourNotPlayed": "Cliquer quand le tour n'a pas été joué",
@@ -118,7 +127,9 @@
             "lethalattack": "Meurtrière",
             "explosive": "Explosive",
             "reRollNumber": "Dés de relance : ",
-            "reRollDone": "Relances faites : "
+            "reRollDone": "Relances faites : ",
+            "damageVehicleCollision": "Jet de dégâts (collision)",
+            "damageVehicleDistance": "Jet de dégâts (distance)"
         },
         "dialog":{
             "biotech": "Utiliser un point Biotech pour +1d6",
@@ -143,8 +154,8 @@
             "titledamage": "Dégâts de {itemName}",
             "introBadShape": "{actingCharName} est Mal en point et utilise {itemName}.",
             "penalty": "Ajouter une pénalité ?",
-            "display_portrait_title":"Montrer le portrait",
-            "display_portrait":"Voulez-vous montrer le portait du personnage à toutes les joueuses et joueurs ?"
+            "display_portrait_title":"Montrer l'image",
+            "display_portrait":"Voulez-vous montrer l'image à toutes les joueuses et joueurs ?"
         },
         "elite":{
             "defense": "Defense (élite)",

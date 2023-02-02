@@ -15,7 +15,6 @@ export default class CemBaseActor extends Actor {
      * @private
      */
     _prepareBaseDataPlayer() {
-
         this.system.heroism.max = Utils.getMaxHeroism() + (this.system.heroism.developed ? 1 : 0);
     }
 
@@ -23,7 +22,6 @@ export default class CemBaseActor extends Actor {
      * @private
      */
     _prepareBaseDataNpc() {
-
         // TODO Check if ELite is necessary
         if (this.isBoss()) this.system.elite = true;
         this._initializeNpcHealth();
@@ -52,6 +50,10 @@ export default class CemBaseActor extends Actor {
 
     isNpc() {
         return this.type === "npc";
+    }
+
+    isVehicle() {
+        return this.type === "vehicle";
     }
 
     isBoss() {
@@ -210,6 +212,22 @@ export default class CemBaseActor extends Actor {
             actingChar: actingChar,
             owner: this.id,
             options: options
+        });
+    }
+
+
+    /**
+     * 
+     * @param {*} type 
+     * @param {*} formula 
+     */
+    rollDamage(rollType, formula) {
+        console.log('rollDamage : ', rollType, formula);
+        const actingChar = this.actingChar;
+        return Rolls.simpleDamage(this, rollType, {
+            actingChar: actingChar,
+            owner: this.id,
+            formula: formula
         });
     }
 

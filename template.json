@@ -2,7 +2,8 @@
     "Actor":{
         "types":[
             "player",
-            "npc"
+            "npc",
+            "vehicle"
         ],
         "templates": {
             "health": {
@@ -72,6 +73,17 @@
             "equipment": "",
             "tactic": "",
             "modifiers": []
+        },
+        "vehicle": {
+            "templates": ["health"],
+            "description": "",
+            "resistance": 0,
+            "protection": 0,
+            "damageCollision": "0",
+            "damageDistance": "0",
+            "attack": 0,
+            "dodge": 0,
+            "pursuit": 0
         }
     },
     "Item":{

@@ -61,6 +61,10 @@ export class CemBaseActorSheet extends ActorSheet {
     html.find(".weapon-damage-roll").click(this._onWeaponDamageRoll.bind(this));
     html.find(".badshape-roll").click(this._onBadShapeRoll.bind(this));
     html.find(".info-window").click(this._onInfoClick.bind(this));
+
+    if (this.actor.isNpc() || this.actor.isVehicle()) {
+      html.find(".showimage").click(this._onShowPortrait.bind(this));
+    }
   }
 
   /**
@@ -236,6 +240,34 @@ export class CemBaseActorSheet extends ActorSheet {
       title: game.i18n.localize("CLEENMAIN.dialog.display_help_title"),
       content: infoTemplate,
       buttons: {
+        close: {
+          label: game.i18n.localize("CLEENMAIN.dialog.button.cancel"),
+        },
+      },
+    }).render(true);
+  }
+
+  _onShowPortrait(event) {
+    event.preventDefault();
+    let actor = this.actor;
+
+    let htmlTemplate = `
+    <h3> ${game.i18n.localize("CLEENMAIN.dialog.display_portrait")} </h3>`;
+    new Dialog({
+      title: game.i18n.localize("CLEENMAIN.dialog.display_portrait_title"),
+      content: htmlTemplate,
+      buttons: {
+        validate: {
+          label: game.i18n.localize("CLEENMAIN.dialog.button.validate"),
+          callback: () => {
+            let print = new ImagePopout(actor.img, {
+              title: actor.name,
+              shareable: true,
+              uuid: actor.uuid,
+            }).render(true);
+            print.shareImage();
+          },
+        },
         close: {
           label: game.i18n.localize("CLEENMAIN.dialog.button.cancel"),
         },

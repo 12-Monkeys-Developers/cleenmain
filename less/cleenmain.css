@@ -447,19 +447,64 @@ input {
   padding-left: 1em;
   color: #705a10;
 }
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .line {
-  margin: 0.5em;
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .activity-line {
+  margin: 0 0.5em 1em 1em;
+}
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .activity-line .activity-text {
+  font: 1.1em "Signika";
+  color: black;
+}
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .level-line {
   display: flex;
   flex-direction: row;
+}
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .level-line select {
+  margin: 0.5em 0.5em;
+  width: 12em;
+  height: auto;
+}
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .weapons .weapon-line {
+  display: flex;
+  flex-direction: row;
+  margin: 0.5em 0.5em;
   font: 1.2rem "Signika";
   color: black;
 }
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .line label {
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .weapons .weapon-line .line-label {
   font-weight: bold;
-  padding-right: 10px;
 }
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .line input {
-  width: 40px;
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .weapons .weapon-line .weapon-el {
+  margin: 0 0 0 1rem;
+}
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .weapons .weapon-line .item-create {
+  padding-left: 0.5em;
+  color: #705a10;
+}
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .skills .skill-line {
+  font: 1.2rem "Modesto condensed";
+  color: black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .skills .skill-line .skill-block {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5em 0.5em;
+}
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .skills .skill-line .skill-block .skill-label {
+  font-weight: bold;
+}
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .skills .skill-line .skill-block .skill-value {
+  display: flex;
+  flex-direction: row;
+  padding: 0 0.2em 0 0.2em;
+}
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .skills .skill-line .skill-block .skill-nonedit {
+  width: 25%;
+}
+.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .skills .skill-line .skill-block .skill-edit {
+  width: 50%;
 }
 .cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .vehiclehealth-line {
   display: flex;
@@ -483,23 +528,6 @@ input {
   width: 200px;
   height: 200px;
   object-fit: contain;
-}
-.cleenmain.sheet.vehicle .vehicle-main .editor {
-  min-height: 5em;
-}
-.cleenmain.sheet.vehicle .vehicle-main .editor .editor-content {
-  min-height: 5em;
-}
-.cleenmain.sheet.vehicle .vehicle-main .editor .tox.tox-tinymce {
-  min-height: 10em;
-}
-.cleenmain.sheet.vehicle .description-block {
-  font: 0.7rem "Merriweather";
-  padding: 0.5em;
-}
-.cleenmain.sheet.vehicle .description-title {
-  font: 1rem "Signika";
-  border-bottom: 2px solid black;
 }
 .cleenmain.sheet.item h1 {
   font: 1.2rem "Signika";
