@@ -1,3 +1,5 @@
+# Version 2.5.0
+- Ajout d'un nouveau type d'acteur "Véhicule"
 # Version 2.4.2
 - Correction sur un message d'erreur côté joueur au démarrage d'un combat
 - Ajout d'un compteur anonyme de monde actif
@@ -35,7 +37,7 @@
 
 # Version 2.0.0
 - Mise à jour pour la version 10 de Foundry
-- cliquer sur le portait d'un PNJ permet de le montrer à tous les joueurs.
+- cliquer sur le portrait d'un PNJ permet de le montrer à tous les joueurs.
 
 # Version 1.1.4
 - Déplacement du repository

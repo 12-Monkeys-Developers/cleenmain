@@ -348,8 +348,8 @@ export class Rolls {
     let rollFormula = "1d6[red] + 2d6[white] " + this._getTerm(item.weaponSkillValue(actor)) + this._getTerm(item.system.skillBonus);
 
     // rollBonus : +fixed value to roll, from boon
-    if(actor.isPlayer()){
-    let skill = item.weaponSkill(actor);
+    if (actor.isPlayer()) {
+      let skill = item.weaponSkill(actor);
       let rollBonus = skill.system.rollBonus;
       if (rollBonus) {
         rollFormulaDisplay += " + " + rollBonus.toString();
@@ -614,7 +614,7 @@ export class Rolls {
       total: roll._total,
       tooltip: toolTip,
       dices: dices,
-      roll: roll
+      roll: roll,
     };
   }
 
@@ -928,5 +928,46 @@ export class Rolls {
     // Update the chat message content and rolls
 
     await newMessage.update({ content: newChatMessage.content, rolls: [JSON.stringify(roll)] });
+  }
+
+  /**
+   *
+   * @param {*} actor
+   * @param {*} rollType
+   * @param {*} data
+   */
+  static async simpleDamage(actor, rollType, data) {
+    const damageRoll = new Roll(data.formula, {}).roll({ async: false });
+
+    let introText;
+    switch (rollType) {
+      case "vehicle-collision":
+        introText = game.i18n.localize("CLEENMAIN.chatmessage.damageVehicleCollision");
+        break;
+
+      case "vehicle-distance":
+        introText = game.i18n.localize("CLEENMAIN.chatmessage.damageVehicleDistance");
+        break;
+
+      default:
+        break;
+    }
+
+    let chatData = {
+      owner: data.owner,
+      introText: introText,
+      actingCharName: data.actingChar.name,
+      actingCharImg: data.actingChar.img,
+      rolls: [],
+      formula: data.formula,
+      result: damageRoll._total,
+      tooltip: new Handlebars.SafeString(await damageRoll.getTooltip())
+    };
+
+    chatData.rolls[0] = damageRoll;
+
+    console.log(("chatData", chatData));
+    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/damage-roll-result.html").withData(chatData).withRolls(chatData.rolls).create();
+    newChatMessage.display();
   }
 }

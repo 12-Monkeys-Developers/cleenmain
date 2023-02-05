@@ -1,0 +1,148 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <div class="vehicle-main">
+    <div class="vehiclestat-block">
+      <div class="vehiclestat-block-left">
+        <div class="name-line">
+          {{#if unlocked}}
+          <input class="input-long" name="name" type="text" value="{{actor.name}}" placeholder="Name" />
+          {{else}}
+          <div class="name-text">{{actor.name}}</div>
+          {{/if}}
+          <div class="right-icon">
+            <a class="sheet-change-lock" title="{{localize 'CLEENMAIN.label.unlock_sheet'}}">
+              {{#if unlocked}}
+              <i class="fas fa-lock-open"></i>
+              {{else}}
+              <i class="fas fa-lock"></i>
+              {{/if}}
+            </a>
+          </div>
+        </div>
+
+        <div class="line">
+          {{#if unlocked}}
+          <label for="resistance" title="{{localize 'CLEENMAIN.label.resistance'}}">{{localize "CLEENMAIN.label.resistance"}} : </label>
+          <input title="{{localize 'CLEENMAIN.label.resistance'}}" id="resistance" name="system.resistance" type="number" value="{{actorSystem.resistance}}" />
+          {{else}}
+          <div>
+            <label title="{{localize 'CLEENMAIN.label.resistance'}}">{{localize "CLEENMAIN.label.resistance"}} : </label>
+            {{#if (isNotEmptyString actorSystem.resistance)}} {{actorSystem.resistance}} {{/if}}
+          </div>
+          {{/if}}
+        </div>
+
+        <div class="line">
+          {{#if unlocked}}
+          <label for="protection" title="{{localize 'CLEENMAIN.label.protection'}}">{{localize "CLEENMAIN.label.protection"}} : </label>
+          <input title="{{localize 'CLEENMAIN.label.protection'}}" id="protection" name="system.protection" type="number" value="{{actorSystem.protection}}" />
+          {{else}}
+          <div>
+            <label title="{{localize 'CLEENMAIN.label.protection'}}">{{localize "CLEENMAIN.label.protection"}} : </label>
+            {{#if (isNotEmptyString actorSystem.protection)}} {{actorSystem.protection}} {{/if}}
+          </div>
+          {{/if}}
+        </div>
+
+        <div class="line">
+          {{#if unlocked}}
+          <label for="damageCollision" title="{{localize 'CLEENMAIN.label.damageCollision'}}">{{localize "CLEENMAIN.label.damageCollision"}} : </label>
+          <input title="{{localize 'CLEENMAIN.label.damageCollision'}}" id="damageCollision" name="system.damageCollision" type="text" value="{{actorSystem.damageCollision}}" />
+          {{else}}
+          <div>
+            {{#if (ne actorSystem.damageCollision "0")}}
+            <label title="{{localize 'CLEENMAIN.label.damageCollision'}}">{{localize "CLEENMAIN.label.damageCollision"}} : </label>
+            {{actorSystem.damageCollision}} <a><i class="fas fa-dice roll-damage-collision" data-damage="{{actorSystem.damageCollision}}"></i></a>
+            {{/if}}
+          </div>
+          {{/if}}
+        </div>
+
+        {{#if unlocked}}
+        <div class="line">
+          <label for="damageDistance" title="{{localize 'CLEENMAIN.label.damageDistance'}}">{{localize "CLEENMAIN.label.damageDistance"}} : </label>
+          <input title="{{localize 'CLEENMAIN.label.damageDistance'}}" id="damageCollision" name="system.damageDistance" type="text" value="{{actorSystem.damageDistance}}" />
+        </div>
+        {{else}} {{#if (ne actorSystem.damageDistance "0")}}
+        <div class="line">
+          <div>
+            <label title="{{localize 'CLEENMAIN.label.damageDistance'}}">{{localize "CLEENMAIN.label.damageDistance"}} : </label>
+            {{actorSystem.damageDistance}} <a><i class="fas fa-dice roll-damage-distance" data-damage="{{actorSystem.damageDistance}}"></i></a>
+          </div>
+        </div>
+        {{/if}} {{/if}}
+
+        <div class="line">
+          {{#if unlocked}}
+          <label>{{localize "CLEENMAIN.label.health"}}/{{localize "CLEENMAIN.label.structure"}} : </label>
+          <input title="{{localize 'CLEENMAIN.health.current'}}" id="health-current" name="system.health.value" type="number" value="{{actorSystem.health.value}}" />
+          <div>/</div>
+          <input title="{{localize 'CLEENMAIN.health.max'}}" id="health-max" name="system.health.max" type="number" value="{{actorSystem.health.max}}" />
+          {{else}}
+          <label>{{localize "CLEENMAIN.label.health"}}/{{localize "CLEENMAIN.label.structure"}} : </label>
+          <input title="{{localize 'CLEENMAIN.health.current'}}" id="health" name="system.health.value" type="number" value="{{actorSystem.health.value}}" />
+          <div>/</div>
+          <div>{{actorSystem.health.max}}</div>
+          {{/if}}
+        </div>
+
+        <div class="line">
+          {{#if unlocked}}
+          <label for="attack" title="{{localize 'CLEENMAIN.label.attack'}}">{{localize "CLEENMAIN.label.attack"}} : </label>
+          <input title="{{localize 'CLEENMAIN.label.attack'}}" id="attack" name="system.attack" type="number" value="{{actorSystem.attack}}" />
+          {{else}}
+          <div>
+            <label title="{{localize 'CLEENMAIN.label.attack'}}">{{localize "CLEENMAIN.label.attack"}} : </label>
+            {{#if (isNotEmptyString actorSystem.attack)}} {{actorSystem.attack}} {{/if}}
+          </div>
+          {{/if}}
+        </div>
+
+        <div class="line">
+          {{#if unlocked}}
+          <label for="dodge" title="{{localize 'CLEENMAIN.label.dodge'}}">{{localize "CLEENMAIN.label.dodge"}} : </label>
+          <input title="{{localize 'CLEENMAIN.label.dodge'}}" id="dodge" name="system.dodge" type="number" value="{{actorSystem.dodge}}" />
+          {{else}}
+          <div>
+            <label title="{{localize 'CLEENMAIN.label.dodge'}}">{{localize "CLEENMAIN.label.dodge"}} : </label>
+            {{#if (isNotEmptyString actorSystem.dodge)}} {{actorSystem.dodge}} {{/if}}
+          </div>
+          {{/if}}
+        </div>
+
+        <div class="line">
+          {{#if unlocked}}
+          <label for="pursuit" title="{{localize 'CLEENMAIN.label.pursuit'}}">{{localize "CLEENMAIN.label.pursuit"}} : </label>
+          <input title="{{localize 'CLEENMAIN.label.pursuit'}}" id="pursuit" name="system.pursuit" type="number" value="{{actorSystem.pursuit}}" />
+          {{else}}
+          <div>
+            <label title="{{localize 'CLEENMAIN.label.pursuit'}}">{{localize "CLEENMAIN.label.pursuit"}} : </label>
+            {{#if (isNotEmptyString actorSystem.pursuit)}} {{actorSystem.pursuit}} {{/if}}
+          </div>
+          {{/if}}
+        </div>
+
+        {{#if unlocked}}
+        <div class="description-block">
+          <div class="description-title">{{localize "CLEENMAIN.label.description"}}</div>
+          {{editor descriptionhtml target="system.description" button=true owner=owner editable=editable}}
+        </div>
+        {{else}} {{#if (isNotEmptyString actorSystem.description)}}
+        <div class="description-block">
+          <div class="description-title">{{localize "CLEENMAIN.label.description"}}</div>
+          {{{descriptionhtml}}}
+        </div>
+        {{/if}} {{/if}}
+      </div>
+
+      {{#if unlocked}}
+      <div class="vehiclestat-block-right">
+        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+      </div>
+      {{else}} {{#if (ne actor.img "icons/svg/mystery-man.svg")}}
+      <div class="vehiclestat-block-right showimage">
+        <img src="{{actor.img}}" title="{{actor.name}}" />
+      </div>
+      {{/if}} {{/if}}
+    </div>
+  </div>
+</form>

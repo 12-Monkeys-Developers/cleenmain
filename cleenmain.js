@@ -16,6 +16,7 @@ import CemBaseItemSheet from "./module/item/sheet/base-sheet.js";
 import { WeaponSheet } from "./module/item/sheet/weapon-sheet.js";
 import PlayerSheet from "./module/actor/sheet/player-sheet.js";
 import NpcSheet from "./module/actor/sheet/npc-sheet.js";
+import VehicleSheet from "./module/actor/sheet/vehicle-sheet.js";
 
 Hooks.once("init", function(){
 
@@ -35,6 +36,7 @@ Hooks.once("init", function(){
     Actors.unregisterSheet('core', ActorSheet);
     Actors.registerSheet('cleenmain', PlayerSheet, {types: ['player'], makeDefault: true });
     Actors.registerSheet('cleenmain', NpcSheet, {types: ['npc'], makeDefault: true });
+    Actors.registerSheet('cleenmain', VehicleSheet, {types: ['vehicle'], makeDefault: true });
     
     game.cleenmain = {
         config: CLEENMAIN

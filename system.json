@@ -2,10 +2,10 @@
   "id": "cleenmain",
   "title": "Clé en main",
   "description": "Le système clé en main pour FoundryVTT.",
-  "version": "2.4.2",
+  "version": "2.5.0",
   "compatibility": {
     "minimum": "10",
-    "verified": "10.291"
+    "verified": "10"
   },
   "authors": [
     {
@@ -54,6 +54,6 @@
   "initiative": "3d6+@reflexes",
   "url": "https://github.com/12-Monkeys-Developers/cleenmain",
   "manifest": "https://github.com/12-Monkeys-Developers/cleenmain/releases/latest/download/system.json",
-  "download": "https://github.com/12-Monkeys-Developers/cleenmain/releases/download/2.4.2/system.zip",
+  "download": "https://github.com/12-Monkeys-Developers/cleenmain/releases/download/2.5.0/system.zip",
   "license": "LICENSE"
 }
