@@ -15,7 +15,9 @@ export default class CemBaseActor extends Actor {
      * @private
      */
     _prepareBaseDataPlayer() {
-        this.system.heroism.max = Utils.getMaxHeroism() + (this.system.heroism.developed ? 1 : 0);
+        if(!game.settings.get('cleenmain', 'experiencePoints')){
+            this.system.heroism.max = Utils.getMaxHeroism() + (this.system.heroism.developed ? 1 : 0);
+        }
     }
 
     /**

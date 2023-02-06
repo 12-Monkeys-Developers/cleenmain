@@ -30,6 +30,7 @@
             "description": "Description",
             "equipment": "Équipement",
             "elite": "Élite",
+            "experience": "Expérience",
             "flaw": "Défaut",
             "goal": "Idéal",
             "health": "Vitalité",
@@ -253,6 +254,10 @@
             "advancedrules":{
                 "name":"Règles avancées",
                 "hint": "Utilisation des règles Clé en main avancées."
+            },
+            "experiencepoints":{
+                "name":"Points d'expérience",
+                "hint": "Utiliser un système de points d'expérience (expliqué dans le livre de règles avancées) plutôt que le système normal de progression à chaque scénario."
             }
         },
         "sheet":{

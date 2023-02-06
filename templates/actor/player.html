@@ -17,9 +17,9 @@
                         data-dtype="Text" data-item-id="{{_id}}" />
                     <input class="inline-edit skill-value" data-field="system.base" type="number"
                         name="skill.system.base" value="{{skill.system.base}}" data-dtype="Number" />
-                    <input title="{{localize 'CLEENMAIN.skill.isDeveloped'}}" class="inline-edit skill-dev checkbox"
+                        {{#ifn ../xprules}}<input title="{{localize 'CLEENMAIN.skill.isDeveloped'}}" class="inline-edit skill-dev checkbox"
                         data-field="system.developed" name="skill.system.developed" type="checkbox" {{checked
-                        skill.system.developed}}>
+                        skill.system.developed}}>{{/ifn}}
                     <input title="{{localize 'CLEENMAIN.skill.isPhysical'}}" class="inline-edit skill-physical checkbox"
                         data-field="system.physical" name="skill.system.physical" type="checkbox" {{checked
                         skill.system.physical}}>
@@ -34,7 +34,7 @@
                 <div class="skill-line item" data-item-id="{{_id}}">
                     <div class="skill-name" title="{{skill.system.description}}">{{skill.name}}</div>
                     <div class="skill-value">{{getSkillValue @root.actor skill}}</div>
-                    <div><i class="{{getCheckboxIcon  skill.system.developed}}"></i></div>
+                    {{#ifn ../xprules}}<div><i class="{{getCheckboxIcon  skill.system.developed}}"></i></div>{{/ifn}}
                     <a class="skill-roll"><i class="fas fa-dice"></i></a>
                 </div>
                 {{/each}}
@@ -114,16 +114,23 @@
                             <div class="central-text">/</div>
                             {{#if unlocked}}
                             <input title="{{localize 'CLEENMAIN.heroism.max'}}" id="heroismmax"
-                                name="system.heroism.max" type="number" value="{{actorSystem.heroism.max}}" readonly />
-                            <input class="checkbox" data-field="system.heroism.developed"
+                                name="system.heroism.max" type="number" value="{{actorSystem.heroism.max}}" {{#ifn xprules}}readonly{{/ifn}} />
+                                {{#ifn xprules}}<input class="checkbox" data-field="system.heroism.developed"
                                 name="system.heroism.developed" type="checkbox" {{checked
-                                actorSystem.heroism.developed}}>
+                                actorSystem.heroism.developed}}>{{/ifn}}
                             {{else}}
-                            <div class="central-text">{{actorSystem.heroism.max}}</div><i
-                                class="{{getCheckboxIcon actorSystem.heroism.developed}} central-text"></i>
+                            <div class="central-text">{{actorSystem.heroism.max}}</div>{{#ifn xprules}}<i
+                                class="{{getCheckboxIcon actorSystem.heroism.developed}} central-text"></i>{{/ifn}}
                             <i class="fas fa-arrow-down spend-heroism central-text"
                                 title="{{localize 'CLEENMAIN.heroism.spend'}}"></i>
                             {{/if}}
+                        </div>
+                        {{/if}}
+                        {{#if xprules}}
+                        <div class="wounds-block">
+                            <div class="wounds-text">{{localize "CLEENMAIN.label.experience"}} :</div>
+                            <input class="wounds-input" title="{{localize 'CLEENMAIN.label.experience'}}" id="experience"
+                                name="system.experience" type="number" value="{{actorSystem.experience}}" />
                         </div>
                         {{/if}}
                     </div>
