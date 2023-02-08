@@ -28,6 +28,8 @@
             "combat": "Combat",
             "description": "Description",
             "equipment": "Equipment",
+            "experience": "Expérience",
+            "experience_total": "Total d'expérience",
             "elite": "Elite",
             "flaw": "Flaw",
             "goal": "Goal",
