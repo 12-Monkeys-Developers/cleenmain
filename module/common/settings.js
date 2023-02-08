@@ -47,7 +47,17 @@ export default function registerSystemSettings() {
         config: false,
         type: Boolean,
         default: false             
-    });   
+    });
+
+    game.settings.register('cleenmain', 'experiencePoints', {
+        name: 'CLEENMAIN.options.experiencepoints.name',
+        hint: 'CLEENMAIN.options.experiencepoints.hint',
+        scope: 'world',
+        config: true,
+        type: Boolean,
+        default: false,
+        onChange: () => debouncedReload(),
+    });
 
     game.settings.register('cleenmain', 'worldKey', {
         name: "Unique world key",

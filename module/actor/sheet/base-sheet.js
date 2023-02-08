@@ -22,9 +22,15 @@ export class CemBaseActorSheet extends ActorSheet {
     context.boons = context.items.filter((item) => item.type == "boon");
     context.weapons = context.items.filter((item) => item.type == "weapon");
     context.armors = context.items.filter((item) => item.type == "armor");
-    context.equipments = context.items.filter((item) => ["equipment", "armor", "weapon"].includes(item.type));
+
+    // Alphabetic order for equipments
+    context.equipments = context.items
+      .filter((item) => ["equipment", "armor", "weapon"].includes(item.type))
+      .sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+      });
     for (let item of context.equipments) {
-        item.system.descriptionhtml = TextEditor.enrichHTML(item.system.description, { async: false });
+      item.system.descriptionhtml = TextEditor.enrichHTML(item.system.description, { async: false });
     }
 
     // Alphabetic order for skills
@@ -159,11 +165,11 @@ export class CemBaseActorSheet extends ActorSheet {
 
     // Special case : for skill, delete if used in weapon
     if (event.currentTarget.dataset.type == "skill") {
-      let items = this.actor.items.filter(i => i.type == "weapon" && i.system.skillId === itemId);
-      items.forEach(element => {
+      let items = this.actor.items.filter((i) => i.type == "weapon" && i.system.skillId === itemId);
+      items.forEach((element) => {
         //element.update({skillId: null, skillName: "", skillValue: 0, skillValueNpcElite: 0});
-        const updates = {"_id": element.id, "system.skillId": null, "system.skillName": "", "system.skillValue": 0, "system.skillValueNpcElite": 0};
-        this.actor.updateEmbeddedDocuments('Item', [updates]);
+        const updates = { _id: element.id, "system.skillId": null, "system.skillName": "", "system.skillValue": 0, "system.skillValueNpcElite": 0 };
+        this.actor.updateEmbeddedDocuments("Item", [updates]);
       });
     }
 
@@ -226,7 +232,7 @@ export class CemBaseActorSheet extends ActorSheet {
 
   /**
    * @description Click on Mal en point Icon display an informative Dialog
-   * @param {*} event 
+   * @param {*} event
    * @returns a Dialog about Mal en point
    */
   async _onInfoClick(event) {

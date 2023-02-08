@@ -1,3 +1,6 @@
+# Version 2.5.1
+- Ajout d'une option pour la gestion par points d'expérience (#38)
+- Tri alphabétique de l'équipement (#39)
 # Version 2.5.0
 - Ajout d'un nouveau type d'acteur "Véhicule"
 # Version 2.4.2
