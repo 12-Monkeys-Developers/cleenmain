@@ -17,9 +17,9 @@
                         data-dtype="Text" data-item-id="{{_id}}" />
                     <input class="inline-edit skill-value" data-field="system.base" type="number"
                         name="skill.system.base" value="{{skill.system.base}}" data-dtype="Number" />
-                        {{#ifn ../xprules}}<input title="{{localize 'CLEENMAIN.skill.isDeveloped'}}" class="inline-edit skill-dev checkbox"
-                        data-field="system.developed" name="skill.system.developed" type="checkbox" {{checked
-                        skill.system.developed}}>{{/ifn}}
+                    {{#ifn ../xprules}}<input title="{{localize 'CLEENMAIN.skill.isDeveloped'}}"
+                        class="inline-edit skill-dev checkbox" data-field="system.developed"
+                        name="skill.system.developed" type="checkbox" {{checked skill.system.developed}}>{{/ifn}}
                     <input title="{{localize 'CLEENMAIN.skill.isPhysical'}}" class="inline-edit skill-physical checkbox"
                         data-field="system.physical" name="skill.system.physical" type="checkbox" {{checked
                         skill.system.physical}}>
@@ -114,8 +114,9 @@
                             <div class="central-text">/</div>
                             {{#if unlocked}}
                             <input title="{{localize 'CLEENMAIN.heroism.max'}}" id="heroismmax"
-                                name="system.heroism.max" type="number" value="{{actorSystem.heroism.max}}" {{#ifn xprules}}readonly{{/ifn}} />
-                                {{#ifn xprules}}<input class="checkbox" data-field="system.heroism.developed"
+                                name="system.heroism.max" type="number" value="{{actorSystem.heroism.max}}" {{#ifn
+                                xprules}}readonly{{/ifn}} />
+                            {{#ifn xprules}}<input class="checkbox" data-field="system.heroism.developed"
                                 name="system.heroism.developed" type="checkbox" {{checked
                                 actorSystem.heroism.developed}}>{{/ifn}}
                             {{else}}
@@ -129,8 +130,16 @@
                         {{#if xprules}}
                         <div class="wounds-block">
                             <div class="wounds-text">{{localize "CLEENMAIN.label.experience"}} :</div>
-                            <input class="wounds-input" title="{{localize 'CLEENMAIN.label.experience'}}" id="experience"
-                                name="system.experience" type="number" value="{{actorSystem.experience}}" />
+                            {{#if unlocked}}
+                            <input class="wounds-input" title="{{localize 'CLEENMAIN.label.experience'}}"
+                                id="experience" name="system.experience" type="number"
+                                value="{{actorSystem.experience}}" />&nbsp;/&nbsp;<input class="wounds-input"
+                                title="{{localize 'CLEENMAIN.label.experience_total'}}" id="experience_total"
+                                name="system.experience_total" type="number" value="{{actorSystem.experience_total}}" />
+                            {{else}}
+                            <div class="central-text">
+                                {{actorSystem.experience}}&nbsp;/&nbsp;{{actorSystem.experience_total}}</div>
+                            {{/if}}
                         </div>
                         {{/if}}
                     </div>
