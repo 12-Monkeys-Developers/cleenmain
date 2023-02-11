@@ -319,13 +319,13 @@ export class Rolls {
       const mod = actor.getBehaviourValue();
       if (mod) {
         if (mod > 0) {
-          rollFormulaDisplay = rollFormulaDisplay.concat(" + ").concat(mod);
-          rollFormula = rollFormula.concat(" + ", mod.toString());
-          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.bonus.caution.label"), " + ", mod);
+          rollFormulaDisplay = rollFormulaDisplay.concat(" + ").concat(mod * 2);
+          rollFormula = rollFormula.concat(" + ", (mod * 2).toString());
+          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.bonus.caution.label"), " + ", mod * 2);
         } else if (mod < 0) {
-          rollFormulaDisplay = rollFormulaDisplay.concat(" - ").concat(Math.abs(mod));
-          rollFormula = rollFormula.concat(" - ", Math.abs(mod).toString());
-          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.penalty.danger.label"), ": ", mod);
+          rollFormulaDisplay = rollFormulaDisplay.concat(" - ").concat(Math.abs(mod * 2));
+          rollFormula = rollFormula.concat(" - ", Math.abs(mod * 2).toString());
+          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.penalty.danger.label"), ": ", mod * 2);
         }
       }
     }
