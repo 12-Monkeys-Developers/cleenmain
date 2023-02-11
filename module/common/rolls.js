@@ -361,27 +361,28 @@ export class Rolls {
       item.weaponSkillValue(actor) +
       (item.system.skillBonus ? ", " + game.i18n.format("CLEENMAIN.tooltip.weaponbonus") + item.system.skillBonus.toString() : "");
 
-    // Check weapons trainings
-    if (item.system.category === "war") {
-      if (!actor.system.trainings.weapons.war) {
-        data.difficulty = 1;
-        data.risk = 1;
-        formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
+    if (actor.isPlayer()) {
+      // Check weapons trainings
+      if (item.system.category === "war") {
+        if (!actor.system.trainings.weapons.war) {
+          data.difficulty = 1;
+          data.risk = 1;
+          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
+        }
+      }
+      if (item.system.category === "heavy") {
+        if (!actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
+          data.difficulty = 2;
+          data.risk = 1;
+          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
+        }
+        if (actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
+          data.difficulty = 1;
+          data.risk = 1;
+          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
+        }
       }
     }
-    if (item.system.category === "heavy") {
-      if (!actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
-        data.difficulty = 2;
-        data.risk = 1;
-        formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
-      }
-      if (actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
-        data.difficulty = 1;
-        data.risk = 1;
-        formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
-      }
-    }
-
     // Bad Shape for player and boss
     if (actor.isInBadShape()) {
       let modValue = actor.system.health.badShapeSkillBonus ? " + " + actor.system.health.badShapeSkillBonus.toString() : " - 2";
@@ -961,7 +962,7 @@ export class Rolls {
       rolls: [],
       formula: data.formula,
       result: damageRoll._total,
-      tooltip: new Handlebars.SafeString(await damageRoll.getTooltip())
+      tooltip: new Handlebars.SafeString(await damageRoll.getTooltip()),
     };
 
     chatData.rolls[0] = damageRoll;
