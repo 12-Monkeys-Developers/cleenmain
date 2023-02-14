@@ -1,3 +1,7 @@
+# Version 2.5.2
+- bug: malus sur pénalité Danger
+- Bug: Armes lourdes / de guerre maniées par des PNJs
+- Bug: Prise en compte du modificateur aux dégâts manuel pour les PNJs
 # Version 2.5.1
 - Ajout d'une option pour la gestion par points d'expérience (#38)
 - Tri alphabétique de l'équipement (#39)
