@@ -177,22 +177,21 @@ export default class CemBaseItem extends Item {
         }
         damageToolTipInfos.push(...Rolls.createDamageToolTip(DAMAGE_TOOLTIP_SOURCE.HEROISM, 1, dices.slice(3)));
       }
-
-      // Damage bonus 1, 2 or 3 d6
-      if (damageBonus > 0) {
-        let damageBonusFormula = damageBonus + "d6" + "[black]";
-        const damageBonusRoll = new Roll(damageBonusFormula, {}).roll({ async: false });
-        let damageBonusDices = [];
-        for (let index = 0; index < damageBonusRoll.dice.length; index++) {
-          const dice = damageBonusRoll.dice[index];
-          damageBonusDices.push(...dice.results);
-        }
-
-        damageFormula += " + " + damageBonus + "d6";
-        damageToolTipInfos.push(...Rolls.createDamageToolTip(DAMAGE_TOOLTIP_SOURCE.DAMAGE_BONUS, damageBonusRoll.dice[0].results.length, damageBonusDices));
-        damage += damageBonusRoll._total;
-        rolls.push(damageBonusRoll);
+    }
+    // Damage bonus 1, 2 or 3 d6
+    if (damageBonus > 0) {
+      let damageBonusFormula = damageBonus + "d6" + "[black]";
+      const damageBonusRoll = new Roll(damageBonusFormula, {}).roll({ async: false });
+      let damageBonusDices = [];
+      for (let index = 0; index < damageBonusRoll.dice.length; index++) {
+        const dice = damageBonusRoll.dice[index];
+        damageBonusDices.push(...dice.results);
       }
+
+      damageFormula += " + " + damageBonus + "d6";
+      damageToolTipInfos.push(...Rolls.createDamageToolTip(DAMAGE_TOOLTIP_SOURCE.DAMAGE_BONUS, damageBonusRoll.dice[0].results.length, damageBonusDices));
+      damage += damageBonusRoll._total;
+      rolls.push(damageBonusRoll);
     }
 
     // Explosive weapon (6+)

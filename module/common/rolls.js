@@ -319,13 +319,13 @@ export class Rolls {
       const mod = actor.getBehaviourValue();
       if (mod) {
         if (mod > 0) {
-          rollFormulaDisplay = rollFormulaDisplay.concat(" + ").concat(mod);
-          rollFormula = rollFormula.concat(" + ", mod.toString());
-          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.bonus.caution.label"), " + ", mod);
+          rollFormulaDisplay = rollFormulaDisplay.concat(" + ").concat(mod * 2);
+          rollFormula = rollFormula.concat(" + ", (mod * 2).toString());
+          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.bonus.caution.label"), " + ", mod * 2);
         } else if (mod < 0) {
-          rollFormulaDisplay = rollFormulaDisplay.concat(" - ").concat(Math.abs(mod));
-          rollFormula = rollFormula.concat(" - ", Math.abs(mod).toString());
-          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.penalty.danger.label"), ": ", mod);
+          rollFormulaDisplay = rollFormulaDisplay.concat(" - ").concat(Math.abs(mod * 2));
+          rollFormula = rollFormula.concat(" - ", Math.abs(mod * 2).toString());
+          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.penalty.danger.label"), ": ", mod * 2);
         }
       }
     }
@@ -361,27 +361,28 @@ export class Rolls {
       item.weaponSkillValue(actor) +
       (item.system.skillBonus ? ", " + game.i18n.format("CLEENMAIN.tooltip.weaponbonus") + item.system.skillBonus.toString() : "");
 
-    // Check weapons trainings
-    if (item.system.category === "war") {
-      if (!actor.system.trainings.weapons.war) {
-        data.difficulty = 1;
-        data.risk = 1;
-        formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
+    if (actor.isPlayer()) {
+      // Check weapons trainings
+      if (item.system.category === "war") {
+        if (!actor.system.trainings.weapons.war) {
+          data.difficulty = 1;
+          data.risk = 1;
+          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
+        }
+      }
+      if (item.system.category === "heavy") {
+        if (!actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
+          data.difficulty = 2;
+          data.risk = 1;
+          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
+        }
+        if (actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
+          data.difficulty = 1;
+          data.risk = 1;
+          formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
+        }
       }
     }
-    if (item.system.category === "heavy") {
-      if (!actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
-        data.difficulty = 2;
-        data.risk = 1;
-        formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
-      }
-      if (actor.system.trainings.weapons.war && !actor.system.trainings.weapons.heavy) {
-        data.difficulty = 1;
-        data.risk = 1;
-        formulaTooltip = formulaTooltip.concat(", ", game.i18n.format("CLEENMAIN.tooltip.untrained"));
-      }
-    }
-
     // Bad Shape for player and boss
     if (actor.isInBadShape()) {
       let modValue = actor.system.health.badShapeSkillBonus ? " + " + actor.system.health.badShapeSkillBonus.toString() : " - 2";
@@ -961,7 +962,7 @@ export class Rolls {
       rolls: [],
       formula: data.formula,
       result: damageRoll._total,
-      tooltip: new Handlebars.SafeString(await damageRoll.getTooltip())
+      tooltip: new Handlebars.SafeString(await damageRoll.getTooltip()),
     };
 
     chatData.rolls[0] = damageRoll;
