@@ -15,7 +15,7 @@ export default function registerHooks() {
             });
             // Player 
             if (document.type === 'player') {
-                createChanges.token.vision = true;
+                createChanges.token.sight= {enabled: true,range:1};
                 createChanges.token.actorLink = true;
     
                 // Add all the base skills to the new player actor
