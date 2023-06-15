@@ -1,3 +1,5 @@
+# Version 2.5.3
+- Compatibilité Foundry v.11
 # Version 2.5.2
 - bug: malus sur pénalité Danger
 - Bug: Armes lourdes / de guerre maniées par des PNJs

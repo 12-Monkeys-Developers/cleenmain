@@ -1,18 +1,19 @@
 {
-    "ACTOR": {
-        "TypePlayer": "Joueur",
-        "TypeNpc": "PNJ",
-        "TypeVehicle": "Véhicule"
-    },
+    "TYPES": {
+        "Actor":{
+            "player": "Joueur",
+            "npc": "PNJ",
+            "vehicle": "Véhicule"
+        },
 
-    "ITEM": {
-        "TypeWeapon": "Arme",
-        "TypeArmor": "Armure",
-        "TypeEquipment": "Objet",
-        "TypeBoon": "Atout",
-        "TypeSkill": "Compétence"
+        "Item": {
+            "weapon": "Arme",
+            "armor": "Armure",
+            "equipment": "Objet",
+            "boon": "Atout",
+            "skill": "Compétence"
+        }
     },
-
     "CLEENMAIN": {
         "label": {
             "activity": "Occupation",

@@ -1,15 +1,18 @@
 {
-    "ACTOR": {
-        "TypePlayer": "Player",
-        "TypeNpc": "NPC"
-    },
+    "TYPES": {
+        "Actor":{
+            "player": "Joueur",
+            "npc": "PNJ",
+            "vehicle": "Véhicule"
+        },
 
-    "ITEM": {
-        "TypeWeapon": "Weapon",
-        "TypeArmor": "Armor",
-        "TypeEquipment": "Item",
-        "TypeBoon": "Boon",
-        "TypeSkill": "Skill"
+        "Item": {
+            "weapon": "Arme",
+            "armor": "Armure",
+            "equipment": "Objet",
+            "boon": "Atout",
+            "skill": "Compétence"
+        }
     },
     
     "CLEENMAIN": {
