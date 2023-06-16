@@ -14,6 +14,19 @@
             "skill": "Compétence"
         }
     },
+    "ACTOR": {
+        "TypePlayer": "Joueur",
+        "TypeNpc": "PNJ",
+        "TypeVehicle": "Véhicule"
+    },
+
+    "ITEM": {
+        "TypeWeapon": "Arme",
+        "TypeArmor": "Armure",
+        "TypeEquipment": "Objet",
+        "TypeBoon": "Atout",
+        "TypeSkill": "Compétence"
+    },
     "CLEENMAIN": {
         "label": {
             "activity": "Occupation",
