@@ -31,7 +31,8 @@
       "path": "packs/userguide.db",
       "type": "JournalEntry",
       "private": false,
-      "flags": {}
+      "flags": {},
+      "banner": "systems/cleenmain/assets/image/banner.webp"
     }
   ],
   "languages": [
