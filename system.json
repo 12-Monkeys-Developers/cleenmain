@@ -49,6 +49,20 @@
       "flags": {}
     }
   ],
+  "media": [
+    {
+      "type": "cover",
+      "url": "systems/cleenmain/assets/image/logo_cem.webp",
+      "loop": false,
+      "flags": {}
+    },
+    {
+      "type": "setup",
+      "loop": false,
+      "thumbnail": "systems/cleenmain/assets/image/logo_cem.webp",
+      "flags": {}
+    }
+  ],
   "gridDistance": 1,
   "gridUnits": "m",
   "primaryTokenAttribute": "health",
