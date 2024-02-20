@@ -38,7 +38,18 @@ export class Rolls {
     let heroismBonus1d6 = item.system.heroismBonus1d6;
     let skillBonus1d6 = false;
 
-    if (actor.type === "npc" && game.user.isGM) data.rollMode = "gmroll";
+    // Si rollMode n'est pas défini, on prend celui par défaut (celui du chat)
+    let visibilityMode = data.rollMode ?? game.settings.get('core', 'rollMode');
+
+    // Visibilité des jet des PNJs en fonction de l'option choisie
+    if (actor.type === "npc" && game.user.isGM) {
+      let visibilityChoice = game.settings.get("cleenmain", "visibiliteJetsPNJ");
+      if (visibilityChoice === "public") visibilityMode = "publicroll";
+      else if (visibilityChoice === "private") visibilityMode = "gmroll";
+      else if (visibilityChoice === "depends") visibilityMode = game.settings.get('core', 'rollMode');
+    }
+
+    data.rollMode = visibilityMode;
 
     // Skill Roll
     if (rollType === ROLL_TYPE.SKILL) {

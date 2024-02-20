@@ -1,8 +1,9 @@
 {
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^3.9.1"
   },
   "dependencies": {
-    "gulp-less": "^5.0.0"
+    "gulp-less": "^5.0.0",
+    "npm": "^9.7.2"
   }
 }
