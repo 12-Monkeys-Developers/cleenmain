@@ -23,7 +23,7 @@ export default class NpcSheet extends CemBaseActorSheet {
   }
 
   /** @override */
-  getData(options) {
+  async getData(options) {
     const context = super.getData(options);
 
     context.skills = context.items.filter(item => item.type === "skill" && item.system.reference !== "defence");
@@ -32,7 +32,7 @@ export default class NpcSheet extends CemBaseActorSheet {
     context.isSupport = this.actor.isSupport();
     context.eliteRuleset = game.settings.get('cleenmain', 'advancedRules');
     context.eliteRulesetModif = context.eliteRuleset && context.unlocked;
-    context.equipmenthtml = TextEditor.enrichHTML(this.actor.system.equipment, {async:false});
+    context.equipmenthtml = await TextEditor.enrichHTML(this.actor.system.equipment, {async:false});
 
     return context;
   }

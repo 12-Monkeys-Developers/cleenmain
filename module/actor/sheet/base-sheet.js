@@ -10,7 +10,7 @@ export class CemBaseActorSheet extends ActorSheet {
   }
 
   /** @override */
-  getData(options) {
+  async getData(options) {
     const context = super.getData(options);
     context.actorSystem = context.actor.system;
     context.flags = context.actor.flags;
@@ -30,7 +30,7 @@ export class CemBaseActorSheet extends ActorSheet {
         return a.name.localeCompare(b.name);
       });
     for (let item of context.equipments) {
-      item.system.descriptionhtml = TextEditor.enrichHTML(item.system.description, { async: false });
+      item.system.descriptionhtml = await TextEditor.enrichHTML(item.system.description, { async: false });
     }
 
     // Alphabetic order for skills
@@ -44,7 +44,7 @@ export class CemBaseActorSheet extends ActorSheet {
     context.isPlayer = this.actor.isPlayer();
     context.isNpc = this.actor.isNpc();
     context.badShape = this.actor.isInBadShape();
-    context.descriptionhtml = TextEditor.enrichHTML(this.actor.system.description, { async: false });
+    context.descriptionhtml = await TextEditor.enrichHTML(this.actor.system.description, { async: false });
 
     return context;
   }

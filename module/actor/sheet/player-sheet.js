@@ -25,13 +25,13 @@ export default class PlayerSheet extends CemBaseActorSheet {
   }
 
   /** @override */
-  getData(options) {
+  async getData(options) {
     const context = super.getData(options);
     context.xprules = game.settings.get('cleenmain', 'experiencePoints');
     context.protection = this.actor.getArmorProtection();
     let defenceModifier = this.actor.getModifiers().find( modifier => modifier.type === "behaviour");
     context.defenceModifier = defenceModifier ? defenceModifier.value : 0;
-    context.notebookhtml = TextEditor.enrichHTML(this.actor.system.notebook, {async:false});
+    context.notebookhtml = await TextEditor.enrichHTML(this.actor.system.notebook, {async:false});
     context.healthMax = this.actor.healthMax();
     context.rangedBonus= this.actor.rangedBonus();
     context.meleeBonus= this.actor.meleeBonus();
