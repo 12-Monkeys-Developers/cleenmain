@@ -134,7 +134,7 @@ export class CemChat {
     async _createContent() {
 
         // Update the data to provide to the template
-        const d = duplicate(this.data);
+        const d =  foundry.utils.duplicate(this.data);
         d.owner = this.actor.id;
 
         // Call the template renderer.

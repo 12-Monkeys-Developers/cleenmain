@@ -15,11 +15,7 @@
             </thead> 
             <td>
                 <select name="system.category">
-                    {{#select system.category}}
-                    {{#each config.armor.category as |name type|}}
-                    <option value="{{type}}">{{localize name}}</option>
-                    {{/each}}
-                    {{/select}}
+                    {{selectOptions config.armor.category selected=system.category labelAttr="label"}}
                 </select>
             </td>
             <td>

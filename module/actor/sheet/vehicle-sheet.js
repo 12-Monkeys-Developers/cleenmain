@@ -11,7 +11,7 @@ export default class VehicleSheet extends CemBaseActorSheet {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       template: "systems/cleenmain/templates/actor/vehicle.html",
       classes: ["cleenmain", "sheet", "actor", "vehicle"],
       width: 650,
@@ -22,8 +22,8 @@ export default class VehicleSheet extends CemBaseActorSheet {
   }
 
   /** @override */
-  getData(options) {
-    const context = super.getData(options);
+  async getData(options) {
+    const context = await super.getData(options);
 
     return context;
   }

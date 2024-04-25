@@ -3,14 +3,14 @@ import CemBaseItemSheet from "./base-sheet.js";
 export class WeaponSheet extends CemBaseItemSheet {
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
           width: 740,
           height: 340
         });
       }
     
       getData(options) {
-        let data = mergeObject(
+        let data = foundry.utils.mergeObject(
           super.getData(options), {
         });
         return data;
@@ -52,7 +52,7 @@ export class WeaponSheet extends CemBaseItemSheet {
      */
     _onDropItem(event, data) {
         Item.fromDropData(data).then(item => {
-            const itemData = duplicate(item.data);
+            const itemData =  foundry.utils.duplicate(item.data);
             switch (itemData.type) {
                 case "skill":
                     return this._onDropSkillItem(event, itemData);

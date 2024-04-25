@@ -21,7 +21,7 @@ export default class CemBaseItemSheet extends ItemSheet {
    * @override
    */  
   static get defaultOptions(){
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       width: 530,
       height: 340,
       resizable: true,
@@ -33,8 +33,8 @@ export default class CemBaseItemSheet extends ItemSheet {
   /** 
    * @override
    */
-  getData() {
-    const context = super.getData();
+  async getData(options) {
+    const context = await super.getData(options);
     let sheetData = {
       id: this.item.id,
       owner: this.object.isOwner,

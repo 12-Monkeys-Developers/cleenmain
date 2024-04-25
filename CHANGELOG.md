@@ -1,3 +1,5 @@
+# Version 2.6
+- Modification compatibilité Foundry v12.
 # Version 2.5.4
 - Option pour la visibilité des jets de dés du MJ.
 # Version 2.5.3

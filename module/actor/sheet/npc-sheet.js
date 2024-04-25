@@ -12,7 +12,7 @@ export default class NpcSheet extends CemBaseActorSheet {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       template: "systems/cleenmain/templates/actor/npc.html",
       classes: ["cleenmain", "sheet", "actor", "npc"],
       width: 800,
@@ -24,7 +24,7 @@ export default class NpcSheet extends CemBaseActorSheet {
 
   /** @override */
   async getData(options) {
-    const context = super.getData(options);
+    const context = await super.getData(options);
 
     context.skills = context.items.filter(item => item.type === "skill" && item.system.reference !== "defence");
     context.defenceSkill = context.items.filter(item => item.type === "skill" && item.system.reference === "defence")[0];

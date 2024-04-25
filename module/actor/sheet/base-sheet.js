@@ -11,7 +11,7 @@ export class CemBaseActorSheet extends ActorSheet {
 
   /** @override */
   async getData(options) {
-    const context = super.getData(options);
+    const context = await super.getData(options);
     context.actorSystem = context.actor.system;
     context.flags = context.actor.flags;
     context.id = context.actor.id;

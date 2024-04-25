@@ -17,20 +17,12 @@
             </thead>
             <td>
                 <select name="system.category">
-                    {{#select system.category}}
-                        {{#each config.weapon.category as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
+                    {{selectOptions config.weapon.category selected=system.category labelAttr="label"}}
                 </select>
             </td>
             <td>
                 <select name="system.type">
-                    {{#select system.type}}
-                        {{#each config.weapon.type as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
+                    {{selectOptions config.weapon.type selected=system.type labelAttr="label"}}
                 </select>
             </td>
             <td><input name="system.damageBase" type="text" value="{{system.damageBase}}"/></td>

@@ -30,11 +30,7 @@
                 </div>
                 <div class="level-line">
                     <select name="system.level">
-                        {{#select actorSystem.level}}
-                        {{#each config.npcCategory as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{selectOptions config.npcCategory selected=actorSystem.level labelAttr="label"}}
                     </select>
                     {{#if eliteRuleset}}
                     <div class="elite-block">

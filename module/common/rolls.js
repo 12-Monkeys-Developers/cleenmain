@@ -595,7 +595,7 @@ export class Rolls {
     if (game.settings.get("cleenmain", "pointsbiotech")) {
       let firstBiotechTerm;
       roll.terms.forEach((element) => {
-        if (element.options.flavor === "bronze") firstBiotechTerm = duplicate(element);
+        if (element.options.flavor === "bronze") firstBiotechTerm =  foundry.utils.duplicate(element);
       });
       if (firstBiotechTerm) {
         if (firstBiotechTerm?.results[0]?.result < 4 || actor.system.always2dice) {

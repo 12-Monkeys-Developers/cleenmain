@@ -14,7 +14,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
    * @override
    */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       height: 750,
       width: 850,
       template: "systems/cleenmain/templates/actor/player.html",
@@ -26,7 +26,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
 
   /** @override */
   async getData(options) {
-    const context = super.getData(options);
+    const context = await super.getData(options);
     context.xprules = game.settings.get('cleenmain', 'experiencePoints');
     context.protection = this.actor.getArmorProtection();
     let defenceModifier = this.actor.getModifiers().find( modifier => modifier.type === "behaviour");
@@ -82,7 +82,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
    */
   _onDropItem(event, data) {
     Item.fromDropData(data).then((item) => {
-      const itemData = duplicate(item);
+      const itemData =  foundry.utils.duplicate(item);
       switch (itemData.type) {
         case "skill":
           return this._onDropSkillItem(event, itemData);
@@ -106,7 +106,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
     const id = event.target.parentElement.dataset["itemId"];
     const target = this.actor.items.get(id);
     if (!target || target.type !== "weapon") return;
-    let targetData = duplicate(target);
+    let targetData =  foundry.utils.duplicate(target);
     targetData.system.skillName = itemData.name;
     targetData.system.skillValue = this.actor.getSkillValue(itemData);
 
