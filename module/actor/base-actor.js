@@ -246,7 +246,7 @@ export default class CemBaseActor extends Actor {
     }
 
     async useBiotech(){
-        const biotechboonroll = new Roll("1d6[green]", {}).roll({ async: false });
+        const biotechboonroll = await new Roll("1d6[green]", {}).roll();
         let biotechRollResultText = biotechboonroll._total<5 ? game.i18n.format("CLEENMAIN.chatmessage.biotechBoonRollFail") : game.i18n.format("CLEENMAIN.chatmessage.biotechBoonRollSuccess");
         let chatData = {
             owner: this.id,

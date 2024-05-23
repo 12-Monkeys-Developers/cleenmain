@@ -462,7 +462,7 @@ export class Rolls {
     // Calculate damages
     let attackDamage = null;
     if (data.attackRoll && item.type === "weapon") {
-      attackDamage = item.calculateWeaponDamage(
+      attackDamage = await item.calculateWeaponDamage(
         actor,
         result.dices,
         data.useHeroism,
@@ -556,6 +556,7 @@ export class Rolls {
 
     let chat = await new CemChat(actor)
       .withTemplate("systems/cleenmain/templates/chat/roll-result.html")
+      .withRolls(rolls)
       .withData(chatData)
       .withFlags(
         flagCanReRoll
@@ -567,7 +568,6 @@ export class Rolls {
             }
           : {}
       )
-      .withRolls(rolls)
       .create();
 
     await chat.display();
@@ -581,7 +581,7 @@ export class Rolls {
    * @returns the roll result
    */
   static async getRollResult(actor, formula, targetDifficulty) {
-    const roll = new Roll(formula, {}).roll({ async: false });
+    const roll = await new Roll(formula, {}).roll();
     return Rolls.getResult(actor, roll, targetDifficulty);
   }
 
@@ -599,7 +599,7 @@ export class Rolls {
       });
       if (firstBiotechTerm) {
         if (firstBiotechTerm?.results[0]?.result < 4 || actor.system.always2dice) {
-          rollbiotech = new Roll("1d6", {}).roll({ async: false });
+          rollbiotech = await new Roll("1d6", {}).roll();
           roll._formula = roll._formula + " + 1d6[yellow]";
           roll._total = roll._total + rollbiotech._total;
           roll.terms.push(rollbiotech.terms[0]);
@@ -750,14 +750,14 @@ export class Rolls {
     else if (dice == 3) {
       diceColor = "bronze";
     }
-    const newDice = new Roll("1d6[" + diceColor + "]", {}).roll({ async: false });
+    const newDice = await new Roll("1d6[" + diceColor + "]", {}).roll();
 
     // display the roll in Dice So Nice if the module is active
     if (game.modules.get("dice-so-nice")?.active) {
       let synchro = actor.type === "player" || !game.user.isGM;
       game.dice3d.showForRoll(newDice, game.user, synchro);
     }
-
+console.log("rolls760",newMessage.rolls );
     // Take the existing roll
     let roll = newMessage.rolls[0];
 
@@ -767,7 +767,7 @@ export class Rolls {
     let chatData = newMessage.getFlag("world", "reRoll");
 
     // Pas de bonus de dés particuliers : juste éventuellement l'héroïsme
-    if (roll.terms[0].rolls.length == 1) {
+    if (roll.terms[0].results.length == 1) {
       // Replace in the roll : the dice rerolled and the new total
       let newTotal = roll._total;
 
@@ -807,10 +807,10 @@ export class Rolls {
       if (chatData.attackRoll && chatData.item.type == "weapon") {
         const itemId = chatData.itemId;
         const item = game.actors.get(actorId).items.get(itemId);
-        let attackDamage = item.calculateRerolleWeaponDamage(
+        let attackDamage = await item.calculateRerolleWeaponDamage(
           actor,
           chatData.result.dices,
-          null,
+          chatData.rolls,
           chatData.useHeroism,
           chatData.lethalattack,
           chatData.minorinjury,
@@ -850,11 +850,11 @@ export class Rolls {
 
       // On transforme les rolls de type Object restants en Roll
       for (let index = 1; index < chatData.rolls.length; index++) {
-        const element = Roll.fromData(chatData.rolls[index]);
+        const element = await Roll.fromData(chatData.rolls[index]);
         newRolls[index] = element;
       }
-      const pool = PoolTerm.fromRolls(newRolls);
-      roll = Roll.fromTerms([pool]);
+      const pool = await PoolTerm.fromRolls(newRolls);
+      roll = await Roll.fromTerms([pool]);
 
       // Generate the new result
       chatData.result = await this.getResult(actor, mainRoll, null);
@@ -867,7 +867,7 @@ export class Rolls {
       if (chatData.attackRoll && chatData.item.type == "weapon") {
         const itemId = chatData.itemId;
         const item = game.actors.get(actorId).items.get(itemId);
-        let attackDamage = item.calculateRerolleWeaponDamage(
+        let attackDamage =  await item.calculateRerolleWeaponDamage(
           actor,
           chatData.result.dices,
           newRolls,
@@ -935,7 +935,7 @@ export class Rolls {
     }
 
     // Create the chat message
-    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/roll-result.html").withData(chatData).withRolls(chatData.rolls).create();
+    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/roll-result.html").withRolls(chatData.rolls).withData(chatData).create();
 
     // Update the chat message content and rolls
 
@@ -949,7 +949,7 @@ export class Rolls {
    * @param {*} data
    */
   static async simpleDamage(actor, rollType, data) {
-    const damageRoll = new Roll(data.formula, {}).roll({ async: false });
+    const damageRoll = await new Roll(data.formula, {}).roll();
 
     let introText;
     switch (rollType) {
@@ -979,7 +979,7 @@ export class Rolls {
     chatData.rolls[0] = damageRoll;
 
     console.log(("chatData", chatData));
-    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/damage-roll-result.html").withData(chatData).withRolls(chatData.rolls).create();
+    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/damage-roll-result.html").withRolls(chatData.rolls).withData(chatData).create();
     newChatMessage.display();
   }
 }

@@ -61,7 +61,7 @@ export class CemChat {
      * @returns the instance.
      */
     withRolls(rolls) {
-        this.rolls = rolls;
+        this.rolls = rolls.slice();
         return this;
     }
 
@@ -94,11 +94,15 @@ export class CemChat {
         }
 
         // Set the roll parameter if necessary
-        if (this.rolls) {
+            console.log("rolls97",this.rolls);
+        if (this.rolls&&this.rolls.length) {
             d.rollMode = this.data.rollMode;
             d.type = CONST.CHAT_MESSAGE_TYPES.ROLL;
             const pool = PoolTerm.fromRolls(this.rolls);
-            d.roll = Roll.fromTerms([pool]);
+            d.roll = await Roll.fromTerms([pool]);
+            // -----------modifrolls
+            d.rolls=this.rolls;
+
         }
         // Set the flags parameter if necessary
         if (this.flags) {
