@@ -95,7 +95,7 @@ export default function registerHooks() {
 
       let newUserGuide = newReleasePack.index.find((j) => j.name === userGuideJournalName);
       if (newUserGuide === undefined || newUserGuide === null) {
-        console.log("No system guide found in the conpendium");
+        console.log("No system guide found in the compendium");
         return;
       }
 

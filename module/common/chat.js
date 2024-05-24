@@ -70,7 +70,6 @@ export class CemChat {
      * @returns this instance
      */
     async create() {
-
         // Retrieve the message content
         if (!this.content && this.template && this.data) {
             this.content = await this._createContent();
@@ -82,7 +81,7 @@ export class CemChat {
         }
 
         // Create the chat data
-        const d = {
+        const messageData = {
             user: game.user.id,
             speaker: {
                 actor: this.actor.id,
@@ -90,37 +89,38 @@ export class CemChat {
                 scene: null,
                 token: null,
             },
-            content: this.content
+            content: this.content,
+            rolls: []
         }
 
         // Set the roll parameter if necessary
         if (this.rolls) {
-            d.rollMode = this.data.rollMode;
-            d.type = CONST.CHAT_MESSAGE_TYPES.ROLL;
-            const pool = PoolTerm.fromRolls(this.rolls);
-            d.roll = Roll.fromTerms([pool]);
+            messageData.rollMode = this.data.rollMode;
+            messageData.style = CONST.CHAT_MESSAGE_STYLES.OTHER;;
+            const pool = foundry.dice.terms.PoolTerm.fromRolls(this.rolls);
+            messageData.rolls.push(Roll.defaultImplementation.fromTerms([pool]));
         }
         // Set the flags parameter if necessary
         if (this.flags) {
-            d.flags = this.flags;
+            messageData.flags = this.flags;
         }
 
         // Set the whisper and blind parameters according to the player roll mode settings
         //switch (game.settings.get('core', 'rollMode')) {
         switch (this.data.rollMode) {
             case 'gmroll':
-                d.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
+                messageData.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
                 break;
             case 'blindroll':
-                d.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
-                d.blind = true;
+                messageData.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
+                messageData.blind = true;
                 break;
             case 'selfroll':
-                d.whisper = [game.user.id];
+                messageData.whisper = [game.user.id];
                 break;
         }
        
-        this.chatData = d;
+        this.chatData = messageData;
 
         return this;
 
@@ -148,7 +148,7 @@ export class CemChat {
     */
     async display() {
         // Create the chat
-        this.chat = await ChatMessage.create(this.chatData);
+        this.chat = await ChatMessage.implementation.create(this.chatData);
         return this;
     }
 

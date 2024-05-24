@@ -103,7 +103,7 @@ export default class CemBaseItem extends Item {
    * @param {*} rollbiotech 2nd bonus dice for biotech
    * @returns
    */
-  calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury, multipleattacks, badShapeDamageBonus, damageBonus, rollbiotech) {
+  async calculateWeaponDamage(actor, dices, useHeroism, lethalattack, minorinjury, multipleattacks, badShapeDamageBonus, damageBonus, rollbiotech) {
     if (this.type !== "weapon") return;
 
     const nbDamageDices = this.getSystemData("damageBase").match(/([0-9])d6/) ? parseInt(this.getSystemData("damageBase").match(/([0-9])d6/)[1]) : 0;
@@ -181,7 +181,7 @@ export default class CemBaseItem extends Item {
     // Damage bonus 1, 2 or 3 d6
     if (damageBonus > 0) {
       let damageBonusFormula = damageBonus + "d6" + "[black]";
-      const damageBonusRoll = new Roll(damageBonusFormula, {}).roll({ async: false });
+      const damageBonusRoll = await new Roll(damageBonusFormula, {}).roll();
       let damageBonusDices = [];
       for (let index = 0; index < damageBonusRoll.dice.length; index++) {
         const dice = damageBonusRoll.dice[index];
@@ -198,7 +198,7 @@ export default class CemBaseItem extends Item {
     if (this.getSystemData("sixPlus")) {
       if (nbSix > 0) {
         const explosiveFormula = nbSix + "d6x[inspired]";
-        const explosiveRoll = new Roll(explosiveFormula, {}).roll({ async: false });
+        const explosiveRoll = await new Roll(explosiveFormula, {}).roll();
         let explosiveDices = [];
         for (let index = 0; index < explosiveRoll.dice.length; index++) {
           const dice = explosiveRoll.dice[index];
@@ -219,7 +219,7 @@ export default class CemBaseItem extends Item {
       } else {
         damageFormula += " + " + lethalattack + "d6";
       }
-      const lethalRoll = new Roll(lethalFormula, {}).roll({ async: false });
+      const lethalRoll = await new Roll(lethalFormula, {}).roll();
       let lethalDices = [];
       for (let index = 0; index < lethalRoll.dice.length; index++) {
         const dice = lethalRoll.dice[index];
@@ -241,7 +241,7 @@ export default class CemBaseItem extends Item {
         damageFormula += " + " + badShapeDamageBonus;
       }
 
-      const badShapeRoll = new Roll(badShapeFormula, {}).roll({ async: false });
+      const badShapeRoll = await new Roll(badShapeFormula, {}).roll();
       let badShapeDices = [];
       for (let index = 0; index < badShapeRoll.dice.length; index++) {
         const dice = badShapeRoll.dice[index];
