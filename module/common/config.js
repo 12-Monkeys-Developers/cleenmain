@@ -91,6 +91,11 @@ export const CLEENMAIN = {
     secondfiddle: "secondfiddle",
     boss: "boss",
   },
+  state: {
+    equipped: "equipped",
+    active: "active",
+    other: "other",
+  },
 };
 
 export const HEALTH_STATUS = {

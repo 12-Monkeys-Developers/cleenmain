@@ -157,7 +157,7 @@ export default class CemBaseActor extends Actor {
         let newValue = actualValue + value;
         let modifiers = [];
         if (!actualModifier) {
-            modifiers.push({"type": "behaviour", "value": newValue});           
+            modifiers.push({"type": "behaviour", "value": newValue});
         }
         else {
             modifiers = foundry.utils.deepClone(this.getModifiers());
@@ -452,8 +452,10 @@ export default class CemBaseActor extends Actor {
         const updates = {"_id": boonId, "system" : {}};
         
         for (let element in options){
-            updates.system[element] = true;
+            updates.system.limitedUse2 = options.limitedUse2;
+            updates.system.limitedUse3 = options.limitedUse3;
             };
         this.updateEmbeddedDocuments('Item', [updates]);
     }
 }
+

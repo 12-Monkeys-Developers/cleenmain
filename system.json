@@ -5,8 +5,8 @@
   "url": "#{URL}#",
   "version": "#{VERSION}#",
   "compatibility": {
-    "minimum": "11",
-    "verified": "11"
+    "minimum": "12",
+    "verified": "12"
   },
   "authors": [
     {
@@ -29,7 +29,7 @@
       "name": "systemuserguidefr",
       "label": "Guide utilisateur du système",
       "system": "cleenmain",
-      "path": "packs/userguide.db",
+      "path": "packs/userguide",
       "type": "JournalEntry",
       "private": false,
       "flags": {},
