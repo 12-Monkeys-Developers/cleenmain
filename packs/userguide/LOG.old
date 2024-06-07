@@ -1,3 +1,5 @@
-2024/06/05-22:00:43.778 ddc Recovering log #30
-2024/06/05-22:00:43.781 ddc Delete type=0 #30
-2024/06/05-22:00:43.781 ddc Delete type=3 #29
+2024/06/07-08:52:09.996 527c Delete type=3 #1
+2024/06/07-08:52:09.999 36f4 Level-0 table #5: started
+2024/06/07-08:52:10.000 36f4 Level-0 table #5: 4465 bytes OK
+2024/06/07-08:52:10.001 36f4 Delete type=0 #3
+2024/06/07-08:52:10.001 36f4 Manual compaction at level-0 from '!journal!E6rMq7vL2Z1BeF0H' @ 72057594037927935 : 1 .. '!journal.pages!E6rMq7vL2Z1BeF0H.vJdJ0dk7gbQdQ1hz' @ 0 : 0; will stop at (end)

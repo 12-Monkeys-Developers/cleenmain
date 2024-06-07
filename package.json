@@ -1,9 +1,14 @@
 {
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "@foundryvtt/foundryvtt-cli": "^1.0.2",
+    "gulp": "^5.0.0"
   },
   "dependencies": {
     "gulp-less": "^5.0.0",
-    "npm": "^9.7.2"
+    "npm": "^10.8.1"
+  },
+  "scripts": {
+    "pushLDBtoYML": "node ./tools/pushLDBtoYML.mjs",
+    "pullYMLtoLDB": "node ./tools/pullYMLtoLDB.mjs"
   }
 }
