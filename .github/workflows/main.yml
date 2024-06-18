@@ -160,4 +160,4 @@ jobs:
           method: 'POST'
           contentType: 'application/json'
           customHeaders: '{"Authorization": "${{ secrets.FVTT_PACKAGE_RELEASE_TOKEN }}"}'
-          data: '{"id": "cleenmain","dry-run":false,"release":{"version":"${{github.event.release.tag_name}}","manifest":"https://github.com/12-Monkeys-Developers/cleenmain/releases/download/${{github.event.release.tag_name}}/system.json","notes":"https://github.com/12-Monkeys-Developers/cleenmain/blob/main/CHANGELOG.md","compatibility":{"minimum":"10","verified":"11"}}}'
+          data: '{"id": "cleenmain","dry-run":false,"release":{"version":"${{github.event.release.tag_name}}","manifest":"https://github.com/12-Monkeys-Developers/cleenmain/releases/download/${{github.event.release.tag_name}}/system.json","notes":"https://github.com/12-Monkeys-Developers/cleenmain/blob/main/CHANGELOG.md","compatibility":{"minimum":"12","verified":"12"}}}'
