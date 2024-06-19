@@ -1,3 +1,5 @@
+# Version 2.7
+- Debug Compatibilité Foundry v12 (relances).
 # Version 2.6
 - Modification compatibilité Foundry v12.
 # Version 2.5.4
