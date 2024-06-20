@@ -1,25 +1,34 @@
-# Version 2.7
+# Version 2.7.0
 - Debug Compatibilité Foundry v12 (relances).
-# Version 2.6
+
+# Version 2.6.0
 - Modification compatibilité Foundry v12.
+
 # Version 2.5.4
 - Option pour la visibilité des jets de dés du MJ.
+
 # Version 2.5.3
 - Compatibilité Foundry v.11
+
 # Version 2.5.2
 - bug: malus sur pénalité Danger
 - Bug: Armes lourdes / de guerre maniées par des PNJs
 - Bug: Prise en compte du modificateur aux dégâts manuel pour les PNJs
+
 # Version 2.5.1
 - Ajout d'une option pour la gestion par points d'expérience (#38)
 - Tri alphabétique de l'équipement (#39)
+
 # Version 2.5.0
 - Ajout d'un nouveau type d'acteur "Véhicule"
+
 # Version 2.4.2
 - Correction sur un message d'erreur côté joueur au démarrage d'un combat
 - Ajout d'un compteur anonyme de monde actif
+
 # Version 2.4.1
 - Correction d'un bug sur les jets d'attaque des PNJs
+
 # Version 2.4.0
 - Mécanique des points biotech pour World War Korea
 - Suppression de l'affichage du champ malus sur l'item de type armure, le malus étant calculé automatiquement selon la catégorie

@@ -2,7 +2,7 @@
 
 <p style="margin-left: 10%;"> <img src="/assets/image/logo_cem.webp" alt="" width="700" height="405" /></p>
 
-<div align="center">
+<div style="text-align: center;">
 
 ![Supported Foundry VTT versions](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dflat%26url%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2FKhaali-dev%2Fcleenmain%2Fmaster%2Fsystem.json)
 
