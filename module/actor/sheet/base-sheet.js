@@ -1,5 +1,5 @@
 import { ROLL_TYPE } from "../../common/constants.js";
-export class CemBaseActorSheet extends ActorSheet {
+export class CemBaseActorSheet extends foundry.appv1.sheets.ActorSheet {
   /**
    * @constructor
    * @param  {...any} args
@@ -30,7 +30,7 @@ export class CemBaseActorSheet extends ActorSheet {
         return a.name.localeCompare(b.name);
       });
     for (let item of context.equipments) {
-      item.system.descriptionhtml = await TextEditor.enrichHTML(item.system.description, { async: false });
+      item.system.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description, { async: false });
     }
 
     // Alphabetic order for skills
@@ -44,7 +44,7 @@ export class CemBaseActorSheet extends ActorSheet {
     context.isPlayer = this.actor.isPlayer();
     context.isNpc = this.actor.isNpc();
     context.badShape = this.actor.isInBadShape();
-    context.descriptionhtml = await TextEditor.enrichHTML(this.actor.system.description, { async: false });
+    context.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.description, { async: false });
 
     return context;
   }
@@ -242,7 +242,18 @@ export class CemBaseActorSheet extends ActorSheet {
     let infoTemplate = game.cleenmain.config.infoTemplate[infoReference];
 
     if (!infoTemplate) return;
-    new Dialog({
+    foundry.applications.api.DialogV2.prompt({
+      window: { title: game.i18n.localize("CLEENMAIN.dialog.display_help_title"),
+        classes: ["cleenmain", "dialog"], },
+      cssClasses: ["cleenmain", "dialog"],
+      content: infoTemplate,
+      rejectClose: false,
+      ok: {
+        label: game.i18n.localize("CLEENMAIN.dialog.button.close"),
+        callback: (event, button, dialog) => this.close,
+      },
+    });
+    /*    new Dialog({
       title: game.i18n.localize("CLEENMAIN.dialog.display_help_title"),
       content: infoTemplate,
       buttons: {
@@ -250,7 +261,7 @@ export class CemBaseActorSheet extends ActorSheet {
           label: game.i18n.localize("CLEENMAIN.dialog.button.cancel"),
         },
       },
-    }).render(true);
+    }).render(true);*/
   }
 
   _onShowPortrait(event) {

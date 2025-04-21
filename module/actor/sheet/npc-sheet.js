@@ -32,7 +32,7 @@ export default class NpcSheet extends CemBaseActorSheet {
     context.isSupport = this.actor.isSupport();
     context.eliteRuleset = game.settings.get('cleenmain', 'advancedRules');
     context.eliteRulesetModif = context.eliteRuleset && context.unlocked;
-    context.equipmenthtml = await TextEditor.enrichHTML(this.actor.system.equipment, {async:false});
+    context.equipmenthtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.equipment, {async:false});
 
     return context;
   }

@@ -31,7 +31,7 @@ export default class PlayerSheet extends CemBaseActorSheet {
     context.protection = this.actor.getArmorProtection();
     let defenceModifier = this.actor.getModifiers().find( modifier => modifier.type === "behaviour");
     context.defenceModifier = defenceModifier ? defenceModifier.value : 0;
-    context.notebookhtml = await TextEditor.enrichHTML(this.actor.system.notebook, {async:false});
+    context.notebookhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.notebook, {async:false});
     context.healthMax = this.actor.healthMax();
     context.rangedBonus= this.actor.rangedBonus();
     context.meleeBonus= this.actor.meleeBonus();

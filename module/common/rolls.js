@@ -87,7 +87,7 @@ export class Rolls {
     }
 
     // Create the dialog panel to display.
-    const html = await renderTemplate("systems/cleenmain/templates/chat/roll-dialog.html", {
+    const html = await foundry.applications.handlebars.renderTemplate("systems/cleenmain/templates/chat/roll-dialog.html", {
       actor: actor,
       item: item,
       type: rollType,
@@ -653,7 +653,7 @@ export class Rolls {
         dices: d.dices,
       };
     });
-    return renderTemplate(Rolls.TOOLTIP_DAMAGE_TEMPLATE, { parts });
+    return foundry.applications.handlebars.renderTemplate(Rolls.TOOLTIP_DAMAGE_TEMPLATE, { parts });
   }
 
   /**

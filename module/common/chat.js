@@ -138,7 +138,7 @@ export class CemChat {
         d.owner = this.actor.id;
 
         // Call the template renderer.
-        return await renderTemplate(this.template, d);
+        return await foundry.applications.handlebars.renderTemplate(this.template, d);
 
     }
 

@@ -5,7 +5,7 @@
  */
  export default async function preloadTemplates() {
 
-    return loadTemplates([
+    return foundry.applications.handlebars.loadTemplates([
         "systems/cleenmain/templates/actor/npc.html",  
         "systems/cleenmain/templates/actor/player.html",        
         "systems/cleenmain/templates/actor/tab/bio.html",
