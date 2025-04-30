@@ -1,3 +1,6 @@
+# Version 3.0.0
+- Modification compatibilité Foundry v13.
+
 # Version 2.7.1
 - Dernière version compatible V12
 
