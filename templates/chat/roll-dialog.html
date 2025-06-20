@@ -6,10 +6,7 @@
       <div class="introtext">{{introText}}</div>
     </div>
     <div class="tooltip">
-      <div class="formula">{{rollFormula}}</div>
-      {{#if (isStringNotEmpty formulaTooltip)}}
-        <span class="tooltiptext">{{formulaTooltip}}</span>
-      {{/if}}
+      <div class="formula" data-tooltip="{{formulaTooltip}}">{{rollFormula}}</div>
     </div>
     <div class="rollmodifier">
       <label>{{localize "CLEENMAIN.dialog.rollmodifier"}}</label><input id="rollmodifier" value="" type="text" data-dtype="Text" />
@@ -53,33 +50,31 @@
     </div>
     <table class="bonus-table">
       <tr>
-        <td class="tooltip bonus-label">{{localize "CLEENMAIN.bonus.lethalattack.label"}}<span class="tooltiptext">{{localize
-            "CLEENMAIN.bonus.lethalattack.description"}}</span>
+        <td class="tooltip bonus-label" data-tooltip="{{localize "CLEENMAIN.bonus.lethalattack.description"}}">{{localize "CLEENMAIN.bonus.lethalattack.label"}}
         </td>
         <td><input type="number" id="lethalattack" name="lethalattack" min="0" max="10" value="0" /></td>
-        <td class="tooltip bonus-label">
-          {{localize "CLEENMAIN.bonus.multipleattacks.label"}}<span class="tooltiptext">{{localize
-            "CLEENMAIN.bonus.multipleattacks.description"}}</span></td>
+        <td class="tooltip bonus-label" data-tooltip="{{localize
+            "CLEENMAIN.bonus.multipleattacks.description"}}">
+          {{localize "CLEENMAIN.bonus.multipleattacks.label"}}</td>
         <td><input type="number" id="multipleattacks" name="multipleattacks" min="0" max="1" value="0" />
         </td>
       </tr>
       <tr>
-        <td class="tooltip bonus-label">
-          {{localize "CLEENMAIN.bonus.efficiency.label"}}<span class="tooltiptext">{{localize
-            "CLEENMAIN.bonus.efficiency.description"}}</span></td>
+        <td class="tooltip bonus-label" data-tooltip="{{localize "CLEENMAIN.bonus.efficiency.description"}}">
+          {{localize "CLEENMAIN.bonus.efficiency.label"}}</td>
         <td><input type="number" id="efficiency" name="efficiency" min="0" max="10" value="0" />
         </td>
-        <td class="tooltip bonus-label">
-          {{localize "CLEENMAIN.bonus.caution.label"}}<span class="tooltiptext">{{localize
-            "CLEENMAIN.bonus.caution.description"}}</span></td>
+        <td class="tooltip bonus-label" data-tooltip="{{localize
+            "CLEENMAIN.bonus.caution.description"}}">
+          {{localize "CLEENMAIN.bonus.caution.label"}}</td>
         <td><input type="number" id="caution" name="caution" min="0" max="10" value="0" />
         </td>
       </tr>
       {{#if (isSettingEnabled "advancedRules")}}
       <tr>
-        <td class="tooltip bonus-label">
-          {{localize "CLEENMAIN.bonus.quick.label"}}<span class="tooltiptext">{{localize
-            "CLEENMAIN.bonus.quick.description"}}</span></td>
+        <td class="tooltip bonus-label" data-tooltip="{{localize
+            "CLEENMAIN.bonus.quick.description"}}">
+          {{localize "CLEENMAIN.bonus.quick.label"}}</td>
         <td><input type="number" id="quick" name="quick" min="0" max="1" value="0" />
         </td>
         <td class="tooltip"></td>
@@ -92,33 +87,33 @@
     </div>
     <table class="bonus-table">
       <tr>
-        <td class="tooltip bonus-label">{{localize "CLEENMAIN.penalty.minorinjury.label"}}<span class="tooltiptext">{{localize
-            "CLEENMAIN.penalty.minorinjury.description"}}</span>
+        <td class="tooltip bonus-label" data-tooltip="{{localize
+            "CLEENMAIN.penalty.minorinjury.description"}}">{{localize "CLEENMAIN.penalty.minorinjury.label"}}
         </td>
         <td><input type="number" id="minorinjury" name="minorinjury" min="0" max="1" value="0" />
         </td>
-        <td class="tooltip bonus-label">{{localize "CLEENMAIN.penalty.danger.label"}}<span class="tooltiptext">{{localize
-            "CLEENMAIN.penalty.danger.description"}}</span>
+        <td class="tooltip bonus-label" data-tooltip="{{localize
+            "CLEENMAIN.penalty.danger.description"}}">{{localize "CLEENMAIN.penalty.danger.label"}}
         </td>
         <td><input type="number" id="danger" name="danger" min="0" max="10" value="0" />
         </td>
       </tr>
       <tr>
-        <td class="tooltip bonus-label">{{localize "CLEENMAIN.penalty.difficulty.label"}}<span class="tooltiptext">{{localize
-            "CLEENMAIN.penalty.difficulty.description"}}</span>
+        <td class="tooltip bonus-label" data-tooltip="{{localize
+            "CLEENMAIN.penalty.difficulty.description"}}">{{localize "CLEENMAIN.penalty.difficulty.label"}}
         </td>
         <td><input type="number" id="difficulty" name="difficulty" min="0" max="10" value="{{action.difficulty}}" />
         </td>
-        <td class="tooltip bonus-label">{{localize "CLEENMAIN.penalty.risk.label"}}<span class="tooltiptext">{{localize
-            "CLEENMAIN.penalty.risk.description"}}</span>
+        <td class="tooltip bonus-label" data-tooltip="{{localize
+            "CLEENMAIN.penalty.risk.description"}}">{{localize "CLEENMAIN.penalty.risk.label"}}
         </td>
         <td><input type="number" id="risk" name="risk" min="0" max="1" value="{{action.risk}}" /></td>
       </tr>
   
       {{#if (isSettingEnabled "advancedRules")}}
       <tr>
-        <td class="tooltip bonus-label">{{localize "CLEENMAIN.penalty.slowness.label"}}<span class="tooltiptext">{{localize
-            "CLEENMAIN.penalty.slowness.description"}}</span>
+        <td class="tooltip bonus-label" data-tooltip="{{localize
+            "CLEENMAIN.penalty.slowness.description"}}">{{localize "CLEENMAIN.penalty.slowness.label"}}
         </td>
         <td><input type="number" id="slowness" name="slowness" min="0" max="10" value="0" />
   

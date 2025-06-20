@@ -1,7 +1,7 @@
 <div class="combat-tab">
     <!-- PROTECTIONS PART -->
     <div class="title-line">
-        <h1 class="combat-domain-label">{{localize "CLEENMAIN.label.protections"}}  ( <span class="tooltip">{{protection}}<span class="tooltiptext">{{localize "CLEENMAIN.tooltip.protection"}}</span></span> ) {{#if defenceModifier}}<span class="tooltip">{{defenceModifier}}<span class="tooltiptext">{{localize "CLEENMAIN.tooltip.defence_modifier"}}</span></span>{{/if}}
+        <h1 class="combat-domain-label">{{localize "CLEENMAIN.label.protections"}}  ( <span class="tooltip" data-tooltip="{{localize "CLEENMAIN.tooltip.protection"}}">{{protection}}</span> ) {{#if defenceModifier}}<span class="tooltip" data-tooltip="{{localize "CLEENMAIN.tooltip.defence_modifier"}}">{{defenceModifier}}</span>{{/if}}
             {{#if unlocked}}
                 <a class="item-create right-icon" data-type="armor" title="{{localize 'CLEENMAIN.armor.add'}}"><i class="fas fa-plus"></i></a>
             {{/if}}

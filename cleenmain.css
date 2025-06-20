@@ -10,9 +10,6 @@
   font-family: "Merriweather";
   src: url("../../systems/cleenmain/assets/fonts/Merriweather-Regular.ttf");
 }
-input {
-  color: #456;
-}
 .cleenmain.sheet.player h1 {
   font: 1.2rem "Signika";
   color: black;
@@ -40,6 +37,7 @@ input {
 .cleenmain.sheet.player input {
   background-color: #f5fdfb;
   box-shadow: inset 0 0 3px black;
+  color: #456;
 }
 .cleenmain.sheet.player input:focus {
   background-color: #c3d4d0;
@@ -48,6 +46,7 @@ input {
   background-color: #f5fdfb;
   box-shadow: inset 0 0 3px black;
   height: 1.5em;
+  color: #456;
 }
 .cleenmain.sheet.player form {
   display: flex;
@@ -196,7 +195,7 @@ input {
 .cleenmain.sheet.player .main .central .sheet-tabs {
   display: flex;
   flex-direction: row;
-  font-size: 1,5em;
+  font-size: 1, 5em;
 }
 .cleenmain.sheet.player .main .central .tab-name {
   background: #fffdfc;
@@ -214,7 +213,7 @@ input {
   border-bottom-width: 0;
 }
 .cleenmain.sheet.player .main .central .sheet-body {
-  background: none ;
+  background: none;
 }
 .cleenmain.sheet.player .right-icon {
   font: 1.1rem "Modesto condensed";
@@ -254,6 +253,7 @@ input {
 .cleenmain.sheet.npc input {
   background-color: #f5fdfb;
   box-shadow: inset 0 0 3px black;
+  color: #456;
 }
 .cleenmain.sheet.npc input:focus {
   background-color: #c3d4d0;
@@ -262,6 +262,7 @@ input {
   background-color: #f5fdfb;
   box-shadow: inset 0 0 3px black;
   height: 1.5em;
+  color: #456;
 }
 .cleenmain.sheet.npc .npc-main {
   display: flex;
@@ -527,11 +528,13 @@ input {
   background-color: #f5fdfb;
   box-shadow: inset 0 0 3px black;
   height: 1.5em;
+  color: #456;
 }
 .cleenmain.sheet.item select {
   background-color: #f5fdfb;
   box-shadow: inset 0 0 3px black;
   height: 1.5em;
+  color: #456;
 }
 .cleenmain.sheet.item input:focus {
   background-color: #c3d4d0;
@@ -680,25 +683,6 @@ input {
 .tab-bio .editor .tox.tox-tinymce {
   min-height: 10em;
 }
-.cleenmain.sheet.player .main .tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-  position: absolute;
-  z-index: 1;
-}
-.cleenmain.sheet.player .main .tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-.cleenmain.sheet.player .main h1 .tooltiptext {
-  font: 0.7rem "Merriweather";
-  font-weight: normal;
-  text-transform: none;
-}
 .cleenmain.sheet.player .main .central .combat-tab {
   margin: 1em 0 0.5em 0;
   display: flex;
@@ -831,27 +815,10 @@ input {
   display: flex;
   flex-direction: column;
   font: 1rem "Signika";
-  /* Tooltip text */
 }
 .dialog .tooltip {
   position: relative;
   display: inline-block;
-}
-.dialog .tooltip .tooltiptext {
-  visibility: hidden;
-  width: 160px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  z-index: 1;
-}
-.dialog .tooltip:hover .tooltiptext {
-  visibility: visible;
 }
 .dialog .intro {
   display: flex;
@@ -976,44 +943,10 @@ input {
   position: relative;
   display: inline-block;
 }
-.chatroll .formulaTooltip .tooltiptext {
-  visibility: hidden;
-  width: 200px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  z-index: 1;
-}
-.chatroll .formulaTooltip:hover .tooltiptext {
-  visibility: visible;
-}
 .chatroll .finalText {
   font: 1rem "Signika";
   color: black;
   text-align: center;
-}
-.chatroll .finalText .tooltip {
-  position: relative;
-  display: inline-block;
-}
-.chatroll .finalText .tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-  position: absolute;
-  z-index: 1;
-}
-.chatroll .finalText .tooltip:hover .tooltiptext {
-  visibility: visible;
 }
 .chatroll .endimg {
   background: top / 50% repeat url('../../../ui/parchment-white.jpg');

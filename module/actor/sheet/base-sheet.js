@@ -77,13 +77,11 @@ export class CemBaseActorSheet extends foundry.appv1.sheets.ActorSheet {
    * @description Manage the lock/unlock button on the sheet
    * @param {*} event
    */
-  async _onSheetChangelock(event) {
-    event.preventDefault();
-
+  async _onSheetChangelock(event, target) {
     let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
-    flagData ? await this.actor.unsetFlag(game.system.id, "SheetUnlocked") : await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
-
-    this.actor.sheet.render(true);
+    if (flagData) await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
+    else await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
+    this.render();
   }
 
   /**

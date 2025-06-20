@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "@foundryvtt/foundryvtt-cli": "^1.0.2",
-    "gulp": "^5.0.0"
+    "gulp": "^5.0.1"
   },
   "dependencies": {
     "gulp-less": "^5.0.0",
