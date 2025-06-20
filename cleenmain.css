@@ -810,22 +810,22 @@
 .equipment-tab label .item-create {
   margin-left: auto;
 }
-.dialog {
+.cem-dialog {
   background-color: #fffdfc;
   display: flex;
   flex-direction: column;
   font: 1rem "Signika";
 }
-.dialog .tooltip {
+.cem-dialog .tooltip {
   position: relative;
   display: inline-block;
 }
-.dialog .intro {
+.cem-dialog .intro {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.dialog .intro .introImg {
+.cem-dialog .intro .introImg {
   border: none;
   padding: 5px;
   width: 120px;
@@ -834,52 +834,52 @@
   object-position: center;
   align-self: center;
 }
-.dialog .intro .introtext {
+.cem-dialog .intro .introtext {
   font: bold 1.2rem "Signika";
   margin: 0.5em;
   padding-top: 1.5em;
   text-align: center;
 }
-.dialog .formula {
+.cem-dialog .formula {
   text-align: center;
   margin: 0.5em;
   font: bold 1.2rem "Signika";
 }
-.dialog .rollmodifier {
+.cem-dialog .rollmodifier {
   display: flex;
   flex-direction: row;
   margin: 0 0 1em 1em;
 }
-.dialog .rollmodifier input {
+.cem-dialog .rollmodifier input {
   width: 5em;
   margin: 0 0 1em 1em;
 }
-.dialog .rollmodifier select {
+.cem-dialog .rollmodifier select {
   width: 5em;
   margin: 0 0 1em 1em;
 }
-.dialog .paddingend {
+.cem-dialog .paddingend {
   padding: 0 0 5em 0;
 }
-.dialog .bonus-label {
+.cem-dialog .bonus-label {
   font: 1rem "Signika";
 }
-.dialog .bonus h2 {
+.cem-dialog .bonus h2 {
   font-weight: bold;
 }
-.dialog table {
+.cem-dialog table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
 }
-.dialog td {
+.cem-dialog td {
   width: 25%;
 }
-.dialog td input {
+.cem-dialog td input {
   width: 2em;
 }
-.dialog td input[type=number]::-webkit-inner-spin-button,
-.dialog td input[type=number]::-webkit-outer-spin-button {
+.cem-dialog td input[type="number"]::-webkit-inner-spin-button,
+.cem-dialog td input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: auto;
 }
 .chatroll {
