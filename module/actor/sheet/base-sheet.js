@@ -1,5 +1,10 @@
 import { ROLL_TYPE } from "../../common/constants.js";
 export class CemBaseActorSheet extends foundry.appv1.sheets.ActorSheet {
+
+   // Variable to check if the appV1 is used : will remove warning
+  // TODO : To migrate before V16
+  static _warnedAppV1 = true
+
   /**
    * @constructor
    * @param  {...any} args
