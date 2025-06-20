@@ -1,3 +1,6 @@
+# Version 2.7.1
+- Dernière version compatible V12
+
 # Version 2.7.0
 - Debug Compatibilité Foundry v12 (relances).
 
