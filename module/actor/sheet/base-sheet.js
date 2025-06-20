@@ -243,8 +243,7 @@ export class CemBaseActorSheet extends foundry.appv1.sheets.ActorSheet {
 
     if (!infoTemplate) return;
     foundry.applications.api.DialogV2.prompt({
-      window: { title: game.i18n.localize("CLEENMAIN.dialog.display_help_title"),
-        classes: ["cleenmain", "dialog"], },
+      window: { title: game.i18n.localize("CLEENMAIN.dialog.display_help_title"), classes: ["cleenmain", "dialog"] },
       cssClasses: ["cleenmain", "dialog"],
       content: infoTemplate,
       rejectClose: false,
@@ -277,11 +276,12 @@ export class CemBaseActorSheet extends foundry.appv1.sheets.ActorSheet {
         validate: {
           label: game.i18n.localize("CLEENMAIN.dialog.button.validate"),
           callback: () => {
-            let print = new ImagePopout(actor.img, {
-              title: actor.name,
-              shareable: true,
-              uuid: actor.uuid,
-            }).render(true);
+            const print = new ImagePopout({
+              src: this.img,
+              uuid: this.uuid,
+              window: { title: "Personnage" },
+            });
+            print.render(true);
             print.shareImage();
           },
         },
