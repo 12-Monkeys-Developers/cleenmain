@@ -1,4 +1,4 @@
-export default class CemCombatTracker extends CombatTracker {
+export default class CemCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
 
     get template() {
         return "systems/cleenmain/templates/combat/combat-tracker.html";

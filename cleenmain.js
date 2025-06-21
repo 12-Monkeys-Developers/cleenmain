@@ -43,14 +43,14 @@ Hooks.once("init", function () {
     weapon: models.CemWeapon,
   };
 
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("cleenmain", CemBaseItemSheet, { makeDefault: true });
-  Items.registerSheet("cleenmain", WeaponSheet, { label: "WeaponSheet", makeDefault: true, types: ["weapon"] });
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
+  foundry.documents.collections.Items.registerSheet("cleenmain", CemBaseItemSheet, { makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("cleenmain", WeaponSheet, { label: "WeaponSheet", makeDefault: true, types: ["weapon"] });
 
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("cleenmain", PlayerSheet, { types: ["player"], makeDefault: true });
-  Actors.registerSheet("cleenmain", NpcSheet, { types: ["npc"], makeDefault: true });
-  Actors.registerSheet("cleenmain", VehicleSheet, { types: ["vehicle"], makeDefault: true });
+  foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+  foundry.documents.collections.Actors.registerSheet("cleenmain", PlayerSheet, { types: ["player"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet("cleenmain", NpcSheet, { types: ["npc"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet("cleenmain", VehicleSheet, { types: ["vehicle"], makeDefault: true });
 
   game.cleenmain = {
     config: CLEENMAIN,
@@ -75,7 +75,7 @@ function registerWorldCount(registerKey) {
   if (game.user.isGM) {
     let worldKey = game.settings.get(registerKey, "worldKey");
     if (worldKey == undefined || worldKey == "") {
-      worldKey = randomID(32);
+      worldKey = foundry.utils.randomID(32);
       game.settings.set(registerKey, "worldKey", worldKey);
     }
 

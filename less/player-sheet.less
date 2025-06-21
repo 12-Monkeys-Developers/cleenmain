@@ -1,206 +1,213 @@
 .cleenmain.sheet.player {
-    h1 {
-        font: @h1-font;
-        color: @h1-color;
-        text-transform: @h1-text-transform;
-        border: @h1-border;
-    }
-    h2 {
-        font: @h2-font;
-        color: @h2-color;
-    }
-    .window-content {
-        background: @playersheet-background;
-        background-color: @clear-background;
-        font: @default-font;
-    }
-    textarea {
-        resize: none;
-    }
-    .editor {
-        height: 100%;
-        width: 100%;
-        background:@edit-background;
-        box-shadow: inset 0 0 6px black;
-    }
-    input {
-        background-color: @edit-background;
-        box-shadow: inset 0 0 3px black;
-    }
-    input:focus {
-        background-color: @editactive-background;
-    }
-    select{
-        background-color: @edit-background;
-        box-shadow: inset 0 0 3px black;
-        height: 1.5em;
-    }
-    form {
+  h1 {
+    font: @h1-font;
+    color: @h1-color;
+    text-transform: @h1-text-transform;
+    border: @h1-border;
+  }
+  h2 {
+    font: @h2-font;
+    color: @h2-color;
+  }
+  .window-content {
+    background: @playersheet-background;
+    background-color: @clear-background;
+    font: @default-font;
+  }
+  textarea {
+    resize: none;
+  }
+  .editor {
+    height: 100%;
+    width: 100%;
+    background: @edit-background;
+    box-shadow: inset 0 0 6px black;
+  }
+  input {
+    background-color: @edit-background;
+    box-shadow: inset 0 0 3px black;
+    color: @core-main-color;
+  }
+  input:focus {
+    background-color: @editactive-background;
+  }
+  select {
+    background-color: @edit-background;
+    box-shadow: inset 0 0 3px black;
+    height: 1.5em;
+    color: @core-main-color;
+  }
+  form {
+    display: flex;
+    flex-direction: row;
+  }
+  .right-icon {
+    margin-left: auto;
+  }
+  .main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    .leftcolumn {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 0;
+      flex-shrink: 0;
+      width: 235px;
+      margin-right: 50px;
+      .title-line {
         display: flex;
         flex-direction: row;
+        justify-content: center;
+        padding: 0 0 2em 0;
+        font: @pc-title-font;
+      }
+      .skills {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2em;
+        .skill-line {
+          font: @pc-skill-font;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          .skill-name {
+            width: 70%;
+          }
+          .skill-value {
+            background: @clear-background;
+            border: 1px solid @border-color-skill;
+            border-radius: 5px;
+            width: 10%;
+            text-align: center;
+            margin-right: 5px;
+          }
+          .skill-dev {
+            width: 10%;
+          }
+          .skill-roll {
+            width: 20%;
+            text-align: center;
+          }
+          .item-delete {
+            width: 10%;
+          }
+        }
+      }
     }
-    .right-icon{
-        margin-left: auto;
-    }
-    .main {
+    .central {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .intro-block {
         display: flex;
         flex-direction: row;
-        width: 100%;
-        .leftcolumn {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 0;
-            flex-shrink: 0;
-            width: 235px;
-            margin-right: 50px;
-            .title-line{
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                padding: 0 0 2em 0;
-                font: @pc-title-font;
-            }
-            .skills{
-                display: flex;
-                flex-direction: column;
-                gap: .2em;
-                .skill-line{
-                    font: @pc-skill-font;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    .skill-name{
-                        width: 70%;
-                    }
-                    .skill-value{
-                        background: @clear-background;
-                        border: 1px solid @border-color-skill;
-                        border-radius: 5px;
-                        width: 10%;
-                        text-align: center;
-                        margin-right: 5px;
-                    }
-                    .skill-dev{       
-                        width: 10%;
-                    }
-                    .skill-roll{       
-                        width: 20%;
-                        text-align: center;
-                    }
-                    .item-delete{
-                        width: 10%
-                    }
-                }
-            }
+        margin: 0 0 1em 0;
+        .intro-block-left {
+          align-self: center;
+          width: 100px;
+          height: 129px;
+          object-fit: contain;
         }
-        .central {
+        .intro-block-right {
+          display: flex;
+          flex-flow: column nowrap;
+          .right-icon {
+            align-self: flex-end;
+          }
+          .space-between {
+            justify-content: space-between;
+          }
+          .central-line {
+            font: @pc-description-font;
             display: flex;
-            flex-direction: column;
-            width: 100%;
-            .intro-block{
-                display: flex;
-                flex-direction: row;
-                margin: 0 0 1em 0;
-                .intro-block-left{
-                    align-self:center;
-                    width :100px;
-                    height: 129px;
-                    object-fit: contain;
-                }
-                .intro-block-right{
-                    display: flex;
-                    flex-flow: column nowrap;
-                    .right-icon{
-                        align-self: flex-end;
-                    }
-                    .space-between{
-                        justify-content: space-between;}
-                    .central-line{
-                        font: @pc-description-font;
-                        display: flex;
-                        flex-flow: row nowrap;
-                        margin: 0.5em;
-                        white-space: nowrap;
-                        .pcname{
-                            font: @pc-name-font;
-                        }
-                        .activity-text{
-                            font: @pc-activity-font;
-                        }
-                        .input-heroism{
-                            display: flex;
-                            flex-direction: row;
-                            input{
-                                width: 2em;
-                            }
-                        }
-                        .right-icon{
-                            margin: 0 0 0 .5em;
-                        }
-                        .central-text{
-                            margin: 0 .2em 0 .1em;
-                        }
-                        .name-text, .wounds-text, .heroism-text, .health-text, .activity-text{
-                            margin: 0.3em .3em 0 .3em;
-                        }
-                        .activity-text{
-                            font: @pc-activity-font;
-                            white-space: normal;
-                            margin-top: 0.3em;
-                        }
-                        .health-block{
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: flex-start;
-                            .health-input{
-                                width: 2em;
-                            }
-                            .badshape-text{
-                                color: rgb(145, 40, 40);
-                            }
-                        }
-                        .wounds-block{
-                            display: flex;
-                            flex-direction: row;
-                            select{
-                                margin: 0 .5em 0 0;
-                            }
-                            .wounds-input{
-                                width: 1em;
-                            }
-                        }
-                    }
-                }
+            flex-flow: row nowrap;
+            margin: 0.5em;
+            white-space: nowrap;
+            .pcname {
+              font: @pc-name-font;
             }
-            .sheet-tabs{
-                display: flex;
-                flex-direction: row;
-                font-size: 1,5em;
+            .activity-text {
+              font: @pc-activity-font;
             }
-                
-            .tab-name {
-                background: @clear-background;
-                font: @pc-tab-font;
-                color: @pc-tab-font-color;
-                border: 1px solid @core-main-color;
-                border-top-left-radius: 15px;
-                border-top-right-radius: 15px;
-                text-align: center;
-                padding: .5em .5em .3em .5em;
-            }                
-            .tab-name.active {
-            border: 1px solid black;
-            color: @core-main-color;
-            border-bottom-width: 0;
+            .input-heroism {
+              display: flex;
+              flex-direction: row;
+              input {
+                width: 2em;
+              }
             }
-            .sheet-body{
-                background:none ;
+            .right-icon {
+              margin: 0 0 0 0.5em;
             }
+            .central-text {
+              margin: 0 0.2em 0 0.1em;
+            }
+            .name-text,
+            .wounds-text,
+            .heroism-text,
+            .health-text,
+            .activity-text {
+              margin: 0.3em 0.3em 0 0.3em;
+            }
+            .activity-text {
+              font: @pc-activity-font;
+              white-space: normal;
+              margin-top: 0.3em;
+            }
+            .health-block {
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-start;
+              .health-input {
+                width: 2em;
+              }
+              .badshape-text {
+                color: rgb(145, 40, 40);
+              }
+            }
+            .wounds-block {
+              display: flex;
+              flex-direction: row;
+              select {
+                margin: 0 0.5em 0 0;
+              }
+              .wounds-input {
+                width: 1em;
+              }
+            }
+          }
         }
+      }
+      .sheet-tabs {
+        display: flex;
+        flex-direction: row;
+        font-size: 1, 5em;
+      }
+
+      .tab-name {
+        background: @clear-background;
+        font: @pc-tab-font;
+        color: @pc-tab-font-color;
+        border: 1px solid @core-main-color;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        text-align: center;
+        padding: 0.5em 0.5em 0.3em 0.5em;
+      }
+      .tab-name.active {
+        border: 1px solid black;
+        color: @core-main-color;
+        border-bottom-width: 0;
+      }
+      .sheet-body {
+        background: none;
+      }
     }
-    .right-icon{
-        font: @default-font;
-        font-size: 1.2rem;
-        color: @icon-color;
-    }
+  }
+  .right-icon {
+    font: @default-font;
+    font-size: 1.2rem;
+    color: @icon-color;
+  }
 }

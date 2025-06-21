@@ -11,15 +11,11 @@
         <div class="modifierText">{{mod}}</div>
     {{/each}}   
     <div class="formulaTooltip">
-        <div class="formulaText">{{localize "CLEENMAIN.chatmessage.rollformula"}}  {{formula}}</div>
-        {{#if (isStringNotEmpty formulaTooltip)}}
-            <span class="tooltiptext">{{formulaTooltip}}</span>
-        {{/if}}
+        <div class="formulaText" data-tooltip="{{formulaTooltip}}">{{localize "CLEENMAIN.chatmessage.rollformula"}}  {{formula}}</div>
       </div>
     <div class="finalText">
-        <div class="tooltip">
+        <div class="tooltip" data-tooltip="{{result.tooltip.string}}">
             <p>{{localize "CLEENMAIN.chatmessage.rollresult"}} {{result.total}}</p>
-            <span class="tooltiptext">{{{result.tooltip.string}}}</span>
         </div>
     </div>
     {{#if (gt reRollNb 0)}}
@@ -41,9 +37,8 @@
             {{localize "CLEENMAIN.chatmessage.rollDamageFormula"}}  {{damageFormula}}
         </div>
         <div class="finalText">
-            <div class="tooltip">
+            <div class="tooltip"  data-tooltip="{{damageToolTip}}">
                 <p>{{localize  "CLEENMAIN.chatmessage.damageresult"}} {{damage}}</p>
-                <span class="tooltiptext">{{{damageToolTip}}}</span>
             </div>                        
         </div>
     {{/if}}

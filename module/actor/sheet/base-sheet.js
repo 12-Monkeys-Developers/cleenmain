@@ -1,5 +1,10 @@
 import { ROLL_TYPE } from "../../common/constants.js";
-export class CemBaseActorSheet extends ActorSheet {
+export class CemBaseActorSheet extends foundry.appv1.sheets.ActorSheet {
+
+   // Variable to check if the appV1 is used : will remove warning
+  // TODO : To migrate before V16
+  static _warnedAppV1 = true
+
   /**
    * @constructor
    * @param  {...any} args
@@ -30,7 +35,7 @@ export class CemBaseActorSheet extends ActorSheet {
         return a.name.localeCompare(b.name);
       });
     for (let item of context.equipments) {
-      item.system.descriptionhtml = await TextEditor.enrichHTML(item.system.description, { async: false });
+      item.system.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description, { async: false });
     }
 
     // Alphabetic order for skills
@@ -44,7 +49,7 @@ export class CemBaseActorSheet extends ActorSheet {
     context.isPlayer = this.actor.isPlayer();
     context.isNpc = this.actor.isNpc();
     context.badShape = this.actor.isInBadShape();
-    context.descriptionhtml = await TextEditor.enrichHTML(this.actor.system.description, { async: false });
+    context.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.description, { async: false });
 
     return context;
   }
@@ -77,13 +82,11 @@ export class CemBaseActorSheet extends ActorSheet {
    * @description Manage the lock/unlock button on the sheet
    * @param {*} event
    */
-  async _onSheetChangelock(event) {
-    event.preventDefault();
-
+  async _onSheetChangelock(event, target) {
     let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
-    flagData ? await this.actor.unsetFlag(game.system.id, "SheetUnlocked") : await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
-
-    this.actor.sheet.render(true);
+    if (flagData) await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
+    else await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
+    this.render();
   }
 
   /**
@@ -242,7 +245,17 @@ export class CemBaseActorSheet extends ActorSheet {
     let infoTemplate = game.cleenmain.config.infoTemplate[infoReference];
 
     if (!infoTemplate) return;
-    new Dialog({
+    foundry.applications.api.DialogV2.prompt({
+      window: { title: game.i18n.localize("CLEENMAIN.dialog.display_help_title"), classes: ["cleenmain", "dialog"] },
+      cssClasses: ["cleenmain", "dialog"],
+      content: infoTemplate,
+      rejectClose: false,
+      ok: {
+        label: game.i18n.localize("CLEENMAIN.dialog.button.close"),
+        callback: (event, button, dialog) => this.close,
+      },
+    });
+    /*    new Dialog({
       title: game.i18n.localize("CLEENMAIN.dialog.display_help_title"),
       content: infoTemplate,
       buttons: {
@@ -250,7 +263,7 @@ export class CemBaseActorSheet extends ActorSheet {
           label: game.i18n.localize("CLEENMAIN.dialog.button.cancel"),
         },
       },
-    }).render(true);
+    }).render(true);*/
   }
 
   _onShowPortrait(event) {
@@ -266,11 +279,12 @@ export class CemBaseActorSheet extends ActorSheet {
         validate: {
           label: game.i18n.localize("CLEENMAIN.dialog.button.validate"),
           callback: () => {
-            let print = new ImagePopout(actor.img, {
-              title: actor.name,
-              shareable: true,
-              uuid: actor.uuid,
-            }).render(true);
+            const print = new ImagePopout({
+              src: this.img,
+              uuid: this.uuid,
+              window: { title: "Personnage" },
+            });
+            print.render(true);
             print.shareImage();
           },
         },

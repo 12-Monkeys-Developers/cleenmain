@@ -1,93 +1,74 @@
-.dialog{
+  .cem-dialog {
     background-color: @clear-background;
     display: flex;
     flex-direction: column;
     font: @dialog-font;
     .tooltip {
-    position: relative;
-    display: inline-block;
+      position: relative;
+      display: inline-block;
     }
-    /* Tooltip text */
-    .tooltip .tooltiptext {
-        visibility: hidden;
-        width: 160px;
-        background-color: black;
-        color: #fff;
-        text-align: center;
-        padding: 5px 0;
-        border-radius: 6px;
-    
-        position: absolute;
-        left: 20px;
-        top: 20px;
-        z-index: 1;
-    }
-    
-    .tooltip:hover .tooltiptext {
-        visibility: visible;
-    }
-    .intro{
-        display: flex;
-        flex-direction: row;
-        justify-content:center;
-        .introImg {
-            border: none;
-            padding: 5px;
-            width: 120px;
-            height: 120px;
-            object-fit: contain;
-            object-position: center;
-            align-self:center;
-        }
-        .introtext{
-            font: @dialog-intro-font;
-            margin: 0.5em;
-            padding-top: 1.5em;
-            text-align: center;
-        }
-    }
-    .formula{
-        text-align: center;
+    .intro {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      .introImg {
+        border: none;
+        padding: 5px;
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+        object-position: center;
+        align-self: center;
+      }
+      .introtext {
+        font: @dialog-intro-font;
         margin: 0.5em;
-        font: @dialog-formula-font;
+        padding-top: 1.5em;
+        text-align: center;
+      }
     }
-    .rollmodifier{
-        display: flex;
-        flex-direction: row;
+    .formula {
+      text-align: center;
+      margin: 0.5em;
+      font: @dialog-formula-font;
+    }
+    .rollmodifier {
+      display: flex;
+      flex-direction: row;
+      margin: 0 0 1em 1em;
+      input {
+        width: 5em;
         margin: 0 0 1em 1em;
-        input{
-            width: 5em;
-            margin: 0 0 1em 1em;
-        }
-        select{
-            width: 5em;
-            margin: 0 0 1em 1em;
-        }
+      }
+      select {
+        width: 5em;
+        margin: 0 0 1em 1em;
+      }
     }
-    .paddingend{
-        padding: 0 0 5em 0;
+    .paddingend {
+      padding: 0 0 5em 0;
     }
-    .bonus-label{
-        font: @dialog-bonus-label-font;
+    .bonus-label {
+      font: @dialog-bonus-label-font;
     }
-    .bonus{
-        h2{
-            font-weight: bold;
-        }
+    .bonus {
+      h2 {
+        font-weight: bold;
+      }
     }
     table {
-        table-layout: fixed;
-        width: 100%;
-        border-collapse: collapse;
+      table-layout: fixed;
+      width: 100%;
+      border-collapse: collapse;
     }
-      td {
-        width: 25%;
-        input{
-            width: 2em;
-        }
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: auto;
-        }
+    td {
+      width: 25%;
+      input {
+        width: 2em;
       }
-}
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: auto;
+      }
+    }
+  }

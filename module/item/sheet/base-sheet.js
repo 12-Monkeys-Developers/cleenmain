@@ -1,5 +1,9 @@
 import { CLEENMAIN } from "../../common/config.js";
-export default class CemBaseItemSheet extends ItemSheet {
+export default class CemBaseItemSheet extends foundry.appv1.sheets.ItemSheet {
+
+  // Variable to check if the appV1 is used : will remove warning
+  // TODO : To migrate before V16
+  static _warnedAppV1 = true
 
   /**
    * @constructor
