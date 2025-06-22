@@ -102,12 +102,17 @@ export default function registerHandlebarsHelpers() {
 
     Handlebars.registerHelper('getWeaponSkillName', function (actor, item) {
        const it = actor.items.get(item._id);
-       return it.weaponSkillName(actor);;
+       return it.weaponSkillName(actor);
+    });
+
+    Handlebars.registerHelper('checkNoWeaponSkill', function (actor, item) {
+       const it = actor.items.get(item._id);
+       return it.checkNoWeaponSkill(actor);
     });
 
     Handlebars.registerHelper('getWeaponSkill', function (actor, item) {
         const it = actor.items.get(item._id);
-        return it.weaponSkillValue(actor);;
+        return it.weaponSkillValue(actor);
     });
 
     Handlebars.registerHelper('getWeaponDamage', function (actor, item) {

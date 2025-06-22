@@ -41,6 +41,13 @@ export default class CemBaseItem extends Item {
     return skillName;
   }
 
+  checkNoWeaponSkill(actor) {
+    if (this.type !== "weapon") return;
+
+    const skillId = this.getSystemData("skillId");
+    return skillId ? false : true;
+  }
+
   /**
    * @name weaponSkillValue
    * @description For weapon Item, calculates the walue of the skill by using the linked skill

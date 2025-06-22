@@ -127,7 +127,7 @@
                     <tr class="combat-table item draggable" data-item-id="{{item._id}}">
                         <th>{{name}}</th>
                         <th>{{getCategoryLabel "weapon" item.system.category}}</th>
-                        <th>{{getWeaponSkillName @root.actor item}}</th>
+                        <th  {{#if (checkNoWeaponSkill @root.actor item)}}data-tooltip="{{localize "CLEENMAIN.tooltip.noskill"}}"{{/if}}>{{getWeaponSkillName @root.actor item}}</th>
                         <th>{{getWeaponSkill @root.actor item}}<a class="weapon-attack-roll"><i class="fas fa-dice"></i></a></th>
                         <th>{{getWeaponDamage @root.actor item}}<a class="weapon-damage-roll"><i class="fas fa-dice"></i></a></th>
                         <th>

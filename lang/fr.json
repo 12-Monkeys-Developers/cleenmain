@@ -415,7 +415,8 @@
             "protection": "Valeur totale de protection",
             "skill" : "Compétence: ",
             "untrained": "Pénalité non-formé",
-            "weaponbonus": "Bonus de l'arme: "
+            "weaponbonus": "Bonus de l'arme: ",
+            "noskill": "Pour attribuer une compétence, déverouillez la feuille puis glissez-déposez la compétence depuis la colonne de gauche."
         },
         "wealth": {
             "platinium": "Platine",

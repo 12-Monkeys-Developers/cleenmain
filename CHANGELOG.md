@@ -1,5 +1,6 @@
 # Version 3.0.0
 - Modification compatibilité Foundry v13.
+- ajout d'un pop-up d'information en cas d'absence de compétence d'arme
 
 # Version 2.7.1
 - Dernière version compatible V12
