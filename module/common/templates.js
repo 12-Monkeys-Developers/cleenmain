@@ -23,7 +23,14 @@
         "systems/cleenmain/templates/chat/roll-dialog.html",
         "systems/cleenmain/templates/chat/roll-result.html",
         
-        "systems/cleenmain/templates/dice/damage-tooltip.html"
+        "systems/cleenmain/templates/dice/damage-tooltip.html",
+
+        
+    `systems/cleenmain/templates/sheets/parts/unlock-icon.hbs`,
+    `systems/cleenmain/templates/sheets/partials/item-description.hbs`,
+    `systems/cleenmain/templates/sheets/partials/item-header.hbs`,
+    `systems/cleenmain/templates/sheets/boon.hbs`,
+    `systems/cleenmain/templates/sheets/weapon.hbs`,
     ]);
 
 };

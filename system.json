@@ -25,6 +25,20 @@
   "styles": [
     "cleenmain.css"
   ],
+  "documentTypes": {
+    "Actor": {
+      "player": { "htmlFields": ["activity","description", "traits"] },
+      "npc": { "htmlFields": ["activity","description", "equipment", "traits", "tactic"] },
+      "vehicle": { "htmlFields": ["description"] }
+    },
+    "Item": {
+      "armor": { "htmlFields": ["description"] },
+      "boon": { "htmlFields": ["description"] },
+      "equipment": { "htmlFields": ["description"] },
+      "skill": { "htmlFields": ["description"] },
+      "weapon": { "htmlFields": ["description"] }
+    }
+  },
   "packs": [
     {
       "name": "systemuserguidefr",

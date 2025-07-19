@@ -1,0 +1,26 @@
+<div class="sheet-content">
+    <table>
+        <thead> 
+            <tr>
+                <th>{{localize "CLEENMAIN.label.category"}}</th>
+                <th>{{localize "CLEENMAIN.armor.protection"}}</th>
+                <th>{{localize "CLEENMAIN.armor.special"}}</th>
+                <th>{{localize "CLEENMAIN.armor.quality"}}</th>
+            </tr>
+        </thead> 
+        <td>
+            <select name="system.category">
+                {{selectOptions config.armor.category selected=system.category labelAttr="label"}}
+            </select>
+        </td>
+        <td>
+            <input name="system.protection" type="text" value="{{system.protection}}" />
+        </td>
+        <td>
+            <input name="system.special" type="text" value="{{system.special}}" />
+        </td>
+        <td>
+            <input name="system.quality" type="text" value="{{system.quality}}" />
+        </td>
+    </table>
+</div>

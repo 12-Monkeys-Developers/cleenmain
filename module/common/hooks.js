@@ -1,4 +1,5 @@
 import { Rolls } from "./rolls.js";
+import { CLEENMAIN } from "./config.js";
 
 export default function registerHooks() {
   Hooks.once("ready", () => {
@@ -127,8 +128,8 @@ function preLocalizeConfig() {
     }
   };
 
-  localizeConfigObject(game.cleenmain.config.armor.category, ["label"]);
-  localizeConfigObject(game.cleenmain.config.weapon.category, ["label"]);
-  localizeConfigObject(game.cleenmain.config.weapon.type, ["label"]);
-  localizeConfigObject(game.cleenmain.config.npcCategory, ["label"]);
+  localizeConfigObject(CLEENMAIN.armor.category, ["label"]);
+  localizeConfigObject(CLEENMAIN.weapon.category, ["label"]);
+  localizeConfigObject(CLEENMAIN.weapon.type, ["label"]);
+  localizeConfigObject(CLEENMAIN.npcCategory, ["label"]);
 }

@@ -24,6 +24,11 @@ export default class CemBaseItem extends Item {
     return eval(`this.system.${field}`);
   }
 
+  get isUnlocked() {
+    if (this.getFlag(game.system.id, "SheetUnlocked")) return true;
+    return false;
+  }
+
   /**
    * @name weaponSkillName
    * @description For weapon Item, get the Name

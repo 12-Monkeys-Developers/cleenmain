@@ -1,0 +1,15 @@
+<header class="sheet-header">
+  <img src="{{item.img}}" data-edit="img" data-action="editImage" title="{{item.name}}" height="64" width="64"/>
+  <div class="flexcol">
+    <h1>
+      {{formInput
+        fields.name
+        name="name"
+        value=item._source.name
+        placeholder=(localize "Name")
+        disabled=locked
+      }}
+    </h1>
+      {{> "systems/cleenmain/templates/sheets/parts/unlock-icon.hbs"}}
+  </div>
+</header>
