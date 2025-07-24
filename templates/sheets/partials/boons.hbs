@@ -2,7 +2,7 @@
     {{#if unlocked}}
     <h1><br />
         <div class="line-label">{{localize "CLEENMAIN.boon.add"}}
-            <a class="item-create" data-type="boon" title='{{localize "CLEENMAIN.boon.add"}}'><i
+            <a class="item-create" data-action="itemCreate" data-type="boon" title='{{localize "CLEENMAIN.boon.add"}}'><i
                     class="fas fa-plus"></i></a>
         </div>
     </h1>
@@ -19,9 +19,9 @@
                 <div class="boon-name">{{item.name}}</div>
                 {{#if ../unlocked}}
                 <div class="icon-group">
-                    <a class="item-open-sheet" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i
+                    <a data-action="itemEdit" data-item-id="{{item._id}}" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i
                             class="fas fa-pen"></i></a>
-                    <a class="inline-delete" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i
+                    <a data-action="itemDelete" data-item-id="{{item._id}}" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i
                             class="fas fa-trash"></i></a>
                 </div>
                 {{/if}}
@@ -30,14 +30,14 @@
             {{#if item.system.limitedUse}}
             <div class="boon-used-line">
                 <label for="item.system.used">{{localize "CLEENMAIN.boon.used"}}</label>
-                <input class="checkbox inline-edit" data-field="system.used" name="item.system.used" type="checkbox"
+                <input class="checkbox skillEdit" data-field="system.used" name="item.system.used" type="checkbox"
                     {{checked item.system.used}}>
                 {{#if item.system.limitedUse2}}
-                <input class="checkbox inline-edit" data-field="system.used2" name="item.system.used2" type="checkbox"
+                <input class="checkbox skillEdit" data-field="system.used2" name="item.system.used2" type="checkbox"
                     {{checked item.system.used2}}>
                 {{/if}}
                 {{#if item.system.limitedUse3}}
-                <input class="checkbox inline-edit" data-field="system.used3" name="item.system.used3" type="checkbox"
+                <input class="checkbox skillEdit" data-field="system.used3" name="item.system.used3" type="checkbox"
                     {{checked item.system.used3}}>
                 {{/if}}
             </div>

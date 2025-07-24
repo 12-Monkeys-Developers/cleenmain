@@ -1,4 +1,3 @@
-<form class="{{cssClass}}" autocomplete="off">
     <div class="npc-main">
         <div class="npcstat-block">
             <div class="npcstat-block-left">
@@ -8,7 +7,7 @@
                     {{else}}
                     <div class="name-text">{{actor.name}}</div>
                     {{/if}}
-                    <div class="right-icon">
+                    <div class="right-icon" data-action="toggleLockMode">
                         <a class="sheet-change-lock" title="{{localize 'CLEENMAIN.label.unlock_sheet'}}">
                             {{#if unlocked}}
                             <i class="fas fa-lock-open"></i>
@@ -45,7 +44,7 @@
                     {{#if unlocked}}
                     <div class="weapon-line">
                         <div class="line-label">{{localize "CLEENMAIN.weapon.add"}}</div>
-                        <a class="item-create" data-type="weapon" title="{{localize 'CLEENMAIN.weapon.add'}}">
+                        <a class="item-create" data-action="itemCreate" data-type="weapon" title="{{localize 'CLEENMAIN.weapon.add'}}">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -59,16 +58,16 @@
                         {{else}}
                         <div class="weapon-el">{{getWeaponSkill @root.actor item}}</div>
                         {{/if}}
-                        <a class="weapon-attack-roll">
+                        <a data-action="weaponAttackRoll" data-item-id="{{_id}}">
                             <i class="fas fa-dice"></i>
                         </a>
                         <div class="weapon-el">( {{item.system.damageBase}} {{item.system.special}})</div>
                         <div class="right-icon"></div>
                         {{#if ../unlocked}}
-                        <a class="item-open-sheet" data-type="weapon" title="{{localize 'CLEENMAIN.sheet.edit'}}">
+                        <a data-action="itemEdit" data-item-id="{{item._id}}" data-type="weapon" title="{{localize 'CLEENMAIN.sheet.edit'}}">
                             <i class="fas fa-pen"></i>
                         </a>
-                        <a class="inline-delete" data-type="weapon" data-id="{{item.id}}"
+                        <a data-action="itemDelete" data-item-id="{{item._id}}" data-type="weapon" data-id="{{item.id}}"
                             title="{{localize 'CLEENMAIN.sheet.delete'}}">
                             <i class="fas fa-trash"></i>
                         </a>
@@ -99,7 +98,7 @@
                         <div class="weapon-el">)</div>
                         {{else}}
                         <div class="weapon-el">{{getDefenceValue @root.actor}}</div>
-                        <a class="npcdefence-roll" data-type="npcdefence" data-attribute="defence">
+                        <a data-action="npcdefenceRoll"data-type="npcdefence" data-attribute="defence">
                             <i class="fas fa-dice"></i>
                         </a>
                         <div class="weapon-el">{{actorSystem.defence.name}}</div>
@@ -112,25 +111,25 @@
                     {{#if unlocked}}
                     <div class="skill-line">
                         <div class="line-label">{{localize "CLEENMAIN.skill.add"}} </div>
-                        <a class="item-create" data-type="skill" title="{{localize 'CLEENMAIN.skill.add'}}"><i
+                        <a class="item-create" data-action="itemCreate" data-type="skill" title="{{localize 'CLEENMAIN.skill.add'}}"><i
                                 class="fas fa-plus"></i></a>
                     </div>
                     <div class="skill-line item-list">
                         {{#each skills as |skill type|}}
                         <div class="skill-block item {{#if ../unlocked}}skill-edit {{else}}skill-nonedit{{/if}}"
                             data-item-id="{{_id}}">
-                            <input class="inline-edit skill-name input-long" data-field="name" type="text"
+                            <input class="skillEdit skill-name input-long" data-field="name" type="text"
                                 value="{{skill.name}}" data-dtype="Text" />
-                            <input class="inline-edit skill-value input-short" data-field="system.base" type="number"
+                            <input class="skillEdit skill-value input-short" data-field="system.base" type="number"
                                 name="skill.system.base" value="{{skill.system.base}}" data-dtype="Number" />
                             {{#if ../eliteRulesetModif}}
                             <div class="central-text">/</div>
-                            <input class="inline-edit skill-value input-short" title="{{localize 'CLEENMAIN.elite.skill'}}"
+                            <input class="skillEdit skill-value input-short" title="{{localize 'CLEENMAIN.elite.skill'}}"
                                 data-field="system.baseNpcElite" type="number"
                                 name="skill.system.baseNpcElite" value="{{skill.system.baseNpcElite}}"
                                 data-dtype="Number" />
                             {{/if}}
-                            <a class="inline-delete" data-type="skill" title="{{localize 'CLEENMAIN.skill.delete'}}"><i
+                            <a data-action="itemDelete" data-item-id="{{item._id}}" data-type="skill" title="{{localize 'CLEENMAIN.skill.delete'}}"><i
                                     class="fas fa-trash"></i></a>
                         </div>
                         {{/each}}
@@ -141,7 +140,7 @@
                         <div class="skill-block item" data-item-id="{{_id}}">
                             <div class="skill-name" title="{{skill.system.description}}">{{skill.name}} :</div>
                             <div class="skill-value">{{getSkillValue @root.actor skill}}</div>
-                            <a class="skill-roll"><i class="fas fa-dice"></i></a>
+                            <a class="skill-roll" data-action="skillRoll" data-item-id="{{_id}}"><i class="fas fa-dice"></i></a>
                         </div>
                         {{/each}}
                     </div>
@@ -186,9 +185,9 @@
                     </div>
                     {{else}}
                     {{#if badShape}}
-                    <div class="chealth-block"><a class="info-window" data-field="badshape">{{localize
-                            "CLEENMAIN.health.status.badshape"}}</a> <a class="badshape-roll" data-field="mental"><i
-                                class="fas fa-dizzy"></i></a> <a class="badshape-roll" data-field="physical"><i
+                    <div class="chealth-block"><a data-action="infoWindow" data-field="badshape">{{localize
+                            "CLEENMAIN.health.status.badshape"}}</a> <a data-action="badshapeRoll" data-field="mental"><i
+                                class="fas fa-dizzy"></i></a> <a data-action="badshapeRoll" data-field="physical"><i
                                 class="fas fa-skull"></i></a></div>
                     {{/if}}
                     {{#if isBoss}}
@@ -203,18 +202,14 @@
             </div>
             {{#if unlocked}}
             <div class="npcstat-block-right">
-                <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+                    <img class="profile-img" src="{{actor.img}}" alt="{{actor.name}}" data-action="editImage" data-edit="img" title="{{actor.name}}">
             </div>
             {{else}}
-            {{#if (ne actor.img "icons/svg/mystery-man.svg")}}
-            <div class="npcstat-block-right showimage">
-                <img src="{{actor.img}}" title="{{actor.name}}" />
-            </div>
-            {{/if}}
+                {{#if (ne actor.img "icons/svg/mystery-man.svg")}}
+                <div class="npcstat-block-right">
+                    <img class="profile-img" src="{{actor.img}}" alt="{{actor.name}}" title="{{actor.name}}">
+                </div>
+                {{/if}}
             {{/if}}
         </div>
-        {{> systems/cleenmain/templates/actor/tab/boons.html}}
-        <hr>
-        {{> systems/cleenmain/templates/actor/tab/bio.html}}
     </div>
-</form>

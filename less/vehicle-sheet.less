@@ -1,129 +1,128 @@
 .cleenmain.sheet.vehicle {
+  .window-content {
+    background: @vehiculesheet-background;
+    background-color: @clear-background;
+    font: @default-font;
     h1 {
-        font: @h1-font;
-        color: @title-color;
-        text-transform: @h1-text-transform;
-        border: @h1-border;
+      font: @h1-font;
+      color: @title-color;
+      text-transform: @h1-text-transform;
+      border: @h1-border;
     }
     h2 {
-        font: @h2-font;
-        color: @title-color;
+      font: @h2-font;
+      color: @title-color;
     }
-    .input-short{
-        width: 2em;
+    .input-short {
+      width: 2em;
     }
-    .input-verylong{
-        width: 20em;
+    .input-verylong {
+      width: 20em;
     }
-    .input-long{
-        width: 10em;
-    }
-    .window-content {
-        background: @vehiculesheet-background;
-        background-color: @clear-background;
-        font: @default-font;
+    .input-long {
+      width: 10em;
     }
     .editor {
-        height: 100%;
-        width: 100%;
-        background:@edit-background;
-        box-shadow: inset 0 0 6px black;
+      height: 100%;
+      width: 100%;
+      background: @edit-background;
+      box-shadow: inset 0 0 6px black;
     }
     input {
-        background-color: @edit-background;
-        box-shadow: inset 0 0 3px black;
+      background-color: @edit-background;
+      box-shadow: inset 0 0 3px black;
     }
     input:focus {
-        background-color: @editactive-background;
+      background-color: @editactive-background;
     }
-    select{
-        background-color: @edit-background;
-        box-shadow: inset 0 0 3px black;
-        height: 1.5em;
+    select {
+      background-color: @edit-background;
+      box-shadow: inset 0 0 3px black;
+      height: 1.5em;
     }
     .vehicle-main {
+      display: flex;
+      flex-direction: column;
+      .vehiclestat-block {
         display: flex;
-        flex-direction: column;
-        .vehiclestat-block{
+        flex-direction: row;
+        .vehiclestat-block-left {
+          display: flex;
+          flex-direction: column;
+          flex-basis: 70%;
+          .name-line {
+            margin: 0.5em;
             display: flex;
             flex-direction: row;
-            .vehiclestat-block-left{
-                display: flex;
-                flex-direction: column;
-                flex-basis: 70%;
-                .name-line{
-                    margin: .5em;
-                    display: flex;
-                    flex-direction: row;
-                    .name-text{
-                        font: @npc-name-font;
-                        color: @npc-name-color;
-                    }
-                    input{
-                        height: 2em;
-                    }
-                    .sheet-change-lock{
-                        margin-left: auto;
-                        padding-left: 1em;
-                        color: @icon-color;
-                    }
-                }
-                .line{
-                    margin: 0.5em;
-                    display: flex;
-                    flex-direction: row; 
-                    font: @vehicle-line-font;
-                    color: @vehicle-line-font-color;     
-                    label{
-                        font-weight: bold;           
-                        padding-right: 10px;             
-                    }              
-                    input{
-                        width: 40px;
-                    }
-                }
-                .vehiclehealth-line{
-                    display: flex;
-                    flex-direction: row;
-                    margin: 1rem;
-                    font: @npc-health-font;
-                    .central-text{
-                        margin: 0 .2em 0 0.1em;
-                    }
-                    input{
-                        padding-bottom: .2rem;
-                    }
-                    .health-block{
-                        display: flex;
-                        flex-direction: row;
-                        margin-left: 1em;
-                    }
-                }
+            .name-text {
+              font: @npc-name-font;
+              color: @npc-name-color;
             }
-            .vehiclestat-block-right{
-                flex-basis: 30%;
-                width: 200px;
-                height: 200px;
-                object-fit: contain;
+            input {
+              height: 2em;
             }
+            .sheet-change-lock {
+              margin-left: auto;
+              padding-left: 1em;
+              color: @icon-color;
+            }
+          }
+          .line {
+            margin: 0.5em;
+            display: flex;
+            flex-direction: row;
+            font: @vehicle-line-font;
+            color: @vehicle-line-font-color;
+            label {
+              font-weight: bold;
+              padding-right: 10px;
+            }
+            input {
+              width: 40px;
+            }
+          }
+          .vehiclehealth-line {
+            display: flex;
+            flex-direction: row;
+            margin: 1rem;
+            font: @npc-health-font;
+            .central-text {
+              margin: 0 0.2em 0 0.1em;
+            }
+            input {
+              padding-bottom: 0.2rem;
+            }
+            .health-block {
+              display: flex;
+              flex-direction: row;
+              margin-left: 1em;
+            }
+          }
         }
-        .editor{
-            min-height: @editor-height;
-            .editor-content{
-                min-height: @editor-height;
-            }
-            .tox.tox-tinymce{
-                min-height: @editor-height * 2;
-            }
+        .vehiclestat-block-right {
+          flex-basis: 30%;
+          width: 200px;
+          height: 200px;
+          object-fit: contain;
         }
-        
+      }
+      .editor {
+        min-height: @editor-height;
+        .editor-content {
+          min-height: @editor-height;
+        }
+        .tox.tox-tinymce {
+          min-height: @editor-height * 2;
+        }
+      }
     }
-    .description-block{
-        font: @long-text-font;
-        padding: 0.5em;
+    .description-block {
+      font: @long-text-font;
+      padding: 0.5em;
     }
-    .description-title{
-        font: @bio-title-font;
-        border-bottom: @bio-border;
+    .description-title {
+      font: @bio-title-font;
+      border-bottom: @bio-border;
     }
+  }
 }

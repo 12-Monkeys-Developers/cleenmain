@@ -12,9 +12,6 @@ import CemCombat from "./module/combat/combat.js";
 import CemCombatTracker from "./module/combat/combat-tracker.js";
 import CemCombatant from "./module/combat/combatant.js";
 
-import PlayerSheet from "./module/actor/sheet/player-sheet.js";
-import NpcSheet from "./module/actor/sheet/npc-sheet.js";
-import VehicleSheet from "./module/actor/sheet/vehicle-sheet.js";
 
 import * as models from "./module/data/_module.mjs";
 
@@ -56,9 +53,9 @@ Hooks.once("init", function () {
 
 
   foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
-  foundry.documents.collections.Actors.registerSheet("cleenmain", PlayerSheet, { types: ["player"], makeDefault: true });
-  foundry.documents.collections.Actors.registerSheet("cleenmain", NpcSheet, { types: ["npc"], makeDefault: true });
-  foundry.documents.collections.Actors.registerSheet("cleenmain", VehicleSheet, { types: ["vehicle"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet("cleenmain", applications.CemPlayerSheet, { types: ["player"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet("cleenmain", applications.CemNpcSheet, { types: ["npc"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet("cleenmain", applications.CemVehicleSheet, { types: ["vehicle"], makeDefault: true });
 
   game.cleenmain = {
     config: CLEENMAIN,
