@@ -2,7 +2,6 @@ import CemItemSheet from "./item.mjs";
 
 export default class CemArmorSheet extends CemItemSheet {
     static DEFAULT_OPTIONS = {
-    id: "armor",
   };
 
   /**

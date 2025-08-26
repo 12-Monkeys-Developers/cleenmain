@@ -2,7 +2,6 @@ import CemItemSheet from "./item.mjs";
 
 export default class CemBiodataSheet extends CemItemSheet {
     static DEFAULT_OPTIONS = {
-    id: "biodata",
   };
 
 //TODO DRagDRop

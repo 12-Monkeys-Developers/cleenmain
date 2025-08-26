@@ -2,7 +2,6 @@ import CemItemSheet from "./item.mjs";
 
 export default class CemWeaponSheet extends CemItemSheet {
   static DEFAULT_OPTIONS = {
-    id: "weapon",
     position: {
       width: 740,
       height: 340,

@@ -3,7 +3,6 @@ export default class CemVehicleSheet extends CemActorSheet {
   static DEFAULT_OPTIONS = {
     //classes: ["cleenmain", "cleenmain-scrollable", "actor", "sheet", "app", "window-app"],
     classes: ["vehicle"],
-    id: "vehicle",
     actions: {
       rollDamageCollision: this._onRollCollisionDamage,
       rollDamageDistance: this._onRollDistanceDamage,

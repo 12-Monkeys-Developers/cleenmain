@@ -6,7 +6,6 @@ export default class CemNpcSheet extends CemActorSheet {
     actions: {
       npcdefenceRoll: this._onNpcDefenceRoll,
     },
-    id: "npc",
     position: {
       width: 800,
       height: 700,

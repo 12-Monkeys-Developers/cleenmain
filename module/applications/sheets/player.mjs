@@ -11,7 +11,6 @@ export default class CemPlayerSheet extends CemActorSheet {
       itemState: this._onItemStateUpdate,
       editHTML: this._editHTML,
     },
-    id: "player",
     position: {
       height: 750,
       width: 850,
