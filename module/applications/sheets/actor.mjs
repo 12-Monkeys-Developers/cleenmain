@@ -31,7 +31,7 @@ export default class CemActorSheet extends api.HandlebarsApplicationMixin(sheets
     },
   };
   get title() {
-    return `${game.i18n.localize("TYPES.Actor." + this.id)}`;
+    return `${game.i18n.localize("TYPES.Actor." + this.actor.type)}`;
   }
 
   async _prepareContext(options) {

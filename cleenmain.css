@@ -829,6 +829,7 @@
   display: flex;
   flex-direction: column;
   font: 1rem "Signika";
+  color: black;
 }
 .cem-dialog .tooltip {
   position: relative;
@@ -867,10 +868,17 @@
 .cem-dialog .rollmodifier input {
   width: 5em;
   margin: 0 0 1em 1em;
+  color: black;
+  background: rgba(0, 0, 0, 0.1);
 }
 .cem-dialog .rollmodifier select {
   width: 5em;
   margin: 0 0 1em 1em;
+  color: black;
+  background: rgba(0, 0, 0, 0.1);
+}
+.cem-dialog .heroismmodifier input {
+  width: 1em;
 }
 .cem-dialog .paddingend {
   padding: 0 0 5em 0;
@@ -879,18 +887,23 @@
   font: 1rem "Signika";
 }
 .cem-dialog .bonus h2 {
+  margin: 10px 0px 0px 10px;
   font-weight: bold;
+  color: black;
 }
 .cem-dialog table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
+  background: none;
 }
 .cem-dialog td {
   width: 25%;
 }
 .cem-dialog td input {
-  width: 2em;
+  width: 3em;
+  color: black;
+  background: rgba(0, 0, 0, 0.1);
 }
 .cem-dialog td input[type="number"]::-webkit-inner-spin-button,
 .cem-dialog td input[type="number"]::-webkit-outer-spin-button {
