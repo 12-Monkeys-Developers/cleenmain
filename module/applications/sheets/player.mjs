@@ -133,17 +133,6 @@ export default class CemPlayerSheet extends CemActorSheet {
     return context;
   }
 
-  /**
-   * Actions performed after any render of the Application.
-   * Post-render steps are not awaited by the render process.
-   * @param {ApplicationRenderContext} context      Prepared context data
-   * @param {RenderOptions} options                 Provided render options
-   * @protected
-   */
-  async _onRender(context, options) {
-    await super._onRender(context, options);
-    this.#dragDrop.forEach((d) => d.bind(this.element));
-  }
 
   /* -------------------------------------------------- */
   /*   DragDrop                                         */
@@ -173,93 +162,42 @@ export default class CemPlayerSheet extends CemActorSheet {
 
   /* -------------------------------------------------- */
 
-  /**
-   * Callback actions which occur when a dragged element is dropped on a target.
-   * @param {DragEvent} event       The originating DragEvent.
-   * @protected
-   */
-  async _onDrop(event) {
-    const data = ux.TextEditor.implementation.getDragEventData(event);
-    console.log("eventdrop", event);
-    console.log("datat", data);
-
-    // Case 1 - Dropped Item
-    if (data.type === "Item") {
-      return this._onDropItem(event, data);
-    }
-    // Case 2 - Dropped Actor
-    if (data.type === "Actor") {
-      return false;
-    }
-  }
-
-  /**
-   * @name _onDropItem
-   * @description Handle dropping of an item reference or item data onto an Item Sheet
-   * @param {DragEvent} event     The concluding DragEvent which contains drop data
-   * @param {Object} data         The data transfer extracted from the event
-   * @private
-   */
-  _onDropItem(event, data) {
-    Item.fromDropData(data).then((item) => {
-      const itemData = foundry.utils.duplicate(item);
-      switch (itemData.type) {
+  async _onDropItem(event, item) {
+      switch (item.type) {
         case "skill":
-          return this._onDropSkillItem(event, itemData);
+          return this._onDropSkillItem(event, item);
         default:
-          return super._onDropItem(event, data);
+          return super._onDropItem(event, item);
       }
-    });
+   // });
   }
 
   /**
    * @name _onDropSkillItem
    * @description Handle the drop of a skill on a weapon item
    * @param {*} event
-   * @param {*} itemData
+   * @param {*} item
    * @returns
    */
-  _onDropSkillItem(event, itemData) {
+  _onDropSkillItem(event, item) {
     event.preventDefault();
 
     // Get the target
     const id = event.target.parentElement.dataset["itemId"];
     const target = this.actor.items.get(id);
-    if (!target || target.type !== "weapon") return;
+    if (!target || target.type !== "weapon") return super._onDropItem(event, item);
     let targetData = foundry.utils.duplicate(target);
-    targetData.system.skillName = itemData.name;
-    targetData.system.skillValue = this.actor.getSkillValue(itemData);
+    targetData.system.skillName = item.name;
+    targetData.system.skillValue = this.actor.getSkillValue(item);
 
-    targetData.system.skillId = itemData._id;
+    targetData.system.skillId = item._id;
 
     this.actor.updateEmbeddedDocuments("Item", [targetData]);
   }
 
-  /**
-   * Create drag-and-drop workflow handlers for this Application.
-   * @returns {DragDrop[]}     An array of DragDrop handlers.
-   * @private
-   */
-  #createDragDropHandlers() {
-    return this.options.dragDrop.map((d) => {
-      d.permissions = {
-        dragstart: this._canDragStart.bind(this),
-        drop: this._canDragDrop.bind(this),
-      };
-      d.callbacks = {
-        dragstart: this._onDragStart.bind(this),
-        dragover: this._onDragOver.bind(this),
-        drop: this._onDrop.bind(this),
-      };
-      return new ux.DragDrop.implementation(d);
-    });
-  }
 
   /* -------------------------------------------------- */
 
-  // This is marked as private because there's no real need
-  // for subclasses or external hooks to mess with it directly
-  #dragDrop = this.#createDragDropHandlers();
 
   /**
    *

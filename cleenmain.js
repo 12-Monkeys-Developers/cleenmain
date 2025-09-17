@@ -12,9 +12,7 @@ import CemCombat from "./module/combat/combat.js";
 import CemCombatTracker from "./module/combat/combat-tracker.js";
 import CemCombatant from "./module/combat/combatant.js";
 
-
 import * as models from "./module/data/_module.mjs";
-
 
 // Import modules
 import * as applications from "./module/applications/_module.mjs";
@@ -50,7 +48,6 @@ Hooks.once("init", function () {
   foundry.documents.collections.Items.registerSheet("cleenmain", applications.CemEquipmentSheet, { types: ["equipment"], makeDefault: true });
   foundry.documents.collections.Items.registerSheet("cleenmain", applications.CemSkillSheet, { types: ["skill"], makeDefault: true });
   foundry.documents.collections.Items.registerSheet("cleenmain", applications.CemWeaponSheet, { types: ["weapon"], makeDefault: true });
-
 
   foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
   foundry.documents.collections.Actors.registerSheet("cleenmain", applications.CemPlayerSheet, { types: ["player"], makeDefault: true });

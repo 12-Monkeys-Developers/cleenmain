@@ -6,8 +6,8 @@
 export default async function preloadTemplates() {
   return foundry.applications.handlebars.loadTemplates([
 
-    "systems/cleenmain/templates/chat/roll-dialog.html",
-    "systems/cleenmain/templates/chat/roll-result.html",
+    "systems/cleenmain/templates/chat/roll-dialog.hbs",
+    "systems/cleenmain/templates/chat/roll-result.hbs",
 
     "systems/cleenmain/templates/dice/damage-tooltip.html",
 

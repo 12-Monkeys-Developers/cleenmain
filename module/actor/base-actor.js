@@ -259,7 +259,7 @@ export default class CemBaseActor extends Actor {
       tooltip: new Handlebars.SafeString(await biotechboonroll.getTooltip()),
     };
 
-    let newChatMessage = await new CemChat(this).withTemplate("systems/cleenmain/templates/chat/biotech-roll-result.html").withData(chatData).withRolls(chatData.rolls).create();
+    let newChatMessage = await new CemChat(this).withTemplate("systems/cleenmain/templates/chat/biotech-roll-result.hbs").withData(chatData).withRolls(chatData.rolls).create();
     newChatMessage.display();
   }
 

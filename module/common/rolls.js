@@ -723,7 +723,7 @@ export class Rolls {
     }
 
     let chat = await new CemChat(actor)
-      .withTemplate("systems/cleenmain/templates/chat/roll-result.html")
+      .withTemplate("systems/cleenmain/templates/chat/roll-result.hbs")
       .withData(chatData)
       .withFlags(
         flagCanReRoll
@@ -1103,7 +1103,7 @@ export class Rolls {
     }
 
     // Create the chat message
-    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/roll-result.html").withData(chatData).withRolls(chatData.rolls).create();
+    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/roll-result.hbs").withData(chatData).withRolls(chatData.rolls).create();
 
     // Update the chat message content and rolls
 
@@ -1146,7 +1146,7 @@ export class Rolls {
 
     chatData.rolls[0] = damageRoll;
 
-    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/damage-roll-result.html").withData(chatData).withRolls(chatData.rolls).create();
+    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/damage-roll-result.hbs").withData(chatData).withRolls(chatData.rolls).create();
     newChatMessage.display();
   }
 }
