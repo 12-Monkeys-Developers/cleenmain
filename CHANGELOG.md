@@ -1,3 +1,6 @@
+# Version 3.1.0
+- Migration AppV2
+
 # Version 3.0.0
 - Modification compatibilité Foundry v13.
 - ajout d'un pop-up d'information en cas d'absence de compétence d'arme

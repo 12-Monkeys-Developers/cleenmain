@@ -10,14 +10,7 @@
   font-family: "Merriweather";
   src: url("../../systems/cleenmain/assets/fonts/Merriweather-Regular.ttf");
 }
-.cleenmain.sheet.player h1 {
-  font: 1.2rem "Signika";
-  color: black;
-  text-transform: uppercase;
-  border: none;
-}
-.cleenmain.sheet.player h2 {
-  font: 1rem "Signika";
+.cleenmain.sheet.player button {
   color: black;
 }
 .cleenmain.sheet.player .window-content {
@@ -25,34 +18,44 @@
   background-color: #fffdfc;
   font: 1.1rem "Modesto condensed";
 }
-.cleenmain.sheet.player textarea {
+.cleenmain.sheet.player .window-content h1 {
+  font: 1.2rem "Signika";
+  color: black;
+  text-transform: uppercase;
+  border: none;
+}
+.cleenmain.sheet.player .window-content h2 {
+  font: 1rem "Signika";
+  color: black;
+}
+.cleenmain.sheet.player .window-content textarea {
   resize: none;
 }
-.cleenmain.sheet.player .editor {
+.cleenmain.sheet.player .window-content .editor {
   height: 100%;
   width: 100%;
   background: #f5fdfb;
   box-shadow: inset 0 0 6px black;
 }
-.cleenmain.sheet.player input {
+.cleenmain.sheet.player .window-content input {
   background-color: #f5fdfb;
   box-shadow: inset 0 0 3px black;
   color: #456;
 }
-.cleenmain.sheet.player input:focus {
+.cleenmain.sheet.player .window-content input:focus {
   background-color: #c3d4d0;
 }
-.cleenmain.sheet.player select {
+.cleenmain.sheet.player .window-content select {
   background-color: #f5fdfb;
   box-shadow: inset 0 0 3px black;
   height: 1.5em;
   color: #456;
 }
-.cleenmain.sheet.player form {
+.cleenmain.sheet.player .window-content form {
   display: flex;
   flex-direction: row;
 }
-.cleenmain.sheet.player .right-icon {
+.cleenmain.sheet.player .window-content .right-icon {
   margin-left: auto;
 }
 .cleenmain.sheet.player .main {
@@ -196,6 +199,7 @@
   display: flex;
   flex-direction: row;
   font-size: 1, 5em;
+  border-top: 0px;
 }
 .cleenmain.sheet.player .main .central .tab-name {
   background: #fffdfc;
@@ -220,337 +224,349 @@
   font-size: 1.2rem;
   color: #705a10;
 }
-.cleenmain.sheet.npc h1 {
-  font: 1.2rem "Signika";
-  color: black;
-  text-transform: uppercase;
-  border: none;
-}
-.cleenmain.sheet.npc h2 {
-  font: 1rem "Signika";
-  color: black;
-}
-.cleenmain.sheet.npc .input-short {
-  width: 2em;
-}
-.cleenmain.sheet.npc .input-verylong {
-  width: 20em;
-}
-.cleenmain.sheet.npc .input-long {
-  width: 10em;
-}
 .cleenmain.sheet.npc .window-content {
   background: repeat url('../../../ui/parchment-white.jpg');
   background-color: #fffdfc;
   font: 1.1rem "Modesto condensed";
 }
-.cleenmain.sheet.npc .editor {
+.cleenmain.sheet.npc .window-content h2 {
+  font: 1rem "Signika";
+  color: black;
+}
+.cleenmain.sheet.npc .window-content .input-short {
+  width: 2em;
+}
+.cleenmain.sheet.npc .window-content .input-verylong {
+  width: 20em;
+}
+.cleenmain.sheet.npc .window-content .input-long {
+  width: 10em;
+}
+.cleenmain.sheet.npc .window-content h1 {
+  font: 1.2rem "Signika";
+  color: black;
+  text-transform: uppercase;
+  border: none;
+}
+.cleenmain.sheet.npc .window-content .editor {
   height: 100%;
   width: 100%;
   background: #f5fdfb;
   box-shadow: inset 0 0 6px black;
 }
-.cleenmain.sheet.npc input {
+.cleenmain.sheet.npc .window-content input {
   background-color: #f5fdfb;
   box-shadow: inset 0 0 3px black;
   color: #456;
 }
-.cleenmain.sheet.npc input:focus {
+.cleenmain.sheet.npc .window-content input:focus {
   background-color: #c3d4d0;
 }
-.cleenmain.sheet.npc select {
+.cleenmain.sheet.npc .window-content select {
   background-color: #f5fdfb;
   box-shadow: inset 0 0 3px black;
   height: 1.5em;
   color: #456;
 }
-.cleenmain.sheet.npc .npc-main {
+.cleenmain.sheet.npc .window-content .checkbox {
+  height: 1em;
+}
+.cleenmain.sheet.npc .window-content .npc-main {
   display: flex;
   flex-direction: column;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block {
   display: flex;
   flex-direction: row;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left {
   display: flex;
   flex-direction: column;
   flex-basis: 70%;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .name-line {
   margin: 0.5em;
   display: flex;
   flex-direction: row;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line .name-text {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .name-line .name-text {
   font: 2em "Signika";
   color: black;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line input {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .name-line input {
   height: 2em;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .name-line .sheet-change-lock {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .name-line .sheet-change-lock {
   margin-left: auto;
   padding-left: 1em;
   color: #705a10;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .activity-line {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .activity-line {
   margin: 0 0.5em 1em 1em;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .activity-line .activity-text {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .activity-line .activity-text {
   font: 1.1em "Signika";
   color: black;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .level-line {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .level-line {
   display: flex;
   flex-direction: row;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .level-line select {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .level-line select {
   margin: 0.5em 0.5em;
   width: 12em;
   height: auto;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line {
   display: flex;
   flex-direction: row;
   margin: 0.5em 0.5em;
   font: 1.2rem "Signika";
   color: black;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line .line-label {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line .line-label {
   font-weight: bold;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line .weapon-el {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line .weapon-el {
   margin: 0 0 0 1rem;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line .item-create {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .weapons .weapon-line .item-create {
   padding-left: 0.5em;
   color: #705a10;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .skills .skill-line {
   font: 1.2rem "Modesto condensed";
   color: black;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block {
   display: flex;
   flex-direction: row;
   padding: 0.5em 0.5em;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-label {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-label {
   font-weight: bold;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-value {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-value {
   display: flex;
   flex-direction: row;
   padding: 0 0.2em 0 0.2em;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-nonedit {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-nonedit {
   width: 25%;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-edit {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .skills .skill-line .skill-block .skill-edit {
   width: 50%;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npchealth-line {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .npchealth-line {
   display: flex;
   flex-direction: row;
   margin: 1rem;
   font: 1.2rem "Signika";
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npchealth-line .central-text {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .npchealth-line .central-text {
   margin: 0 0.2em 0 0.1em;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npchealth-line input {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .npchealth-line input {
   padding-bottom: 0.2rem;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-left .npchealth-line .health-block {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-left .npchealth-line .health-block {
   display: flex;
   flex-direction: row;
   margin-left: 1em;
 }
-.cleenmain.sheet.npc .npc-main .npcstat-block .npcstat-block-right {
+.cleenmain.sheet.npc .window-content .npc-main .npcstat-block .npcstat-block-right {
   flex-basis: 30%;
   width: 200px;
   height: 200px;
   object-fit: contain;
-}
-.cleenmain.sheet.vehicle h1 {
-  font: 1.2rem "Signika";
-  color: black;
-  text-transform: uppercase;
-  border: none;
-}
-.cleenmain.sheet.vehicle h2 {
-  font: 1rem "Signika";
-  color: black;
-}
-.cleenmain.sheet.vehicle .input-short {
-  width: 2em;
-}
-.cleenmain.sheet.vehicle .input-verylong {
-  width: 20em;
-}
-.cleenmain.sheet.vehicle .input-long {
-  width: 10em;
 }
 .cleenmain.sheet.vehicle .window-content {
   background: repeat url('../../../ui/parchment-white.jpg');
   background-color: #fffdfc;
   font: 1.1rem "Modesto condensed";
 }
-.cleenmain.sheet.vehicle .editor {
-  height: 100%;
-  width: 100%;
-  background: #f5fdfb;
-  box-shadow: inset 0 0 6px black;
-}
-.cleenmain.sheet.vehicle input {
-  background-color: #f5fdfb;
-  box-shadow: inset 0 0 3px black;
-}
-.cleenmain.sheet.vehicle input:focus {
-  background-color: #c3d4d0;
-}
-.cleenmain.sheet.vehicle select {
-  background-color: #f5fdfb;
-  box-shadow: inset 0 0 3px black;
-  height: 1.5em;
-}
-.cleenmain.sheet.vehicle .vehicle-main {
-  display: flex;
-  flex-direction: column;
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block {
-  display: flex;
-  flex-direction: row;
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 70%;
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .name-line {
-  margin: 0.5em;
-  display: flex;
-  flex-direction: row;
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .name-line .name-text {
-  font: 2em "Signika";
-  color: black;
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .name-line input {
-  height: 2em;
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .name-line .sheet-change-lock {
-  margin-left: auto;
-  padding-left: 1em;
-  color: #705a10;
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .line {
-  margin: 0.5em;
-  display: flex;
-  flex-direction: row;
-  font: 1.2rem "Signika";
-  color: black;
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .line label {
-  font-weight: bold;
-  padding-right: 10px;
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .line input {
-  width: 40px;
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .vehiclehealth-line {
-  display: flex;
-  flex-direction: row;
-  margin: 1rem;
-  font: 1.2rem "Signika";
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .vehiclehealth-line .central-text {
-  margin: 0 0.2em 0 0.1em;
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .vehiclehealth-line input {
-  padding-bottom: 0.2rem;
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-left .vehiclehealth-line .health-block {
-  display: flex;
-  flex-direction: row;
-  margin-left: 1em;
-}
-.cleenmain.sheet.vehicle .vehicle-main .vehiclestat-block .vehiclestat-block-right {
-  flex-basis: 30%;
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-}
-.cleenmain.sheet.vehicle .vehicle-main .editor {
-  min-height: 5em;
-}
-.cleenmain.sheet.vehicle .vehicle-main .editor .editor-content {
-  min-height: 5em;
-}
-.cleenmain.sheet.vehicle .vehicle-main .editor .tox.tox-tinymce {
-  min-height: 10em;
-}
-.cleenmain.sheet.vehicle .description-block {
-  font: 0.7rem "Merriweather";
-  padding: 0.5em;
-}
-.cleenmain.sheet.vehicle .description-title {
-  font: 1rem "Signika";
-  border-bottom: 2px solid black;
-}
-.cleenmain.sheet.item h1 {
+.cleenmain.sheet.vehicle .window-content h1 {
   font: 1.2rem "Signika";
   color: black;
   text-transform: uppercase;
   border: none;
 }
-.cleenmain.sheet.item h2 {
+.cleenmain.sheet.vehicle .window-content h2 {
   font: 1rem "Signika";
   color: black;
 }
+.cleenmain.sheet.vehicle .window-content .input-short {
+  width: 2em;
+}
+.cleenmain.sheet.vehicle .window-content .input-verylong {
+  width: 20em;
+}
+.cleenmain.sheet.vehicle .window-content .input-long {
+  width: 10em;
+}
+.cleenmain.sheet.vehicle .window-content .editor {
+  height: 100%;
+  width: 100%;
+  background: #f5fdfb;
+  box-shadow: inset 0 0 6px black;
+}
+.cleenmain.sheet.vehicle .window-content input {
+  background-color: #f5fdfb;
+  box-shadow: inset 0 0 3px black;
+}
+.cleenmain.sheet.vehicle .window-content input:focus {
+  background-color: #c3d4d0;
+}
+.cleenmain.sheet.vehicle .window-content select {
+  background-color: #f5fdfb;
+  box-shadow: inset 0 0 3px black;
+  height: 1.5em;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main {
+  display: flex;
+  flex-direction: column;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block {
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block .vehiclestat-block-left {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 70%;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block .vehiclestat-block-left .name-line {
+  margin: 0.5em;
+  display: flex;
+  flex-direction: row;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block .vehiclestat-block-left .name-line .name-text {
+  font: 2em "Signika";
+  color: black;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block .vehiclestat-block-left .name-line input {
+  height: 2em;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block .vehiclestat-block-left .name-line .sheet-change-lock {
+  margin-left: auto;
+  padding-left: 1em;
+  color: #705a10;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block .vehiclestat-block-left .line {
+  margin: 0.5em;
+  display: flex;
+  flex-direction: row;
+  font: 1.2rem "Signika";
+  color: black;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block .vehiclestat-block-left .line label {
+  font-weight: bold;
+  padding-right: 10px;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block .vehiclestat-block-left .line input {
+  width: 40px;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block .vehiclestat-block-left .vehiclehealth-line {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem;
+  font: 1.2rem "Signika";
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block .vehiclestat-block-left .vehiclehealth-line .central-text {
+  margin: 0 0.2em 0 0.1em;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block .vehiclestat-block-left .vehiclehealth-line input {
+  padding-bottom: 0.2rem;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block .vehiclestat-block-left .vehiclehealth-line .health-block {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1em;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .vehiclestat-block .vehiclestat-block-right {
+  flex-basis: 30%;
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .editor {
+  min-height: 5em;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .editor .editor-content {
+  min-height: 5em;
+}
+.cleenmain.sheet.vehicle .window-content .vehicle-main .editor .tox.tox-tinymce {
+  min-height: 10em;
+}
+.cleenmain.sheet.vehicle .window-content .description-block {
+  font: 0.7rem "Merriweather";
+  padding: 0.5em;
+}
+.cleenmain.sheet.vehicle .window-content .description-title {
+  font: 1rem "Signika";
+  border-bottom: 2px solid black;
+}
 .cleenmain.sheet.item .window-content {
   background: repeat url('../../../ui/parchment-white.jpg');
+  background-size: 100% auto;
   background-color: #fffdfc;
   font: 1.1rem "Modesto condensed";
 }
-.cleenmain.sheet.item .editor {
+.cleenmain.sheet.item .window-content h1 {
+  font: 1.2rem "Signika";
+  color: black;
+  text-transform: uppercase;
+  border: none;
+}
+.cleenmain.sheet.item .window-content h2 {
+  font: 1rem "Signika";
+  color: black;
+}
+.cleenmain.sheet.item .window-content .editor {
   height: 100%;
   width: 100%;
   background: #f5fdfb;
   box-shadow: inset 0 0 6px black;
   font: 0.7rem "Merriweather";
 }
-.cleenmain.sheet.item input {
+.cleenmain.sheet.item .window-content input {
   background-color: #f5fdfb;
   box-shadow: inset 0 0 3px black;
   height: 1.5em;
   color: #456;
 }
-.cleenmain.sheet.item select {
+.cleenmain.sheet.item .window-content .checkbox {
+  height: 1em;
+}
+.cleenmain.sheet.item .window-content select {
   background-color: #f5fdfb;
   box-shadow: inset 0 0 3px black;
   height: 1.5em;
   color: #456;
 }
-.cleenmain.sheet.item input:focus {
+.cleenmain.sheet.item .window-content input:focus {
   background-color: #c3d4d0;
 }
-.cleenmain.sheet.item .sheet-header input {
+.cleenmain.sheet.item .window-content .sheet-header input {
   font-size: 2rem;
   text-align: center;
 }
-.cleenmain.sheet.item {
-  background-color: #fffdfc;
+.cleenmain-scrollable {
+  padding-right: initial;
+  scrollbar-gutter: auto;
+}
+.cleenmain-scrollable .window-content {
+  overflow-y: scroll;
 }
 .cleenmain.sheet.item form {
   display: flex;
   flex-direction: column;
 }
 .cleenmain.sheet.item .sheet-content {
+  background-color: #fffdfc;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -815,6 +831,7 @@
   display: flex;
   flex-direction: column;
   font: 1rem "Signika";
+  color: black;
 }
 .cem-dialog .tooltip {
   position: relative;
@@ -853,10 +870,17 @@
 .cem-dialog .rollmodifier input {
   width: 5em;
   margin: 0 0 1em 1em;
+  color: black;
+  background: rgba(0, 0, 0, 0.1);
 }
 .cem-dialog .rollmodifier select {
   width: 5em;
   margin: 0 0 1em 1em;
+  color: black;
+  background: rgba(0, 0, 0, 0.1);
+}
+.cem-dialog .heroismmodifier input {
+  width: 1em;
 }
 .cem-dialog .paddingend {
   padding: 0 0 5em 0;
@@ -865,18 +889,23 @@
   font: 1rem "Signika";
 }
 .cem-dialog .bonus h2 {
+  margin: 10px 0px 0px 10px;
   font-weight: bold;
+  color: black;
 }
 .cem-dialog table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
+  background: none;
 }
 .cem-dialog td {
   width: 25%;
 }
 .cem-dialog td input {
-  width: 2em;
+  width: 3em;
+  color: black;
+  background: rgba(0, 0, 0, 0.1);
 }
 .cem-dialog td input[type="number"]::-webkit-inner-spin-button,
 .cem-dialog td input[type="number"]::-webkit-outer-spin-button {

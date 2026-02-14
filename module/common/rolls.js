@@ -39,14 +39,14 @@ export class Rolls {
     let skillBonus1d6 = false;
 
     // Si rollMode n'est pas défini, on prend celui par défaut (celui du chat)
-    let visibilityMode = data.rollMode ?? game.settings.get('core', 'rollMode');
+    let visibilityMode = data.rollMode ?? game.settings.get("core", "rollMode");
 
     // Visibilité des jet des PNJs en fonction de l'option choisie
     if (actor.type === "npc" && game.user.isGM) {
       let visibilityChoice = game.settings.get("cleenmain", "visibiliteJetsPNJ");
       if (visibilityChoice === "public") visibilityMode = "publicroll";
       else if (visibilityChoice === "private") visibilityMode = "gmroll";
-      else if (visibilityChoice === "depends") visibilityMode = game.settings.get('core', 'rollMode');
+      else if (visibilityChoice === "depends") visibilityMode = game.settings.get("core", "rollMode");
     }
 
     data.rollMode = visibilityMode;
@@ -87,7 +87,7 @@ export class Rolls {
     }
 
     // Create the dialog panel to display.
-    const html = await foundry.applications.handlebars.renderTemplate("systems/cleenmain/templates/chat/roll-dialog.html", {
+    const html = await foundry.applications.handlebars.renderTemplate("systems/cleenmain/templates/chat/roll-dialog.hbs", {
       actor: actor,
       item: item,
       type: rollType,
@@ -106,6 +106,174 @@ export class Rolls {
       heroismBonus1d6: heroismBonus1d6,
     });
 
+    // App V2
+    new foundry.applications.api.DialogV2({
+      window: { title: titleDialog },
+    position: {
+      width: 400,
+    },
+      content: html,
+      buttons: [
+        { action: "apply", icon: 'fas fa-check', label: game.i18n.localize("CLEENMAIN.dialog.button.roll"), type: "submit", default: true },
+        { action: "cancel", icon: '<i class="fas fa-times"></i>', label: game.i18n.localize("Abandonner"), type: "cancel" },
+      ],
+      submit: async (result) => {
+        if (result !== "apply") return;
+
+        data.skillRoll = skillRoll;
+        data.attackRoll = attackRoll;
+        data.damageRoll = damageRoll;
+
+        data.introText = introText;
+
+        data.applyModifiers = [];
+
+        // The optional modifier
+        const modifierInput = document.querySelectorAll(".modifierChange");
+        for (const input of modifierInput) {
+          const newValue = input.valueAsNumber;
+          if (newValue) {
+            data.modifier = newValue;
+          }
+        }
+        // The optional damage bonus
+        if (!skillRoll) {
+          const damageBonusSelect = document.querySelectorAll('select[class="damageBonus"]');
+          for (const select of damageBonusSelect) {
+            data.damageBonus = parseInt(select.value);
+          }
+        }
+
+        data.formula = rollFormulaDisplay;
+        data.formulaColor = rollFormula;
+        data.formulaTooltip = formulaTooltip;
+
+        if (data.modifier) {
+          data.formula = data.formula.concat(" + ", data.modifier.toString());
+          data.formulaColor = data.formulaColor.concat(" + ", data.modifier.toString());
+          data.applyModifiers.push(game.i18n.format("CLEENMAIN.chatmessage.custommodifier", { rollModifier: data.modifier }));
+        }
+        // The optional heroism use
+        data.useHeroism = false;
+
+        const heroismInput = document.querySelectorAll(".heroism");
+        for (const input of heroismInput) {
+          const newValue = input.checked;
+          if (newValue) {
+            data.useHeroism = true;
+            let dice = item.system.heroismBonus1d6 ? "2" : "1";
+            data.formula += " + " + dice + "d6";
+            data.formulaColor += " + " + dice + "d6[bronze]";
+            data.applyModifiers.push(game.i18n.format("CLEENMAIN.chatmessage.heroismmodifier", { dice: dice }));
+            actor.useHeroism(1);
+          }
+        }
+        if (attackRoll) {
+          let behaviourModifier = 0;
+          // Boons
+          const lethalattackInput = document.querySelectorAll(".lethalattack");
+          for (const input of lethalattackInput) {
+            data.lethalattack = input.valueAsNumber ?? 0;
+            if (data.lethalattack > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.lethalattack.chatmessage", data));
+          }
+          const multipleattacksInput = document.querySelectorAll(".multipleattacks");
+          for (const input of multipleattacksInput) {
+            data.multipleattacks = input.valueAsNumber ?? 0;
+            if (data.multipleattacks > 0) data.applyModifiers.push(game.i18n.localize("CLEENMAIN.bonus.multipleattacks.chatmessage"));
+          }
+          const efficiencyInput = document.querySelectorAll(".efficiency");
+          for (const input of efficiencyInput) {
+            data.efficiency = input.valueAsNumber ?? 0;
+            if (data.efficiency > 0) {
+              data.formula = data.formula.concat(" + ").concat((data.efficiency * 2).toString());
+              data.formulaColor = data.formulaColor.concat(" + ").concat((data.efficiency * 2).toString());
+              data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.efficiency.chatmessage", data));
+            }
+          }
+          const cautionInput = document.querySelectorAll(".caution");
+          for (const input of cautionInput) {
+            data.caution = input.valueAsNumber ?? 0;
+            if (data.caution > 0) {
+              data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.caution.chatmessage", data));
+              behaviourModifier += data.caution;
+            }
+          }
+          if (game.settings.get("cleenmain", "advancedRules")) {
+            const quickInput = document.querySelectorAll(".quick");
+            for (const input of quickInput) {
+              data.quick = input.valueAsNumber ?? 0;
+              if (data.quick > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.bonus.quick.chatmessage"));
+            }
+          }
+          // Penalties
+          const minorinjuryInput = document.querySelectorAll(".minorinjury");
+          for (const input of minorinjuryInput) {
+            data.minorinjury = input.valueAsNumber ?? 0;
+            if (data.minorinjury > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.minorinjury.chatmessage"));
+          }
+          const dangerInput = document.querySelectorAll(".danger");
+          for (const input of dangerInput) {
+            data.danger = input.valueAsNumber ?? 0;
+            if (data.danger > 0) {
+              data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.danger.chatmessage", data));
+              behaviourModifier -= data.danger;
+            }
+          }
+          const difficultyInput = document.querySelectorAll(".difficulty");
+          for (const input of difficultyInput) {
+            data.difficulty = input.valueAsNumber ?? 0;
+            if (data.difficulty > 0) {
+              data.formula = data.formula.concat(" - ").concat((data.difficulty * 2).toString());
+              data.formulaColor = data.formulaColor.concat(" - ").concat((data.difficulty * 2).toString());
+              data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.difficulty.chatmessage", data));
+            }
+          }
+          const riskInput = document.querySelectorAll(".risk");
+          for (const input of riskInput) {
+            data.risk = input.valueAsNumber ?? 0;
+            if (data.risk > 0) data.applyModifiers.push(game.i18n.format("CLEENMAIN.penalty.risk.chatmessage", data));
+          }
+          if (game.settings.get("cleenmain", "advancedRules")) {
+            const slownessInput = document.querySelectorAll(".slowness");
+            for (const input of slownessInput) {
+              data.slowness = input.valueAsNumber ?? 0;
+              if (data.slowness > 0) data.applyModifiers.push(game.i18n.localize("CLEENMAIN.penalty.slowness.chatmessage"));
+            }
+          }
+          if (behaviourModifier != 0) {
+            actor.addBehaviourModifier(behaviourModifier);
+          }
+        }
+
+        // Reroll if it's not an attack
+        if (!attackRoll) {
+          const nbRerollInput = document.querySelectorAll(".nbReroll");
+          for (const input of nbRerollInput) {
+            data.nbReroll = input.valueAsNumber ?? 0;
+          }
+        }
+        // Remove one bonus or malus for a defence roll
+        if (skillRoll) {
+          if (item.system.reference === "defence") {
+            actor.useBehaviourModifier();
+          }
+        }
+
+        // Status
+        if (actor.isInBadShape()) {
+          data.applyModifiers.push(game.i18n.localize("CLEENMAIN.health.status.badshape"));
+          data.badShapeDamageBonus = actor.system.health.badShapeDamageBonus ?? 0;
+        }
+
+        // Calculate the final difficulty
+        // data.targetDifficulty = parseInt(data.difficulty) + (isNaN(modifier) ? 0 : modifier) + (skipWoundModifier ? 0 : woundModifier) + additionalKa + approche;
+
+        // Process to the roll
+        await Rolls.displayRoll(actor, item, data);
+      },
+    }).render(true);
+
+    /*
     // Display the action panel
     await new Dialog({
       title: titleDialog,
@@ -259,7 +427,7 @@ export class Rolls {
       },
       default: "roll",
       close: () => {},
-    }).render(true);
+    }).render(true);*/
   }
 
   /**
@@ -555,7 +723,7 @@ export class Rolls {
     }
 
     let chat = await new CemChat(actor)
-      .withTemplate("systems/cleenmain/templates/chat/roll-result.html")
+      .withTemplate("systems/cleenmain/templates/chat/roll-result.hbs")
       .withData(chatData)
       .withFlags(
         flagCanReRoll
@@ -595,7 +763,7 @@ export class Rolls {
     if (game.settings.get("cleenmain", "pointsbiotech")) {
       let firstBiotechTerm;
       roll.terms.forEach((element) => {
-        if (element.options.flavor === "bronze") firstBiotechTerm =  foundry.utils.duplicate(element);
+        if (element.options.flavor === "bronze") firstBiotechTerm = foundry.utils.duplicate(element);
       });
       if (firstBiotechTerm) {
         if (firstBiotechTerm?.results[0]?.result < 4 || actor.system.always2dice) {
@@ -935,7 +1103,7 @@ export class Rolls {
     }
 
     // Create the chat message
-    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/roll-result.html").withData(chatData).withRolls(chatData.rolls).create();
+    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/roll-result.hbs").withData(chatData).withRolls(chatData.rolls).create();
 
     // Update the chat message content and rolls
 
@@ -978,7 +1146,7 @@ export class Rolls {
 
     chatData.rolls[0] = damageRoll;
 
-    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/damage-roll-result.html").withData(chatData).withRolls(chatData.rolls).create();
+    let newChatMessage = await new CemChat(actor).withTemplate("systems/cleenmain/templates/chat/damage-roll-result.hbs").withData(chatData).withRolls(chatData.rolls).create();
     newChatMessage.display();
   }
 }

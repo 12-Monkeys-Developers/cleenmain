@@ -1,0 +1,21 @@
+<div class="sheet-content">
+    <div class="boon-line">
+        {{#if item.actor}}           
+            {{#if (eq item.actor.type "player")}}
+                <div class="boon-block">
+                    <div class="label-dev">{{localize "CLEENMAIN.boon.developedinfo"}}</div>
+                    <input class="checkbox" name="system.developed" type="checkbox" {{checked system.developed}}>
+                </div>
+            {{/if}}  
+        {{else}}
+            <div class="boon-block">
+                <div class="label-dev">{{localize "CLEENMAIN.boon.developedinfo"}}</div>
+                <input class="checkbox" name="system.developed" type="checkbox" {{checked system.developed}}>
+            </div>
+        {{/if}}
+        <div class="boon-block">
+            <div class="label-dev">{{localize "CLEENMAIN.boon.limiteduseinfo"}}</div>
+            <input class="checkbox" name="system.limitedUse" type="checkbox" {{checked system.limitedUse}}>
+        </div>
+    </div>
+</div>

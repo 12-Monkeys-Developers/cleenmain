@@ -1,0 +1,8 @@
+<div class="item-content">
+  <div class="field-name">{{localize "CLEENMAIN.label.description"}}</div>
+  {{#if unlocked}}
+    {{formInput systemFields.description enriched=descriptionHTML value=system.description}}
+  {{else}}
+    {{{descriptionHTML}}}
+  {{/if}}
+</div>

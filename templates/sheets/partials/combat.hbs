@@ -3,7 +3,7 @@
     <div class="title-line">
         <h1 class="combat-domain-label">{{localize "CLEENMAIN.label.protections"}}  ( <span class="tooltip" data-tooltip="{{localize "CLEENMAIN.tooltip.protection"}}">{{protection}}</span> ) {{#if defenceModifier}}<span class="tooltip" data-tooltip="{{localize "CLEENMAIN.tooltip.defence_modifier"}}">{{defenceModifier}}</span>{{/if}}
             {{#if unlocked}}
-                <a class="item-create right-icon" data-type="armor" title="{{localize 'CLEENMAIN.armor.add'}}"><i class="fas fa-plus"></i></a>
+                <a class="item-create right-icon" data-action="itemCreate" data-type="armor" title="{{localize 'CLEENMAIN.armor.add'}}"><i class="fas fa-plus"></i></a>
             {{/if}}
         </h1>
     </div>
@@ -56,8 +56,8 @@
                         <th>{{item.system.special}}</th>
                         {{#if ../unlocked}}
                             <th>
-                                <a class="item-open-sheet" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i class="fas fa-pen"></i></a>
-                                <a class="inline-delete" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i class="fas fa-trash"></i></a>
+                                <a data-action="itemEdit" data-item-id="{{item._id}}" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i class="fas fa-pen"></i></a>
+                                <a data-action="itemDelete" data-item-id="{{item._id}}" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i class="fas fa-trash"></i></a>
                             </th>
                         {{/if}}
                     </tr>
@@ -70,7 +70,7 @@
     <div class="title-line">
         <h1 class="combat-domain-label">{{localize "CLEENMAIN.label.weapons"}}
             {{#if unlocked}}
-                <a class="item-create right-icon" data-type="weapon" title="{{localize 'CLEENMAIN.weapon.add'}}"><i class="fas fa-plus"></i></a>
+                <a class="item-create right-icon" data-action="itemCreate" data-type="weapon" title="{{localize 'CLEENMAIN.weapon.add'}}"><i class="fas fa-plus"></i></a>
             {{/if}}
         </h1>
     </div>
@@ -124,12 +124,12 @@
             </thead>
             {{#each weapons as |item id|}}
                 {{#ife item.system.state "active"}}
-                    <tr class="combat-table item draggable" data-item-id="{{item._id}}">
+                    <tr class="combat-table item" data-item-id="{{item._id}}">
                         <th>{{name}}</th>
                         <th>{{getCategoryLabel "weapon" item.system.category}}</th>
-                        <th  {{#if (checkNoWeaponSkill @root.actor item)}}data-tooltip="{{localize "CLEENMAIN.tooltip.noskill"}}"{{/if}}>{{getWeaponSkillName @root.actor item}}</th>
-                        <th>{{getWeaponSkill @root.actor item}}<a class="weapon-attack-roll"><i class="fas fa-dice"></i></a></th>
-                        <th>{{getWeaponDamage @root.actor item}}<a class="weapon-damage-roll"><i class="fas fa-dice"></i></a></th>
+                        <th class="droppable" {{#if (checkNoWeaponSkill @root.actor item)}}data-tooltip="{{localize "CLEENMAIN.tooltip.noskill"}}"{{/if}}>{{getWeaponSkillName @root.actor item}}</th>
+                        <th>{{getWeaponSkill @root.actor item}}<a data-action="weaponAttackRoll" data-item-id="{{_id}}"><i class="fas fa-dice"></i></a></th>
+                        <th>{{getWeaponDamage @root.actor item}}<a data-action="weaponDamageRoll" data-item-id="{{_id}}"><i class="fas fa-dice"></i></a></th>
                         <th>
                             {{#if unlocked}}
                                 <input class="checkbox" name="item.system.sixPlus" type="checkbox" {{checked item.system.sixPlus}}>
@@ -139,8 +139,8 @@
                         </th>
                         <th>
                             {{#if ../unlocked}}
-                                <a class="item-open-sheet" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i class="fas fa-pen"></i></a>
-                                <a class="inline-delete" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i class="fas fa-trash"></i></a>
+                                <a data-action="itemEdit" data-item-id="{{item._id}}" title="{{localize 'CLEENMAIN.sheet.edit'}}"><i class="fas fa-pen"></i></a>
+                                <a data-action="itemDelete" data-item-id="{{item._id}}" title="{{localize 'CLEENMAIN.sheet.delete'}}"><i class="fas fa-trash"></i></a>
                             {{/if}}
                         </th>
                     </tr>

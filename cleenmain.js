@@ -12,13 +12,10 @@ import CemCombat from "./module/combat/combat.js";
 import CemCombatTracker from "./module/combat/combat-tracker.js";
 import CemCombatant from "./module/combat/combatant.js";
 
-import CemBaseItemSheet from "./module/item/sheet/base-sheet.js";
-import { WeaponSheet } from "./module/item/sheet/weapon-sheet.js";
-import PlayerSheet from "./module/actor/sheet/player-sheet.js";
-import NpcSheet from "./module/actor/sheet/npc-sheet.js";
-import VehicleSheet from "./module/actor/sheet/vehicle-sheet.js";
-
 import * as models from "./module/data/_module.mjs";
+
+// Import modules
+import * as applications from "./module/applications/_module.mjs";
 
 Hooks.once("init", function () {
   console.log(LOG_HEAD + "Initializing System");
@@ -44,13 +41,18 @@ Hooks.once("init", function () {
   };
 
   foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
-  foundry.documents.collections.Items.registerSheet("cleenmain", CemBaseItemSheet, { makeDefault: true });
-  foundry.documents.collections.Items.registerSheet("cleenmain", WeaponSheet, { label: "WeaponSheet", makeDefault: true, types: ["weapon"] });
+  foundry.documents.collections.Items.registerSheet("cleenmain", applications.CemItemSheet, { makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("cleenmain", applications.CemArmorSheet, { types: ["armor"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("cleenmain", applications.CemBiodataSheet, { types: ["biodata"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("cleenmain", applications.CemBoonSheet, { types: ["boon"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("cleenmain", applications.CemEquipmentSheet, { types: ["equipment"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("cleenmain", applications.CemSkillSheet, { types: ["skill"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("cleenmain", applications.CemWeaponSheet, { types: ["weapon"], makeDefault: true });
 
   foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
-  foundry.documents.collections.Actors.registerSheet("cleenmain", PlayerSheet, { types: ["player"], makeDefault: true });
-  foundry.documents.collections.Actors.registerSheet("cleenmain", NpcSheet, { types: ["npc"], makeDefault: true });
-  foundry.documents.collections.Actors.registerSheet("cleenmain", VehicleSheet, { types: ["vehicle"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet("cleenmain", applications.CemPlayerSheet, { types: ["player"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet("cleenmain", applications.CemNpcSheet, { types: ["npc"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet("cleenmain", applications.CemVehicleSheet, { types: ["vehicle"], makeDefault: true });
 
   game.cleenmain = {
     config: CLEENMAIN,

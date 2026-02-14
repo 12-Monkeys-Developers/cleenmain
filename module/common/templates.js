@@ -3,27 +3,26 @@
  * Pre-loaded templates are compiled and cached for fast access when rendering
  * @return {Promise}
  */
- export default async function preloadTemplates() {
+export default async function preloadTemplates() {
+  return foundry.applications.handlebars.loadTemplates([
 
-    return foundry.applications.handlebars.loadTemplates([
-        "systems/cleenmain/templates/actor/npc.html",  
-        "systems/cleenmain/templates/actor/player.html",        
-        "systems/cleenmain/templates/actor/tab/bio.html",
-        "systems/cleenmain/templates/actor/tab/boons.html",
-        "systems/cleenmain/templates/actor/tab/combat.html",
-        "systems/cleenmain/templates/actor/tab/equipment.html",        
-        "systems/cleenmain/templates/actor/tab/notes.html",
+    "systems/cleenmain/templates/chat/roll-dialog.hbs",
+    "systems/cleenmain/templates/chat/roll-result.hbs",
 
-        "systems/cleenmain/templates/item/armor.html",
-        "systems/cleenmain/templates/item/boon.html",
-        "systems/cleenmain/templates/item/equipment.html",
-        "systems/cleenmain/templates/item/skill.html",
-        "systems/cleenmain/templates/item/weapon.html",
-                
-        "systems/cleenmain/templates/chat/roll-dialog.html",
-        "systems/cleenmain/templates/chat/roll-result.html",
-        
-        "systems/cleenmain/templates/dice/damage-tooltip.html"
-    ]);
+    "systems/cleenmain/templates/dice/damage-tooltip.html",
 
-};
+    `systems/cleenmain/templates/sheets/parts/unlock-icon.hbs`,
+    "systems/cleenmain/templates/sheets/npc.hbs",
+    "systems/cleenmain/templates/sheets/player.hbs",
+    "systems/cleenmain/templates/sheets/partials/bio.hbs",
+    "systems/cleenmain/templates/sheets/partials/boons.hbs",
+    "systems/cleenmain/templates/sheets/partials/combat.hbs",
+    "systems/cleenmain/templates/sheets/partials/equipment.hbs",
+    "systems/cleenmain/templates/sheets/partials/notes.hbs",
+
+    `systems/cleenmain/templates/sheets/partials/item-description.hbs`,
+    `systems/cleenmain/templates/sheets/partials/item-header.hbs`,
+    `systems/cleenmain/templates/sheets/boon.hbs`,
+    `systems/cleenmain/templates/sheets/weapon.hbs`,
+  ]);
+}

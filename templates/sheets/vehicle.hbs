@@ -1,4 +1,3 @@
-<form class="{{cssClass}}" autocomplete="off">
   <div class="vehicle-main">
     <div class="vehiclestat-block">
       <div class="vehiclestat-block-left">
@@ -8,7 +7,7 @@
           {{else}}
           <div class="name-text">{{actor.name}}</div>
           {{/if}}
-          <div class="right-icon">
+          <div class="right-icon" data-action="toggleLockMode">
             <a class="sheet-change-lock" title="{{localize 'CLEENMAIN.label.unlock_sheet'}}">
               {{#if unlocked}}
               <i class="fas fa-lock-open"></i>
@@ -51,7 +50,7 @@
           <div>
             {{#if (ne actorSystem.damageCollision "0")}}
             <label title="{{localize 'CLEENMAIN.label.damageCollision'}}">{{localize "CLEENMAIN.label.damageCollision"}} : </label>
-            {{actorSystem.damageCollision}} <a><i class="fas fa-dice roll-damage-collision" data-damage="{{actorSystem.damageCollision}}"></i></a>
+            {{actorSystem.damageCollision}} <a><i class="fas fa-dice" data-action="rollDamageCollision" data-damage="{{actorSystem.damageCollision}}"></i></a>
             {{/if}}
           </div>
           {{/if}}
@@ -66,7 +65,7 @@
         <div class="line">
           <div>
             <label title="{{localize 'CLEENMAIN.label.damageDistance'}}">{{localize "CLEENMAIN.label.damageDistance"}} : </label>
-            {{actorSystem.damageDistance}} <a><i class="fas fa-dice roll-damage-distance" data-damage="{{actorSystem.damageDistance}}"></i></a>
+            {{actorSystem.damageDistance}} <a><i class="fas fa-dice" data-action="rollDamageDistance" data-damage="{{actorSystem.damageDistance}}"></i></a>
           </div>
         </div>
         {{/if}} {{/if}}
@@ -136,13 +135,12 @@
 
       {{#if unlocked}}
       <div class="vehiclestat-block-right">
-        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        <img class="profile-img" src="{{actor.img}}" alt="{{actor.name}}" data-action="editImage" data-edit="img" title="{{actor.name}}">
       </div>
       {{else}} {{#if (ne actor.img "icons/svg/mystery-man.svg")}}
-      <div class="vehiclestat-block-right showimage">
-        <img src="{{actor.img}}" title="{{actor.name}}" />
+      <div class="vehiclestat-block-right">
+        <img class="profile-img" src="{{actor.img}}" alt="{{actor.name}}" title="{{actor.name}}">
       </div>
       {{/if}} {{/if}}
     </div>
   </div>
-</form>

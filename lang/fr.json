@@ -153,6 +153,7 @@
             "bonus": "Ajouter une prime ?",
             "button":{
                 "cancel": "Annuler",
+                "close": "Fermer",
                 "roll": "Lancer",
                 "validate": "Valider"
             },
@@ -201,7 +202,7 @@
         "heroism": {
             "current": "Valeur actuelle",
             "max": "Maximum",
-            "spend": "Dépenser 1 point (clic gauche) ou 2 points (clic droit)"
+            "spend": "Dépenser 1 point"
         },
         "npccategory": {
                     "support": "Figurant",
