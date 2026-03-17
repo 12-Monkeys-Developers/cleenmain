@@ -1,3 +1,6 @@
+# Version 3.1.1
+- Bug editeur
+
 # Version 3.1.0
 - Migration AppV2
 

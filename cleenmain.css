@@ -10,9 +10,6 @@
   font-family: "Merriweather";
   src: url("../../systems/cleenmain/assets/fonts/Merriweather-Regular.ttf");
 }
-.cleenmain.sheet.player button {
-  color: black;
-}
 .cleenmain.sheet.player .window-content {
   background: repeat url('../../../ui/parchment.jpg');
   background-color: #fffdfc;
@@ -493,13 +490,13 @@
   object-fit: contain;
 }
 .cleenmain.sheet.vehicle .window-content .vehicle-main .editor {
-  min-height: 5em;
+  min-height: 10em;
 }
 .cleenmain.sheet.vehicle .window-content .vehicle-main .editor .editor-content {
-  min-height: 5em;
+  min-height: 10em;
 }
 .cleenmain.sheet.vehicle .window-content .vehicle-main .editor .tox.tox-tinymce {
-  min-height: 10em;
+  min-height: 20em;
 }
 .cleenmain.sheet.vehicle .window-content .description-block {
   font: 0.7rem "Merriweather";
@@ -691,13 +688,13 @@
   padding-right: 0.5em;
 }
 .tab-bio .editor {
-  min-height: 5em;
+  min-height: 10em;
 }
 .tab-bio .editor .editor-content {
-  min-height: 5em;
+  min-height: 10em;
 }
 .tab-bio .editor .tox.tox-tinymce {
-  min-height: 10em;
+  min-height: 20em;
 }
 .cleenmain.sheet.player .main .central .combat-tab {
   margin: 1em 0 0.5em 0;

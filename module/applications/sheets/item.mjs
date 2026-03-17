@@ -41,7 +41,7 @@ export default class CemItemSheet extends api.HandlebarsApplicationMixin(sheets.
     context.unlocked = this.item.isUnlocked;
     context.locked = !this.item.isUnlocked;
     if (this.item.parent?.type !== "skill") {
-      context.descriptionHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, { async: false });
+      context.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, { async: false });
     }
     return context;
   }

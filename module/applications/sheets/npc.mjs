@@ -40,6 +40,8 @@ export default class CemNpcSheet extends CemActorSheet {
     context.eliteRuleset = game.settings.get("cleenmain", "advancedRules");
     context.eliteRulesetModif = context.eliteRuleset && context.unlocked;
     context.equipmenthtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.equipment, { async: false });
+    context.tactichtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.tactic, { async: false });
+    context.traitshtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.traits, { async: false });
 
     return context;
   }

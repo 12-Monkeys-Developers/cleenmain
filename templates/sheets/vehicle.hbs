@@ -123,7 +123,7 @@
         {{#if unlocked}}
         <div class="description-block">
           <div class="description-title">{{localize "CLEENMAIN.label.description"}}</div>
-          {{editor descriptionhtml target="system.description" button=true owner=owner editable=editable}}
+          {{formInput systemFields.description enriched=descriptionhtml value=system.description}}
         </div>
         {{else}} {{#if (isNotEmptyString actorSystem.description)}}
         <div class="description-block">
