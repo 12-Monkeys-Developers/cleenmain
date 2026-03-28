@@ -106,5 +106,14 @@ Hooks.once("ready", async function () {
   if (!DEV_MODE) {
     registerWorldCount("cleenmain");
   }
+
+  // remove the token tracker turn marker
+  let combatTrackerConf = game.settings.get("core", "combatTrackerConfig");
+  foundry.utils.mergeObject(combatTrackerConf, {
+    "turnMarker.enabled": false,
+  });
+  combatTrackerConf.turnMarker.enabled = false;
+  game.settings.set("core", "combatTrackerConfig", combatTrackerConf);
+
   console.log(LOG_HEAD + "System ready");
 });

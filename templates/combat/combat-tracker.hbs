@@ -1,0 +1,56 @@
+<ol class="combat-tracker plain">
+    {{#each turns}}
+        <li class="combatant" data-combatant-id="{{ id }}" data-action="activateCombatant">
+        {{!-- TODO: Targets --}}
+
+        {{!-- Image --}}
+        <img class="token-image" src="{{ img }}" alt="{{ name }}" loading="lazy">
+
+        {{!-- Name & Controls --}}
+        <div class="token-name">
+            <strong class="name">{{ name }}</strong>
+            <div class="combatant-controls">
+                {{#if @root.user.isGM}}
+                <button type="button" class="inline-control combatant-control icon fa-solid fa-eye-slash {{#if hidden}}active{{/if}}"
+                        data-action="toggleHidden" data-tooltip aria-label="{{ localize "COMBAT.ToggleVis" }}"></button>
+                <button type="button" class="inline-control combatant-control icon fa-solid fa-skull {{#if isDefeated}}active{{/if}}"
+                        data-action="toggleDefeated" data-tooltip
+                        aria-label="{{ localize "COMBAT.ToggleDead" }}"></button>
+                {{/if}}
+                {{#if @root.user.isGM}}
+                <button type="button" class="inline-control combatant-control icon fa-solid fa-fist-raised" {{#if this.hasActed}}style="color:green" {{else}}style="color:gray" {{/if}}
+                        data-action="combatantAct" data-combatant-id="{{id}}" data-tooltip
+                        aria-label="{{ localize "CLEENMAIN.combatTracker.tourNotPlayed" }}"></button>
+                    {{else if this.owner}}
+                <button type="button" class="inline-control combatant-control icon fa-solid fa-fist-raised" {{#if this.hasActed}}style="color:green" {{else}}style="color:gray" {{/if}}
+                        data-action="combatantAct" data-combatant-id="{{id}}" data-tooltip
+                        aria-label="{{ localize "CLEENMAIN.combatTracker.tourNotPlayed" }}"></button>
+                    {{/if}}
+                {{#if canPing}}
+                <button type="button" class="inline-control combatant-control icon fa-solid fa-bullseye-arrow"
+                        data-action="pingCombatant" data-tooltip
+                        aria-label="{{ localize "COMBAT.PingCombatant" }}"></button>
+                {{/if}}
+                {{#unless @root.user.isGM}}
+                <button type="button" class="inline-control combatant-control icon fa-solid fa-arrows-to-eye"
+                        data-action="panToCombatant" data-tooltip
+                        aria-label="{{ localize "COMBAT.PanToCombatant" }}"></button>
+                {{/unless}}
+                {{!-- TODO: Target Control --}}
+                <div class="token-effects" data-tooltip-html="{{ effects.tooltip }}">
+                    {{#each effects.icons}}
+                    <img class="token-effect" src="{{ img }}" alt="{{ name }}">
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+        {{!-- Resource --}}
+        {{#if resource includeZero=true}}
+        <div class="token-resource">
+            <span class="resource">{{ resource }}</span>
+        </div>
+        {{/if}}
+        </li>
+    {{/each}}
+</ol>

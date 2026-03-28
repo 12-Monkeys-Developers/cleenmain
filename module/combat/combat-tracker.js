@@ -1,47 +1,54 @@
 export default class CemCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
+  static DEFAULT_OPTIONS = {
+    actions: {
+      combatantAct: CemCombatTracker.#onCombatantAct,
+    },
+  };
 
-    get template() {
-        return "systems/cleenmain/templates/combat/combat-tracker.html";
-    }
+  /** @override */
+  static PARTS = {
+    header: {
+      template: "templates/sidebar/tabs/combat/header.hbs",
+    },
+    tracker: {
+      template: "systems/cleenmain/templates/combat/combat-tracker.hbs",
+      scrollable: [""],
+    },
+    footer: {
+      template: "templates/sidebar/tabs/combat/footer.hbs",
+    },
+  };
 
-    async getData(options) {
-        const context = await super.getData(options);
-    
-        if (!context.hasCombat) {
-          return context;
-        }
-    
-        for (let [i, combatant] of context.combat.turns.entries()) {
-            context.turns[i].hasActed = combatant.getFlag("world", "hasActed");
-            context.turns[i].isPlayer = combatant.actor.type == "player";
-            context.turns[i].isNpc = combatant.actor.type == "npc";
-        }
-        return context;
-    }
+  /** @override */
+  async _prepareTurnContext(combat, combatant, index) {
+    const turn = await super._prepareTurnContext(combat, combatant, index);
+    turn.hasActed = combatant.getFlag("world", "hasActed");
+    turn.isPlayer = combatant.actor.type == "player";
+    turn.isNpc = combatant.actor.type == "npc";
+    return turn;
+  }
 
-    activateListeners(html) {
-        super.activateListeners(html);
+  /* -------------------------------------------------- */
+  /*   Actions                                          */
+  /* -------------------------------------------------- */ /**
+   * Handle clicking on combattant.
+   * @this {CombatTracker}
+   * @param {...any} args
+   */
+  static #onCombatantAct(...args) {
+    return this._onAct(...args);
+  }
 
-        html.find(".act").click(this._onAct.bind(this));        
-    }
+  /**
+   * @description Use to indicate that a player or npc has acted or not acted
+   * @param {*} event
+   */
+  async _onAct(event, target) {
+    event.preventDefault();
+    const combat = this.viewed;
+    const combatant = combat.combatants.get(target.dataset.combatantId);
 
-    /**
-     * @description Use to indicate that a player or npc has acted or not acted
-     * @param {*} event 
-     */
-    async _onAct(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        const btn = event.currentTarget;
-        const li = btn.closest(".combatant");
-        const combat = this.viewed;
-        const combatant = combat.combatants.get(li.dataset.combatantId);
-
-        if (!combatant.flags.world.hasActed)
-            await combatant.setFlag("world", "hasActed", true);
-        else   
-            await combatant.setFlag("world", "hasActed", false);
-
-        //this.render();
-    }
+    if (!combatant.flags.world.hasActed) await combatant.setFlag("world", "hasActed", true);
+    else await combatant.setFlag("world", "hasActed", false);
+  }
 }

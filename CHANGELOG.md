@@ -1,3 +1,6 @@
+# version 3.1.2
+bug combat tracker
+
 # Version 3.1.1
 - Bug editeur
 
