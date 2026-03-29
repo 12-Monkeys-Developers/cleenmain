@@ -24,7 +24,7 @@ export default class CemItemSheet extends api.HandlebarsApplicationMixin(sheets.
     },
   };
   get title() {
-    return `${game.i18n.localize("TYPES.Item." + this.item.type)}`;
+    return this.item.name;
   }
 
   async _prepareContext(options) {
