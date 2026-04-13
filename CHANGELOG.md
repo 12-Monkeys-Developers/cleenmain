@@ -1,3 +1,6 @@
+# Version 3.2.0
+- Compatibilité Foundry V14
+
 # version 3.1.2
 bug combat tracker
 
